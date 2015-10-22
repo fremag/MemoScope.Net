@@ -24,7 +24,7 @@ namespace WinFwk
             var interfaces = type.GetInterfaces();
             foreach (var interfType in interfaces)
             {
-                if (interfType.IsAssignableFrom(typeof(IMessageListener<>)))
+                if (interfType.IsGenericType && interfType.GetGenericTypeDefinition().IsAssignableFrom(typeof(IMessageListener<>)))
                 {
                     var genArgs = interfType.GetGenericArguments();
                     foreach (var genArg in genArgs)
