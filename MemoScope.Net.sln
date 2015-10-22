@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoScope", "MemoScope\MemoScope.csproj", "{D6AD45CF-3691-4A6F-8AA0-28FEA3B87BFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFwk", "WinFwk\WinFwk.csproj", "{B421F218-4883-4FF6-A186-719DD0A30A1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{CD8FD5C8-6991-4748-BB8B-137B43962A3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6AD45CF-3691-4A6F-8AA0-28FEA3B87BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6AD45CF-3691-4A6F-8AA0-28FEA3B87BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6AD45CF-3691-4A6F-8AA0-28FEA3B87BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6AD45CF-3691-4A6F-8AA0-28FEA3B87BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B421F218-4883-4FF6-A186-719DD0A30A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B421F218-4883-4FF6-A186-719DD0A30A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B421F218-4883-4FF6-A186-719DD0A30A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B421F218-4883-4FF6-A186-719DD0A30A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD8FD5C8-6991-4748-BB8B-137B43962A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD8FD5C8-6991-4748-BB8B-137B43962A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD8FD5C8-6991-4748-BB8B-137B43962A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD8FD5C8-6991-4748-BB8B-137B43962A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
