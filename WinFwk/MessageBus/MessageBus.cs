@@ -10,7 +10,8 @@ namespace WinFwk
 
     public class MessageBus
     {
-        Dictionary<Type, List<object>> dicoSubscribers = new Dictionary<Type, List<object>>();
+        public event Action<Exception, object> ExceptionRaised;
+        private Dictionary<Type, List<object>> dicoSubscribers = new Dictionary<Type, List<object>>();
         static internal IEnumerable<Type> GetMessageTypes(object subscriber)
         {
             List<Type> types = new List<Type>();
@@ -77,9 +78,31 @@ namespace WinFwk
             foreach (var msgType in messageTypes)
             {
                 var subscribers = GetSubscribers(msgType);
-                if (!subscribers.Contains(subscriber))
+                if (subscribers.Contains(subscriber))
                 {
                     subscribers.Remove(subscriber);
+                }
+            }
+        }
+
+        public void SendMessage<T>(T message)
+        {
+            List<object> subscribers = GetSubscribers(typeof(T));
+            if (subscribers.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var subscriber in subscribers)
+            {
+                IMessageListener<T> sub = subscriber as IMessageListener<T>;
+                try
+                {
+                    sub?.HandleMessage(message);
+                }
+                catch (Exception e)
+                {
+                    ExceptionRaised?.Invoke(e, sub);
                 }
             }
         }
