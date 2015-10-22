@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WinFwk
+namespace WinFwk.MessageBus
 {
-    public interface IMessageListener<T>
-    {
-        void HandleMessage(T message);
-    }
-
     public class MessageBus
     {
         public event Action<Exception, object> ExceptionRaised;
-        private Dictionary<Type, List<object>> dicoSubscribers = new Dictionary<Type, List<object>>();
+        private readonly Dictionary<Type, List<object>> dicoSubscribers = new Dictionary<Type, List<object>>();
         static internal IEnumerable<Type> GetMessageTypes(object subscriber)
         {
             List<Type> types = new List<Type>();
