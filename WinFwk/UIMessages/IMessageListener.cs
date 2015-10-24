@@ -1,4 +1,4 @@
-﻿namespace WinFwk.MessageBus
+﻿namespace WinFwk.UIMessages
 {
     public interface IMessageListener<in T>
     {

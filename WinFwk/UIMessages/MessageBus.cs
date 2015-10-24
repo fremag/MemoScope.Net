@@ -1,34 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WinFwk.MessageBus
+namespace WinFwk.UIMessages
 {
     public class MessageBus
     {
         public event Action<Exception, object> ExceptionRaised;
         private readonly Dictionary<Type, List<object>> dicoSubscribers = new Dictionary<Type, List<object>>();
+
         static internal IEnumerable<Type> GetMessageTypes(object subscriber)
         {
-            List<Type> types = new List<Type>();
-
-            if (subscriber == null)
-            {
-                return types;
-            }
-
-            Type type = subscriber.GetType();
-            var interfaces = type.GetInterfaces();
-            foreach (var interfType in interfaces)
-            {
-                if (interfType.IsGenericType && interfType.GetGenericTypeDefinition().IsAssignableFrom(typeof(IMessageListener<>)))
-                {
-                    var genArgs = interfType.GetGenericArguments();
-                    foreach (var genArg in genArgs)
-                    {
-                        types.Add(genArg);
-                    }
-                }
-            }
+            List<Type> types = WinFwkHelper.GetGenericInterfaceArguments(subscriber, typeof(IMessageListener<>));
             return types;
         }
 
@@ -46,16 +28,16 @@ namespace WinFwk.MessageBus
 
         public void Subscribe(object subscriber)
         {
-            if(subscriber == null)
+            if (subscriber == null)
             {
                 return;
             }
 
             var messageTypes = GetMessageTypes(subscriber);
-            foreach(var msgType in messageTypes)
+            foreach (var msgType in messageTypes)
             {
                 var subscribers = GetSubscribers(msgType);
-                if( ! subscribers.Contains(subscriber)  )
+                if (!subscribers.Contains(subscriber))
                 {
                     subscribers.Add(subscriber);
                 }
@@ -80,7 +62,7 @@ namespace WinFwk.MessageBus
             }
         }
 
-        public void SendMessage<T>(T message)
+        public void SendMessage<T>(T message) where T : UIMessage
         {
             List<object> subscribers = GetSubscribers(typeof(T));
             if (subscribers.Count == 0)

@@ -2,8 +2,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using WinFwk;
-using WinFwk.MessageBus;
+using WinFwk.UIMessages;
 
 namespace NUnitTests
 {
@@ -148,12 +147,12 @@ namespace NUnitTests
         }
     }
 
-    public class StatusMsg
+    public class StatusMsg : UIMessage
     {
         public string Text { get; set; }
     }
 
-    public class ResetMsg
+    public class ResetMsg: UIMessage
     {
         public string Reason { get; set; }
     }
