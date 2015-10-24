@@ -9,26 +9,53 @@ using WinFwk.UITools;
 
 namespace WinFwk.UIModules
 {
-    public partial class UIModuleForm : Form, IMessageListener<DockRequest>
+    public partial class UIModuleForm : Form
+        , IMessageListener<DockRequest>
+        , IMessageListener<StatusMessage>
     {
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
         private readonly DockPanel mainPanel;
         protected readonly MessageBus msgBus = new MessageBus();
+
+        private int nbTasks;
+
+        public StatusStrip StatusBar => statusStrip;
 
         protected UIModuleForm()
         {
             InitializeComponent();
 
             IsMdiContainer = true;
-            mainPanel = new DockPanel { Dock = DockStyle.Fill };
+            mainPanel = new DockPanel {Dock = DockStyle.Fill};
             Controls.Add(mainPanel);
             msgBus.Subscribe(this);
             mainPanel.ActiveContentChanged += OnActiveContentChanged;
         }
 
-        public void HandleMessage(DockRequest message)
+        void IMessageListener<DockRequest>.HandleMessage(DockRequest message)
         {
             DockModule(message.UIModule);
+        }
+
+        void IMessageListener<StatusMessage>.HandleMessage(StatusMessage message)
+        {
+            tsslStatusMessage.Text = message.Text;
+            switch (message.Status)
+            {
+                case StatusType.BeginTask:
+                    nbTasks++;
+                    tspbProgressBar.Style = ProgressBarStyle.Marquee;
+                    tspbProgressBar.MarqueeAnimationSpeed = 30;
+                    break;
+                case StatusType.EndTask:
+                    nbTasks--;
+                    if (nbTasks == 0)
+                    {
+                        tspbProgressBar.Style = ProgressBarStyle.Continuous;
+                        tspbProgressBar.MarqueeAnimationSpeed = 0;
+                    }
+                    break;
+            }
         }
 
         private void OnActiveContentChanged(object sender, EventArgs e)
@@ -65,9 +92,9 @@ namespace WinFwk.UIModules
             dicoModules.Remove(content);
         }
 
-        protected void InitToolbars()
+        protected void InitToolBars()
         {
-            var types = WinFwkHelper.GetDerivedTypes(typeof(AbstractUICommand<>));
+            var types = WinFwkHelper.GetDerivedTypes(typeof (AbstractUICommand<>));
             List<AbstractUICommand> commands = new List<AbstractUICommand>();
             foreach (var type in types)
             {

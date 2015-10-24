@@ -146,12 +146,12 @@ namespace NUnitTests
         }
     }
 
-    public class StatusMsg : UIMessage
+    public class StatusMsg : AbstractUIMessage
     {
         public string Text { get; set; }
     }
 
-    public class ResetMsg : UIMessage
+    public class ResetMsg : AbstractUIMessage
     {
         public string Reason { get; set; }
     }

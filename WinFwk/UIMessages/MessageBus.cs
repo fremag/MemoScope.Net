@@ -62,7 +62,7 @@ namespace WinFwk.UIMessages
             }
         }
 
-        public void SendMessage<T>(T message) where T : UIMessage
+        public void SendMessage<T>(T message) where T : AbstractUIMessage
         {
             List<object> subscribers = GetSubscribers(typeof(T));
             if (subscribers.Count == 0)

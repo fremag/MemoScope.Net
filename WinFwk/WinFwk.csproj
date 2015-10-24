@@ -51,7 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UICommands\AbstractUICommand.cs" />
     <Compile Include="UICommands\UIDataProvider.cs" />
-    <Compile Include="UIMessages\UIMessage.cs" />
+    <Compile Include="UIMessages\AbstractUIMessage.cs" />
     <Compile Include="UIModules\AbstractUIModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -64,6 +64,7 @@
       <DependentUpon>UIModuleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UIModules\UIModuleHelper.cs" />
+    <Compile Include="UITools\StatusMessage.cs" />
     <Compile Include="UITools\UIToolbar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -81,6 +82,9 @@
   <ItemGroup>
     <EmbeddedResource Include="UIModules\AbstractUIModule.resx">
       <DependentUpon>AbstractUIModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIModules\UIModuleForm.resx">
+      <DependentUpon>UIModuleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UITools\UIToolbar.resx">
       <DependentUpon>UIToolbar.cs</DependentUpon>

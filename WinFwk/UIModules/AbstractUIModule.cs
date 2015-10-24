@@ -6,7 +6,7 @@ namespace WinFwk.UIModules
 {
     public class UIModule : UserControl
     {
-        private MessageBus MessageBus { get; set; }
+        protected MessageBus MessageBus { get; private set; }
         public Bitmap Icon { get; protected set; }
         public string Info { get; protected set; }
         public string Summary { get; protected set; }

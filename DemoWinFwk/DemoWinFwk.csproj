@@ -50,6 +50,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StatusModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatusModule.Designer.cs">
+      <DependentUpon>StatusModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="StringProvider.cs" />
     <Compile Include="UICommands.cs" />
+    <EmbeddedResource Include="StatusModule.resx">
+      <DependentUpon>StatusModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

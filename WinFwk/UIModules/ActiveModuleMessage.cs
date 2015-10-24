@@ -2,7 +2,7 @@ using WinFwk.UIMessages;
 
 namespace WinFwk.UIModules
 {
-    public class ActiveModuleMessage : UIMessage
+    public class ActiveModuleMessage : AbstractUIMessage
     {
         public UIModule Module { get; private set; }
 

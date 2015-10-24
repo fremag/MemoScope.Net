@@ -1,6 +1,6 @@
 ﻿namespace WinFwk.UIMessages
 {
-    public abstract class UIMessage
+    public abstract class AbstractUIMessage
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace WinFwk.UIModules
 {
-    public class DockRequest : UIMessage
+    public class DockRequest : AbstractUIMessage
     {
         public UIModule UIModule { get; private set; }
 
