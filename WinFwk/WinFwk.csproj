@@ -60,6 +60,7 @@
     <Compile Include="UICommands\AbstractUICommand.cs" />
     <Compile Include="UICommands\UIDataProvider.cs" />
     <Compile Include="UIMessages\AbstractUIMessage.cs" />
+    <Compile Include="UIMessages\UIScheduler.cs" />
     <Compile Include="UIModules\AbstractUIModule.cs">
       <SubType>UserControl</SubType>
     </Compile>

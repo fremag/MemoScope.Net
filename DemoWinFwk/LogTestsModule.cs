@@ -33,7 +33,12 @@ namespace DemoWinFwk
 
         private void button4_Click(object sender, System.EventArgs e)
         {
-            var msg = new LogMessage(this, textBox1.Text, LogLevelType.Error);
+            Log(textBox1.Text, LogLevelType.Error);
+        }
+
+        private void button5_Click(object sender, System.EventArgs e)
+        {
+            var msg = new LogMessage(this, textBox1.Text, new LockRecursionException());
             Thread t = new Thread(() =>
             {
                 Thread.Sleep(1000);

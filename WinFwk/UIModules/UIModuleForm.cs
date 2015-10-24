@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UICommands;
@@ -24,6 +25,7 @@ namespace WinFwk.UIModules
         {
             InitializeComponent();
 
+            msgBus.UiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             msgBus.Subscribe(this);
         }
 
@@ -32,6 +34,7 @@ namespace WinFwk.UIModules
             DockModule(message.UIModule);
         }
 
+        [UIScheduler]
         void IMessageListener<StatusMessage>.HandleMessage(StatusMessage message)
         {
             lock (this)
@@ -47,7 +50,7 @@ namespace WinFwk.UIModules
                         break;
                     case StatusType.EndTask:
                         nbTasks--;
-                        if (nbTasks == 0)
+                        if (nbTasks <= 0)
                         {
                             tspbProgressBar.Style = ProgressBarStyle.Continuous;
                             tspbProgressBar.MarqueeAnimationSpeed = 0;
