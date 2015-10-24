@@ -94,6 +94,7 @@ namespace WinFwk.UIModules
 
         protected void InitToolBars()
         {
+            mainPanel.DockTopPortion = 100;
             var types = WinFwkHelper.GetDerivedTypes(typeof (AbstractUICommand<>));
             List<AbstractUICommand> commands = new List<AbstractUICommand>();
             foreach (var type in types)
