@@ -14,7 +14,6 @@ namespace WinFwk.UIModules
         , IMessageListener<StatusMessage>
     {
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
-        private readonly DockPanel mainPanel;
         protected readonly MessageBus msgBus = new MessageBus();
 
         private int nbTasks;
@@ -25,11 +24,7 @@ namespace WinFwk.UIModules
         {
             InitializeComponent();
 
-            IsMdiContainer = true;
-            mainPanel = new DockPanel {Dock = DockStyle.Fill};
-            Controls.Add(mainPanel);
             msgBus.Subscribe(this);
-            mainPanel.ActiveContentChanged += OnActiveContentChanged;
         }
 
         void IMessageListener<DockRequest>.HandleMessage(DockRequest message)
@@ -39,22 +34,27 @@ namespace WinFwk.UIModules
 
         void IMessageListener<StatusMessage>.HandleMessage(StatusMessage message)
         {
-            tsslStatusMessage.Text = message.Text;
-            switch (message.Status)
+            lock (this)
             {
-                case StatusType.BeginTask:
-                    nbTasks++;
-                    tspbProgressBar.Style = ProgressBarStyle.Marquee;
-                    tspbProgressBar.MarqueeAnimationSpeed = 30;
-                    break;
-                case StatusType.EndTask:
-                    nbTasks--;
-                    if (nbTasks == 0)
-                    {
-                        tspbProgressBar.Style = ProgressBarStyle.Continuous;
-                        tspbProgressBar.MarqueeAnimationSpeed = 0;
-                    }
-                    break;
+                tsslStatusMessage.Text = message.Text;
+                switch (message.Status)
+                {
+                    case StatusType.BeginTask:
+                        nbTasks++;
+                        tspbProgressBar.Style = ProgressBarStyle.Marquee;
+                        tspbProgressBar.MarqueeAnimationSpeed = 30;
+                        tspbProgressBar.Visible = true;
+                        break;
+                    case StatusType.EndTask:
+                        nbTasks--;
+                        if (nbTasks == 0)
+                        {
+                            tspbProgressBar.Style = ProgressBarStyle.Continuous;
+                            tspbProgressBar.MarqueeAnimationSpeed = 0;
+                            tspbProgressBar.Visible = false;
+                        }
+                        break;
+                }
             }
         }
 

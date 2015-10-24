@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using BrightIdeasSoftware;
 
 namespace WinFwk
 {
@@ -70,6 +71,11 @@ namespace WinFwk
                 }
             }
             return types;
+        }
+        public static void Init(this VirtualObjectListView listview)
+        {
+            listview.HideSelection = false;
+            listview.FullRowSelect = true;
         }
     }
 }

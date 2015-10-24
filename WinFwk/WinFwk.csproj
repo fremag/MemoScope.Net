@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.1.2\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ObjectListView, Version=2.8.1.33936, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.Official.2.8.1\lib\net20\ObjectListView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -64,6 +72,13 @@
       <DependentUpon>UIModuleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UIModules\UIModuleHelper.cs" />
+    <Compile Include="UITools\LogMessage.cs" />
+    <Compile Include="UITools\LogModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UITools\LogModule.Designer.cs">
+      <DependentUpon>LogModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="UITools\StatusMessage.cs" />
     <Compile Include="UITools\UIToolbar.cs">
       <SubType>UserControl</SubType>
@@ -85,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIModules\UIModuleForm.resx">
       <DependentUpon>UIModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITools\LogModule.resx">
+      <DependentUpon>LogModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UITools\UIToolbar.resx">
       <DependentUpon>UIToolbar.cs</DependentUpon>

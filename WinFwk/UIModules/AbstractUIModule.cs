@@ -1,6 +1,8 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using WinFwk.UIMessages;
+using WinFwk.UITools;
 
 namespace WinFwk.UIModules
 {
@@ -15,6 +17,15 @@ namespace WinFwk.UIModules
         {
             MessageBus = bus;
             MessageBus.Subscribe(this);
+        }
+
+        protected void Log(string text, LogLevelType logLevel= LogLevelType.Info)
+        {
+            MessageBus.SendMessage(new LogMessage(this, text, logLevel));
+        }
+        protected void Log(string text, Exception exception)
+        {
+            MessageBus.SendMessage(new LogMessage(this, text, exception));
         }
     }
 }

@@ -4,13 +4,13 @@ using WinFwk.UITools;
 
 namespace DemoWinFwk
 {
-    public partial class StatusModule : UIModule
+    public partial class LogTestsModule : UIModule
     {
-        public StatusModule()
+        public LogTestsModule()
         {
             InitializeComponent();
-            this.Name = "DoubleModule";
-            this.Text = "My Double Module";
+            this.Name = "Log Test";
+            this.Text = "Test log messages";
             this.Summary = "Nothing";
         }
 
@@ -18,22 +18,22 @@ namespace DemoWinFwk
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            MessageBus.SendMessage(new StatusMessage(textBox1.Text));
+            Log(textBox1.Text, LogLevelType.Debug);
         }
 
         private void button2_Click(object sender, System.EventArgs e)
         {
-            MessageBus.SendMessage(new StatusMessage(textBox1.Text, StatusType.BeginTask));
+            Log(textBox1.Text);
         }
 
         private void button3_Click(object sender, System.EventArgs e)
         {
-            MessageBus.SendMessage(new StatusMessage(textBox1.Text, StatusType.EndTask));
+            Log(textBox1.Text, LogLevelType.Warn);
         }
 
         private void button4_Click(object sender, System.EventArgs e)
         {
-            var msg = new StatusMessage(textBox1.Text, StatusType.EndTask);
+            var msg = new LogMessage(this, textBox1.Text, LogLevelType.Error);
             Thread t = new Thread(() =>
             {
                 Thread.Sleep(1000);
