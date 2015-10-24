@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Windows.Forms;
 
 namespace WinFwk
 {
     public static class WinFwkHelper
     {
+        private static readonly List<Assembly> assemblies = new List<Assembly>();
+
         public static List<Type> GetGenericInterfaceArguments(object obj, Type genericInterface)
         {
             List<Type> types = new List<Type>();
@@ -35,7 +35,6 @@ namespace WinFwk
             return types;
         }
 
-        private static readonly List<Assembly> assemblies = new List<Assembly>();
         public static List<Type> GetDerivedTypes(Type baseType)
         {
             var types = new List<Type>();
@@ -47,7 +46,7 @@ namespace WinFwk
                 foreach (string dll in Directory.GetFiles(path, "*.dll"))
                     assemblies.Add(Assembly.LoadFile(dll));
             }
-            
+
             foreach (var assembly in assemblies)
             {
                 var allTypes = assembly.GetTypes();
@@ -59,7 +58,7 @@ namespace WinFwk
                         types.Add(type);
                     }
 
-                    bool b2 = baseType.IsGenericTypeDefinition && type.BaseType != null && type.BaseType.IsGenericType ;
+                    bool b2 = baseType.IsGenericTypeDefinition && type.BaseType != null && type.BaseType.IsGenericType;
                     if (b2)
                     {
                         Type genTypeDef = type.BaseType.GetGenericTypeDefinition();

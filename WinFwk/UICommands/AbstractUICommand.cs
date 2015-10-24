@@ -14,8 +14,6 @@ namespace WinFwk.UICommands
         public bool Enabled { get; protected set; }
         public MessageBus MessageBus { get; set; }
 
-        public abstract void SetSelectedModule(UIModule module);
-
         protected AbstractUICommand(string name, string toolTip, string group, Icon icon)
         {
             Name = name;
@@ -23,6 +21,8 @@ namespace WinFwk.UICommands
             Group = group;
             Icon = icon;
         }
+
+        public abstract void SetSelectedModule(UIModule module);
 
         public void InitBus(MessageBus msgBus)
         {
@@ -34,6 +34,10 @@ namespace WinFwk.UICommands
     public abstract class AbstractUICommand<T> : AbstractUICommand
     {
         private UIDataProvider<T> dataProvider;
+
+        protected AbstractUICommand(string name, string toolTip, string @group, Icon icon) : base(name, toolTip, @group, icon)
+        {
+        }
 
         // Abstract
         protected abstract void HandleData(T data);
@@ -52,10 +56,5 @@ namespace WinFwk.UICommands
                 HandleData(data);
             }
         }
-
-        protected AbstractUICommand(string name, string toolTip, string @group, Icon icon) : base(name, toolTip, @group, icon)
-        {
-        }
-
     }
 }

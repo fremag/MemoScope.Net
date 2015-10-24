@@ -26,6 +26,11 @@ namespace WinFwk.UIModules
             mainPanel.ActiveContentChanged += OnActiveContentChanged;
         }
 
+        public void HandleMessage(DockRequest message)
+        {
+            DockModule(message.UIModule);
+        }
+
         private void OnActiveContentChanged(object sender, EventArgs e)
         {
             DockContent c = mainPanel.ActiveContent as DockContent;
@@ -82,11 +87,6 @@ namespace WinFwk.UIModules
                 toolbar.Init(g);
                 DockModule(toolbar, DockState.DockTop, false);
             }
-        }
-
-        public void HandleMessage(DockRequest message)
-        {
-            DockModule(message.UIModule);
         }
     }
 }

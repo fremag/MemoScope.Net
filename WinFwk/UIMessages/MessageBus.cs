@@ -5,10 +5,10 @@ namespace WinFwk.UIMessages
 {
     public class MessageBus
     {
-        public event Action<Exception, object> ExceptionRaised;
         private readonly Dictionary<Type, List<object>> dicoSubscribers = new Dictionary<Type, List<object>>();
+        public event Action<Exception, object> ExceptionRaised;
 
-        static internal IEnumerable<Type> GetMessageTypes(object subscriber)
+        internal static IEnumerable<Type> GetMessageTypes(object subscriber)
         {
             List<Type> types = WinFwkHelper.GetGenericInterfaceArguments(subscriber, typeof(IMessageListener<>));
             return types;
