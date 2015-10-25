@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using WinFwk.UIMessages;
-using WinFwk.UITools;
+using WinFwk.UITools.Log;
 
 namespace WinFwk.UIModules
 {
@@ -10,8 +10,13 @@ namespace WinFwk.UIModules
     {
         protected MessageBus MessageBus { get; private set; }
         public Bitmap Icon { get; protected set; }
-        public string Info { get; protected set; }
         public string Summary { get; protected set; }
+        public UIModule UIModuleParent { get; set; }
+
+        public UIModule()
+        {
+            UIModuleParent = this;
+        }
 
         public void InitBus(MessageBus bus)
         {

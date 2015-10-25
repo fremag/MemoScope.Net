@@ -1,7 +1,7 @@
 ﻿using System;
 using WinFwk.UIMessages;
 
-namespace WinFwk.UITools
+namespace WinFwk.UITools.Log
 {
     public enum LogLevelType { Debug, Info, Warn, Error, Exception}
     public class LogMessage : AbstractUIMessage

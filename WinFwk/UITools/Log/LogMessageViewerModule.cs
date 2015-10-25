@@ -1,6 +1,6 @@
 ﻿using WinFwk.UIModules;
 
-namespace WinFwk.UITools
+namespace WinFwk.UITools.Log
 {
     public partial class LogMessageViewerModule : UIModule
     {
@@ -22,6 +22,10 @@ namespace WinFwk.UITools
                 tbMessage.Text = exception.Message;
                 tbStackTrace.Text = exception.StackTrace;
             }
+
+            this.Name = tbTimeStamp.Text;
+            this.Summary = tbLevel.Text;
+
         }
     }
 }

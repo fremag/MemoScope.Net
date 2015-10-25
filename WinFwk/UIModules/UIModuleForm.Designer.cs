@@ -1,4 +1,7 @@
 ﻿using WeifenLuo.WinFormsUI.Docking;
+using WinFwk.UITools;
+using WinFwk.UITools.Log;
+using WinFwk.UITools.Workplace;
 
 namespace WinFwk.UIModules
 {
@@ -187,5 +190,15 @@ namespace WinFwk.UIModules
         private System.Windows.Forms.ToolStripStatusLabel tsslStatusMessage;
         private DockPanel mainPanel;
         private System.Windows.Forms.ToolStripContainer toolStripContainer2;
+
+        protected void InitWorkplace()
+        {
+            DockModule(new WorkplaceModule(), DockState.DockLeft, false);
+        }
+
+        protected void InitLog()
+        {
+            DockModule(new LogModule(), DockState.DockBottom, false);
+        }
     }
 }

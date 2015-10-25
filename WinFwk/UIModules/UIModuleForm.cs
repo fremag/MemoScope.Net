@@ -83,6 +83,7 @@ namespace WinFwk.UIModules
             var content = UIModuleHelper.Dock(this.mainPanel, uiModule, dockState, allowclose);
             content.Disposed += OnContentDisposed;
             dicoModules[content] = uiModule;
+            msgBus.SendMessage(new ModuleDocked(uiModule));
         }
 
         private void OnContentDisposed(object sender, EventArgs e)

@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="UIModules\ActiveModuleMessage.cs" />
     <Compile Include="UIModules\DockRequest.cs" />
+    <Compile Include="UIModules\ModuleDocked.cs" />
     <Compile Include="UIModules\UIModuleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,17 +77,22 @@
     <Compile Include="UITools\DefaultListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UITools\LogMessage.cs" />
-    <Compile Include="UITools\LogMessageViewerModule.cs">
+    <Compile Include="UITools\DefaultModel.cs" />
+    <Compile Include="UITools\DefaultTreeListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UITools\Log\LogMessage.cs" />
+    <Compile Include="UITools\Log\LogMessageViewerModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UITools\LogMessageViewerModule.Designer.cs">
+    <Compile Include="UITools\Log\LogMessageViewerModule.Designer.cs">
       <DependentUpon>LogMessageViewerModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="UITools\LogModule.cs">
+    <Compile Include="UITools\Log\LogModel.cs" />
+    <Compile Include="UITools\Log\LogModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UITools\LogModule.Designer.cs">
+    <Compile Include="UITools\Log\LogModule.Designer.cs">
       <DependentUpon>LogModule.cs</DependentUpon>
     </Compile>
     <Compile Include="UITools\StatusMessage.cs" />
@@ -95,6 +101,13 @@
     </Compile>
     <Compile Include="UITools\UIToolbar.Designer.cs">
       <DependentUpon>UIToolbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITools\Workplace\WorkplaceModel.cs" />
+    <Compile Include="UITools\Workplace\WorkplaceModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UITools\Workplace\WorkplaceModule.Designer.cs">
+      <DependentUpon>WorkplaceModule.cs</DependentUpon>
     </Compile>
     <Compile Include="WinFwkHelper.cs" />
   </ItemGroup>
@@ -111,14 +124,17 @@
     <EmbeddedResource Include="UIModules\UIModuleForm.resx">
       <DependentUpon>UIModuleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UITools\LogMessageViewerModule.resx">
+    <EmbeddedResource Include="UITools\Log\LogMessageViewerModule.resx">
       <DependentUpon>LogMessageViewerModule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UITools\LogModule.resx">
+    <EmbeddedResource Include="UITools\Log\LogModule.resx">
       <DependentUpon>LogModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UITools\UIToolbar.resx">
       <DependentUpon>UIToolbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITools\Workplace\WorkplaceModule.resx">
+      <DependentUpon>WorkplaceModule.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -9,12 +9,15 @@ namespace DemoWinFwk
         public Form1()
         {
             InitializeComponent();
+
+            InitToolBars();
+            InitWorkplace();
+            InitLog();
+
             DockModule(new StringModule());
             DockModule(new DoubleModule());
             DockModule(new StatusModule());
             DockModule(new LogTestsModule());
-            DockModule(new LogModule(), DockState.DockBottom);
-            InitToolBars();
         }
     }
 }

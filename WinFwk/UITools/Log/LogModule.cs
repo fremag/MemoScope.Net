@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Drawing;
 using BrightIdeasSoftware;
 using NLog;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
-namespace WinFwk.UITools
+namespace WinFwk.UITools.Log
 {
     public partial class LogModule : UIModule
         , IMessageListener<LogMessage>
@@ -31,12 +29,12 @@ namespace WinFwk.UITools
                 return;
             }
 
-            var logMessage = e.Item.RowObject as LogMessage ;
+            var logMessage = model.GetObject(e.Item.RowObject);
             if (logMessage == null)
             {
                 return;
             }
-            LogMessageViewerModule viewerModule = new LogMessageViewerModule();
+            LogMessageViewerModule viewerModule = new LogMessageViewerModule { UIModuleParent = this};
             viewerModule.Init(logMessage);
             RequestDockModule(viewerModule);
         }
@@ -93,41 +91,6 @@ namespace WinFwk.UITools
                 default:
                     throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
             }
-        }
-    }
-
-    public class LogModel : IEnumerable
-    {
-        private readonly List<LogMessage> logMessages = new List<LogMessage>();
-
-        public IEnumerator GetEnumerator()
-        {
-            return logMessages.GetEnumerator();
-        }
-
-        public void Add(LogMessage logMessage)
-        {
-            logMessages.Add(logMessage);
-        }
-
-        public DateTime GetTimeStamp(object o)
-        {
-            return ((LogMessage) o).TimeStamp;
-        }
-
-        public LogLevelType GetLogLevel(object o)
-        {
-            return ((LogMessage) o).LogLevel;
-        }
-
-        public object GetText(object o)
-        {
-            return ((LogMessage) o).Text;
-        }
-
-        public object GetException(object o)
-        {
-            return ((LogMessage) o).Exception;
         }
     }
 }

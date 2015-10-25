@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using WinFwk.UIModules;
 using WinFwk.UITools;
+using WinFwk.UITools.Log;
 
 namespace DemoWinFwk
 {
