@@ -1,6 +1,5 @@
-﻿using WeifenLuo.WinFormsUI.Docking;
+﻿using System.Windows.Forms;
 using WinFwk.UIModules;
-using WinFwk.UITools;
 
 namespace DemoWinFwk
 {
@@ -9,7 +8,10 @@ namespace DemoWinFwk
         public Form1()
         {
             InitializeComponent();
+        }
 
+        private void Form1_Load(object sender, System.EventArgs e)
+        {
             InitToolBars();
             InitWorkplace();
             InitLog();
@@ -18,6 +20,8 @@ namespace DemoWinFwk
             DockModule(new DoubleModule());
             DockModule(new StatusModule());
             DockModule(new LogTestsModule());
+
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

@@ -7,7 +7,7 @@ using WinFwk.UIModules;
 
 namespace WinFwk.UITools
 {
-    public partial class UIToolbar : UIModule, IMessageListener<ActiveModuleMessage>
+    public partial class UIToolbar : UIModule, IMessageListener<ModuleEventMessage>
     {
         private readonly Dictionary<AbstractUICommand, Button> dicoCommands = new Dictionary<AbstractUICommand, Button>();
 
@@ -16,16 +16,11 @@ namespace WinFwk.UITools
             InitializeComponent();
         }
 
-        public void HandleMessage(ActiveModuleMessage message)
+        public void HandleMessage(ModuleEventMessage eventMessage)
         {
-            var providedDataTypes = WinFwkHelper.GetGenericInterfaceArguments(message.Module, typeof (UIDataProvider<>));
-            if (providedDataTypes.Count == 0)
-            {
-                return;
-            }
             foreach (var kvp in dicoCommands)
             {
-                kvp.Key.SetSelectedModule(message.Module);
+                kvp.Key.SetSelectedModule(eventMessage.Module);
                 kvp.Value.Enabled = kvp.Key.Enabled;
             }
         }
@@ -44,6 +39,7 @@ namespace WinFwk.UITools
                 var type = command.GetType();
                 var meth = type.GetMethod("Run");
                 button.Click += (sender, args) => { meth.Invoke(cmd, null); };
+                button.Enabled = command.Enabled; 
                 dicoCommands[command] = button;
             }
         }

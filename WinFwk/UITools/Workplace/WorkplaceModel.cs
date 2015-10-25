@@ -10,7 +10,7 @@ namespace WinFwk.UITools.Workplace
 
         public void Add(UIModule uiModule)
         {
-            if (uiModule.Parent == null)
+            if (uiModule.UIModuleParent == null)
             {
                 return;
             }
@@ -55,6 +55,29 @@ namespace WinFwk.UITools.Workplace
             List<UIModule> children;
             childModules.TryGetValue(uiModule, out children);
             return children;
+        }
+
+        public void Remove(UIModule module)
+        {
+            rootModules.Remove(module);
+            var children = GetChildren(module.UIModuleParent);
+            children?.Remove(module);
+            RemoveModuleChildren(module);
+        }
+
+        private void RemoveModuleChildren(UIModule module)
+        {
+            var children = GetChildren(module);
+            if (children == null)
+            {
+                return;
+            }
+            for (int i = children.Count -1; i >= 0; i--)
+            {
+                var child = children[i];
+                children.RemoveAt(i);
+                RemoveModuleChildren(child);
+            }
         }
     }
 }

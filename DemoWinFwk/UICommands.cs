@@ -5,9 +5,9 @@ using WinFwk.UIModules;
 
 namespace DemoWinFwk
 {
-    public class StringUICommand : AbstractUICommand<String>
+    public class StringTypedUiCommand : AbstractTypedUICommand<String>
     {
-        public StringUICommand() : base("String", "Some string", "Data", null)
+        public StringTypedUiCommand() : base("String", "Some string", "Data", null)
         {
         }
 
@@ -17,9 +17,9 @@ namespace DemoWinFwk
         }
     }
 
-    public class TextUICommand : AbstractUICommand<String>
+    public class TextTypedUiCommand : AbstractTypedUICommand<String>
     {
-        public TextUICommand() : base("Text", "Some text", "Text", null)
+        public TextTypedUiCommand() : base("Text", "Some text", "Text", null)
         {
         }
 
@@ -29,9 +29,9 @@ namespace DemoWinFwk
         }
     }
 
-    public class DoubleUICommands : AbstractUICommand<double>
+    public class DoubleTypedUiCommands : AbstractTypedUICommand<double>
     {
-        public DoubleUICommands() : base("Double", "Some double", "Data", null)
+        public DoubleTypedUiCommands() : base("Double", "Some double", "Data", null)
         {
         }
 
@@ -41,13 +41,13 @@ namespace DemoWinFwk
         }
     }
 
-    public class TotoCommand : AbstractUICommand<object>
+    public class TotoCommand : AbstractVoidUICommand
     {
         public TotoCommand() : base("Toto", "toto command", "File", null)
         {
         }
 
-        protected override void HandleData(object data)
+        public override void Run()
         {
             MessageBus.SendMessage(new DockRequest(new StringModule()));
         }

@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
@@ -23,38 +23,12 @@ namespace WinFwk.UICommands
         }
 
         public abstract void SetSelectedModule(UIModule module);
+        public abstract void Run();
 
         public void InitBus(MessageBus msgBus)
         {
             MessageBus = msgBus;
             MessageBus.Subscribe(this);
-        }
-    }
-
-    public abstract class AbstractUICommand<T> : AbstractUICommand
-    {
-        private UIDataProvider<T> dataProvider;
-
-        protected AbstractUICommand(string name, string toolTip, string @group, Icon icon) : base(name, toolTip, @group, icon)
-        {
-        }
-
-        // Abstract
-        protected abstract void HandleData(T data);
-
-        public override void SetSelectedModule(UIModule module)
-        {
-            dataProvider = module as UIDataProvider<T>;
-            Enabled = (dataProvider != null);
-        }
-
-        public virtual void Run()
-        {
-            if (dataProvider != null)
-            {
-                T data = dataProvider.Data;
-                HandleData(data);
-            }
         }
     }
 }

@@ -27,6 +27,8 @@ namespace WinFwk.UIModules
 
             msgBus.UiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             msgBus.Subscribe(this);
+            mainPanel.ContentAdded += OnContentAdded;
+            mainPanel.ContentRemoved += OnContentRemoved;
         }
 
         [UIScheduler]
@@ -62,6 +64,15 @@ namespace WinFwk.UIModules
             }
         }
 
+        private void SendModuleEventMessage(DockContent content, ModuleEventType moduleEvent)
+        {
+            UIModule module;
+            if (dicoModules.TryGetValue(content, out module))
+            {
+                msgBus.SendMessage(new ModuleEventMessage(module, moduleEvent));
+            }
+        }
+
         private void OnActiveContentChanged(object sender, EventArgs e)
         {
             DockContent c = mainPanel.ActiveContent as DockContent;
@@ -70,20 +81,38 @@ namespace WinFwk.UIModules
                 return;
             }
 
-            UIModule module;
-            if (dicoModules.TryGetValue(c, out module))
+            SendModuleEventMessage(c, ModuleEventType.Activated);
+        }
+
+        private void OnContentRemoved(object sender, DockContentEventArgs e)
+        {
+            DockContent c = e.Content as DockContent;
+            if (c == null)
             {
-                msgBus.SendMessage(new ActiveModuleMessage(module));
+                return;
             }
+
+            SendModuleEventMessage(c, ModuleEventType.Removed);
+        }
+
+        private void OnContentAdded(object sender, DockContentEventArgs e)
+        {
+            DockContent c = e.Content as DockContent;
+            if (c == null)
+            {
+                return;
+            }
+
+            SendModuleEventMessage(c, ModuleEventType.Added);
         }
 
         protected void DockModule(UIModule uiModule, DockState dockState = DockState.Document, bool allowclose = true)
         {
             uiModule.InitBus(msgBus);
-            var content = UIModuleHelper.Dock(this.mainPanel, uiModule, dockState, allowclose);
-            content.Disposed += OnContentDisposed;
+            var content = UIModuleHelper.BuildDockContent(uiModule, allowclose);
             dicoModules[content] = uiModule;
-            msgBus.SendMessage(new ModuleDocked(uiModule));
+            content.Disposed += OnContentDisposed;
+            content.Show(mainPanel, dockState);
         }
 
         private void OnContentDisposed(object sender, EventArgs e)
@@ -100,7 +129,7 @@ namespace WinFwk.UIModules
         protected void InitToolBars()
         {
             mainPanel.DockTopPortion = 100;
-            var types = WinFwkHelper.GetDerivedTypes(typeof (AbstractUICommand<>));
+            var types = WinFwkHelper.GetDerivedTypes(typeof (AbstractUICommand));
             List<AbstractUICommand> commands = new List<AbstractUICommand>();
             foreach (var type in types)
             {

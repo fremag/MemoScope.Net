@@ -53,7 +53,7 @@ namespace WinFwk
                 var allTypes = assembly.GetTypes();
                 foreach (var type in allTypes)
                 {
-                    bool b1 = type.IsAssignableFrom(baseType);
+                    bool b1 = type.IsSubclassOf(baseType);
                     if (b1 && type != baseType)
                     {
                         types.Add(type);
