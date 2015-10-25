@@ -2,9 +2,9 @@
 
 namespace WinFwk.UITools
 {
-    public partial class LogMessageViewer : UIModule
+    public partial class LogMessageViewerModule : UIModule
     {
-        public LogMessageViewer()
+        public LogMessageViewerModule()
         {
             InitializeComponent();
         }

@@ -36,9 +36,9 @@ namespace WinFwk.UITools
             {
                 return;
             }
-            LogMessageViewer viewer = new LogMessageViewer();
-            viewer.Init(logMessage);
-            RequestDockModule(viewer);
+            LogMessageViewerModule viewerModule = new LogMessageViewerModule();
+            viewerModule.Init(logMessage);
+            RequestDockModule(viewerModule);
         }
 
         public void HandleMessage(LogMessage message)

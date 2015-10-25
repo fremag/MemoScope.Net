@@ -1,6 +1,6 @@
 ﻿namespace WinFwk.UITools
 {
-    partial class LogMessageViewer
+    partial class LogMessageViewerModule
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -213,12 +213,12 @@
             this.splitContainer1.SplitterDistance = 328;
             this.splitContainer1.TabIndex = 12;
             // 
-            // LogMessageViewer
+            // LogMessageViewerModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
-            this.Name = "LogMessageViewer";
+            this.Name = "LogMessageViewerModule";
             this.Size = new System.Drawing.Size(716, 715);
             this.gbLogMessage.ResumeLayout(false);
             this.gbLogMessage.PerformLayout();
