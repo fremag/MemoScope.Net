@@ -54,12 +54,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UICommands\AbstractTypedUICommand.cs" />
     <Compile Include="UICommands\AbstractVoidUICommand.cs" />
     <Compile Include="UICommands\AbstractUICommand.cs" />
     <Compile Include="UIMessages\IMessageListener.cs" />
     <Compile Include="UIMessages\MessageBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UICommands\AbstractTypedUICommand.cs" />
     <Compile Include="UICommands\UIDataProvider.cs" />
     <Compile Include="UIMessages\AbstractUIMessage.cs" />
     <Compile Include="UIMessages\UIScheduler.cs" />
