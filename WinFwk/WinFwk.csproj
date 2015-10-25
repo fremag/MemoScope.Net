@@ -73,7 +73,16 @@
       <DependentUpon>UIModuleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UIModules\UIModuleHelper.cs" />
+    <Compile Include="UITools\DefaultListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UITools\LogMessage.cs" />
+    <Compile Include="UITools\LogMessageViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UITools\LogMessageViewer.Designer.cs">
+      <DependentUpon>LogMessageViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UITools\LogModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIModules\UIModuleForm.resx">
       <DependentUpon>UIModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UITools\LogMessageViewer.resx">
+      <DependentUpon>LogMessageViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UITools\LogModule.resx">
       <DependentUpon>LogModule.cs</DependentUpon>

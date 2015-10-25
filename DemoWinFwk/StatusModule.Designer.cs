@@ -41,7 +41,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(18, 15);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(290, 22);
+            this.textBox1.Size = new System.Drawing.Size(318, 22);
             this.textBox1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -52,7 +52,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(314, 15);
+            this.button1.Location = new System.Drawing.Point(18, 43);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -62,7 +62,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(395, 15);
+            this.button2.Location = new System.Drawing.Point(99, 43);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -72,7 +72,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(476, 14);
+            this.button3.Location = new System.Drawing.Point(180, 42);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;
@@ -82,7 +82,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(557, 14);
+            this.button4.Location = new System.Drawing.Point(261, 42);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 5;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "StatusModule";
-            this.Size = new System.Drawing.Size(646, 47);
+            this.Size = new System.Drawing.Size(343, 71);
             this.ResumeLayout(false);
             this.PerformLayout();
 

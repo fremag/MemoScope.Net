@@ -9,8 +9,8 @@ namespace DemoWinFwk
         public StatusModule()
         {
             InitializeComponent();
-            this.Name = "DoubleModule";
-            this.Text = "My Double Module";
+            this.Name = "Status";
+            this.Text = "Status Test Module";
             this.Summary = "Nothing";
         }
 

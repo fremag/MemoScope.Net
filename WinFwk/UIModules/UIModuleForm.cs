@@ -29,6 +29,7 @@ namespace WinFwk.UIModules
             msgBus.Subscribe(this);
         }
 
+        [UIScheduler]
         void IMessageListener<DockRequest>.HandleMessage(DockRequest message)
         {
             DockModule(message.UIModule);

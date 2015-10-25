@@ -19,13 +19,19 @@ namespace WinFwk.UIModules
             MessageBus.Subscribe(this);
         }
 
-        protected void Log(string text, LogLevelType logLevel= LogLevelType.Info)
+        protected void Log(string text, LogLevelType logLevel = LogLevelType.Info)
         {
             MessageBus.SendMessage(new LogMessage(this, text, logLevel));
         }
+
         protected void Log(string text, Exception exception)
         {
             MessageBus.SendMessage(new LogMessage(this, text, exception));
+        }
+
+        protected void RequestDockModule(UIModule uiModule)
+        {
+            MessageBus.SendMessage(new DockRequest(uiModule));
         }
     }
 }

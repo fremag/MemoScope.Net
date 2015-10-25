@@ -76,6 +76,7 @@ namespace WinFwk
         {
             listview.HideSelection = false;
             listview.FullRowSelect = true;
+            listview.ShowImagesOnSubItems = true;
         }
     }
 }

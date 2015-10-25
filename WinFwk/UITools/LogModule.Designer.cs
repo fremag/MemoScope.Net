@@ -28,38 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.fdlvLogMessages = new BrightIdeasSoftware.FastObjectListView();
+            this.dlvLogMessages = new DefaultListView();
             this.colTimeStamp = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colLogLevel = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colText = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colException = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            ((System.ComponentModel.ISupportInitialize)(this.fdlvLogMessages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvLogMessages)).BeginInit();
             this.SuspendLayout();
             // 
-            // fdlvLogMessages
+            // dlvLogMessages
             // 
-            this.fdlvLogMessages.AllColumns.Add(this.colTimeStamp);
-            this.fdlvLogMessages.AllColumns.Add(this.colLogLevel);
-            this.fdlvLogMessages.AllColumns.Add(this.colText);
-            this.fdlvLogMessages.AllColumns.Add(this.colException);
-            this.fdlvLogMessages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.dlvLogMessages.AllColumns.Add(this.colTimeStamp);
+            this.dlvLogMessages.AllColumns.Add(this.colLogLevel);
+            this.dlvLogMessages.AllColumns.Add(this.colText);
+            this.dlvLogMessages.AllColumns.Add(this.colException);
+            this.dlvLogMessages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colTimeStamp,
             this.colLogLevel,
             this.colText,
             this.colException});
-            this.fdlvLogMessages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fdlvLogMessages.FullRowSelect = true;
-            this.fdlvLogMessages.HideSelection = false;
-            this.fdlvLogMessages.Location = new System.Drawing.Point(0, 0);
-            this.fdlvLogMessages.Name = "fdlvLogMessages";
-            this.fdlvLogMessages.ShowGroups = false;
-            this.fdlvLogMessages.Size = new System.Drawing.Size(861, 357);
-            this.fdlvLogMessages.TabIndex = 0;
-            this.fdlvLogMessages.UseCellFormatEvents = true;
-            this.fdlvLogMessages.UseCompatibleStateImageBehavior = false;
-            this.fdlvLogMessages.View = System.Windows.Forms.View.Details;
-            this.fdlvLogMessages.VirtualMode = true;
-            this.fdlvLogMessages.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.fdlvLogMessages_FormatCell);
+            this.dlvLogMessages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlvLogMessages.FullRowSelect = true;
+            this.dlvLogMessages.HideSelection = false;
+            this.dlvLogMessages.Location = new System.Drawing.Point(0, 0);
+            this.dlvLogMessages.Name = "dlvLogMessages";
+            this.dlvLogMessages.ShowGroups = false;
+            this.dlvLogMessages.Size = new System.Drawing.Size(861, 357);
+            this.dlvLogMessages.TabIndex = 0;
+            this.dlvLogMessages.UseCellFormatEvents = true;
+            this.dlvLogMessages.UseCompatibleStateImageBehavior = false;
+            this.dlvLogMessages.View = System.Windows.Forms.View.Details;
+            this.dlvLogMessages.VirtualMode = true;
+            this.dlvLogMessages.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.fdlvLogMessages_FormatCell);
             // 
             // colTimeStamp
             // 
@@ -86,17 +86,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.fdlvLogMessages);
+            this.Controls.Add(this.dlvLogMessages);
             this.Name = "LogModule";
             this.Size = new System.Drawing.Size(861, 357);
-            ((System.ComponentModel.ISupportInitialize)(this.fdlvLogMessages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvLogMessages)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private BrightIdeasSoftware.FastObjectListView fdlvLogMessages;
+        private DefaultListView dlvLogMessages;
         private BrightIdeasSoftware.OLVColumn colTimeStamp;
         private BrightIdeasSoftware.OLVColumn colLogLevel;
         private BrightIdeasSoftware.OLVColumn colText;

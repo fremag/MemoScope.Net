@@ -10,8 +10,8 @@ namespace DemoWinFwk
         {
             InitializeComponent();
             DockModule(new StringModule());
-            DockModule(new DoubleModule(), DockState.DockLeft);
-            DockModule(new StatusModule(), DockState.DockRight);
+            DockModule(new DoubleModule());
+            DockModule(new StatusModule());
             DockModule(new LogTestsModule());
             DockModule(new LogModule(), DockState.DockBottom);
             InitToolBars();

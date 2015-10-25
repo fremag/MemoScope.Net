@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using BrightIdeasSoftware;
 using NLog;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
@@ -20,7 +21,24 @@ namespace WinFwk.UITools
             colLogLevel.AspectGetter = o => model.GetLogLevel(o);
             colText.AspectGetter = o => model.GetText(o);
             colException.AspectGetter = o => model.GetException(o);
-            fdlvLogMessages.Init();
+            dlvLogMessages.CellClick += OnCellClick;
+        }
+
+        private void OnCellClick(object sender, CellClickEventArgs e)
+        {
+            if (e.ClickCount != 2)
+            {
+                return;
+            }
+
+            var logMessage = e.Item.RowObject as LogMessage ;
+            if (logMessage == null)
+            {
+                return;
+            }
+            LogMessageViewer viewer = new LogMessageViewer();
+            viewer.Init(logMessage);
+            RequestDockModule(viewer);
         }
 
         public void HandleMessage(LogMessage message)
@@ -47,7 +65,7 @@ namespace WinFwk.UITools
                     throw new ArgumentOutOfRangeException();
             }
             model.Add(message);
-            fdlvLogMessages.SetObjects(model);
+            dlvLogMessages.SetObjects(model);
         }
 
         private void fdlvLogMessages_FormatCell(object sender, BrightIdeasSoftware.FormatCellEventArgs e)
@@ -55,23 +73,25 @@ namespace WinFwk.UITools
             if (e.Column != colLogLevel)
                 return;
 
-            switch ((LogLevelType) e.SubItem.ModelValue)
+           e.SubItem.BackColor = GetLogLevelColor((LogLevelType) e.SubItem.ModelValue);
+        }
+
+        private static Color GetLogLevelColor(LogLevelType logLevel)
+        {
+            switch (logLevel)
             {
                 case LogLevelType.Debug:
-                    e.SubItem.BackColor = Color.LightSkyBlue;
-                    break;
+                    return Color.LightSkyBlue;
                 case LogLevelType.Info:
-                    e.SubItem.BackColor = Color.PaleGreen;
-                    break;
+                    return Color.PaleGreen;
                 case LogLevelType.Warn:
-                    e.SubItem.BackColor = Color.Yellow;
-                    break;
+                    return Color.Yellow;
                 case LogLevelType.Error:
-                    e.SubItem.BackColor = Color.Red;
-                    break;
+                    return Color.Red;
                 case LogLevelType.Exception:
-                    e.SubItem.BackColor = Color.MediumPurple;
-                    break;
+                    return Color.MediumPurple;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
             }
         }
     }
