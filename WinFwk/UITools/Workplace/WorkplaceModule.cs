@@ -14,10 +14,10 @@ namespace WinFwk.UITools.Workplace
             InitializeComponent();
             Name = "Workplace";
 
-            colName.AspectGetter = rowObject => model.GetName(rowObject);
-            colSummary.AspectGetter = rowObject => model.GetSummary(rowObject);
-            tlvModules.CanExpandGetter = o => model.HasChild(o);
-            tlvModules.ChildrenGetter = o => model.GetChildren(o);
+            colName.AspectGetter = model.GetName;
+            colSummary.AspectGetter = model.GetSummary;
+            tlvModules.CanExpandGetter = model.HasChild;
+            tlvModules.ChildrenGetter = model.GetChildren;
         }
 
         public void HandleMessage(ModuleEventMessage message)

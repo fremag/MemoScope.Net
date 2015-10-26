@@ -15,28 +15,11 @@ namespace WinFwk.UITools.Log
         public LogModule()
         {
             InitializeComponent();
-            colTimeStamp.AspectGetter = o => model.GetTimeStamp(o);
-            colLogLevel.AspectGetter = o => model.GetLogLevel(o);
-            colText.AspectGetter = o => model.GetText(o);
-            colException.AspectGetter = o => model.GetException(o);
+            colTimeStamp.AspectGetter = model.GetTimeStamp;
+            colLogLevel.AspectGetter = model.GetLogLevel;
+            colText.AspectGetter = model.GetText;
+            colException.AspectGetter = model.GetException;
             dlvLogMessages.CellClick += OnCellClick;
-        }
-
-        private void OnCellClick(object sender, CellClickEventArgs e)
-        {
-            if (e.ClickCount != 2)
-            {
-                return;
-            }
-
-            var logMessage = model.GetObject(e.Item.RowObject);
-            if (logMessage == null)
-            {
-                return;
-            }
-            LogMessageViewerModule viewerModule = new LogMessageViewerModule { UIModuleParent = this};
-            viewerModule.Init(logMessage);
-            RequestDockModule(viewerModule);
         }
 
         public void HandleMessage(LogMessage message)
@@ -66,12 +49,29 @@ namespace WinFwk.UITools.Log
             dlvLogMessages.SetObjects(model);
         }
 
+        private void OnCellClick(object sender, CellClickEventArgs e)
+        {
+            if (e.ClickCount != 2)
+            {
+                return;
+            }
+
+            var logMessage = model.GetObject(e.Item.RowObject);
+            if (logMessage == null)
+            {
+                return;
+            }
+            LogMessageViewerModule viewerModule = new LogMessageViewerModule {UIModuleParent = this};
+            viewerModule.Init(logMessage);
+            RequestDockModule(viewerModule);
+        }
+
         private void fdlvLogMessages_FormatCell(object sender, BrightIdeasSoftware.FormatCellEventArgs e)
         {
             if (e.Column != colLogLevel)
                 return;
 
-           e.SubItem.BackColor = GetLogLevelColor((LogLevelType) e.SubItem.ModelValue);
+            e.SubItem.BackColor = GetLogLevelColor((LogLevelType) e.SubItem.ModelValue);
         }
 
         private static Color GetLogLevelColor(LogLevelType logLevel)

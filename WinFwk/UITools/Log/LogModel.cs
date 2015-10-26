@@ -5,12 +5,12 @@ namespace WinFwk.UITools.Log
     public class LogModel : DefaultModel<LogMessage>
     {
         
-        public DateTime GetTimeStamp(object o)
+        public object GetTimeStamp(object o)
         {
             return GetObject(o).TimeStamp;
         }
 
-        public LogLevelType GetLogLevel(object o)
+        public object GetLogLevel(object o)
         {
             return GetObject(o).LogLevel;
         }
