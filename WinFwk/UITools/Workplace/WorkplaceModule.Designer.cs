@@ -52,11 +52,12 @@
             this.tlvModules.RootKeyValueString = "";
             this.tlvModules.ShowGroups = false;
             this.tlvModules.ShowImagesOnSubItems = true;
-            this.tlvModules.Size = new System.Drawing.Size(150, 150);
+            this.tlvModules.Size = new System.Drawing.Size(539, 519);
             this.tlvModules.TabIndex = 0;
             this.tlvModules.UseCompatibleStateImageBehavior = false;
             this.tlvModules.View = System.Windows.Forms.View.Details;
             this.tlvModules.VirtualMode = true;
+            this.tlvModules.SelectionChanged += new System.EventHandler(this.tlvModules_SelectionChanged);
             // 
             // colName
             // 
@@ -74,6 +75,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tlvModules);
             this.Name = "WorkplaceModule";
+            this.Size = new System.Drawing.Size(539, 519);
             ((System.ComponentModel.ISupportInitialize)(this.tlvModules)).EndInit();
             this.ResumeLayout(false);
 

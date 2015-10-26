@@ -66,6 +66,7 @@
     <Compile Include="UIModules\AbstractUIModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UIModules\ActivationRequest.cs" />
     <Compile Include="UIModules\ModuleEventMessage.cs" />
     <Compile Include="UIModules\DockRequest.cs" />
     <Compile Include="UIModules\UIModuleForm.cs">

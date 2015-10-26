@@ -13,6 +13,7 @@ namespace WinFwk.UIModules
     public partial class UIModuleForm : Form
         , IMessageListener<DockRequest>
         , IMessageListener<StatusMessage>
+        , IMessageListener<ActivationRequest>
     {
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
         protected readonly MessageBus msgBus = new MessageBus();
@@ -75,55 +76,57 @@ namespace WinFwk.UIModules
 
         private void OnActiveContentChanged(object sender, EventArgs e)
         {
-            DockContent c = mainPanel.ActiveContent as DockContent;
-            if (c == null)
+            DockContent dockContent = mainPanel.ActiveContent as DockContent;
+            if (dockContent == null)
             {
                 return;
             }
 
-            SendModuleEventMessage(c, ModuleEventType.Activated);
+            SendModuleEventMessage(dockContent, ModuleEventType.Activated);
         }
 
         private void OnContentRemoved(object sender, DockContentEventArgs e)
         {
-            DockContent c = e.Content as DockContent;
-            if (c == null)
+            DockContent dockContent = e.Content as DockContent;
+            if (dockContent == null)
             {
                 return;
             }
 
-            SendModuleEventMessage(c, ModuleEventType.Removed);
+            SendModuleEventMessage(dockContent, ModuleEventType.Removed);
+            dicoModules.Remove(dockContent);
+
         }
 
         private void OnContentAdded(object sender, DockContentEventArgs e)
         {
-            DockContent c = e.Content as DockContent;
-            if (c == null)
+            DockContent dockContent = e.Content as DockContent;
+            if (dockContent == null)
             {
                 return;
             }
 
-            SendModuleEventMessage(c, ModuleEventType.Added);
+            SendModuleEventMessage(dockContent, ModuleEventType.Added);
         }
 
+        [UIScheduler]
+        public void HandleMessage(ActivationRequest message)
+        {
+            foreach (var kvp in dicoModules)
+            {
+                if (kvp.Value == message.Module)
+                {
+                    kvp.Key.DockHandler.Activate();
+                }
+            }
+        }
+        [UIScheduler]
         protected void DockModule(UIModule uiModule, DockState dockState = DockState.Document, bool allowclose = true)
         {
             uiModule.InitBus(msgBus);
             var content = UIModuleHelper.BuildDockContent(uiModule, allowclose);
             dicoModules[content] = uiModule;
-            content.Disposed += OnContentDisposed;
             content.Show(mainPanel, dockState);
-        }
-
-        private void OnContentDisposed(object sender, EventArgs e)
-        {
-            DockContent content = sender as DockContent;
-            if (content == null)
-            {
-                return;
-            }
-            content.Disposed -= OnContentDisposed;
-            dicoModules.Remove(content);
         }
 
         protected void InitToolBars()

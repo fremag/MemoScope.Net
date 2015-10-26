@@ -31,13 +31,22 @@ namespace WinFwk.UITools.Workplace
                     model.Remove(message.Module);
                     break;
                 case ModuleEventType.Activated:
-
+                    // todo: select the corresponding module in the workplace
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             tlvModules.Roots = model.rootModules;
             tlvModules.ExpandAll();
+        }
+
+        private void tlvModules_SelectionChanged(object sender, EventArgs e)
+        {
+            var module = tlvModules.SelectedObject as UIModule;
+            if (module != null)
+            {
+                MessageBus.SendMessage(new ActivationRequest(module));
+            }
         }
     }
 }
