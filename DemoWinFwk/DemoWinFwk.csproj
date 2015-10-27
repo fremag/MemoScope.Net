@@ -56,6 +56,7 @@
     <Compile Include="LogTestsModule.Designer.cs">
       <DependentUpon>LogTestsModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mysettings.cs" />
     <Compile Include="StatusModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
