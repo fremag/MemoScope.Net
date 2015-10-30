@@ -47,5 +47,10 @@ namespace DemoWinFwk
             });
             t.Start();
         }
+
+        private void button6_Click(object sender, System.EventArgs e)
+        {
+            Log(textBox1.Text, LogLevelType.Notify);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using WinFwk.UIModules;
+﻿using System.Reflection;
+using WinFwk.UIModules;
 
 namespace WinFwk.UITools.Log
 {
@@ -23,9 +24,8 @@ namespace WinFwk.UITools.Log
                 tbStackTrace.Text = exception.StackTrace;
             }
 
-            this.Name = tbTimeStamp.Text;
-            this.Summary = tbLevel.Text;
-
+            Name = tbTimeStamp.Text;
+            Summary = tbLevel.Text;
         }
     }
 }

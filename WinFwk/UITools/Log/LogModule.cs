@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection;
+using System.Windows.Forms;
 using BrightIdeasSoftware;
 using NLog;
 using WinFwk.UIMessages;
@@ -41,6 +43,12 @@ namespace WinFwk.UITools.Log
                     break;
                 case LogLevelType.Exception:
                     logger.Error(message.Exception, message.Text);
+                    break;
+                case LogLevelType.Notify:
+                    logger.Info(message.Text);
+                    notifyIcon.BalloonTipTitle = notifyIcon.Text;
+                    notifyIcon.BalloonTipText = message.Text;
+                    notifyIcon.ShowBalloonTip(1000);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -88,9 +96,19 @@ namespace WinFwk.UITools.Log
                     return Color.Red;
                 case LogLevelType.Exception:
                     return Color.MediumPurple;
+                case LogLevelType.Notify:
+                    return Color.Chartreuse;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
             }
+        }
+
+        private void LogModule_Load(object sender, EventArgs e)
+        {
+            var appIcon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
+            notifyIcon.Icon = appIcon;
+            notifyIcon.Text = $"{Application.ProductName} ({Application.ProductVersion})";
+            notifyIcon.Visible = true;
         }
     }
 }

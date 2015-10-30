@@ -2,7 +2,6 @@
 
 namespace WinFwk.UITools.Settings
 {
-    //
     public class UISettingsChangedMessage : AbstractUIMessage
     {
         public UISettings UiSettings { get; set; }

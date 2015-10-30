@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dlvLogMessages = new DefaultListView();
+            this.components = new System.ComponentModel.Container();
+            this.dlvLogMessages = new WinFwk.UITools.DefaultListView();
             this.colTimeStamp = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colLogLevel = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colText = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colException = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dlvLogMessages)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +54,9 @@
             this.dlvLogMessages.HideSelection = false;
             this.dlvLogMessages.Location = new System.Drawing.Point(0, 0);
             this.dlvLogMessages.Name = "dlvLogMessages";
+            this.dlvLogMessages.OwnerDraw = true;
             this.dlvLogMessages.ShowGroups = false;
+            this.dlvLogMessages.ShowImagesOnSubItems = true;
             this.dlvLogMessages.Size = new System.Drawing.Size(861, 357);
             this.dlvLogMessages.TabIndex = 0;
             this.dlvLogMessages.UseCellFormatEvents = true;
@@ -82,6 +86,11 @@
             this.colException.Text = "Exception";
             this.colException.Width = 127;
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Text = "notifyIcon";
+            this.notifyIcon.Visible = true;
+            // 
             // LogModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -89,6 +98,7 @@
             this.Controls.Add(this.dlvLogMessages);
             this.Name = "LogModule";
             this.Size = new System.Drawing.Size(861, 357);
+            this.Load += new System.EventHandler(this.LogModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dlvLogMessages)).EndInit();
             this.ResumeLayout(false);
 
@@ -101,5 +111,6 @@
         private BrightIdeasSoftware.OLVColumn colLogLevel;
         private BrightIdeasSoftware.OLVColumn colText;
         private BrightIdeasSoftware.OLVColumn colException;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
