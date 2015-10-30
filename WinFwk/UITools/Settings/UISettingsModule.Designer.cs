@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.pgUiSettings = new System.Windows.Forms.PropertyGrid();
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // propertyGrid1
+            // pgUiSettings
             // 
-            this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pgUiSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertyGrid1.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 30);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(413, 340);
-            this.propertyGrid1.TabIndex = 0;
+            this.pgUiSettings.CategoryForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.pgUiSettings.Location = new System.Drawing.Point(0, 30);
+            this.pgUiSettings.Name = "pgUiSettings";
+            this.pgUiSettings.Size = new System.Drawing.Size(413, 340);
+            this.pgUiSettings.TabIndex = 0;
+            this.pgUiSettings.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pgUiSettings_PropertyValueChanged);
             // 
             // btnSaveSettings
             // 
@@ -72,7 +73,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSaveSettings);
-            this.Controls.Add(this.propertyGrid1);
+            this.Controls.Add(this.pgUiSettings);
             this.Name = "UISettingsModule";
             this.Size = new System.Drawing.Size(413, 370);
             this.Load += new System.EventHandler(this.UIConfigModule_Load);
@@ -82,7 +83,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private System.Windows.Forms.PropertyGrid pgUiSettings;
         private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Button btnLoad;
     }

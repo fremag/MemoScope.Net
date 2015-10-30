@@ -99,6 +99,7 @@
     <Compile Include="UITools\Log\LogModule.Designer.cs">
       <DependentUpon>LogModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="UITools\Settings\UISettingsChangedMessage.cs" />
     <Compile Include="UITools\StatusMessage.cs" />
     <Compile Include="UITools\UIToolbar.cs">
       <SubType>UserControl</SubType>

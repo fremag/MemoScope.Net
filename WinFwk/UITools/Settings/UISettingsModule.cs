@@ -15,7 +15,7 @@ namespace WinFwk.UITools.Settings
 
         private void UIConfigModule_Load(object sender, EventArgs e)
         {
-            propertyGrid1.SelectedObject = UISettings.Instance;
+            pgUiSettings.SelectedObject = UISettings.Instance;
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
@@ -33,7 +33,12 @@ namespace WinFwk.UITools.Settings
             var meth = mgrType.GetMethod(nameof(UISettingsMgr<UISettings>.Load), BindingFlags.Public | BindingFlags.Static);
             var res = meth.Invoke(null, new object[] { Application.ProductName});
             UISettings.InitSettings((UISettings)res);
-            propertyGrid1.SelectedObject = UISettings.Instance;
+            pgUiSettings.SelectedObject = UISettings.Instance;
+        }
+
+        private void pgUiSettings_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            MessageBus.SendMessage(new UISettingsChangedMessage(UISettings.Instance));
         }
     }
 }

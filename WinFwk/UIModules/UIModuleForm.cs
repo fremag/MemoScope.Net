@@ -7,6 +7,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UICommands;
 using WinFwk.UIMessages;
 using WinFwk.UITools;
+using WinFwk.UITools.Settings;
 
 namespace WinFwk.UIModules
 {
@@ -14,6 +15,8 @@ namespace WinFwk.UIModules
         , IMessageListener<DockRequest>
         , IMessageListener<StatusMessage>
         , IMessageListener<ActivationRequest>
+        , IMessageListener<UISettingsChangedMessage>
+
     {
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
         protected readonly MessageBus msgBus = new MessageBus();
@@ -152,6 +155,10 @@ namespace WinFwk.UIModules
                 toolbar.Init(g);
                 DockModule(toolbar, DockState.DockTop, false);
             }
+        }
+
+        public virtual void HandleMessage(UISettingsChangedMessage message)
+        {
         }
     }
 }
