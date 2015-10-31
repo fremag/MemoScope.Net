@@ -1,4 +1,4 @@
-﻿namespace WinFwk.UITools
+﻿namespace WinFwk.UITools.ToolBar
 {
     partial class UIToolbar
     {

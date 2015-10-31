@@ -105,11 +105,11 @@
       <DependentUpon>LogModule.cs</DependentUpon>
     </Compile>
     <Compile Include="UITools\Settings\UISettingsChangedMessage.cs" />
-    <Compile Include="UITools\StatusMessage.cs" />
-    <Compile Include="UITools\UIToolbar.cs">
+    <Compile Include="UIModules\StatusMessage.cs" />
+    <Compile Include="UITools\ToolBar\UIToolbar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UITools\UIToolbar.Designer.cs">
+    <Compile Include="UITools\ToolBar\UIToolbar.Designer.cs">
       <DependentUpon>UIToolbar.cs</DependentUpon>
     </Compile>
     <Compile Include="UITools\Settings\UISettingsModule.cs">
@@ -149,7 +149,7 @@
     <EmbeddedResource Include="UITools\Log\LogModule.resx">
       <DependentUpon>LogModule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UITools\UIToolbar.resx">
+    <EmbeddedResource Include="UITools\ToolBar\UIToolbar.resx">
       <DependentUpon>UIToolbar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UITools\Settings\UISettingsModule.resx">

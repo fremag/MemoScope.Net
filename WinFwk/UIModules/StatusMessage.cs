@@ -1,6 +1,6 @@
 ﻿using WinFwk.UIMessages;
 
-namespace WinFwk.UITools
+namespace WinFwk.UIModules
 {
     public enum StatusType { BeginTask, EndTask, Text}
     public class StatusMessage : AbstractUIMessage

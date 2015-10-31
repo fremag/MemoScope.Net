@@ -8,6 +8,7 @@ using WinFwk.UICommands;
 using WinFwk.UIMessages;
 using WinFwk.UITools;
 using WinFwk.UITools.Settings;
+using WinFwk.UITools.ToolBar;
 
 namespace WinFwk.UIModules
 {

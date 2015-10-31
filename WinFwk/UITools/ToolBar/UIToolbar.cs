@@ -6,7 +6,7 @@ using WinFwk.UICommands;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
-namespace WinFwk.UITools
+namespace WinFwk.UITools.ToolBar
 {
     public partial class UIToolbar : UIModule, IMessageListener<ModuleEventMessage>
     {
