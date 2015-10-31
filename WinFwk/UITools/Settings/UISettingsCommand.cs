@@ -5,7 +5,7 @@ namespace WinFwk.UITools.Settings
 {
     public class UISettingsCommand : AbstractVoidUICommand
     {
-        public UISettingsCommand() : base("settings", "Edit settings", "File", null)
+        public UISettingsCommand() : base("settings", "Edit settings", "File", Properties.Resources.gear_in)
         {
         }
 

@@ -40,6 +40,10 @@ namespace WinFwk.UITools.Workplace
             return ((UIModule) rowObject).Summary;
         }
 
+        public object GetIcon(object rowObject)
+        {
+            return ((UIModule)rowObject).Icon;
+        }
         public bool HasChild(object o)
         {
             return childModules.ContainsKey((UIModule) o);
@@ -79,5 +83,6 @@ namespace WinFwk.UITools.Workplace
                 RemoveModuleChildren(child);
             }
         }
+
     }
 }

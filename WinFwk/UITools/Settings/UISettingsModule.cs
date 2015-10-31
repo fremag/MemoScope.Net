@@ -11,6 +11,7 @@ namespace WinFwk.UITools.Settings
         {
             InitializeComponent();
             Name = "Settings";
+            Icon = Properties.Resources.small_gear_in;
         }
 
         private void UIConfigModule_Load(object sender, EventArgs e)

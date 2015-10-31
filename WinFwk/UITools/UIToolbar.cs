@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using WinFwk.UICommands;
@@ -39,7 +40,15 @@ namespace WinFwk.UITools
                 var type = command.GetType();
                 var meth = type.GetMethod("Run");
                 button.Click += (sender, args) => { meth.Invoke(cmd, null); };
-                button.Enabled = command.Enabled; 
+                button.Enabled = command.Enabled;
+                if (command.Icon != null)
+                {
+                    button.Image = command.Icon;
+                    button.TextAlign = ContentAlignment.BottomCenter;
+                    button.TextImageRelation = TextImageRelation.ImageAboveText;
+                    button.AutoSize = true;
+                }
+                
                 dicoCommands[command] = button;
             }
         }

@@ -102,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="DoubleModule.resx">
       <DependentUpon>DoubleModule.cs</DependentUpon>
@@ -131,6 +132,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
+    <None Include="Resources\disk.png" />
+    <None Include="Resources\open_folder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

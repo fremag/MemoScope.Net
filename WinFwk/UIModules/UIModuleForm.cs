@@ -127,14 +127,18 @@ namespace WinFwk.UIModules
         protected void DockModule(UIModule uiModule, DockState dockState = DockState.Document, bool allowclose = true)
         {
             uiModule.InitBus(msgBus);
-            var content = UIModuleHelper.BuildDockContent(uiModule, allowclose);
+            DockContent content = UIModuleHelper.BuildDockContent(uiModule, allowclose);
+            if (uiModule.Icon != null)
+            {
+                content.Icon = System.Drawing.Icon.FromHandle(uiModule.Icon.GetHicon());
+            }
             dicoModules[content] = uiModule;
             content.Show(mainPanel, dockState);
         }
 
         protected void InitToolBars()
         {
-            mainPanel.DockTopPortion = 100;
+            mainPanel.DockTopPortion = 120;
             var types = WinFwkHelper.GetDerivedTypes(typeof (AbstractUICommand));
             List<AbstractUICommand> commands = new List<AbstractUICommand>();
             foreach (var type in types)
@@ -159,6 +163,7 @@ namespace WinFwk.UIModules
 
         public virtual void HandleMessage(UISettingsChangedMessage message)
         {
+            // Later: apply user colors to controls, skin etc
         }
     }
 }

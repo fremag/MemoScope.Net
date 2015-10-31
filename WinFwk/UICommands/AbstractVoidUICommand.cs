@@ -7,7 +7,7 @@ namespace WinFwk.UICommands
     {
         public UIModule Module { get; private set; }
 
-        protected AbstractVoidUICommand(string name, string toolTip, string @group, Icon icon) : base(name, toolTip, @group, icon)
+        protected AbstractVoidUICommand(string name, string toolTip, string @group, Image icon) : base(name, toolTip, @group, icon)
         {
         }
 

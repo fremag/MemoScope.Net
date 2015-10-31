@@ -10,11 +10,11 @@ namespace WinFwk.UICommands
         public string Name { get; private set; }
         public string Group { get; private set; }
         public string ToolTip { get; private set; }
-        public Icon Icon { get; private set; }
+        public Image Icon { get; private set; }
         public bool Enabled { get; protected set; }
         public MessageBus MessageBus { get; set; }
 
-        protected AbstractUICommand(string name, string toolTip, string group, Icon icon)
+        protected AbstractUICommand(string name, string toolTip, string group, Image icon)
         {
             Name = name;
             ToolTip = toolTip;

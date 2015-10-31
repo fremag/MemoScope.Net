@@ -22,6 +22,8 @@ namespace WinFwk.UITools.Log
             colText.AspectGetter = model.GetText;
             colException.AspectGetter = model.GetException;
             dlvLogMessages.CellClick += OnCellClick;
+
+            Icon = Properties.Resources.small_file_extension_log;
         }
 
         public void HandleMessage(LogMessage message)

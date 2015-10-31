@@ -7,7 +7,7 @@ namespace WinFwk.UICommands
     {
         private UIDataProvider<T> dataProvider;
 
-        protected AbstractTypedUICommand(string name, string toolTip, string @group, Icon icon) : base(name, toolTip, @group, icon)
+        protected AbstractTypedUICommand(string name, string toolTip, string @group, Image icon) : base(name, toolTip, @group, icon)
         {
             Enabled = false;
         }

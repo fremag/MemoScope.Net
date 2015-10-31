@@ -1,4 +1,5 @@
 ﻿using System;
+using BrightIdeasSoftware;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
@@ -13,9 +14,14 @@ namespace WinFwk.UITools.Workplace
             UIModuleParent = null;
             InitializeComponent();
             Name = "Workplace";
+            Icon = Properties.Resources.globe_place;
 
             colName.AspectGetter = model.GetName;
             colSummary.AspectGetter = model.GetSummary;
+
+            colIcon.Renderer = new ImageRenderer();
+            colIcon.ImageGetter = model.GetIcon;
+
             tlvModules.CanExpandGetter = model.HasChild;
             tlvModules.ChildrenGetter = model.GetChildren;
         }

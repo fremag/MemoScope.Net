@@ -15,6 +15,7 @@ namespace WinFwk.UITools.Settings
             xml = new XmlSerializer(typeof (T), types.ToArray());
             UISettings.InitSettings(Load(applicationName));
         }
+
         public static T Load(string applicationName)
         {
             string configPath = GetConfigPath(applicationName);
