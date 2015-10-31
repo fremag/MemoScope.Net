@@ -35,6 +35,8 @@
             this.colText = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colException = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btnOpenLogFile = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dlvLogMessages)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,20 +46,22 @@
             this.dlvLogMessages.AllColumns.Add(this.colLogLevel);
             this.dlvLogMessages.AllColumns.Add(this.colText);
             this.dlvLogMessages.AllColumns.Add(this.colException);
+            this.dlvLogMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dlvLogMessages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colTimeStamp,
             this.colLogLevel,
             this.colText,
             this.colException});
-            this.dlvLogMessages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvLogMessages.FullRowSelect = true;
             this.dlvLogMessages.HideSelection = false;
-            this.dlvLogMessages.Location = new System.Drawing.Point(0, 0);
+            this.dlvLogMessages.Location = new System.Drawing.Point(0, 50);
             this.dlvLogMessages.Name = "dlvLogMessages";
             this.dlvLogMessages.OwnerDraw = true;
             this.dlvLogMessages.ShowGroups = false;
             this.dlvLogMessages.ShowImagesOnSubItems = true;
-            this.dlvLogMessages.Size = new System.Drawing.Size(861, 357);
+            this.dlvLogMessages.Size = new System.Drawing.Size(861, 307);
             this.dlvLogMessages.TabIndex = 0;
             this.dlvLogMessages.UseCellFormatEvents = true;
             this.dlvLogMessages.UseCompatibleStateImageBehavior = false;
@@ -91,10 +95,23 @@
             this.notifyIcon.Text = "notifyIcon";
             this.notifyIcon.Visible = true;
             // 
+            // btnOpenLogFile
+            // 
+            this.btnOpenLogFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenLogFile.Image = global::WinFwk.Properties.Resources.open_folder;
+            this.btnOpenLogFile.Location = new System.Drawing.Point(818, 4);
+            this.btnOpenLogFile.Name = "btnOpenLogFile";
+            this.btnOpenLogFile.Size = new System.Drawing.Size(40, 40);
+            this.btnOpenLogFile.TabIndex = 1;
+            this.toolTip.SetToolTip(this.btnOpenLogFile, "Open log file...");
+            this.btnOpenLogFile.UseVisualStyleBackColor = true;
+            this.btnOpenLogFile.Click += new System.EventHandler(this.btnOpenLogFile_Click);
+            // 
             // LogModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnOpenLogFile);
             this.Controls.Add(this.dlvLogMessages);
             this.Name = "LogModule";
             this.Size = new System.Drawing.Size(861, 357);
@@ -112,5 +129,7 @@
         private BrightIdeasSoftware.OLVColumn colText;
         private BrightIdeasSoftware.OLVColumn colException;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.Button btnOpenLogFile;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using NLog;
 
 namespace WinFwk.UITools.Settings
 {
@@ -14,6 +15,7 @@ namespace WinFwk.UITools.Settings
             List<Type> types = WinFwkHelper.GetDerivedTypes(typeof (UISettings));
             xml = new XmlSerializer(typeof (T), types.ToArray());
             UISettings.InitSettings(Load(applicationName));
+            InitLogs(applicationName);
         }
 
         public static T Load(string applicationName)
@@ -57,6 +59,19 @@ namespace WinFwk.UITools.Settings
             configPath = Path.Combine(configPath, applicationName);
             configPath = Path.ChangeExtension(configPath, "config");
             return configPath;
+        }
+
+        private static void InitLogs(string applicationName)
+        {
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var appPath = Path.Combine(appDataPath, applicationName);
+            var logPath = Path.Combine(appPath, "log");
+            if (!Directory.Exists(logPath))
+            {
+                Directory.CreateDirectory(logPath);
+            }
+            LogManager.EnableLogging();
+            LogManager.GetLogger(typeof (UISettingsMgr<>).Name).Info("Init Logs");
         }
     }
 }

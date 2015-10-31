@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using BrightIdeasSoftware;
 using NLog;
+using NLog.Targets;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
@@ -49,7 +52,7 @@ namespace WinFwk.UITools.Log
                 case LogLevelType.Notify:
                     logger.Info(message.Text);
                     notifyIcon.BalloonTipTitle = notifyIcon.Text;
-                    notifyIcon.BalloonTipText = message.Text;
+                    notifyIcon.BalloonTipText = string.IsNullOrEmpty(message.Text) ? "Hello !" : message.Text; ; 
                     notifyIcon.ShowBalloonTip(1000);
                     break;
                 default:
@@ -111,6 +114,16 @@ namespace WinFwk.UITools.Log
             notifyIcon.Icon = appIcon;
             notifyIcon.Text = $"{Application.ProductName} ({Application.ProductVersion})";
             notifyIcon.Visible = true;
+        }
+
+        private void btnOpenLogFile_Click(object sender, EventArgs e)
+        {
+            foreach (var fileTarget in LogManager.Configuration.AllTargets.OfType<FileTarget>())
+            {
+                var logEventInfo = new LogEventInfo { TimeStamp = DateTime.Now };
+                string fileName = fileTarget.FileName.Render(logEventInfo);
+                Process.Start(fileName);
+            }
         }
     }
 }
