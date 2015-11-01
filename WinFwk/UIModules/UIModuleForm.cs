@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UICommands;
 using WinFwk.UIMessages;
-using WinFwk.UITools;
 using WinFwk.UITools.Settings;
 using WinFwk.UITools.ToolBar;
 
@@ -21,6 +20,7 @@ namespace WinFwk.UIModules
     {
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
         protected readonly MessageBus msgBus = new MessageBus();
+        protected readonly List<UIToolBarSettings> toolbarSettings = new List<UIToolBarSettings>();
 
         private int nbTasks;
 
@@ -34,6 +34,9 @@ namespace WinFwk.UIModules
             msgBus.Subscribe(this);
             mainPanel.ContentAdded += OnContentAdded;
             mainPanel.ContentRemoved += OnContentRemoved;
+
+            toolbarSettings.Add(UIToolBarSettings.File);
+            toolbarSettings.Add(UIToolBarSettings.Help);
         }
 
         [UIScheduler]
@@ -125,7 +128,7 @@ namespace WinFwk.UIModules
             }
         }
         [UIScheduler]
-        protected void DockModule(UIModule uiModule, DockState dockState = DockState.Document, bool allowclose = true)
+        protected DockContent DockModule(UIModule uiModule, DockState dockState = DockState.Document, bool allowclose = true)
         {
             uiModule.InitBus(msgBus);
             DockContent content = UIModuleHelper.BuildDockContent(uiModule, allowclose);
@@ -133,15 +136,23 @@ namespace WinFwk.UIModules
             {
                 content.Icon = System.Drawing.Icon.FromHandle(uiModule.Icon.GetHicon());
             }
+            else
+            {
+                content.Icon = null;
+                content.ShowIcon = false;
+            }
             dicoModules[content] = uiModule;
             content.Show(mainPanel, dockState);
+            return content;
         }
 
         protected void InitToolBars()
         {
             mainPanel.DockTopPortion = 120;
-            var types = WinFwkHelper.GetDerivedTypes(typeof (AbstractUICommand));
+
+            // Get all the commands and instanciate them
             List<AbstractUICommand> commands = new List<AbstractUICommand>();
+            var types = WinFwkHelper.GetDerivedTypes(typeof(AbstractUICommand));
             foreach (var type in types)
             {
                 var constructor = type.GetConstructor(Type.EmptyTypes);
@@ -152,14 +163,40 @@ namespace WinFwk.UIModules
                     commands.Add(command);
                 }
             }
-            var commandGroups = commands.GroupBy(command => command.Group);
-            foreach (var g in commandGroups)
+
+            // Group commands by toolbar name
+            var dicoCommands = commands.GroupBy(command => command.Group).ToDictionary(commandGroup => commandGroup.Key);
+
+            // Create a default ui settings for toolbar missing some settings
+            var dicoSettings = toolbarSettings.ToDictionary(setting => setting.Name);
+            foreach(var commandGroup in dicoCommands)
             {
-                var toolbar = new UIToolbar();
-                toolbar.InitBus(msgBus);
-                toolbar.Init(g);
-                DockModule(toolbar, DockState.DockTop, false);
+                if (! dicoSettings.ContainsKey(commandGroup.Key))
+                {
+                    // Create default settings for toolbar
+                    dicoSettings.Add(commandGroup.Key, new UIToolBarSettings(commandGroup.Key, 0, null));
+                }
             }
+
+            // Order the toolbars by priority 
+            DockContent firstToolbar = null;
+            foreach (var setting in dicoSettings.Values.OrderByDescending(setting => setting.Priority))
+            {
+                IGrouping<string, AbstractUICommand> commandGroup;
+                if( dicoCommands.TryGetValue(setting.Name, out commandGroup))
+                {
+                    var toolbar = new UIToolbar();
+                    toolbar.InitBus(msgBus);
+                    toolbar.Init(setting.Icon, commandGroup);
+                    DockContent content = DockModule(toolbar, DockState.DockTop, false);
+                    if (firstToolbar == null)
+                    {
+                        firstToolbar = content;
+                    }
+                }
+            }
+
+            firstToolbar?.DockHandler.Activate();
         }
 
         public virtual void HandleMessage(UISettingsChangedMessage message)

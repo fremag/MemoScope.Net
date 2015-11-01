@@ -11,10 +11,12 @@ namespace WinFwk.UITools.ToolBar
     public partial class UIToolbar : UIModule, IMessageListener<ModuleEventMessage>
     {
         private readonly Dictionary<AbstractUICommand, Button> dicoCommands = new Dictionary<AbstractUICommand, Button>();
-
+        public int Priority { get; }
         public UIToolbar()
         {
             InitializeComponent();
+            Icon = null;
+            Priority = 0;
         }
 
         public void HandleMessage(ModuleEventMessage eventMessage)
@@ -26,8 +28,9 @@ namespace WinFwk.UITools.ToolBar
             }
         }
 
-        public void Init(IGrouping<string, AbstractUICommand> commands)
+        public void Init(Bitmap icon, IGrouping<string, AbstractUICommand> commands)
         {
+            Icon = icon;
             Name = commands.Key;
             Text = commands.Key;
 

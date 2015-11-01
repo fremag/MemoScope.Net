@@ -136,7 +136,13 @@
   <data name="small_file_extension_log" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\small_file_extension_log.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="small_folder_vertical_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\small\small_folder_vertical_open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="small_gear_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\small_gear_in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="small_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\small\small_help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

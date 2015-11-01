@@ -123,9 +123,29 @@ namespace WinFwk.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap small_folder_vertical_open {
+            get {
+                object obj = ResourceManager.GetObject("small_folder_vertical_open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap small_gear_in {
             get {
                 object obj = ResourceManager.GetObject("small_gear_in", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap small_help {
+            get {
+                object obj = ResourceManager.GetObject("small_help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
