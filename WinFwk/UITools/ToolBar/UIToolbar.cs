@@ -38,7 +38,7 @@ namespace WinFwk.UITools.ToolBar
                 toolTip1.SetToolTip(button, command.ToolTip);
                 panel.Controls.Add(button);
                 var type = command.GetType();
-                var meth = type.GetMethod("Run");
+                var meth = type.GetMethod(nameof(AbstractUICommand.Run));
                 button.Click += (sender, args) => { meth.Invoke(cmd, null); };
                 button.Enabled = command.Enabled;
                 if (command.Icon != null)
