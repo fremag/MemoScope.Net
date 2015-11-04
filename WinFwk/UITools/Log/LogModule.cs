@@ -27,6 +27,7 @@ namespace WinFwk.UITools.Log
             dlvLogMessages.CellClick += OnCellClick;
 
             Icon = Properties.Resources.small_file_extension_log;
+            Summary = "Logs";
         }
 
         public void HandleMessage(LogMessage message)

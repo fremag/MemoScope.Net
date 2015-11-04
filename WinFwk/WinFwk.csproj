@@ -166,6 +166,7 @@
     <Content Include="Icons\file_extension_log.png" />
     <Content Include="Icons\gear_in.png" />
     <Content Include="Icons\globe_place.png" />
+    <Content Include="Icons\help.png" />
     <Content Include="Icons\open_folder.png" />
     <Content Include="Icons\Small\small_help.png" />
     <Content Include="Icons\Small\small_folder_vertical_open.png" />

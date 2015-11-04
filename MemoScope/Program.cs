@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WinFwk.UITools.Settings;
 
 namespace MemoScope
 {
@@ -11,6 +12,8 @@ namespace MemoScope
         [STAThread]
         private static void Main()
         {
+            UISettingsMgr<MemoScopeSettings>.Init(Application.ProductName);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MemoScope());

@@ -203,5 +203,10 @@ namespace WinFwk.UIModules
         {
             // Later: apply user colors to controls, skin etc
         }
+
+        private void UIModuleForm_Load(object sender, EventArgs e)
+        {
+            Text = string.Format("{0} {1}", Application.ProductName, Application.ProductVersion);
+        }
     }
 }

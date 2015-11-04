@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>memoscope_logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,8 +55,22 @@
     <Compile Include="MemoScope.Designer.cs">
       <DependentUpon>MemoScope.cs</DependentUpon>
     </Compile>
+    <Compile Include="MemoScopeSettings.cs" />
+    <Compile Include="Modules\About\AboutCommand.cs" />
+    <Compile Include="Modules\About\AboutModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\About\AboutModule.Designer.cs">
+      <DependentUpon>AboutModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MemoScope.resx">
+      <DependentUpon>MemoScope.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\About\AboutModule.resx">
+      <DependentUpon>AboutModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,6 +79,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -75,6 +93,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinFwk\WinFwk.csproj">
+      <Project>{B421F218-4883-4FF6-A186-719DD0A30A1E}</Project>
+      <Name>WinFwk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\Large\help.png" />
+    <Content Include="Icons\Logos\memoscope.svg" />
+    <Content Include="Icons\Logos\memoscope_logo.png" />
+    <Content Include="Icons\Logos\memoscope_logo_16x16.png" />
+    <Content Include="Icons\Logos\memoscope_logo_32x32.png" />
+    <Content Include="Icons\Logos\Microscope_icon_%28black%29.png" />
+    <Content Include="Icons\Logos\Microscope_icon_%28black%29.svg" />
+    <Content Include="memoscope_logo.ico" />
+    <None Include="Resources\Memoscope.png.ico" />
+    <None Include="Resources\Memoscope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Icons\Small\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
