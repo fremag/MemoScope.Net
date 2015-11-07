@@ -8,9 +8,20 @@ namespace WinFwk.UIModules
 {
     public class UIModule : UserControl
     {
+        private string summary;
         protected MessageBus MessageBus { get; private set; }
         public Bitmap Icon { get; protected set; }
-        public string Summary { get; protected set; }
+
+        public string Summary
+        {
+            get { return summary; }
+            protected set
+            {
+                summary = value; 
+                if(MessageBus!=null) MessageBus.SendMessage(new SummaryChangedMessage(this));
+            }
+        }
+
         public UIModule UIModuleParent { get; set; }
 
         public UIModule()

@@ -75,6 +75,7 @@
     <Compile Include="UIModules\ActivationRequest.cs" />
     <Compile Include="UIModules\ModuleEventMessage.cs" />
     <Compile Include="UIModules\DockRequest.cs" />
+    <Compile Include="UIModules\SummaryChangedMessage.cs" />
     <Compile Include="UIModules\UIModuleForm.cs">
       <SubType>Form</SubType>
     </Compile>

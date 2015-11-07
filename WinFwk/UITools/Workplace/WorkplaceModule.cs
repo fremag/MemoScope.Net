@@ -5,7 +5,9 @@ using WinFwk.UIModules;
 
 namespace WinFwk.UITools.Workplace
 {
-    public partial class WorkplaceModule : UIModule, IMessageListener<ModuleEventMessage>
+    public partial class WorkplaceModule : UIModule,
+        IMessageListener<SummaryChangedMessage>,
+        IMessageListener<ModuleEventMessage>
     {
         private readonly WorkplaceModel model = new WorkplaceModel();
 
@@ -37,13 +39,18 @@ namespace WinFwk.UITools.Workplace
                     model.Remove(message.Module);
                     break;
                 case ModuleEventType.Activated:
-                    // todo: select the corresponding module in the workplace
+                    tlvModules.SelectedObject = message.Module;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             tlvModules.Roots = model.rootModules;
             tlvModules.ExpandAll();
+        }
+
+        public void HandleMessage(SummaryChangedMessage message)
+        {
+            tlvModules.RefreshObject(message.Module);
         }
 
         private void tlvModules_SelectionChanged(object sender, EventArgs e)
