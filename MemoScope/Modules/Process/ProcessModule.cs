@@ -71,7 +71,7 @@ namespace MemoScope.Modules.Process
             }
         }
 
-        private void cbProcess_DropDown(object sender, System.EventArgs e)
+        private void cbProcess_DropDown(object sender, EventArgs e)
         {
             Init();
         }
@@ -99,7 +99,9 @@ namespace MemoScope.Modules.Process
             {
                 return;
             }
+            // refresh process info !
             proc.Process.Refresh();
+
             var now = DateTime.Now.ToOADate();
             foreach (var v in values)
             {
