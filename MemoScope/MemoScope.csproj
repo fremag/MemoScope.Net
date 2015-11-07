@@ -77,12 +77,14 @@
       <DependentUpon>AboutModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Process\ProcessCommand.cs" />
+    <Compile Include="Modules\Process\ProcessInfoValue.cs" />
     <Compile Include="Modules\Process\ProcessModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\Process\ProcessModule.Designer.cs">
       <DependentUpon>ProcessModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Process\ProcessWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MemoScope.resx">

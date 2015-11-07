@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using WinFwk.UIModules;
+using WinFwk.UITools.Settings;
 
 namespace MemoScope.Modules.Process
 {
@@ -16,7 +17,7 @@ namespace MemoScope.Modules.Process
         {
             InitializeComponent();
             Name = "Process";
-            Summary = "Process";
+            Summary = "No process selected";
             Icon = Properties.Resources.ddr_memory_small;
             colName.AspectGetter = rowObject => ((ProcessInfoValue) rowObject).Name;
             colValue.AspectGetter = rowObject => proc == null ? null : ((ProcessInfoValue) rowObject).GetValue(proc);
@@ -72,16 +73,17 @@ namespace MemoScope.Modules.Process
         
         private void cbProcess_DropDown(object sender, System.EventArgs e)
         {
-            System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
-
-            cbProcess.Items.Clear();
-            cbProcess.Items.AddRange(procs.Select( p=> new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).Cast<object>().ToArray());
+            Init();
         }
         private void cbProcess_SelectedValueChanged(object sender, EventArgs e)
         {
             proc = cbProcess.SelectedItem as ProcessWrapper;
             if (proc != null)
+            {
                 Summary = proc.Process.ProcessName;
+                MemoScopeSettings.Instance.LastProcessName = proc.Process.ProcessName;
+                MemoScopeSettings.Instance.Save();
+            }
             foreach (var processInfoValue in values)
             {
                 processInfoValue.Reset();
@@ -108,77 +110,27 @@ namespace MemoScope.Modules.Process
                 defaultListView1.RefreshObject(v);
             }
         }
-    }
 
-    public class ProcessInfoValue
-    {
-        public string Name { get; private set; }    
-        public string GroupName { get; private set; }
-        public string Format { get; private set; }
-        public Func<ProcessWrapper, object> ValueGetter { get; private set; }
-        public Series Series { get; set; }
-
-        public ProcessInfoValue(string name, string groupName, Func<ProcessWrapper, object> valueGetter, string format)
+        public void Init()
         {
-            Name = name;
-            GroupName = groupName;
-            ValueGetter = valueGetter;
-            Format = format;
-        }
+            System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
 
-        public object GetValue(ProcessWrapper proc)
-        {
-            try
+object[] processWrappers = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).Cast<object>().ToArray();
+            cbProcess.Items.Clear();
+            cbProcess.Items.AddRange(processWrappers);
+
+            string lastProcessName = MemoScopeSettings.Instance.LastProcessName;
+            if (string.IsNullOrEmpty(lastProcessName))
             {
-                var o = ValueGetter(proc);
-                var d = string.Format(Format, o);
-                return d;
+                return;
             }
-            catch
+
+            var lastProcess = processWrappers.FirstOrDefault(pw => ((ProcessWrapper)pw).Process.ProcessName == lastProcessName);
+            if (lastProcess != null)
             {
-                return "Err";
+                cbProcess.SelectedItem = lastProcess;
+                proc = (ProcessWrapper)lastProcess;
             }
-        }
-
-        public void Reset()
-        {
-            Series?.Points.Clear();
-        }
-    }
-
-    public class ProcessWrapper : IEquatable<ProcessWrapper>
-    {
-        public long VirtualMemory => Process.VirtualMemorySize64;
-        public long PeakVirtualMemory => Process.PeakVirtualMemorySize64;
-
-        public long PagedMemory => Process.PagedMemorySize64;
-        public long PeakPagedMemory => Process.PeakPagedMemorySize64;
-
-        public long PeakWorkingSet => Process.PeakWorkingSet64;
-        public long WorkingSet => Process.WorkingSet64;
-
-        public long PrivateMemory => Process.PrivateMemorySize64;
-        public long HandleCount => Process.HandleCount;
-
-        public TimeSpan TotalProcessorTime => Process.TotalProcessorTime;
-        public DateTime StartTime => Process.StartTime;
-        public TimeSpan UserProcessorTime => Process.UserProcessorTime;
-
-        public System.Diagnostics.Process Process { get; }
-
-        public ProcessWrapper(System.Diagnostics.Process process)
-        {
-            Process = process;
-        }
-
-        public bool Equals(ProcessWrapper other)
-        {
-            return other.Process.Id == Process.Id;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("[{1}] {0}", Process.ProcessName, Process.Id);
         }
     }
 }

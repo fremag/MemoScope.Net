@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace WinFwk.UITools.Settings
+﻿namespace WinFwk.UITools.Settings
 {
     public class UISettings
     {
