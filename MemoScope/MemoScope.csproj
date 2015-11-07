@@ -36,8 +36,21 @@
     <ApplicationIcon>memoscope_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ListViewPrinter, Version=2.5.0.21564, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.2.7.1\lib\ListViewPrinter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ObjectListView, Version=2.8.1.33936, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.Official.2.8.1\lib\net20\ObjectListView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SparkleLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.2.7.1\lib\SparkleLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +76,13 @@
     <Compile Include="Modules\About\AboutModule.Designer.cs">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Process\ProcessCommand.cs" />
+    <Compile Include="Modules\Process\ProcessModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Process\ProcessModule.Designer.cs">
+      <DependentUpon>ProcessModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MemoScope.resx">
@@ -70,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\About\AboutModule.resx">
       <DependentUpon>AboutModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Process\ProcessModule.resx">
+      <DependentUpon>ProcessModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -81,6 +104,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,6 +125,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\help.png" />
     <Content Include="Icons\Logos\memoscope.svg" />
     <Content Include="Icons\Logos\memoscope_logo.png" />
@@ -108,13 +133,12 @@
     <Content Include="Icons\Logos\memoscope_logo_32x32.png" />
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.png" />
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.svg" />
+    <Content Include="Icons\Small\ddr_memory.png" />
     <Content Include="memoscope_logo.ico" />
     <None Include="Resources\Memoscope.png.ico" />
     <None Include="Resources\Memoscope.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Icons\Small\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

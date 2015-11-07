@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 using WinFwk.UITools.Settings;
 
@@ -13,6 +14,7 @@ namespace MemoScope
         private static void Main()
         {
             UISettingsMgr<MemoScopeSettings>.Init(Application.ProductName);
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

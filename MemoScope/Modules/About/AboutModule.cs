@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using WinFwk.UIModules;
 using WinFwk.UITools.ToolBar;
 
@@ -12,12 +11,12 @@ namespace MemoScope.Modules.About
             InitializeComponent();
             Icon = UIToolBarSettings.Help.Icon;
             Summary = "About the application";
-            tbVersion.Text = "v " + Application.ProductVersion;
+            tbVersion.Text = string.Format("v {0}", Application.ProductVersion);
         }
 
         private void linkGitHub_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/fremag/MemoScope.Net");
+            System.Diagnostics.Process.Start("https://github.com/fremag/MemoScope.Net");
         }
     }
 }
