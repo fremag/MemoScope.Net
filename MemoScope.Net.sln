@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTests", "NUnitTests\NU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWinFwk", "DemoWinFwk\DemoWinFwk.csproj", "{407078EE-78E3-45D0-9516-FFC4CC2A7228}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoDummy", "MemoDummy\MemoDummy.csproj", "{79528DEC-4446-4C3C-9431-02348CF43C67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{407078EE-78E3-45D0-9516-FFC4CC2A7228}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{407078EE-78E3-45D0-9516-FFC4CC2A7228}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{407078EE-78E3-45D0-9516-FFC4CC2A7228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79528DEC-4446-4C3C-9431-02348CF43C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79528DEC-4446-4C3C-9431-02348CF43C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79528DEC-4446-4C3C-9431-02348CF43C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79528DEC-4446-4C3C-9431-02348CF43C67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

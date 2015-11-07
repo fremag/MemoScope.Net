@@ -4,14 +4,13 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using WinFwk.UIModules;
-using WinFwk.UITools.Settings;
 
 namespace MemoScope.Modules.Process
 {
     public partial class ProcessModule : UIModule
     {
+        private readonly List<ProcessInfoValue> values = new List<ProcessInfoValue>();
         private ProcessWrapper proc;
-        readonly List<ProcessInfoValue> values = new List<ProcessInfoValue>();
 
         public ProcessModule()
         {
@@ -22,7 +21,7 @@ namespace MemoScope.Modules.Process
             colName.AspectGetter = rowObject => ((ProcessInfoValue) rowObject).Name;
             colValue.AspectGetter = rowObject => proc == null ? null : ((ProcessInfoValue) rowObject).GetValue(proc);
             colGroup.AspectGetter = rowObject => ((ProcessInfoValue) rowObject).GroupName;
-            colGroup.GroupKeyGetter = rowObject => ((ProcessInfoValue)rowObject).GroupName;
+            colGroup.GroupKeyGetter = rowObject => ((ProcessInfoValue) rowObject).GroupName;
             defaultListView1.CheckStateGetter = rowObject =>
             {
                 var x = ((ProcessInfoValue) rowObject);
@@ -32,8 +31,9 @@ namespace MemoScope.Modules.Process
                 }
                 return CheckState.Unchecked;
             };
-            defaultListView1.CheckStatePutter = (rowObject, value) => {
-                ((ProcessInfoValue)rowObject).Series.Enabled = (value == CheckState.Checked);
+            defaultListView1.CheckStatePutter = (rowObject, value) =>
+            {
+                ((ProcessInfoValue) rowObject).Series.Enabled = (value == CheckState.Checked);
                 return value;
             };
 
@@ -58,7 +58,7 @@ namespace MemoScope.Modules.Process
             chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
         }
 
-        private void AddValue(string name, string group, Func<ProcessWrapper, object> func, bool visible=false, string format= "{0:###,###,###,##0}", bool addSeries=true)
+        private void AddValue(string name, string group, Func<ProcessWrapper, object> func, bool visible = false, string format = "{0:###,###,###,##0}", bool addSeries = true)
         {
             var x = new ProcessInfoValue(name, group, func, format);
             values.Add(x);
@@ -70,11 +70,12 @@ namespace MemoScope.Modules.Process
                 chart1.Series.Add(x.Series);
             }
         }
-        
+
         private void cbProcess_DropDown(object sender, System.EventArgs e)
         {
             Init();
         }
+
         private void cbProcess_SelectedValueChanged(object sender, EventArgs e)
         {
             proc = cbProcess.SelectedItem as ProcessWrapper;
@@ -94,10 +95,11 @@ namespace MemoScope.Modules.Process
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (proc == null)
+            if (proc == null || proc.Process.HasExited)
             {
                 return;
             }
+            proc.Process.Refresh();
             var now = DateTime.Now.ToOADate();
             foreach (var v in values)
             {
@@ -115,7 +117,7 @@ namespace MemoScope.Modules.Process
         {
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
 
-object[] processWrappers = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).Cast<object>().ToArray();
+            object[] processWrappers = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).Cast<object>().ToArray();
             cbProcess.Items.Clear();
             cbProcess.Items.AddRange(processWrappers);
 
@@ -125,11 +127,11 @@ object[] processWrappers = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw =
                 return;
             }
 
-            var lastProcess = processWrappers.FirstOrDefault(pw => ((ProcessWrapper)pw).Process.ProcessName == lastProcessName);
+            var lastProcess = processWrappers.FirstOrDefault(pw => ((ProcessWrapper) pw).Process.ProcessName == lastProcessName);
             if (lastProcess != null)
             {
                 cbProcess.SelectedItem = lastProcess;
-                proc = (ProcessWrapper)lastProcess;
+                proc = (ProcessWrapper) lastProcess;
             }
         }
     }
