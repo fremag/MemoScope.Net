@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Microsoft.Diagnostics.Runtime;
+using Microsoft.Diagnostics.Runtime.Interop;
 using WinFwk.UIModules;
+using WinFwk.UITools.Log;
 
 namespace MemoScope.Modules.Process
 {
@@ -56,6 +60,8 @@ namespace MemoScope.Modules.Process
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
             chart1.ChartAreas[0].AxisY.LabelStyle.Format = "###,###,###,##0";
             chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
+
+            tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
         }
 
         private void AddValue(string name, string group, Func<ProcessWrapper, object> func, bool visible = false, string format = "{0:###,###,###,##0}", bool addSeries = true)
@@ -134,6 +140,59 @@ namespace MemoScope.Modules.Process
             {
                 cbProcess.SelectedItem = lastProcess;
                 proc = (ProcessWrapper) lastProcess;
+            }
+        }
+
+        private void btnDump_Click(object sender, EventArgs e)
+        {
+            if (proc == null)
+            {
+                Log("Can't dump: no process selected !", LogLevelType.Error);
+                return;
+            }
+
+            if (proc.Process.HasExited)
+            {
+                Log("Can't dump: process has exited !", LogLevelType.Error);
+                return;
+            }
+
+            if (!Directory.Exists(tbRootDir.Text))
+            {
+                try
+                {
+                    Directory.CreateDirectory(tbRootDir.Text);
+                }
+                catch (Exception ex)
+                {
+                    Log("Can't create directory: " + tbRootDir.Text, ex);
+                    return;
+                }
+            }
+            DataTarget target = null;
+            try
+            {
+                target = DataTarget.AttachToProcess(proc.Process.Id, 5000, AttachFlag.NonInvasive);
+                string dumpFileName = string.Format("{0}_{1:yyyy_MM_dd_HH_mm_ss}.dmp", proc.Process.ProcessName, DateTime.Now);
+                string dumpPath = Path.Combine(tbRootDir.Text, dumpFileName);
+
+                int r = target.DebuggerInterface.WriteDumpFile(dumpPath, DEBUG_DUMP.DEFAULT);
+                if (r == 0)
+                {
+                    Log("Process dumped ! "+Environment.NewLine+ dumpPath, LogLevelType.Notify);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log("Can't dump process !", ex);
+            }
+            finally
+            {
+                if (target != null)
+                {
+                    target.DebuggerInterface?.DetachProcesses();
+                }
             }
         }
     }

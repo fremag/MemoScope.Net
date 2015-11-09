@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.lblProcess = new System.Windows.Forms.Label();
             this.cbProcess = new System.Windows.Forms.ComboBox();
             this.defaultListView1 = new WinFwk.UITools.DefaultListView();
@@ -40,6 +40,9 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblRootDir = new System.Windows.Forms.Label();
+            this.tbRootDir = new System.Windows.Forms.TextBox();
+            this.btnDump = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.defaultListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -82,6 +85,7 @@
             this.defaultListView1.Location = new System.Drawing.Point(0, 0);
             this.defaultListView1.Name = "defaultListView1";
             this.defaultListView1.OwnerDraw = true;
+            this.defaultListView1.ShowGroups = false;
             this.defaultListView1.ShowImagesOnSubItems = true;
             this.defaultListView1.Size = new System.Drawing.Size(399, 638);
             this.defaultListView1.Sorting = System.Windows.Forms.SortOrder.Descending;
@@ -135,24 +139,57 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
-            legend1.Name = "Legend1";
-            legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
-            this.chart1.Legends.Add(legend1);
+            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend4.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend4.Name = "Legend1";
+            legend4.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(420, 638);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
+            // lblRootDir
+            // 
+            this.lblRootDir.AutoSize = true;
+            this.lblRootDir.Location = new System.Drawing.Point(386, 16);
+            this.lblRootDir.Name = "lblRootDir";
+            this.lblRootDir.Size = new System.Drawing.Size(68, 17);
+            this.lblRootDir.TabIndex = 4;
+            this.lblRootDir.Text = "Root Dir :";
+            // 
+            // tbRootDir
+            // 
+            this.tbRootDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRootDir.Location = new System.Drawing.Point(447, 11);
+            this.tbRootDir.Name = "tbRootDir";
+            this.tbRootDir.ReadOnly = true;
+            this.tbRootDir.Size = new System.Drawing.Size(297, 22);
+            this.tbRootDir.TabIndex = 6;
+            // 
+            // btnDump
+            // 
+            this.btnDump.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDump.Location = new System.Drawing.Point(750, 11);
+            this.btnDump.Name = "btnDump";
+            this.btnDump.Size = new System.Drawing.Size(75, 23);
+            this.btnDump.TabIndex = 7;
+            this.btnDump.Text = "Dump !";
+            this.btnDump.UseVisualStyleBackColor = true;
+            this.btnDump.Click += new System.EventHandler(this.btnDump_Click);
+            // 
             // ProcessModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnDump);
+            this.Controls.Add(this.tbRootDir);
+            this.Controls.Add(this.lblRootDir);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.cbProcess);
             this.Controls.Add(this.lblProcess);
@@ -180,5 +217,8 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Label lblRootDir;
+        private System.Windows.Forms.TextBox tbRootDir;
+        private System.Windows.Forms.Button btnDump;
     }
 }
