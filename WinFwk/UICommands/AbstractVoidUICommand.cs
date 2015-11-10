@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 using WinFwk.UIModules;
 
 namespace WinFwk.UICommands
@@ -7,7 +8,7 @@ namespace WinFwk.UICommands
     {
         public UIModule Module { get; private set; }
 
-        protected AbstractVoidUICommand(string name, string toolTip, string @group, Image icon) : base(name, toolTip, @group, icon)
+        protected AbstractVoidUICommand(string name, string toolTip, string @group, Image icon, Keys shortcut=Keys.None) : base(name, toolTip, @group, icon, shortcut)
         {
         }
 

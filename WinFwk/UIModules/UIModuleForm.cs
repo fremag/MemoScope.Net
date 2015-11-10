@@ -16,11 +16,11 @@ namespace WinFwk.UIModules
         , IMessageListener<StatusMessage>
         , IMessageListener<ActivationRequest>
         , IMessageListener<UISettingsChangedMessage>
-
     {
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
         protected readonly MessageBus msgBus = new MessageBus();
         protected readonly List<UIToolBarSettings> toolbarSettings = new List<UIToolBarSettings>();
+        private readonly Dictionary<Keys, AbstractUICommand> dicoKeys = new Dictionary<Keys, AbstractUICommand>();
 
         private int nbTasks;
 
@@ -160,6 +160,10 @@ namespace WinFwk.UIModules
                 if (command != null)
                 {
                     command.InitBus(msgBus);
+                    if (command.Shortcut != Keys.None)
+                    {
+                        dicoKeys[command.Shortcut] = command;
+                    }
                     commands.Add(command);
                 }
             }
@@ -207,6 +211,17 @@ namespace WinFwk.UIModules
         private void UIModuleForm_Load(object sender, EventArgs e)
         {
             Text = string.Format("{0} {1}", Application.ProductName, Application.ProductVersion);
+        }
+
+        protected override bool ProcessCmdKey(ref Message message, Keys keys)
+        {
+            AbstractUICommand command;
+            if(dicoKeys.TryGetValue(keys, out command))
+            {
+                command.Run();
+            }
+
+            return false;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Windows.Forms;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
@@ -12,14 +13,16 @@ namespace WinFwk.UICommands
         public string ToolTip { get; private set; }
         public Image Icon { get; private set; }
         public bool Enabled { get; protected set; }
-        public MessageBus MessageBus { get; set; }
+        public MessageBus MessageBus { get; private set; }
+        public Keys Shortcut { get; private set; }
 
-        protected AbstractUICommand(string name, string toolTip, string group, Image icon)
+        protected AbstractUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None)
         {
             Name = name;
             ToolTip = toolTip;
             Group = group;
             Icon = icon;
+            Shortcut = shortcut;
         }
 
         public abstract void SetSelectedModule(UIModule module);
