@@ -139,6 +139,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\Large\bow.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\help.png" />
     <Content Include="Icons\Logos\memoscope.svg" />

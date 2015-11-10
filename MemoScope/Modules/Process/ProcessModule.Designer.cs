@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.lblProcess = new System.Windows.Forms.Label();
             this.cbProcess = new System.Windows.Forms.ComboBox();
             this.defaultListView1 = new WinFwk.UITools.DefaultListView();
@@ -43,6 +43,7 @@
             this.lblRootDir = new System.Windows.Forms.Label();
             this.tbRootDir = new System.Windows.Forms.TextBox();
             this.btnDump = new System.Windows.Forms.Button();
+            this.btnFindProcess = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.defaultListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -54,7 +55,7 @@
             // lblProcess
             // 
             this.lblProcess.AutoSize = true;
-            this.lblProcess.Location = new System.Drawing.Point(15, 16);
+            this.lblProcess.Location = new System.Drawing.Point(74, 15);
             this.lblProcess.Name = "lblProcess";
             this.lblProcess.Size = new System.Drawing.Size(67, 17);
             this.lblProcess.TabIndex = 0;
@@ -62,10 +63,12 @@
             // 
             // cbProcess
             // 
+            this.cbProcess.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbProcess.FormattingEnabled = true;
-            this.cbProcess.Location = new System.Drawing.Point(88, 13);
+            this.cbProcess.Location = new System.Drawing.Point(147, 12);
             this.cbProcess.Name = "cbProcess";
-            this.cbProcess.Size = new System.Drawing.Size(275, 24);
+            this.cbProcess.Size = new System.Drawing.Size(733, 24);
             this.cbProcess.TabIndex = 1;
             this.cbProcess.DropDown += new System.EventHandler(this.cbProcess_DropDown);
             this.cbProcess.SelectedValueChanged += new System.EventHandler(this.cbProcess_SelectedValueChanged);
@@ -87,7 +90,7 @@
             this.defaultListView1.OwnerDraw = true;
             this.defaultListView1.ShowGroups = false;
             this.defaultListView1.ShowImagesOnSubItems = true;
-            this.defaultListView1.Size = new System.Drawing.Size(399, 638);
+            this.defaultListView1.Size = new System.Drawing.Size(472, 603);
             this.defaultListView1.Sorting = System.Windows.Forms.SortOrder.Descending;
             this.defaultListView1.TabIndex = 2;
             this.defaultListView1.UseCompatibleStateImageBehavior = false;
@@ -123,7 +126,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(3, 43);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 68);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -133,30 +136,30 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.chart1);
-            this.splitContainer1.Size = new System.Drawing.Size(823, 638);
-            this.splitContainer1.SplitterDistance = 399;
+            this.splitContainer1.Size = new System.Drawing.Size(974, 603);
+            this.splitContainer1.SplitterDistance = 472;
             this.splitContainer1.TabIndex = 3;
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend4.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
-            legend4.Name = "Legend1";
-            legend4.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
-            this.chart1.Legends.Add(legend4);
+            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend3.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend3.Name = "Legend1";
+            legend3.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(420, 638);
+            this.chart1.Size = new System.Drawing.Size(498, 603);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
             // lblRootDir
             // 
             this.lblRootDir.AutoSize = true;
-            this.lblRootDir.Location = new System.Drawing.Point(386, 16);
+            this.lblRootDir.Location = new System.Drawing.Point(74, 44);
             this.lblRootDir.Name = "lblRootDir";
             this.lblRootDir.Size = new System.Drawing.Size(68, 17);
             this.lblRootDir.TabIndex = 4;
@@ -166,16 +169,16 @@
             // 
             this.tbRootDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRootDir.Location = new System.Drawing.Point(447, 11);
+            this.tbRootDir.Location = new System.Drawing.Point(147, 39);
             this.tbRootDir.Name = "tbRootDir";
             this.tbRootDir.ReadOnly = true;
-            this.tbRootDir.Size = new System.Drawing.Size(297, 22);
+            this.tbRootDir.Size = new System.Drawing.Size(733, 22);
             this.tbRootDir.TabIndex = 6;
             // 
             // btnDump
             // 
             this.btnDump.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDump.Location = new System.Drawing.Point(750, 11);
+            this.btnDump.Location = new System.Drawing.Point(901, 13);
             this.btnDump.Name = "btnDump";
             this.btnDump.Size = new System.Drawing.Size(75, 23);
             this.btnDump.TabIndex = 7;
@@ -183,10 +186,22 @@
             this.btnDump.UseVisualStyleBackColor = true;
             this.btnDump.Click += new System.EventHandler(this.btnDump_Click);
             // 
+            // btnFindProcess
+            // 
+            this.btnFindProcess.Image = global::MemoScope.Properties.Resources.bow;
+            this.btnFindProcess.Location = new System.Drawing.Point(19, 12);
+            this.btnFindProcess.Name = "btnFindProcess";
+            this.btnFindProcess.Size = new System.Drawing.Size(49, 49);
+            this.btnFindProcess.TabIndex = 8;
+            this.btnFindProcess.UseVisualStyleBackColor = true;
+            this.btnFindProcess.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnFindProcess_MouseDown);
+            this.btnFindProcess.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnFindProcess_MouseUp);
+            // 
             // ProcessModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnFindProcess);
             this.Controls.Add(this.btnDump);
             this.Controls.Add(this.tbRootDir);
             this.Controls.Add(this.lblRootDir);
@@ -194,7 +209,7 @@
             this.Controls.Add(this.cbProcess);
             this.Controls.Add(this.lblProcess);
             this.Name = "ProcessModule";
-            this.Size = new System.Drawing.Size(829, 684);
+            this.Size = new System.Drawing.Size(980, 674);
             ((System.ComponentModel.ISupportInitialize)(this.defaultListView1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -220,5 +235,6 @@
         private System.Windows.Forms.Label lblRootDir;
         private System.Windows.Forms.TextBox tbRootDir;
         private System.Windows.Forms.Button btnDump;
+        private System.Windows.Forms.Button btnFindProcess;
     }
 }

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Microsoft.Diagnostics.Runtime;
 using Microsoft.Diagnostics.Runtime.Interop;
 using WinFwk.UIModules;
 using WinFwk.UITools.Log;
+using Cursor = System.Windows.Forms.Cursor;
 
 namespace MemoScope.Modules.Process
 {
@@ -194,6 +196,68 @@ namespace MemoScope.Modules.Process
                     target.DebuggerInterface?.DetachProcesses();
                 }
             }
+        }
+        
+        [DllImport("user32.dll")]
+        private static extern IntPtr WindowFromPoint(CursorPos pos);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool GetCursorPos(out CursorPos pt);
+
+        [DllImport("user32.dll")]
+        private static extern uint GetWindowThreadProcessId(IntPtr handle, out uint pId);
+
+        public struct CursorPos
+        {
+            public int xx;
+            public int yy;
+        }
+
+        private void btnFindProcess_MouseDown(object sender, MouseEventArgs e)
+        {
+            var form = GetMainForm();
+            CurrentWindowState = form.WindowState;
+            form.WindowState = FormWindowState.Normal;
+            form.SendToBack();
+            CurrentCursor = Cursor.Current;
+            Cursor.Current = Cursors.UpArrow;
+        }
+
+        private Cursor CurrentCursor { get; set; }
+        private FormWindowState CurrentWindowState { get; set; }
+
+        private void btnFindProcess_MouseUp(object sender, MouseEventArgs e)
+        {
+            uint pId = GetProcessFromWindow();
+            var processWrapper = cbProcess.Items.Cast<ProcessWrapper>().FirstOrDefault(pw => pw.Process.Id == pId);
+            if (processWrapper != null)
+            {
+                cbProcess.SelectedItem = processWrapper;
+            }
+
+            var form = GetMainForm();
+            form.BringToFront();
+            form.WindowState = CurrentWindowState;
+            Cursor.Current = CurrentCursor;
+        }
+
+        private uint GetProcessFromWindow()
+        {
+            CursorPos pos;
+            GetCursorPos(out pos);
+            IntPtr winHandle = WindowFromPoint(pos);
+            uint pId;
+            GetWindowThreadProcessId(winHandle, out pId);
+            return pId;
+        }
+
+        private Form GetMainForm()
+        {
+            var forms = Application.OpenForms.Cast<Form>().ToArray();
+            var handle = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
+            var mainForm = forms.First(form => form.Handle == handle);
+            return mainForm;
         }
     }
 }
