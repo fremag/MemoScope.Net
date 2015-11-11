@@ -12,7 +12,7 @@ namespace MemoScope.Modules.Process
 
         public override void Run()
         {
-            ProcessModule mod = new ProcessModule();
+            ProcessModule mod = GetModule<ProcessModule>();
             mod.Init();
             DockModule(mod);
         }

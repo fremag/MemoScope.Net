@@ -62,6 +62,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -133,6 +134,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MemoScopeApi\MemoScopeApi.csproj">
+      <Project>{8363c100-7197-474e-a951-1402ab9e4d03}</Project>
+      <Name>MemoScopeApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinFwk\WinFwk.csproj">
       <Project>{B421F218-4883-4FF6-A186-719DD0A30A1E}</Project>
       <Name>WinFwk</Name>

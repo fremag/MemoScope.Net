@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CD8FD5C8-6991-4748-BB8B-137B43962A3B}</ProjectGuid>
+    <ProjectGuid>{8363C100-7197-474E-A951-1402AB9E4D03}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NUnitTests</RootNamespace>
-    <AssemblyName>NUnitTests</AssemblyName>
+    <RootNamespace>MemoScopeApi</RootNamespace>
+    <AssemblyName>MemoScopeApi</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -45,26 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MemoScopeApiTests.cs" />
-    <Compile Include="MessageBusTests.cs" />
+    <Compile Include="IMemoScopeService.cs" />
+    <Compile Include="MemoScopeClient.cs" />
+    <Compile Include="MemoScopeServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MemoScopeApi\MemoScopeApi.csproj">
-      <Project>{8363C100-7197-474E-A951-1402AB9E4D03}</Project>
-      <Name>MemoScopeApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MemoScope\MemoScope.csproj">
-      <Project>{d6ad45cf-3691-4a6f-8aa0-28fea3b87bfb}</Project>
-      <Name>MemoScope</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinFwk\WinFwk.csproj">
-      <Project>{b421f218-4883-4ff6-a186-719dd0a30a1e}</Project>
-      <Name>WinFwk</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

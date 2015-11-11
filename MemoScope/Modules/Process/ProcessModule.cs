@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.ServiceModel;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using MemoScopeApi;
 using Microsoft.Diagnostics.Runtime;
 using Microsoft.Diagnostics.Runtime.Interop;
 using WinFwk.UIModules;
@@ -13,10 +16,15 @@ using Cursor = System.Windows.Forms.Cursor;
 
 namespace MemoScope.Modules.Process
 {
-    public partial class ProcessModule : UIModule
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
+    public partial class ProcessModule : UIModule, IMemoScopeService
     {
         private readonly List<ProcessInfoValue> values = new List<ProcessInfoValue>();
+        private MemoScopeServer dumpServer;
         private ProcessWrapper proc;
+
+        private Cursor CurrentCursor { get; set; }
+        private FormWindowState CurrentWindowState { get; set; }
 
         public ProcessModule()
         {
@@ -86,13 +94,19 @@ namespace MemoScope.Modules.Process
 
         private void cbProcess_SelectedValueChanged(object sender, EventArgs e)
         {
+            dumpServer?.Close();
+
             proc = cbProcess.SelectedItem as ProcessWrapper;
             if (proc != null)
             {
                 Summary = proc.Process.ProcessName;
                 MemoScopeSettings.Instance.LastProcessName = proc.Process.ProcessName;
                 MemoScopeSettings.Instance.Save();
+
+                dumpServer = new MemoScopeServer(this, proc.Process.Id);
+                Log("DumpServer: state=" + dumpServer.State + ", address=" + dumpServer.BaseAddresses[0].AbsolutePath);
             }
+
             foreach (var processInfoValue in values)
             {
                 processInfoValue.Reset();
@@ -103,7 +117,14 @@ namespace MemoScope.Modules.Process
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (proc == null || proc.Process.HasExited)
+            try
+            {
+                if (proc == null || proc.Process.HasExited)
+                {
+                    return;
+                }
+            }
+            catch (Win32Exception)
             {
                 return;
             }
@@ -145,7 +166,17 @@ namespace MemoScope.Modules.Process
             }
         }
 
+        public void DumpMe()
+        {
+            Dump();
+        }
+
         private void btnDump_Click(object sender, EventArgs e)
+        {
+            Dump();
+        }
+
+        public void Dump()
         {
             if (proc == null)
             {
@@ -181,9 +212,8 @@ namespace MemoScope.Modules.Process
                 int r = target.DebuggerInterface.WriteDumpFile(dumpPath, DEBUG_DUMP.DEFAULT);
                 if (r == 0)
                 {
-                    Log("Process dumped ! "+Environment.NewLine+ dumpPath, LogLevelType.Notify);
+                    Log("Process dumped ! " + Environment.NewLine + dumpPath, LogLevelType.Notify);
                 }
-
             }
             catch (Exception ex)
             {
@@ -194,10 +224,11 @@ namespace MemoScope.Modules.Process
                 if (target != null)
                 {
                     target.DebuggerInterface?.DetachProcesses();
+                    target.Dispose();
                 }
             }
         }
-        
+
         [DllImport("user32.dll")]
         private static extern IntPtr WindowFromPoint(CursorPos pos);
 
@@ -208,12 +239,6 @@ namespace MemoScope.Modules.Process
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr handle, out uint pId);
 
-        public struct CursorPos
-        {
-            public int xx;
-            public int yy;
-        }
-
         private void btnFindProcess_MouseDown(object sender, MouseEventArgs e)
         {
             var form = GetMainForm();
@@ -223,9 +248,6 @@ namespace MemoScope.Modules.Process
             CurrentCursor = Cursor.Current;
             Cursor.Current = Cursors.UpArrow;
         }
-
-        private Cursor CurrentCursor { get; set; }
-        private FormWindowState CurrentWindowState { get; set; }
 
         private void btnFindProcess_MouseUp(object sender, MouseEventArgs e)
         {
@@ -258,6 +280,12 @@ namespace MemoScope.Modules.Process
             var handle = System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle;
             var mainForm = forms.First(form => form.Handle == handle);
             return mainForm;
+        }
+
+        public struct CursorPos
+        {
+            public int xx;
+            public int yy;
         }
     }
 }
