@@ -6,6 +6,6 @@ namespace MemoScopeApi
     public interface IMemoScopeService
     {
         [OperationContract]
-        void DumpMe();
+        void DumpMe(int processId);
     }
 }

@@ -5,10 +5,10 @@ namespace MemoScopeApi
 {
     public class MemoScopeServer : ServiceHost
     {
-        public MemoScopeServer(IMemoScopeService service, int processId) :
+        public MemoScopeServer(IMemoScopeService service) :
             base(service, new Uri("net.pipe://localhost/"))
         {
-            AddServiceEndpoint(typeof (IMemoScopeService), new NetNamedPipeBinding(), "memoscope_"+processId);
+            AddServiceEndpoint(typeof (IMemoScopeService), new NetNamedPipeBinding(), "memoscope");
             Open();
         }
     }

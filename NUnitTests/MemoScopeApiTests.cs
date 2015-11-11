@@ -13,11 +13,11 @@ namespace NUnitTests
         {
             var myService = new MockService();
             var processId = 1234;
-            MemoScopeServer server = new MemoScopeServer(myService, processId);
+            MemoScopeServer server = new MemoScopeServer(myService);
 
-            MemoScopeClient client = new MemoScopeClient(processId);
+            MemoScopeClient client = new MemoScopeClient();
             Debug.WriteLine(server.State);
-            client.DumpMe();
+            client.DumpMe(processId);
 
             Assert.That(myService.DumpMeReceived, Is.EqualTo(1));
         }
@@ -28,7 +28,7 @@ namespace NUnitTests
     {
         public int DumpMeReceived { get; private set; }
 
-        public void DumpMe()
+        public void DumpMe(int processId)
         {
             DumpMeReceived ++;
         }

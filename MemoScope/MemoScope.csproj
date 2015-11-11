@@ -89,6 +89,7 @@
     <Compile Include="Modules\About\AboutModule.Designer.cs">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Process\DumpMeservice.cs" />
     <Compile Include="Modules\Process\ProcessCommand.cs" />
     <Compile Include="Modules\Process\ProcessInfoValue.cs" />
     <Compile Include="Modules\Process\ProcessModule.cs">

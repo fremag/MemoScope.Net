@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using MemoScopeApi;
 
 namespace MemoDummy
@@ -8,11 +9,14 @@ namespace MemoDummy
         public override string Name => "MemoScope Api Test";
         public override string Description => "Ask MemoScope to dump MemoDumy";
 
+        [ReadOnly(true)]
+        public int ProcessId => Process.GetCurrentProcess().Id;
+
         public override void Run()
         {
-            var client = new MemoScopeClient(Process.GetCurrentProcess().Id);
+            var client = new MemoScopeClient();
             client.Open();
-            client.DumpMe();
+            client.DumpMe(Process.GetCurrentProcess().Id);
         }
     }
 }

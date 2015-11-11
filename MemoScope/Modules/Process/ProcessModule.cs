@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.ServiceModel;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using MemoScopeApi;
@@ -16,15 +15,19 @@ using Cursor = System.Windows.Forms.Cursor;
 
 namespace MemoScope.Modules.Process
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
-    public partial class ProcessModule : UIModule, IMemoScopeService
+    public partial class ProcessModule : UIModule
     {
+        private static readonly MemoScopeServer DumpServer;
         private readonly List<ProcessInfoValue> values = new List<ProcessInfoValue>();
-        private MemoScopeServer dumpServer;
         private ProcessWrapper proc;
 
         private Cursor CurrentCursor { get; set; }
         private FormWindowState CurrentWindowState { get; set; }
+
+        static ProcessModule()
+        {
+            DumpServer = new MemoScopeServer(MemoScopeService.Instance);
+        }
 
         public ProcessModule()
         {
@@ -72,6 +75,7 @@ namespace MemoScope.Modules.Process
             chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
 
             tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
+            MemoScopeService.Instance.DumpRequested += OnDumpRequested;
         }
 
         private void AddValue(string name, string group, Func<ProcessWrapper, object> func, bool visible = false, string format = "{0:###,###,###,##0}", bool addSeries = true)
@@ -94,17 +98,12 @@ namespace MemoScope.Modules.Process
 
         private void cbProcess_SelectedValueChanged(object sender, EventArgs e)
         {
-            dumpServer?.Close();
-
             proc = cbProcess.SelectedItem as ProcessWrapper;
             if (proc != null)
             {
                 Summary = proc.Process.ProcessName;
                 MemoScopeSettings.Instance.LastProcessName = proc.Process.ProcessName;
                 MemoScopeSettings.Instance.Save();
-
-                dumpServer = new MemoScopeServer(this, proc.Process.Id);
-                Log("DumpServer: state=" + dumpServer.State + ", address=" + dumpServer.BaseAddresses[0].AbsolutePath);
             }
 
             foreach (var processInfoValue in values)
@@ -146,11 +145,7 @@ namespace MemoScope.Modules.Process
 
         public void Init()
         {
-            System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
-
-            object[] processWrappers = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).Cast<object>().ToArray();
-            cbProcess.Items.Clear();
-            cbProcess.Items.AddRange(processWrappers);
+            RefreshProcess();
 
             string lastProcessName = MemoScopeSettings.Instance.LastProcessName;
             if (string.IsNullOrEmpty(lastProcessName))
@@ -158,7 +153,7 @@ namespace MemoScope.Modules.Process
                 return;
             }
 
-            var lastProcess = processWrappers.FirstOrDefault(pw => ((ProcessWrapper) pw).Process.ProcessName == lastProcessName);
+            var lastProcess = cbProcess.Items.Cast<ProcessWrapper>().FirstOrDefault(pw => pw.Process.ProcessName == lastProcessName);
             if (lastProcess != null)
             {
                 cbProcess.SelectedItem = lastProcess;
@@ -166,9 +161,22 @@ namespace MemoScope.Modules.Process
             }
         }
 
-        public void DumpMe()
+        private void RefreshProcess()
         {
-            Dump();
+            System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
+
+            object[] processWrappers = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).Cast<object>().ToArray();
+            cbProcess.Items.Clear();
+            cbProcess.Items.AddRange(processWrappers);
+
+        }
+
+        private void OnDumpRequested(int procId)
+        {
+            if (proc != null && proc.Process.Id == procId)
+            {
+                Dump();
+            }
         }
 
         private void btnDump_Click(object sender, EventArgs e)
@@ -212,7 +220,7 @@ namespace MemoScope.Modules.Process
                 int r = target.DebuggerInterface.WriteDumpFile(dumpPath, DEBUG_DUMP.DEFAULT);
                 if (r == 0)
                 {
-                    Log("Process dumped ! " + Environment.NewLine + dumpPath, LogLevelType.Notify);
+                    Log(string.Format("Process dumped ! {0}{1}{0}Process Id: {2}", Environment.NewLine, dumpPath, proc.Process.Id), LogLevelType.Notify);
                 }
             }
             catch (Exception ex)
@@ -251,6 +259,7 @@ namespace MemoScope.Modules.Process
 
         private void btnFindProcess_MouseUp(object sender, MouseEventArgs e)
         {
+            RefreshProcess();
             uint pId = GetProcessFromWindow();
             var processWrapper = cbProcess.Items.Cast<ProcessWrapper>().FirstOrDefault(pw => pw.Process.Id == pId);
             if (processWrapper != null)
