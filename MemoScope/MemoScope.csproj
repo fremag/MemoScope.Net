@@ -92,6 +92,12 @@
     <Compile Include="Modules\Process\DumpMeservice.cs" />
     <Compile Include="Modules\Process\ProcessCommand.cs" />
     <Compile Include="Modules\Process\ProcessInfoValue.cs" />
+    <Compile Include="Modules\Process\ProcessInfoViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Process\ProcessInfoViewer.Designer.cs">
+      <DependentUpon>ProcessInfoViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Process\ProcessModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\About\AboutModule.resx">
       <DependentUpon>AboutModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Process\ProcessInfoViewer.resx">
+      <DependentUpon>ProcessInfoViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Process\ProcessModule.resx">
       <DependentUpon>ProcessModule.cs</DependentUpon>

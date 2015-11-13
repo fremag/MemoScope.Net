@@ -29,27 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.lblProcess = new System.Windows.Forms.Label();
             this.cbProcess = new System.Windows.Forms.ComboBox();
-            this.defaultListView1 = new WinFwk.UITools.DefaultListView();
-            this.colName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.colValue = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.colGroup = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblRootDir = new System.Windows.Forms.Label();
             this.tbRootDir = new System.Windows.Forms.TextBox();
             this.btnDump = new System.Windows.Forms.Button();
             this.btnFindProcess = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.defaultListView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.gbTriggers = new System.Windows.Forms.GroupBox();
+            this.gbProcess = new System.Windows.Forms.GroupBox();
+            this.processInfoViewer = new ProcessInfoViewer();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.gbProcess.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblProcess
@@ -72,89 +67,6 @@
             this.cbProcess.TabIndex = 1;
             this.cbProcess.DropDown += new System.EventHandler(this.cbProcess_DropDown);
             this.cbProcess.SelectedValueChanged += new System.EventHandler(this.cbProcess_SelectedValueChanged);
-            // 
-            // defaultListView1
-            // 
-            this.defaultListView1.AllColumns.Add(this.colName);
-            this.defaultListView1.AllColumns.Add(this.colValue);
-            this.defaultListView1.AllColumns.Add(this.colGroup);
-            this.defaultListView1.CheckBoxes = true;
-            this.defaultListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colName,
-            this.colValue});
-            this.defaultListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.defaultListView1.FullRowSelect = true;
-            this.defaultListView1.HideSelection = false;
-            this.defaultListView1.Location = new System.Drawing.Point(0, 0);
-            this.defaultListView1.Name = "defaultListView1";
-            this.defaultListView1.OwnerDraw = true;
-            this.defaultListView1.ShowGroups = false;
-            this.defaultListView1.ShowImagesOnSubItems = true;
-            this.defaultListView1.Size = new System.Drawing.Size(472, 603);
-            this.defaultListView1.Sorting = System.Windows.Forms.SortOrder.Descending;
-            this.defaultListView1.TabIndex = 2;
-            this.defaultListView1.UseCompatibleStateImageBehavior = false;
-            this.defaultListView1.View = System.Windows.Forms.View.Details;
-            this.defaultListView1.VirtualMode = true;
-            // 
-            // colName
-            // 
-            this.colName.Text = "Name";
-            this.colName.Width = 150;
-            // 
-            // colValue
-            // 
-            this.colValue.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colValue.Text = "Value";
-            this.colValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colValue.Width = 200;
-            // 
-            // colGroup
-            // 
-            this.colGroup.DisplayIndex = 0;
-            this.colGroup.IsVisible = false;
-            this.colGroup.Text = "Group";
-            // 
-            // timer
-            // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 500;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(3, 68);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.defaultListView1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.chart1);
-            this.splitContainer1.Size = new System.Drawing.Size(974, 603);
-            this.splitContainer1.SplitterDistance = 472;
-            this.splitContainer1.TabIndex = 3;
-            // 
-            // chart1
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend3.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
-            legend3.Name = "Legend1";
-            legend3.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Wide;
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(0, 0);
-            this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(498, 603);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
             // 
             // lblRootDir
             // 
@@ -183,6 +95,7 @@
             this.btnDump.Size = new System.Drawing.Size(75, 23);
             this.btnDump.TabIndex = 7;
             this.btnDump.Text = "Dump !";
+            this.toolTip1.SetToolTip(this.btnDump, "Dump Process Now !");
             this.btnDump.UseVisualStyleBackColor = true;
             this.btnDump.Click += new System.EventHandler(this.btnDump_Click);
             // 
@@ -193,29 +106,78 @@
             this.btnFindProcess.Name = "btnFindProcess";
             this.btnFindProcess.Size = new System.Drawing.Size(49, 49);
             this.btnFindProcess.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.btnFindProcess, "Drag button and drop it on process window...");
             this.btnFindProcess.UseVisualStyleBackColor = true;
             this.btnFindProcess.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnFindProcess_MouseDown);
             this.btnFindProcess.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnFindProcess_MouseUp);
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer2.Location = new System.Drawing.Point(3, 67);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.gbProcess);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.gbTriggers);
+            this.splitContainer2.Size = new System.Drawing.Size(973, 604);
+            this.splitContainer2.SplitterDistance = 302;
+            this.splitContainer2.TabIndex = 9;
+            // 
+            // gbTriggers
+            // 
+            this.gbTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbTriggers.Location = new System.Drawing.Point(0, 0);
+            this.gbTriggers.Name = "gbTriggers";
+            this.gbTriggers.Size = new System.Drawing.Size(973, 298);
+            this.gbTriggers.TabIndex = 0;
+            this.gbTriggers.TabStop = false;
+            this.gbTriggers.Text = "Triggers";
+            // 
+            // gbProcess
+            // 
+            this.gbProcess.Controls.Add(this.processInfoViewer);
+            this.gbProcess.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbProcess.Location = new System.Drawing.Point(0, 0);
+            this.gbProcess.Name = "gbProcess";
+            this.gbProcess.Size = new System.Drawing.Size(973, 302);
+            this.gbProcess.TabIndex = 1;
+            this.gbProcess.TabStop = false;
+            this.gbProcess.Text = "Process";
+            // 
+            // processInfoViewer
+            // 
+            this.processInfoViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.processInfoViewer.Location = new System.Drawing.Point(3, 18);
+            this.processInfoViewer.Name = "processInfoViewer";
+            this.processInfoViewer.Size = new System.Drawing.Size(967, 281);
+            this.processInfoViewer.TabIndex = 0;
             // 
             // ProcessModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.btnFindProcess);
             this.Controls.Add(this.btnDump);
             this.Controls.Add(this.tbRootDir);
             this.Controls.Add(this.lblRootDir);
-            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.cbProcess);
             this.Controls.Add(this.lblProcess);
             this.Name = "ProcessModule";
             this.Size = new System.Drawing.Size(980, 674);
-            ((System.ComponentModel.ISupportInitialize)(this.defaultListView1)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.gbProcess.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,16 +187,14 @@
 
         private System.Windows.Forms.Label lblProcess;
         private System.Windows.Forms.ComboBox cbProcess;
-        private WinFwk.UITools.DefaultListView defaultListView1;
-        private BrightIdeasSoftware.OLVColumn colName;
-        private BrightIdeasSoftware.OLVColumn colValue;
-        private BrightIdeasSoftware.OLVColumn colGroup;
-        private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label lblRootDir;
         private System.Windows.Forms.TextBox tbRootDir;
         private System.Windows.Forms.Button btnDump;
         private System.Windows.Forms.Button btnFindProcess;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.GroupBox gbTriggers;
+        private System.Windows.Forms.GroupBox gbProcess;
+        private ProcessInfoViewer processInfoViewer;
     }
 }
