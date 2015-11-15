@@ -10,7 +10,7 @@ using WinFwk.UITools.Log;
 
 namespace MemoScope.Modules.Process
 {
-    public partial class ProcessTriggers : UserControl
+    public partial class ProcessTriggersControl : UserControl
     {
         private List<DumpTrigger> triggers;
         private DumpTrigger currentTrigger;
@@ -18,7 +18,7 @@ namespace MemoScope.Modules.Process
         public List<ProcessInfoValue> ProcessInfoValues { get; set; }
         public ProcessWrapper ProcessWrapper { get; set; }
 
-        public ProcessTriggers()
+        public ProcessTriggersControl()
         {
             InitializeComponent();
 

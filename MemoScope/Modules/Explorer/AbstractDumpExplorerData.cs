@@ -1,0 +1,40 @@
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using BrightIdeasSoftware;
+
+namespace MemoScope.Modules.Explorer
+{
+    public abstract class AbstractDumpExplorerData
+    {
+        [OLVColumn(Width = 350, ImageAspectName = nameof(Icon))]
+        public string Name { get; protected set; }
+        [OLVColumn(Title="Size (Mo)", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}", Width = 50)]
+        public abstract long Size { get; }
+        public Image Icon { get; protected set; }
+
+        public abstract bool HasChildren { get;  }
+        public abstract IEnumerable<AbstractDumpExplorerData> GetChildren { get;  }
+
+        public static IEnumerable<AbstractDumpExplorerData> GetItems(string mainDir)
+        {
+            string[] dirs = Directory.GetDirectories(mainDir);
+            List<AbstractDumpExplorerData> items = new List<AbstractDumpExplorerData>();
+            foreach (var dir in dirs)
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(dir);
+                var x = new DirectoryData(dirInfo);
+                items.Add(x);
+            }
+            string[] files = Directory.GetFiles(mainDir, "*.dmp");
+            foreach (var file in files)
+            {
+                FileInfo fileInfo = new FileInfo(file);
+                var f = new FileData(fileInfo);
+                items.Add(f);
+            }
+            return items;
+        }
+    }
+}

@@ -65,12 +65,14 @@
             this.tbRootDir.Name = "tbRootDir";
             this.tbRootDir.Size = new System.Drawing.Size(325, 22);
             this.tbRootDir.TabIndex = 2;
+            this.tbRootDir.TextChanged += new System.EventHandler(this.tbRootDir_TextChanged);
             // 
             // dtlvExplorer
             // 
             this.dtlvExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtlvExplorer.CheckBoxes = true;
             this.dtlvExplorer.DataSource = null;
             this.dtlvExplorer.FullRowSelect = true;
             this.dtlvExplorer.HideSelection = false;
@@ -96,6 +98,7 @@
             this.Controls.Add(this.lblRootDir);
             this.Name = "ExplorerModule";
             this.Size = new System.Drawing.Size(467, 632);
+            this.Load += new System.EventHandler(this.ExplorerModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtlvExplorer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

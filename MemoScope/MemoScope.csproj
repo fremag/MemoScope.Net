@@ -93,12 +93,15 @@
     <Compile Include="Modules\About\AboutModule.Designer.cs">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Explorer\AbstractDumpExplorerData.cs" />
+    <Compile Include="Modules\Explorer\DirectoryData.cs" />
     <Compile Include="Modules\Explorer\ExplorerModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\Explorer\ExplorerModule.Designer.cs">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Explorer\FileData.cs" />
     <Compile Include="Modules\Process\DumpRequest.cs" />
     <Compile Include="Modules\Process\MemoScopeService .cs" />
     <Compile Include="Modules\Process\DumpTrigger.cs" />
@@ -116,11 +119,11 @@
     <Compile Include="Modules\Process\ProcessModule.Designer.cs">
       <DependentUpon>ProcessModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Process\ProcessTriggers.cs">
+    <Compile Include="Modules\Process\ProcessTriggersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Process\ProcessTriggers.Designer.cs">
-      <DependentUpon>ProcessTriggers.cs</DependentUpon>
+    <Compile Include="Modules\Process\ProcessTriggersControl.Designer.cs">
+      <DependentUpon>ProcessTriggersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Process\ProcessWrapper.cs" />
     <Compile Include="Program.cs" />
@@ -140,8 +143,8 @@
     <EmbeddedResource Include="Modules\Process\ProcessModule.resx">
       <DependentUpon>ProcessModule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Process\ProcessTriggers.resx">
-      <DependentUpon>ProcessTriggers.cs</DependentUpon>
+    <EmbeddedResource Include="Modules\Process\ProcessTriggersControl.resx">
+      <DependentUpon>ProcessTriggersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -196,6 +199,8 @@
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
     <Content Include="Icons\Small\ddr_memory.png" />
+    <Content Include="Icons\Small\file_extension_bin.png" />
+    <Content Include="Icons\Small\folder.png" />
     <Content Include="Icons\Small\folders_explorer.png" />
     <Content Include="Icons\Small\folder_explore.png" />
     <Content Include="Icons\Small\new_data.png" />
