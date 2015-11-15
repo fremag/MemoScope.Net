@@ -37,7 +37,7 @@ namespace MemoScope.Modules.Process
 
             tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             MemoScopeService.Instance.DumpRequested += OnDumpRequested;
-            processTriggers.Init(processInfoViewer.ProcessInfoValues);
+            _processTriggersControl.Init(processInfoViewer.ProcessInfoValues);
         }
 
         private void cbProcess_DropDown(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace MemoScope.Modules.Process
             }
 
             processInfoViewer.ProcessWrapper = proc;
-            processTriggers.ProcessWrapper = proc;
+            _processTriggersControl.ProcessWrapper = proc;
         }
 
         public void Init()
@@ -77,7 +77,7 @@ namespace MemoScope.Modules.Process
             }
 
             processInfoViewer.ProcessWrapper = proc;
-            processTriggers.MessageBus = MessageBus;
+            _processTriggersControl.MessageBus = MessageBus;
         }
 
         private void RefreshProcess()
@@ -115,16 +115,16 @@ namespace MemoScope.Modules.Process
                 Log("Can't dump: process has exited !", LogLevelType.Error);
                 return;
             }
-
-            if (!Directory.Exists(tbRootDir.Text))
+            string dumpDir = Path.Combine(tbRootDir.Text, proc.Process.ProcessName);
+            if (!Directory.Exists(dumpDir))
             {
                 try
                 {
-                    Directory.CreateDirectory(tbRootDir.Text);
+                    Directory.CreateDirectory(dumpDir);
                 }
                 catch (Exception ex)
                 {
-                    Log("Can't create directory: " + tbRootDir.Text, ex);
+                    Log("Can't create directory: " + dumpDir, ex);
                     return;
                 }
             }
@@ -133,7 +133,7 @@ namespace MemoScope.Modules.Process
             {
                 target = DataTarget.AttachToProcess(proc.Process.Id, 5000, AttachFlag.NonInvasive);
                 string dumpFileName = string.Format("{0}_{1:yyyy_MM_dd_HH_mm_ss}.dmp", proc.Process.ProcessName, DateTime.Now);
-                string dumpPath = Path.Combine(tbRootDir.Text, dumpFileName);
+                string dumpPath = Path.Combine(dumpDir, dumpFileName);
 
                 int r = target.DebuggerInterface.WriteDumpFile(dumpPath, DEBUG_DUMP.DEFAULT);
                 if (r == 0)
