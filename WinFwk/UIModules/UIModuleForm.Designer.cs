@@ -131,9 +131,9 @@ namespace WinFwk.UIModules
         private DockPanel mainPanel;
         private System.Windows.Forms.ToolStripContainer toolStripContainer2;
 
-        protected void InitWorkplace()
+        protected DockContent InitWorkplace(DockState dockState= DockState.DockLeft)
         {
-            DockModule(new WorkplaceModule(), DockState.DockLeft, false);
+            return DockModule(new WorkplaceModule(), dockState, false);
         }
 
         protected void InitLog()

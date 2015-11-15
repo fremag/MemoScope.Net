@@ -1,4 +1,6 @@
 ﻿using System.Windows.Forms;
+using MemoScope.Modules.Explorer;
+using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UIModules;
 
 namespace MemoScope
@@ -13,9 +15,9 @@ namespace MemoScope
         private void MemoScope_Load(object sender, System.EventArgs e)
         {
             InitToolBars();
-            InitWorkplace();
+            InitWorkplace(DockState.DockLeftAutoHide);
             InitLog();
-
+            DockModule(new ExplorerModule(), DockState.DockLeft);
             WindowState = FormWindowState.Maximized;
         }
     }

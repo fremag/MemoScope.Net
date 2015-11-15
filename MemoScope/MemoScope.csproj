@@ -73,6 +73,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.9.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.2.9.0.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MemoScope.cs">
@@ -88,6 +92,12 @@
     </Compile>
     <Compile Include="Modules\About\AboutModule.Designer.cs">
       <DependentUpon>AboutModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Explorer\ExplorerModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Explorer\ExplorerModule.Designer.cs">
+      <DependentUpon>ExplorerModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Process\DumpRequest.cs" />
     <Compile Include="Modules\Process\MemoScopeService .cs" />
@@ -120,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\About\AboutModule.resx">
       <DependentUpon>AboutModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
+      <DependentUpon>ExplorerModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Process\ProcessInfoViewer.resx">
       <DependentUpon>ProcessInfoViewer.cs</DependentUpon>
@@ -167,6 +180,7 @@
   <ItemGroup>
     <Content Include="Icons\Large\bow.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
+    <Content Include="Icons\Large\folders_explorer.png" />
     <Content Include="Icons\Large\help.png" />
     <Content Include="Icons\Large\new_data.png" />
     <Content Include="Icons\Large\save_data.png" />
@@ -182,6 +196,8 @@
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
     <Content Include="Icons\Small\ddr_memory.png" />
+    <Content Include="Icons\Small\folders_explorer.png" />
+    <Content Include="Icons\Small\folder_explore.png" />
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\page_delete.png" />
     <Content Include="Icons\Small\save_data.png" />
