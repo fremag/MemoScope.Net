@@ -4,7 +4,7 @@
 ---------------------|----------------------
 
 
-# Thanks 
+# Thanks to...
 
 * Lee Culver for his [ClrMd](https://github.com/Microsoft/clrmd) library, without it, MemoScope.Net would not exist.
 * FatCow for their free [icons](http://www.fatcow.com/free-icons)
