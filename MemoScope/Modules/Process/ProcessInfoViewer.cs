@@ -30,7 +30,22 @@ namespace MemoScope.Modules.Process
         {
             InitializeComponent();
             colName.AspectGetter = rowObject => ((ProcessInfoValue) rowObject).Name;
-            colValue.AspectGetter = rowObject => processWrapper == null ? null : ((ProcessInfoValue) rowObject).GetValue(processWrapper);
+            colValue.AspectGetter = rowObject =>
+            {
+                if (processWrapper == null || processWrapper.Process.HasExited)
+                {
+                    return null;
+                }
+                try
+                {
+                    var val = ((ProcessInfoValue) rowObject).GetValue(processWrapper);
+                    return val;
+                }
+                catch
+                {
+                    return null;
+                }
+            };
             colGroup.AspectGetter = rowObject => ((ProcessInfoValue) rowObject).GroupName;
             dlvProcessInfoValues.CheckStateGetter = rowObject =>
             {

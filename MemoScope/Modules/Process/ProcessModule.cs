@@ -140,6 +140,10 @@ namespace MemoScope.Modules.Process
                 {
                     Log(string.Format("Process dumped ! {0}{1}{0}Process Id: {2}", Environment.NewLine, dumpPath, proc.Process.Id), LogLevelType.Notify);
                 }
+                else
+                {
+                    Log(string.Format("Failed to dump process ! {0}{1}{0}Process Id: {2}", Environment.NewLine, dumpPath, proc.Process.Id), LogLevelType.Notify);
+                }
             }
             catch (Exception ex)
             {

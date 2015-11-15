@@ -115,7 +115,6 @@
             this.Controls.Add(this.dlvLogMessages);
             this.Name = "LogModule";
             this.Size = new System.Drawing.Size(861, 357);
-            this.Load += new System.EventHandler(this.LogModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dlvLogMessages)).EndInit();
             this.ResumeLayout(false);
 

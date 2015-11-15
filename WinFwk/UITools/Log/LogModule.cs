@@ -28,6 +28,11 @@ namespace WinFwk.UITools.Log
 
             Icon = Properties.Resources.small_file_extension_log;
             Summary = "Logs";
+
+            var appIcon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
+            notifyIcon.Icon = appIcon;
+            notifyIcon.Text = $"{Application.ProductName} ({Application.ProductVersion})";
+            notifyIcon.Visible = true;
         }
 
         public void HandleMessage(LogMessage message)
@@ -109,15 +114,7 @@ namespace WinFwk.UITools.Log
                     throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
             }
         }
-
-        private void LogModule_Load(object sender, EventArgs e)
-        {
-            var appIcon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
-            notifyIcon.Icon = appIcon;
-            notifyIcon.Text = $"{Application.ProductName} ({Application.ProductVersion})";
-            notifyIcon.Visible = true;
-        }
-
+        
         private void btnOpenLogFile_Click(object sender, EventArgs e)
         {
             foreach (var fileTarget in LogManager.Configuration.AllTargets.OfType<FileTarget>())
