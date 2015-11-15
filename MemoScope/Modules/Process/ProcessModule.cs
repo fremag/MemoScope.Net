@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using MemoScopeApi;
 using Microsoft.Diagnostics.Runtime;
 using Microsoft.Diagnostics.Runtime.Interop;
+using WinFwk.UIMessages;
 using WinFwk.UIModules;
 using WinFwk.UITools.Log;
 using Cursor = System.Windows.Forms.Cursor;
 
 namespace MemoScope.Modules.Process
 {
-    public partial class ProcessModule : UIModule
+    public partial class ProcessModule : UIModule,
+        IMessageListener<DumpRequest>
+
     {
         public static readonly MemoScopeServer DumpServer;
         private ProcessWrapper proc;
@@ -37,6 +37,7 @@ namespace MemoScope.Modules.Process
 
             tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             MemoScopeService.Instance.DumpRequested += OnDumpRequested;
+            processTriggers.Init(processInfoViewer.ProcessInfoValues);
         }
 
         private void cbProcess_DropDown(object sender, EventArgs e)
@@ -55,6 +56,7 @@ namespace MemoScope.Modules.Process
             }
 
             processInfoViewer.ProcessWrapper = proc;
+            processTriggers.ProcessWrapper = proc;
         }
 
         public void Init()
@@ -75,6 +77,7 @@ namespace MemoScope.Modules.Process
             }
 
             processInfoViewer.ProcessWrapper = proc;
+            processTriggers.MessageBus = MessageBus;
         }
 
         private void RefreshProcess()
@@ -84,7 +87,6 @@ namespace MemoScope.Modules.Process
             object[] processWrappers = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).Cast<object>().ToArray();
             cbProcess.Items.Clear();
             cbProcess.Items.AddRange(processWrappers);
-
         }
 
         private void OnDumpRequested(int procId)
@@ -211,6 +213,14 @@ namespace MemoScope.Modules.Process
         {
             public int xx;
             public int yy;
+        }
+
+        void IMessageListener<DumpRequest>.HandleMessage(DumpRequest message)
+        {
+            if (message.ProcessWrapper == proc)
+            {
+                Dump();
+            }
         }
     }
 }

@@ -46,6 +46,7 @@ namespace WinFwk.UITools.Log
                     break;
                 case LogLevelType.Error:
                     logger.Error(message.Text);
+                    MessageBox.Show(message.Text, "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 case LogLevelType.Exception:
                     logger.Error(message.Exception, message.Text);

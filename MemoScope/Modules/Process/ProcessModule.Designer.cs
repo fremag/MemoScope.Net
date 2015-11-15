@@ -37,14 +37,16 @@
             this.btnFindProcess = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.gbTriggers = new System.Windows.Forms.GroupBox();
             this.gbProcess = new System.Windows.Forms.GroupBox();
             this.processInfoViewer = new ProcessInfoViewer();
+            this.gbTriggers = new System.Windows.Forms.GroupBox();
+            this.processTriggers = new ProcessTriggers();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.gbProcess.SuspendLayout();
+            this.gbTriggers.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblProcess
@@ -131,16 +133,6 @@
             this.splitContainer2.SplitterDistance = 302;
             this.splitContainer2.TabIndex = 9;
             // 
-            // gbTriggers
-            // 
-            this.gbTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbTriggers.Location = new System.Drawing.Point(0, 0);
-            this.gbTriggers.Name = "gbTriggers";
-            this.gbTriggers.Size = new System.Drawing.Size(973, 298);
-            this.gbTriggers.TabIndex = 0;
-            this.gbTriggers.TabStop = false;
-            this.gbTriggers.Text = "Triggers";
-            // 
             // gbProcess
             // 
             this.gbProcess.Controls.Add(this.processInfoViewer);
@@ -160,6 +152,25 @@
             this.processInfoViewer.Size = new System.Drawing.Size(967, 281);
             this.processInfoViewer.TabIndex = 0;
             // 
+            // gbTriggers
+            // 
+            this.gbTriggers.Controls.Add(this.processTriggers);
+            this.gbTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbTriggers.Location = new System.Drawing.Point(0, 0);
+            this.gbTriggers.Name = "gbTriggers";
+            this.gbTriggers.Size = new System.Drawing.Size(973, 298);
+            this.gbTriggers.TabIndex = 0;
+            this.gbTriggers.TabStop = false;
+            this.gbTriggers.Text = "Triggers";
+            // 
+            // processTriggers
+            // 
+            this.processTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.processTriggers.Location = new System.Drawing.Point(3, 18);
+            this.processTriggers.Name = "processTriggers";
+            this.processTriggers.Size = new System.Drawing.Size(967, 277);
+            this.processTriggers.TabIndex = 0;
+            // 
             // ProcessModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -178,6 +189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.gbProcess.ResumeLayout(false);
+            this.gbTriggers.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +208,6 @@
         private System.Windows.Forms.GroupBox gbTriggers;
         private System.Windows.Forms.GroupBox gbProcess;
         private ProcessInfoViewer processInfoViewer;
+        private ProcessTriggers processTriggers;
     }
 }

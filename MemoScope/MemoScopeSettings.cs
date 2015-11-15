@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
+using MemoScope.Modules.Process;
 using WinFwk.UITools.Settings;
 
 namespace MemoScope
@@ -12,6 +14,9 @@ namespace MemoScope
 
         [Category("Process")]
         public string LastProcessName { get; set; }
+
+        [Category("Process Dump")]
+        public List<DumpTrigger> Triggers { get; set; } = new List<DumpTrigger>();
 
         public void Save()
         {

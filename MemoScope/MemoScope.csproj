@@ -89,7 +89,9 @@
     <Compile Include="Modules\About\AboutModule.Designer.cs">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Process\DumpMeservice.cs" />
+    <Compile Include="Modules\Process\DumpRequest.cs" />
+    <Compile Include="Modules\Process\MemoScopeService .cs" />
+    <Compile Include="Modules\Process\DumpTrigger.cs" />
     <Compile Include="Modules\Process\ProcessCommand.cs" />
     <Compile Include="Modules\Process\ProcessInfoValue.cs" />
     <Compile Include="Modules\Process\ProcessInfoViewer.cs">
@@ -103,6 +105,12 @@
     </Compile>
     <Compile Include="Modules\Process\ProcessModule.Designer.cs">
       <DependentUpon>ProcessModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Process\ProcessTriggers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Process\ProcessTriggers.Designer.cs">
+      <DependentUpon>ProcessTriggers.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Process\ProcessWrapper.cs" />
     <Compile Include="Program.cs" />
@@ -118,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Process\ProcessModule.resx">
       <DependentUpon>ProcessModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Process\ProcessTriggers.resx">
+      <DependentUpon>ProcessTriggers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -157,13 +168,23 @@
     <Content Include="Icons\Large\bow.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\help.png" />
+    <Content Include="Icons\Large\new_data.png" />
+    <Content Include="Icons\Large\save_data.png" />
     <Content Include="Icons\Logos\memoscope.svg" />
     <Content Include="Icons\Logos\memoscope_logo.png" />
     <Content Include="Icons\Logos\memoscope_logo_16x16.png" />
     <Content Include="Icons\Logos\memoscope_logo_32x32.png" />
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.png" />
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.svg" />
+    <Content Include="Icons\Small\application_double.png" />
+    <Content Include="Icons\Large\clock_go.png" />
+    <Content Include="Icons\Large\clock_stop.png" />
+    <Content Include="Icons\Small\clock_go.png" />
+    <Content Include="Icons\Small\clock_stop.png" />
     <Content Include="Icons\Small\ddr_memory.png" />
+    <Content Include="Icons\Small\new_data.png" />
+    <Content Include="Icons\Small\page_delete.png" />
+    <Content Include="Icons\Small\save_data.png" />
     <Content Include="LICENSE.txt" />
     <Content Include="memoscope_logo.ico" />
     <None Include="Resources\Memoscope.png.ico" />

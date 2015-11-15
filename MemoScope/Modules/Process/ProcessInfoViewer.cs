@@ -8,8 +8,7 @@ namespace MemoScope.Modules.Process
 {
     public partial class ProcessInfoViewer : UserControl
     {
-        private readonly List<ProcessInfoValue> values = new List<ProcessInfoValue>();
-
+        public List<ProcessInfoValue> ProcessInfoValues { get; } = new List<ProcessInfoValue>();
         private ProcessWrapper processWrapper;
 
         public ProcessWrapper ProcessWrapper
@@ -17,12 +16,13 @@ namespace MemoScope.Modules.Process
             set
             {
                 processWrapper = value;
-                foreach (var processInfoValue in values)
+                foreach (var processInfoValue in ProcessInfoValues)
                 {
                     processInfoValue.Reset();
                 }
-                defaultListView1.SetObjects(values);
-                defaultListView1.BuildGroups(colGroup, SortOrder.Ascending);
+                dlvProcessInfoValues.SetObjects(ProcessInfoValues);
+                dlvProcessInfoValues.BuildGroups(colGroup, SortOrder.Ascending);
+                dlvProcessInfoValues.IsSimpleDragSource = true;
             }
         }
 
@@ -32,7 +32,7 @@ namespace MemoScope.Modules.Process
             colName.AspectGetter = rowObject => ((ProcessInfoValue) rowObject).Name;
             colValue.AspectGetter = rowObject => processWrapper == null ? null : ((ProcessInfoValue) rowObject).GetValue(processWrapper);
             colGroup.AspectGetter = rowObject => ((ProcessInfoValue) rowObject).GroupName;
-            defaultListView1.CheckStateGetter = rowObject =>
+            dlvProcessInfoValues.CheckStateGetter = rowObject =>
             {
                 var x = ((ProcessInfoValue) rowObject);
                 if (x.Series != null)
@@ -41,7 +41,7 @@ namespace MemoScope.Modules.Process
                 }
                 return CheckState.Indeterminate;
             };
-            defaultListView1.CheckStatePutter = (rowObject, value) =>
+            dlvProcessInfoValues.CheckStatePutter = (rowObject, value) =>
             {
                 var series = ((ProcessInfoValue) rowObject).Series;
                 if (series == null)
@@ -64,25 +64,31 @@ namespace MemoScope.Modules.Process
             AddValue("Private", "Private", proc => proc.PrivateMemory);
             AddValue("HandleCount", "Handles", proc => proc.HandleCount);
 
-            AddValue("Start Time", "_Time_", proc => proc.StartTime, false, "{0}", false);
-            AddValue("User Processor Time", "_Time_", proc => proc.UserProcessorTime, false, "{0}", false);
-            AddValue("Total Processor Time", "_Time_", proc => proc.TotalProcessorTime, false, "{0}", false);
+            AddValue("Start Time", "StartTime",  "_Time_", proc => proc.StartTime, false, "{0}", false);
+            AddValue("User Processor Time", "UserTime", "_Time_", proc => proc.UserProcessorTime, false, "{0}", false);
+            AddValue("Total Processor Time", "totaltime", "_Time_", proc => proc.TotalProcessorTime, false, "{0}", false);
 
-            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
-            chart1.ChartAreas[0].AxisY.LabelStyle.Format = "###,###,###,##0";
-            chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
+            var chartArea = chart.ChartAreas[0];
+            chartArea.AxisX.LabelStyle.Format = "HH:mm:ss";
+            chartArea.AxisY.LabelStyle.Format = "###,###,###,##0";
+            chartArea.AxisY.IsStartedFromZero = false;
         }
 
         private void AddValue(string name, string group, Func<ProcessWrapper, object> func, bool visible = false, string format = "{0:###,###,###,##0}", bool addSeries = true)
         {
-            var x = new ProcessInfoValue(name, group, func, format);
-            values.Add(x);
+            AddValue(name, name, group, func, visible, format, addSeries);
+        }
+
+        private void AddValue(string name, string alias, string group, Func<ProcessWrapper, object> func, bool visible = false, string format = "{0:###,###,###,##0}", bool addSeries = true)
+        {
+            var x = new ProcessInfoValue(name, alias, group, func, format);
+            ProcessInfoValues.Add(x);
             if (addSeries)
             {
                 var series = new Series(name) {XValueType = ChartValueType.DateTime, ChartType = SeriesChartType.FastLine};
                 x.Series = series;
                 series.Enabled = visible;
-                chart1.Series.Add(x.Series);
+                chart.Series.Add(x.Series);
             }
         }
 
@@ -103,7 +109,7 @@ namespace MemoScope.Modules.Process
             processWrapper.Process.Refresh();
 
             var now = DateTime.Now.ToOADate();
-            foreach (var v in values)
+            foreach (var v in ProcessInfoValues)
             {
                 if (v.Series != null)
                 {
@@ -111,7 +117,7 @@ namespace MemoScope.Modules.Process
                     var point = new DataPoint(now, Convert.ToDouble(y));
                     v.Series.Points.Add(point);
                 }
-                defaultListView1.RefreshObject(v);
+                dlvProcessInfoValues.RefreshObject(v);
             }
         }
     }

@@ -138,7 +138,7 @@ namespace WinFwk.UIModules
 
         protected void InitLog()
         {
-            DockModule(new LogModule(), DockState.DockBottom, false);
+            DockModule(new LogModule(), DockState.DockBottomAutoHide, false);
         }
     }
 }
