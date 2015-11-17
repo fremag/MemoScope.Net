@@ -29,7 +29,7 @@ namespace WinFwk.UITools.Log
             Icon = Properties.Resources.small_file_extension_log;
             Summary = "Logs";
 
-            var appIcon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
+            var appIcon = System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location);
             notifyIcon.Icon = appIcon;
             notifyIcon.Text = $"{Application.ProductName} ({Application.ProductVersion})";
             notifyIcon.Visible = true;
@@ -59,7 +59,7 @@ namespace WinFwk.UITools.Log
                 case LogLevelType.Notify:
                     logger.Info(message.Text);
                     notifyIcon.BalloonTipTitle = notifyIcon.Text;
-                    notifyIcon.BalloonTipText = string.IsNullOrEmpty(message.Text) ? "Hello !" : message.Text; ; 
+                    notifyIcon.BalloonTipText = string.IsNullOrEmpty(message.Text) ? "Hello !" : message.Text;
                     notifyIcon.ShowBalloonTip(1000);
                     break;
                 default:
@@ -86,7 +86,7 @@ namespace WinFwk.UITools.Log
             RequestDockModule(viewerModule);
         }
 
-        private void fdlvLogMessages_FormatCell(object sender, BrightIdeasSoftware.FormatCellEventArgs e)
+        private void fdlvLogMessages_FormatCell(object sender, FormatCellEventArgs e)
         {
             if (e.Column != colLogLevel)
                 return;

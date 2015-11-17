@@ -181,11 +181,31 @@ namespace MemoScope.Properties {
         }
         
         /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Icon semblable à (Icône).
+        /// </summary>
+        internal static System.Drawing.Icon memoscope_ico {
+            get {
+                object obj = ResourceManager.GetObject("memoscope_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap memoscope_logo {
             get {
                 object obj = ResourceManager.GetObject("memoscope_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap memoscope_logo_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("memoscope_logo_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
