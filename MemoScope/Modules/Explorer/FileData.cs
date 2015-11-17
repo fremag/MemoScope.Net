@@ -5,7 +5,7 @@ namespace MemoScope.Modules.Explorer
 {
     public class FileData : AbstractDumpExplorerData
     {
-        FileInfo FileInfo { get; }
+        public override FileInfo FileInfo { get; }
         public FileData(FileInfo fileInfo)
         {
             FileInfo = fileInfo;
@@ -15,6 +15,6 @@ namespace MemoScope.Modules.Explorer
 
         public override long Size => FileInfo.Length/1000000;
         public override bool HasChildren => false;
-        public override IEnumerable<AbstractDumpExplorerData> GetChildren => null;
+        public override IEnumerable<AbstractDumpExplorerData> Children => null;
     }
 }

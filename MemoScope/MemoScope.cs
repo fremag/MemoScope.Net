@@ -17,7 +17,7 @@ namespace MemoScope
             InitToolBars();
             InitWorkplace(DockState.DockLeftAutoHide);
             InitLog();
-            DockModule(new ExplorerModule(), DockState.DockLeft);
+            DockModule(new ExplorerModule(), DockState.DockLeft, false);
             WindowState = FormWindowState.Maximized;
         }
     }

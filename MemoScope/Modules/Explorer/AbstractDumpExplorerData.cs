@@ -14,8 +14,10 @@ namespace MemoScope.Modules.Explorer
         public abstract long Size { get; }
         public Image Icon { get; protected set; }
 
+        public abstract FileInfo FileInfo { get; }
+
         public abstract bool HasChildren { get;  }
-        public abstract IEnumerable<AbstractDumpExplorerData> GetChildren { get;  }
+        public abstract IEnumerable<AbstractDumpExplorerData> Children { get;  }
 
         public static IEnumerable<AbstractDumpExplorerData> GetItems(string mainDir)
         {

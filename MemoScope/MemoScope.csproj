@@ -117,6 +117,7 @@
       <DependentUpon>ExplorerModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Explorer\FileData.cs" />
+    <Compile Include="Modules\Explorer\OpenDumpRequest.cs" />
     <Compile Include="Modules\Process\DumpRequest.cs" />
     <Compile Include="Modules\Process\MemoScopeService .cs" />
     <Compile Include="Modules\Process\DumpTrigger.cs" />
@@ -214,6 +215,7 @@
     <Content Include="Icons\Large\clock_stop.png" />
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
+    <Content Include="Icons\Small\database_go.png" />
     <Content Include="Icons\Small\ddr_memory.png" />
     <Content Include="Icons\Small\file_extension_bin.png" />
     <Content Include="Icons\Small\folder.png" />

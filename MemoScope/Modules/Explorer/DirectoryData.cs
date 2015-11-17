@@ -14,7 +14,9 @@ namespace MemoScope.Modules.Explorer
             Icon = Properties.Resources.folder;
         }
 
-        public override long Size => GetChildren.Count();
+        public override long Size => Children.Count();
+
+        public override FileInfo FileInfo => null;
 
         public override bool HasChildren
         {
@@ -25,6 +27,6 @@ namespace MemoScope.Modules.Explorer
             } 
         }
 
-        public override IEnumerable<AbstractDumpExplorerData> GetChildren => GetItems(DirInfo.FullName);
+        public override IEnumerable<AbstractDumpExplorerData> Children => GetItems(DirInfo.FullName);
     }
 }
