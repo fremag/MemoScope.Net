@@ -4,9 +4,9 @@ using WinFwk.UIMessages;
 
 namespace MemoScope.Modules.Explorer
 {
-    internal class OpenDumpRequest : AbstractUIMessage
+    public class OpenDumpRequest : AbstractUIMessage
     {
-        IEnumerable<FileInfo> FileInfos { get; }
+        public IEnumerable<FileInfo> FileInfos { get; }
         public OpenDumpRequest(IEnumerable<FileInfo> fileInfos)
         {
             FileInfos = fileInfos;

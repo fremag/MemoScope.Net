@@ -71,6 +71,10 @@
       <HintPath>..\packages\ObjectListView.Official.2.8.1\lib\net20\ObjectListView.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ParallelExtensionsExtras, Version=1.2.3.0, Culture=neutral, PublicKeyToken=665f4d61f853b5a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ParallelExtensionsExtras.1.2.0.0\lib\net40\ParallelExtensionsExtras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SparkleLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ObjectListView.2.7.1\lib\SparkleLibrary.dll</HintPath>
       <Private>True</Private>
@@ -144,6 +148,7 @@
     <Compile Include="Modules\Process\ProcessWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DumpLoaderService.cs" />
     <EmbeddedResource Include="MemoScope.resx">
       <DependentUpon>MemoScope.cs</DependentUpon>
     </EmbeddedResource>

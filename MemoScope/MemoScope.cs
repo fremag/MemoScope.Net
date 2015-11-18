@@ -2,6 +2,7 @@
 using MemoScope.Modules.Explorer;
 using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UIModules;
+using WinFwk.UIServices;
 
 namespace MemoScope
 {
@@ -17,6 +18,7 @@ namespace MemoScope
             InitToolBars();
             InitWorkplace(DockState.DockLeftAutoHide);
             InitLog();
+            UIServiceHelper.InitServices(msgBus);
             DockModule(new ExplorerModule(), DockState.DockLeft, false);
             WindowState = FormWindowState.Maximized;
         }
