@@ -69,7 +69,7 @@
     <Compile Include="UICommands\UIDataProvider.cs" />
     <Compile Include="UIMessages\AbstractUIMessage.cs" />
     <Compile Include="UIMessages\UIScheduler.cs" />
-    <Compile Include="UIModules\AbstractUIModule.cs">
+    <Compile Include="UIModules\UIModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UIModules\ActivationRequest.cs" />
@@ -83,6 +83,7 @@
       <DependentUpon>UIModuleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UIModules\UIModuleHelper.cs" />
+    <Compile Include="UIServices\AbstractUIService.cs" />
     <Compile Include="UITools\Settings\UISettings.cs" />
     <Compile Include="UITools\DefaultListView.cs">
       <SubType>Component</SubType>
@@ -139,8 +140,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UIModules\AbstractUIModule.resx">
-      <DependentUpon>AbstractUIModule.cs</DependentUpon>
+    <EmbeddedResource Include="UIModules\UIModule.resx">
+      <DependentUpon>UIModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIModules\UIModuleForm.resx">
       <DependentUpon>UIModuleForm.cs</DependentUpon>

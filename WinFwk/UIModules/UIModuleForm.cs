@@ -205,7 +205,7 @@ namespace WinFwk.UIModules
 
         public virtual void HandleMessage(UISettingsChangedMessage message)
         {
-            // Later: apply user colors to controls, skin etc
+            // TODO: apply user colors to controls, skin etc
         }
 
         private void UIModuleForm_Load(object sender, EventArgs e)
