@@ -1,5 +1,6 @@
 ﻿using System;
 using WinFwk.UIMessages;
+using WinFwk.UITools.Log;
 
 namespace WinFwk.UIServices
 {
@@ -12,6 +13,17 @@ namespace WinFwk.UIServices
             MessageBus = messageBus;
             MessageBus.Subscribe(this);
         }
+
+        protected void Log(string text, LogLevelType logLevel = LogLevelType.Info)
+        {
+            MessageBus.SendMessage(new LogMessage(this, text, logLevel));
+        }
+
+        protected void Log(string text, Exception exception)
+        {
+            MessageBus.SendMessage(new LogMessage(this, text, exception));
+        }
+
     }
 
     public static class UIServiceHelper
