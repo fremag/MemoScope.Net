@@ -48,6 +48,7 @@
     <Compile Include="MemoScopeApiTests.cs" />
     <Compile Include="MessageBusTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleThreadWorkerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

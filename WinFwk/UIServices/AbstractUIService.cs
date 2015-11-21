@@ -6,7 +6,7 @@ namespace WinFwk.UIServices
 {
     public abstract class AbstractUIService
     {
-        private MessageBus MessageBus { get; set; }
+        protected MessageBus MessageBus { get; set; }
 
         public virtual void Init(MessageBus messageBus)
         {
