@@ -38,12 +38,5 @@ namespace WinFwk.UICommands
         {
             MessageBus.SendMessage(new DockRequest(uiModule));
         }
-
-        public T GetModule<T>() where T : UIModule, new()
-        {
-            T uiModule = new T();
-            uiModule.InitBus(MessageBus);
-            return uiModule;
-        }
     }
 }
