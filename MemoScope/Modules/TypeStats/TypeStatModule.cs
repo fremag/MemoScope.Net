@@ -13,6 +13,7 @@ namespace MemoScope.Modules.TypeStats
         public TypeStatModule()
         {
             InitializeComponent();
+            Icon = Properties.Resources.application_view_list;
         }
 
         public void Init(ClrDump dump)
