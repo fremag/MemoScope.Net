@@ -13,7 +13,7 @@ namespace WinFwk.UITools
 
         public void Add(T item)
         {
-            items.Add(item);
+            items.Insert(0, item);
         }
 
         public void AddRange(IEnumerable<T> newItems)

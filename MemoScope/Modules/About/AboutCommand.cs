@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using WinFwk.UICommands;
+using WinFwk.UIModules;
 using WinFwk.UITools.ToolBar;
 
 namespace MemoScope.Modules.About
@@ -12,8 +13,7 @@ namespace MemoScope.Modules.About
 
         public override void Run()
         {
-            AboutModule mod = new AboutModule();
-            DockModule(mod);
+            UIModuleFactory.CreateModule<AboutModule>(tsm => { }, tsm => DockModule(tsm));
         }
     }
 }

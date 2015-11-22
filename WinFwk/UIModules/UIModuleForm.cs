@@ -223,5 +223,10 @@ namespace WinFwk.UIModules
 
             return false;
         }
+
+        public void InitModuleFactory()
+        {
+            UIModuleFactory.Init(this.msgBus, TaskScheduler.FromCurrentSynchronizationContext());
+        }
     }
 }

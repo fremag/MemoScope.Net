@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using WinFwk.UICommands;
+using WinFwk.UIModules;
 using WinFwk.UITools.ToolBar;
 
 namespace MemoScope.Modules.Process
@@ -12,9 +13,7 @@ namespace MemoScope.Modules.Process
 
         public override void Run()
         {
-            ProcessModule mod = GetModule<ProcessModule>();
-            mod.Init();
-            DockModule(mod);
+            UIModuleFactory.CreateModule<ProcessModule>(module => { }, module => DockModule(module));
         }
     }
 }

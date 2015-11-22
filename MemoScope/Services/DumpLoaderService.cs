@@ -34,7 +34,7 @@ namespace MemoScope.Services
                             throw new InvalidOperationException($"Wrong architecture ! Dumpfile : {target.PointerSize*8} bits, Environment.Is64BitProcess : {Environment.Is64BitProcess}");
                         }
 
-                        var clrDump = new ClrDump(target, fileInfo.FullName);
+                        var clrDump = new ClrDump(target, fileInfo.FullName, MessageBus);
                         Log("File loaded: " + fileInfo.FullName);
                         MessageBus.SendMessage(new ClrDumpLoadedMessage(clrDump));
                     }

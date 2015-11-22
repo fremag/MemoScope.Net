@@ -1,4 +1,5 @@
 ﻿using WinFwk.UICommands;
+using WinFwk.UIModules;
 
 namespace WinFwk.UITools.Settings
 {
@@ -10,7 +11,7 @@ namespace WinFwk.UITools.Settings
 
         public override void Run()
         {
-            DockModule(new UISettingsModule());
+            UIModuleFactory.CreateModule<UISettingsModule>(module => { }, module => DockModule(module));
         }
     }
 }

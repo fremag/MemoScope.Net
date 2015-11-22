@@ -35,6 +35,7 @@ namespace WinFwk.UITools.Log
             notifyIcon.Visible = true;
         }
 
+        [UIScheduler]
         public void HandleMessage(LogMessage message)
         {
             var logger = LogManager.GetLogger(message.LoggerName);

@@ -59,7 +59,7 @@ namespace MemoScope.Modules.Process
             _processTriggersControl.ProcessWrapper = proc;
         }
 
-        public void Init()
+        public override void Init()
         {
             RefreshProcess();
 

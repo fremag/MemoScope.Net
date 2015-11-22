@@ -29,6 +29,15 @@ namespace WinFwk.UIModules
             UIModuleParent = this;
         }
 
+        public virtual void Init()
+        {
+
+        }
+        public virtual void PostInit()
+        {
+
+        }
+
         public void InitBus(MessageBus bus)
         {
             MessageBus = bus;

@@ -2,6 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using MemoScope.Core.Dac;
 using Microsoft.Diagnostics.Runtime;
+using System;
+using WinFwk.UITools.Log;
+using WinFwk.UIMessages;
+using WinFwk.UIModules;
+using System.Threading;
 
 namespace MemoScope.Core
 {
@@ -13,20 +18,23 @@ namespace MemoScope.Core
         private DataTarget Target { get; }
         public string DumpPath { get; }
         private ClrHeap Heap => Runtime.GetHeap();
+        private MessageBus MessageBus { get; }
 
         private readonly SingleThreadWorker worker;
 
-        public ClrDump(DataTarget target, string dumpPath)
+        public ClrDump(DataTarget target, string dumpPath, MessageBus msgBus)
         {
             Id = n++;
             Target = target;
             DumpPath = dumpPath;
+            MessageBus = msgBus;
             worker = new SingleThreadWorker(dumpPath);
             worker.Run(InitRuntime);
         }
 
         private void InitRuntime()
         {
+            MessageBus.Log(this, "InitRuntime: " + DumpPath);
             using (var locator = DacFinderFactory.CreateDactFinder("DacSymbols"))
             {
                 var clrVersion = Target.ClrVersions[0];
@@ -49,6 +57,9 @@ namespace MemoScope.Core
 
         private List<ClrTypeStats> GetTypeStatsImpl()
         {
+            MessageBus.Log(this, "GetTypeStatsImpl: " + DumpPath);
+            MessageBus.Status("GetTypeStatsImpl: " + DumpPath, StatusType.BeginTask);
+            int n = 0;
             Dictionary<ClrType, ClrTypeStats> stats = new Dictionary<ClrType, ClrTypeStats>();
             foreach (var address in Heap.EnumerateObjectAddresses())
             {
@@ -66,7 +77,14 @@ namespace MemoScope.Core
                     stats[type] = stat;
                 }
                 stat.Inc(size);
+                n++;
+                if (n % 1024 == 0)
+                {
+                    MessageBus.Status($"Computing stats: n={n:###,###,###,##0}");
+                }
             }
+            MessageBus.Log(this, "Type stats computed: " + DumpPath);
+            MessageBus.Status("Type stats computed: " + DumpPath, StatusType.EndTask);
             return stats.Values.ToList();
         }
     }
