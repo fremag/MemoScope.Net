@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -19,6 +20,7 @@ namespace MemoScope.Modules.Process
     {
         public static readonly MemoScopeServer DumpServer;
         private ProcessWrapper proc;
+        private List<ProcessWrapper> processList;
 
         private Cursor CurrentCursor { get; set; }
         private FormWindowState CurrentWindowState { get; set; }
@@ -37,12 +39,20 @@ namespace MemoScope.Modules.Process
 
             tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             MemoScopeService.Instance.DumpRequested += OnDumpRequested;
-            _processTriggersControl.Init(processInfoViewer.ProcessInfoValues);
+            processTriggersControl.Init(processInfoViewer.ProcessInfoValues);
         }
 
         private void cbProcess_DropDown(object sender, EventArgs e)
         {
-            Init();
+            RefreshProcess();
+            InitProcessItems();
+        }
+
+        private void InitProcessItems()
+        {
+            object[] processWrappers = processList.Cast<object>().ToArray();
+            cbProcess.Items.Clear();
+            cbProcess.Items.AddRange(processWrappers);
         }
 
         private void cbProcess_SelectedValueChanged(object sender, EventArgs e)
@@ -56,13 +66,16 @@ namespace MemoScope.Modules.Process
             }
 
             processInfoViewer.ProcessWrapper = proc;
-            _processTriggersControl.ProcessWrapper = proc;
+            processTriggersControl.ProcessWrapper = proc;
         }
 
-        public override void Init()
+        // Called in UI thread
+        public override void PostInit()
         {
             RefreshProcess();
+            InitProcessItems();
 
+            // check user settings if a previous process has been selected
             string lastProcessName = MemoScopeSettings.Instance.LastProcessName;
             if (string.IsNullOrEmpty(lastProcessName))
             {
@@ -73,20 +86,16 @@ namespace MemoScope.Modules.Process
             if (lastProcess != null)
             {
                 cbProcess.SelectedItem = lastProcess;
-                proc = (ProcessWrapper) lastProcess;
+                proc = (ProcessWrapper)lastProcess;
             }
-
             processInfoViewer.ProcessWrapper = proc;
-            _processTriggersControl.MessageBus = MessageBus;
+            processTriggersControl.MessageBus = MessageBus;
         }
 
         private void RefreshProcess()
         {
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
-
-            object[] processWrappers = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).Cast<object>().ToArray();
-            cbProcess.Items.Clear();
-            cbProcess.Items.AddRange(processWrappers);
+            processList = procs.Select(p => new ProcessWrapper(p)).OrderBy(pw => pw.Process.ProcessName).ToList();
         }
 
         private void OnDumpRequested(int procId)

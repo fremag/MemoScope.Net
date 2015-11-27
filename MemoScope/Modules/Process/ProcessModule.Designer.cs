@@ -40,7 +40,7 @@
             this.gbProcess = new System.Windows.Forms.GroupBox();
             this.processInfoViewer = new ProcessInfoViewer();
             this.gbTriggers = new System.Windows.Forms.GroupBox();
-            this._processTriggersControl = new ProcessTriggersControl();
+            this.processTriggersControl = new ProcessTriggersControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -154,7 +154,7 @@
             // 
             // gbTriggers
             // 
-            this.gbTriggers.Controls.Add(this._processTriggersControl);
+            this.gbTriggers.Controls.Add(this.processTriggersControl);
             this.gbTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbTriggers.Location = new System.Drawing.Point(0, 0);
             this.gbTriggers.Name = "gbTriggers";
@@ -165,11 +165,11 @@
             // 
             // ProcessTriggersControl
             // 
-            this._processTriggersControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._processTriggersControl.Location = new System.Drawing.Point(3, 18);
-            this._processTriggersControl.Name = "_processTriggersControl";
-            this._processTriggersControl.Size = new System.Drawing.Size(967, 277);
-            this._processTriggersControl.TabIndex = 0;
+            this.processTriggersControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.processTriggersControl.Location = new System.Drawing.Point(3, 18);
+            this.processTriggersControl.Name = "_processTriggersControl";
+            this.processTriggersControl.Size = new System.Drawing.Size(967, 277);
+            this.processTriggersControl.TabIndex = 0;
             // 
             // ProcessModule
             // 
@@ -208,6 +208,6 @@
         private System.Windows.Forms.GroupBox gbTriggers;
         private System.Windows.Forms.GroupBox gbProcess;
         private ProcessInfoViewer processInfoViewer;
-        private ProcessTriggersControl _processTriggersControl;
+        private ProcessTriggersControl processTriggersControl;
     }
 }

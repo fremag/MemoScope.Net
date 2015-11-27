@@ -32,12 +32,12 @@ namespace MemoScope.Modules.Process
             colName.AspectGetter = rowObject => ((ProcessInfoValue) rowObject).Name;
             colValue.AspectGetter = rowObject =>
             {
-                if (processWrapper == null || processWrapper.Process.HasExited)
-                {
-                    return null;
-                }
                 try
                 {
+                    if (processWrapper == null || processWrapper.Process.HasExited)
+                    {
+                        return null;
+                    }
                     var val = ((ProcessInfoValue) rowObject).GetValue(processWrapper);
                     return val;
                 }
