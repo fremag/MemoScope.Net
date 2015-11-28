@@ -151,6 +151,14 @@
       <DependentUpon>ProcessTriggersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Process\ProcessWrapper.cs" />
+    <Compile Include="Modules\TypeDetails\ClrDumpType.cs" />
+    <Compile Include="Modules\TypeDetails\TypeDetailsCommand.cs" />
+    <Compile Include="Modules\TypeDetails\TypeDetailsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\TypeDetails\TypeDetailsModule.Designer.cs">
+      <DependentUpon>TypeDetailsModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\TypeStats\TypeStatModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -220,6 +228,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\Large\blueprint.png" />
     <Content Include="Icons\Large\bow.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\folders_explorer.png" />
@@ -237,6 +246,7 @@
     <Content Include="Icons\Large\clock_go.png" />
     <Content Include="Icons\Large\clock_stop.png" />
     <Content Include="Icons\Small\application_view_list.png" />
+    <Content Include="Icons\Small\blueprint.png" />
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
     <Content Include="Icons\Small\database_go.png" />

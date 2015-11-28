@@ -178,4 +178,10 @@
   <data name="application_view_list" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\application_view_list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="blueprint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\small\blueprint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blueprint_large" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\large\blueprint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

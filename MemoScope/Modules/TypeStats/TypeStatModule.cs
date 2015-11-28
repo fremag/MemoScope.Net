@@ -3,10 +3,12 @@ using System.Windows.Forms;
 using BrightIdeasSoftware;
 using MemoScope.Core;
 using WinFwk.UIModules;
+using MemoScope.Modules.TypeDetails;
+using WinFwk.UICommands;
 
 namespace MemoScope.Modules.TypeStats
 {
-    public partial class TypeStatModule : UIModule
+    public partial class TypeStatModule : UIModule, UIDataProvider<ClrDumpType>
     {
         protected ClrDump Dump { get; set; }
         private List<ClrTypeStats> typeStats;
@@ -35,6 +37,19 @@ namespace MemoScope.Modules.TypeStats
             Generator.GenerateColumns(dlvTypeStats, typeof(ClrTypeStats), false);
             dlvTypeStats.SetObjects(typeStats);
             dlvTypeStats.Sort(dlvTypeStats.AllColumns[2], SortOrder.Descending);
+        }
+
+        ClrDumpType UIDataProvider<ClrDumpType>.Data
+        {
+            get
+            {
+                var obj = dlvTypeStats.SelectedObject as ClrTypeStats;
+                if (obj != null)
+                {
+                    return new ClrDumpType(Dump, obj.Type);
+                }
+                return null;
+            }
         }
     }
 }

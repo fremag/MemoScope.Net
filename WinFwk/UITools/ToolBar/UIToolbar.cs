@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -21,6 +22,10 @@ namespace WinFwk.UITools.ToolBar
 
         public void HandleMessage(ModuleEventMessage eventMessage)
         {
+            if( eventMessage.Module == this)
+            {
+                return;
+            }
             foreach (var kvp in dicoCommands)
             {
                 kvp.Key.SetSelectedModule(eventMessage.Module);
@@ -36,13 +41,14 @@ namespace WinFwk.UITools.ToolBar
 
             foreach (var command in commands)
             {
-                var cmd = command;
-                Button button = new Button {Text = command.Name, FlatStyle = FlatStyle.Popup};
-                toolTip1.SetToolTip(button, command.ToolTip);
-                panel.Controls.Add(button);
                 var type = command.GetType();
                 var meth = type.GetMethod(nameof(AbstractUICommand.Run));
-                button.Click += (sender, args) => { meth.Invoke(cmd, null); };
+                var cmd = command;
+                Button button = new Button { Text = command.Name, FlatStyle = FlatStyle.Popup };
+                toolTip1.SetToolTip(button, command.ToolTip);
+                button.Click += (sender, args) => {
+                    meth.Invoke(cmd, null);
+                };
                 button.Enabled = command.Enabled;
                 if (command.Icon != null)
                 {
@@ -51,7 +57,7 @@ namespace WinFwk.UITools.ToolBar
                     button.TextImageRelation = TextImageRelation.ImageAboveText;
                     button.AutoSize = true;
                 }
-                
+                panel.Controls.Add(button);
                 dicoCommands[command] = button;
             }
         }

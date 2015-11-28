@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using WinFwk.UIModules;
 
@@ -6,7 +7,8 @@ namespace WinFwk.UICommands
 {
     public abstract class AbstractTypedUICommand<T> : AbstractUICommand
     {
-        private UIDataProvider<T> dataProvider;
+        protected UIDataProvider<T> dataProvider;
+        protected UIModule selectedModule;
 
         protected AbstractTypedUICommand(string name, string toolTip, string @group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, @group, icon, shortcut)
         {
@@ -18,6 +20,7 @@ namespace WinFwk.UICommands
 
         public override void SetSelectedModule(UIModule module)
         {
+            selectedModule = module;
             dataProvider = module as UIDataProvider<T>;
             Enabled = (dataProvider != null);
         }
