@@ -87,5 +87,10 @@ namespace MemoScope.Core
             MessageBus.Status("Type stats computed: " + DumpPath, StatusType.EndTask);
             return stats.Values.ToList();
         }
+
+        public T Eval<T>(Func<T> func)
+        {
+            return worker.Eval(func);
+        }
     }
 }

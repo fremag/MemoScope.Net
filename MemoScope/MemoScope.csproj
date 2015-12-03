@@ -159,6 +159,7 @@
     <Compile Include="Modules\TypeDetails\TypeDetailsModule.Designer.cs">
       <DependentUpon>TypeDetailsModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\TypeDetails\TypeInformations.cs" />
     <Compile Include="Modules\TypeStats\TypeStatModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -189,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Process\ProcessTriggersControl.resx">
       <DependentUpon>ProcessTriggersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\TypeDetails\TypeDetailsModule.resx">
+      <DependentUpon>TypeDetailsModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\TypeStats\TypeStatModule.resx">
       <DependentUpon>TypeStatModule.cs</DependentUpon>

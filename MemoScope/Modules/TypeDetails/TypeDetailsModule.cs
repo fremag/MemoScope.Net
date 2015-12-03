@@ -16,7 +16,13 @@ namespace MemoScope.Modules.TypeDetails
         public void Setup(ClrDumpType dumpType)
         {
             type = dumpType.ClrType;
-            dump = dumpType.ClrDump; 
+            dump = dumpType.ClrDump;
+            pgTypeInfo.SelectedObject = new TypeInformations(dumpType);
+        }
+
+        public override void Init()
+        {
+            base.Init();
         }
 
         public override void PostInit()
