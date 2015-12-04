@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using MemoScope.Core;
+﻿using MemoScope.Core;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 
@@ -14,6 +13,9 @@ namespace MemoScope.Modules.TypeDetails
         public string BaseTypeName => ClrDump.Eval(() => ClrType.BaseType.Name);
 
         public IList<ClrInstanceField> Fields => ClrDump.Eval(() => ClrType.Fields);
+        public IList<ClrMethod> Methods => ClrDump.Eval(() => ClrType.Methods);
+
+        public ClrElementType ElementType => ClrDump.Eval(() => ClrType.ElementType);
 
         public ClrDumpType(ClrDump clrDump, ClrType clrType)
         {

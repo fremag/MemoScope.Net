@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Diagnostics.Runtime;
+﻿using Microsoft.Diagnostics.Runtime;
 using BrightIdeasSoftware;
-using System.Windows.Forms;
 
 namespace MemoScope.Modules.TypeDetails
 {

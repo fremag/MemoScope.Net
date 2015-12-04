@@ -32,7 +32,7 @@ namespace MemoScope.Modules.TypeDetails
         [Category(CAT_ARRAY)]
         public int ElementSize => Type.ElementSize;
         [Category(CAT_ARRAY)]
-        public ClrElementType ElementType => Type.ElementType;
+        public ClrElementType ElementType => dumpType.ElementType;
         [Category(CAT_ARRAY)]
         public bool IsArray => Type.IsArray;
         [Category(CAT_ARRAY)]

@@ -36,7 +36,7 @@
             this.gbFiledProperties = new System.Windows.Forms.GroupBox();
             this.gbMethods = new System.Windows.Forms.GroupBox();
             this.dlvFields = new WinFwk.UITools.DefaultListView();
-            this.dlvMethods = new WinFwk.UITools.DefaultTreeListView();
+            this.dlvMethods = new WinFwk.UITools.DefaultListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,14 +150,12 @@
             // 
             // dlvMethods
             // 
-            this.dlvMethods.DataSource = null;
             this.dlvMethods.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvMethods.FullRowSelect = true;
             this.dlvMethods.HideSelection = false;
             this.dlvMethods.Location = new System.Drawing.Point(3, 18);
             this.dlvMethods.Name = "dlvMethods";
             this.dlvMethods.OwnerDraw = true;
-            this.dlvMethods.RootKeyValueString = "";
             this.dlvMethods.ShowGroups = false;
             this.dlvMethods.ShowImagesOnSubItems = true;
             this.dlvMethods.Size = new System.Drawing.Size(454, 156);
@@ -199,6 +197,6 @@
         private System.Windows.Forms.GroupBox gbFiledProperties;
         private System.Windows.Forms.GroupBox gbMethods;
         private WinFwk.UITools.DefaultListView dlvFields;
-        private WinFwk.UITools.DefaultTreeListView dlvMethods;
+        private WinFwk.UITools.DefaultListView dlvMethods;
     }
 }

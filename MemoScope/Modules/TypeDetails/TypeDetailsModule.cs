@@ -20,8 +20,12 @@ namespace MemoScope.Modules.TypeDetails
             type = dumpType.ClrType;
             dump = dumpType.ClrDump;
             pgTypeInfo.SelectedObject = new TypeInformations(dumpType);
+
             Generator.GenerateColumns(dlvFields, typeof(FieldInformation), false);
             dlvFields.SetObjects( dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField) ));
+
+            Generator.GenerateColumns(dlvMethods, typeof(MethodInformation), false);
+            dlvMethods.SetObjects(dumpType.Methods.Select(clrMethod => new MethodInformation(dumpType, clrMethod)));
         }
 
         public override void PostInit()
