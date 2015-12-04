@@ -1,5 +1,7 @@
-﻿using MemoScope.Core;
+﻿using System.Collections;
+using MemoScope.Core;
 using Microsoft.Diagnostics.Runtime;
+using System.Collections.Generic;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -10,6 +12,8 @@ namespace MemoScope.Modules.TypeDetails
         public bool IsAbstract => ClrDump.Eval(() => ClrType.IsAbstract);
         public bool IsFinalizable => ClrDump.Eval(() => ClrType.IsFinalizable);
         public string BaseTypeName => ClrDump.Eval(() => ClrType.BaseType.Name);
+
+        public IList<ClrInstanceField> Fields => ClrDump.Eval(() => ClrType.Fields);
 
         public ClrDumpType(ClrDump clrDump, ClrType clrType)
         {

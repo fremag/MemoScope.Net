@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.gbTypeInformation = new System.Windows.Forms.GroupBox();
             this.pgTypeInfo = new System.Windows.Forms.PropertyGrid();
             this.gbFiledProperties = new System.Windows.Forms.GroupBox();
             this.gbMethods = new System.Windows.Forms.GroupBox();
+            this.dlvFields = new WinFwk.UITools.DefaultListView();
+            this.dlvMethods = new WinFwk.UITools.DefaultTreeListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -43,6 +46,10 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.gbTypeInformation.SuspendLayout();
+            this.gbFiledProperties.SuspendLayout();
+            this.gbMethods.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvFields)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvMethods)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -105,6 +112,7 @@
             // 
             // gbFiledProperties
             // 
+            this.gbFiledProperties.Controls.Add(this.dlvFields);
             this.gbFiledProperties.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbFiledProperties.Location = new System.Drawing.Point(0, 0);
             this.gbFiledProperties.Name = "gbFiledProperties";
@@ -115,6 +123,7 @@
             // 
             // gbMethods
             // 
+            this.gbMethods.Controls.Add(this.dlvMethods);
             this.gbMethods.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbMethods.Location = new System.Drawing.Point(0, 0);
             this.gbMethods.Name = "gbMethods";
@@ -122,6 +131,40 @@
             this.gbMethods.TabIndex = 1;
             this.gbMethods.TabStop = false;
             this.gbMethods.Text = "Methods";
+            // 
+            // dlvFields
+            // 
+            this.dlvFields.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlvFields.FullRowSelect = true;
+            this.dlvFields.HideSelection = false;
+            this.dlvFields.Location = new System.Drawing.Point(3, 18);
+            this.dlvFields.Name = "dlvFields";
+            this.dlvFields.OwnerDraw = true;
+            this.dlvFields.ShowGroups = false;
+            this.dlvFields.ShowImagesOnSubItems = true;
+            this.dlvFields.Size = new System.Drawing.Size(454, 156);
+            this.dlvFields.TabIndex = 0;
+            this.dlvFields.UseCompatibleStateImageBehavior = false;
+            this.dlvFields.View = System.Windows.Forms.View.Details;
+            this.dlvFields.VirtualMode = true;
+            // 
+            // dlvMethods
+            // 
+            this.dlvMethods.DataSource = null;
+            this.dlvMethods.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlvMethods.FullRowSelect = true;
+            this.dlvMethods.HideSelection = false;
+            this.dlvMethods.Location = new System.Drawing.Point(3, 18);
+            this.dlvMethods.Name = "dlvMethods";
+            this.dlvMethods.OwnerDraw = true;
+            this.dlvMethods.RootKeyValueString = "";
+            this.dlvMethods.ShowGroups = false;
+            this.dlvMethods.ShowImagesOnSubItems = true;
+            this.dlvMethods.Size = new System.Drawing.Size(454, 156);
+            this.dlvMethods.TabIndex = 0;
+            this.dlvMethods.UseCompatibleStateImageBehavior = false;
+            this.dlvMethods.View = System.Windows.Forms.View.Details;
+            this.dlvMethods.VirtualMode = true;
             // 
             // TypeDetailsModule
             // 
@@ -139,6 +182,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.gbTypeInformation.ResumeLayout(false);
+            this.gbFiledProperties.ResumeLayout(false);
+            this.gbMethods.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dlvFields)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvMethods)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -151,5 +198,7 @@
         private System.Windows.Forms.PropertyGrid pgTypeInfo;
         private System.Windows.Forms.GroupBox gbFiledProperties;
         private System.Windows.Forms.GroupBox gbMethods;
+        private WinFwk.UITools.DefaultListView dlvFields;
+        private WinFwk.UITools.DefaultTreeListView dlvMethods;
     }
 }
