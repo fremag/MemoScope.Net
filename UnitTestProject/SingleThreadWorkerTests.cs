@@ -2,7 +2,7 @@
 using MemoScope.Core;
 using NUnit.Framework;
 
-namespace NUnitTests
+namespace UnitTestProject
 {
     [TestFixture]
     public class SingleThreadWorkerTests

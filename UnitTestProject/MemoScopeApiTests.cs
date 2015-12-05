@@ -3,13 +3,13 @@ using System.ServiceModel;
 using MemoScopeApi;
 using NUnit.Framework;
 
-namespace NUnitTests
+namespace UnitTestProject
 {
     [TestFixture]
     public class MemoScopeApiTests
     {
         [Test]
-        public void Test()
+        public void DumpRequestTest()
         {
             var myService = new MockService();
             var processId = 1234;

@@ -4,7 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using WinFwk.UIMessages;
 
-namespace NUnitTests
+namespace UnitTestProject
 {
     [TestFixture]
     public class MessageBusTests
