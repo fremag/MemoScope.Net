@@ -1,5 +1,6 @@
 ﻿using Microsoft.Diagnostics.Runtime;
 using BrightIdeasSoftware;
+using MemoScope.Core;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -15,7 +16,7 @@ namespace MemoScope.Modules.TypeDetails
         }
 
         [OLVColumn(Title = "Name", Width = 150)]
-        public string Name => clrField.Name;
+        public string Name => clrField.RealName();
 
         [OLVColumn(Title = "Type", Width = 150)]
         public string Type => clrField.Type.Name;
