@@ -1,5 +1,6 @@
 ﻿using BrightIdeasSoftware;
 using MemoScope.Core;
+using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 using System.Linq;
 using WinFwk.UIModules;
@@ -22,7 +23,8 @@ namespace MemoScope.Modules.TypeDetails
             pgTypeInfo.SelectedObject = new TypeInformations(dumpType);
 
             Generator.GenerateColumns(dlvFields, typeof(FieldInformation), false);
-            dlvFields.SetObjects( dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField) ));
+            dlvFields.MakeTypeColumn(nameof(FieldInformation.Type));
+            dlvFields.SetObjects(dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField)));
 
             Generator.GenerateColumns(dlvMethods, typeof(MethodInformation), false);
             dlvMethods.SetObjects(dumpType.Methods.Select(clrMethod => new MethodInformation(dumpType, clrMethod)));

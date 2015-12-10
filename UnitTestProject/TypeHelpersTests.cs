@@ -1,4 +1,5 @@
 ﻿using MemoScope.Core;
+using MemoScope.Core.Helpers;
 using NUnit.Framework;
 using System.Collections.Generic;
 

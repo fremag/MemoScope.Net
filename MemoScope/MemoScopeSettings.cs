@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MemoScope.Modules.Process;
 using WinFwk.UITools.Settings;
 using MemoScope.Core;
+using MemoScope.Core.Helpers;
 
 namespace MemoScope
 {

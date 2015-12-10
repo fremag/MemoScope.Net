@@ -143,8 +143,9 @@
     <Compile Include="Core\Dac\DacFinder32.cs" />
     <Compile Include="Core\Dac\DacFinder64.cs" />
     <Compile Include="Core\Dac\DacFinderFactory.cs" />
-    <Compile Include="Core\TypeAlias.cs" />
-    <Compile Include="Core\TypeHelpers.cs" />
+    <Compile Include="Core\Helpers\ObjectListViewHelpers.cs" />
+    <Compile Include="Core\Helpers\TypeAlias.cs" />
+    <Compile Include="Core\Helpers\TypeHelpers.cs" />
     <Compile Include="MemoScope.cs">
       <SubType>Form</SubType>
     </Compile>

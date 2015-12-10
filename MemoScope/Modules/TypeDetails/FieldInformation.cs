@@ -1,6 +1,7 @@
 ﻿using Microsoft.Diagnostics.Runtime;
 using BrightIdeasSoftware;
 using MemoScope.Core;
+using MemoScope.Core.Helpers;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -19,7 +20,7 @@ namespace MemoScope.Modules.TypeDetails
         public string Name => clrField.RealName();
 
         [OLVColumn(Title = "Type", Width = 150)]
-        public string Type => TypeHelpers.ManageAlias(clrField.Type.Name, MemoScopeSettings.Instance.TypeAliases);
+        public string Type => TypeHelpers.ManageAlias(clrField.Type.Name);
 
         [OLVColumn(Title = "Elem. Type", Width = 50)]
         public ClrElementType ElementType => clrField.ElementType;
