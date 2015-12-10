@@ -27,6 +27,7 @@ namespace MemoScope.Modules.TypeDetails
             dlvFields.SetObjects(dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField)));
 
             Generator.GenerateColumns(dlvMethods, typeof(MethodInformation), false);
+            dlvMethods.MakeTypeColumn(nameof(MethodInformation.Type));
             dlvMethods.SetObjects(dumpType.Methods.Select(clrMethod => new MethodInformation(dumpType, clrMethod)));
         }
 

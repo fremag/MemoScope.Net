@@ -2,6 +2,7 @@
 using BrightIdeasSoftware;
 using MemoScope.Core;
 using MemoScope.Core.Helpers;
+using System.Windows.Forms;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -22,11 +23,11 @@ namespace MemoScope.Modules.TypeDetails
         [OLVColumn(Title = "Type", Width = 150)]
         public string Type => TypeHelpers.ManageAlias(clrField.Type.Name);
 
+        [OLVColumn(Title = "Size", Width = 50, TextAlign = HorizontalAlignment.Right)]
+        public int Size => clrField.Size;
+
         [OLVColumn(Title = "Elem. Type", Width = 50)]
         public ClrElementType ElementType => clrField.ElementType;
-
-        [OLVColumn(Title = "Size", Width = 70)]
-        public int Size => clrField.Size;
 
         [OLVColumn(Title = "IsInternal", Width = 70)]
         public bool IsInternal => clrField.IsInternal;
