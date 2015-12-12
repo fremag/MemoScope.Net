@@ -28,27 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.gbTypeInformation = new System.Windows.Forms.GroupBox();
             this.pgTypeInfo = new System.Windows.Forms.PropertyGrid();
             this.gbFiledProperties = new System.Windows.Forms.GroupBox();
             this.dlvFields = new WinFwk.UITools.DefaultListView();
             this.gbMethods = new System.Windows.Forms.GroupBox();
             this.dlvMethods = new WinFwk.UITools.DefaultListView();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.gbInterfaces = new System.Windows.Forms.GroupBox();
+            this.defaultTreeListView1 = new WinFwk.UITools.DefaultTreeListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.gbTypeInformation.SuspendLayout();
             this.gbFiledProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dlvFields)).BeginInit();
             this.gbMethods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dlvMethods)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.gbInterfaces.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.defaultTreeListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -68,6 +78,23 @@
             this.splitContainer1.Size = new System.Drawing.Size(460, 531);
             this.splitContainer1.SplitterDistance = 350;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.gbTypeInformation);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer3.Size = new System.Drawing.Size(460, 350);
+            this.splitContainer3.SplitterDistance = 224;
+            this.splitContainer3.TabIndex = 1;
             // 
             // gbTypeInformation
             // 
@@ -97,7 +124,7 @@
             this.gbFiledProperties.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbFiledProperties.Location = new System.Drawing.Point(0, 0);
             this.gbFiledProperties.Name = "gbFiledProperties";
-            this.gbFiledProperties.Size = new System.Drawing.Size(232, 350);
+            this.gbFiledProperties.Size = new System.Drawing.Size(232, 175);
             this.gbFiledProperties.TabIndex = 0;
             this.gbFiledProperties.TabStop = false;
             this.gbFiledProperties.Text = "Fields / Properties";
@@ -112,7 +139,7 @@
             this.dlvFields.OwnerDraw = true;
             this.dlvFields.ShowGroups = false;
             this.dlvFields.ShowImagesOnSubItems = true;
-            this.dlvFields.Size = new System.Drawing.Size(226, 329);
+            this.dlvFields.Size = new System.Drawing.Size(226, 154);
             this.dlvFields.TabIndex = 0;
             this.dlvFields.UseCompatibleStateImageBehavior = false;
             this.dlvFields.View = System.Windows.Forms.View.Details;
@@ -145,22 +172,52 @@
             this.dlvMethods.View = System.Windows.Forms.View.Details;
             this.dlvMethods.VirtualMode = true;
             // 
-            // splitContainer3
+            // splitContainer2
             // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer3.Panel1
+            // splitContainer2.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.gbTypeInformation);
+            this.splitContainer2.Panel1.Controls.Add(this.gbFiledProperties);
             // 
-            // splitContainer3.Panel2
+            // splitContainer2.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.gbFiledProperties);
-            this.splitContainer3.Size = new System.Drawing.Size(460, 350);
-            this.splitContainer3.SplitterDistance = 224;
-            this.splitContainer3.TabIndex = 1;
+            this.splitContainer2.Panel2.Controls.Add(this.gbInterfaces);
+            this.splitContainer2.Size = new System.Drawing.Size(232, 350);
+            this.splitContainer2.SplitterDistance = 175;
+            this.splitContainer2.TabIndex = 1;
+            // 
+            // gbInterfaces
+            // 
+            this.gbInterfaces.Controls.Add(this.defaultTreeListView1);
+            this.gbInterfaces.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbInterfaces.Location = new System.Drawing.Point(0, 0);
+            this.gbInterfaces.Name = "gbInterfaces";
+            this.gbInterfaces.Size = new System.Drawing.Size(232, 171);
+            this.gbInterfaces.TabIndex = 0;
+            this.gbInterfaces.TabStop = false;
+            this.gbInterfaces.Text = "Base Class / Interfaces";
+            // 
+            // defaultTreeListView1
+            // 
+            this.defaultTreeListView1.DataSource = null;
+            this.defaultTreeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.defaultTreeListView1.FullRowSelect = true;
+            this.defaultTreeListView1.HideSelection = false;
+            this.defaultTreeListView1.Location = new System.Drawing.Point(3, 18);
+            this.defaultTreeListView1.Name = "defaultTreeListView1";
+            this.defaultTreeListView1.OwnerDraw = true;
+            this.defaultTreeListView1.RootKeyValueString = "";
+            this.defaultTreeListView1.ShowGroups = false;
+            this.defaultTreeListView1.ShowImagesOnSubItems = true;
+            this.defaultTreeListView1.Size = new System.Drawing.Size(226, 150);
+            this.defaultTreeListView1.TabIndex = 1;
+            this.defaultTreeListView1.UseCompatibleStateImageBehavior = false;
+            this.defaultTreeListView1.View = System.Windows.Forms.View.Details;
+            this.defaultTreeListView1.VirtualMode = true;
             // 
             // TypeDetailsModule
             // 
@@ -173,15 +230,21 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.gbTypeInformation.ResumeLayout(false);
             this.gbFiledProperties.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dlvFields)).EndInit();
             this.gbMethods.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dlvMethods)).EndInit();
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.gbInterfaces.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.defaultTreeListView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -196,5 +259,8 @@
         private WinFwk.UITools.DefaultListView dlvFields;
         private WinFwk.UITools.DefaultListView dlvMethods;
         private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.GroupBox gbInterfaces;
+        private WinFwk.UITools.DefaultTreeListView defaultTreeListView1;
     }
 }

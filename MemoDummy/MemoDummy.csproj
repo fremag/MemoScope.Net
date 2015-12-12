@@ -95,6 +95,7 @@
       <DependentUpon>MemoDummyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MemoScopeApiScript.cs" />
+    <Compile Include="TypeHierarchyScript.cs" />
     <Compile Include="ObjectGeneratorScript.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

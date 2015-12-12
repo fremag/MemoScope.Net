@@ -6,7 +6,7 @@ namespace MemoScope.Core.Helpers
 {
     public static class ObjectListViewHelpers
     {
-        public static void MakeTypeColumn(this ObjectListView listView, string colName)
+        public static void SetUpTypeColumn(this ObjectListView listView, string colName)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
             listView.FormatCell += (sender, e) =>
