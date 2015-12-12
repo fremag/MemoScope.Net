@@ -15,6 +15,7 @@ namespace MemoScope.Modules.TypeDetails
         public TypeDetailsModule()
         {
             InitializeComponent();
+            Icon = Properties.Resources.blueprint;
         }
 
         public void Setup(ClrDumpType dumpType)
