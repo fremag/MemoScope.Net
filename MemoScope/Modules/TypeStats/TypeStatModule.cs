@@ -24,7 +24,8 @@ namespace MemoScope.Modules.TypeStats
         public void Setup(ClrDump dump)
         {
             Dump = dump;
-            Name = $"#{Dump.Id} - Types";
+            Name = $"#{Dump.Id} - "+dump.DumpPath;
+            tbDumpPath.Text = dump.DumpPath;
         }
 
         public override void  Init()
