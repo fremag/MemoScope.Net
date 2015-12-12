@@ -1,6 +1,6 @@
 ﻿namespace MemoScope
 {
-    partial class MemoScope
+    partial class MemoScopeForm
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemoScope));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemoScopeForm));
             this.SuspendLayout();
             // 
             // MemoScope

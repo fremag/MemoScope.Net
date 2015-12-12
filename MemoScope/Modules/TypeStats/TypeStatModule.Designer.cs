@@ -29,32 +29,45 @@
         private void InitializeComponent()
         {
             this.dlvTypeStats = new WinFwk.UITools.DefaultListView();
+            this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvTypeStats)).BeginInit();
             this.SuspendLayout();
             // 
             // dlvTypeStats
             // 
-            this.dlvTypeStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlvTypeStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dlvTypeStats.FullRowSelect = true;
             this.dlvTypeStats.HideSelection = false;
-            this.dlvTypeStats.Location = new System.Drawing.Point(0, 0);
+            this.dlvTypeStats.Location = new System.Drawing.Point(0, 52);
             this.dlvTypeStats.Name = "dlvTypeStats";
             this.dlvTypeStats.OwnerDraw = true;
             this.dlvTypeStats.ShowGroups = false;
             this.dlvTypeStats.ShowImagesOnSubItems = true;
-            this.dlvTypeStats.Size = new System.Drawing.Size(426, 405);
+            this.dlvTypeStats.Size = new System.Drawing.Size(452, 434);
             this.dlvTypeStats.TabIndex = 0;
             this.dlvTypeStats.UseCompatibleStateImageBehavior = false;
             this.dlvTypeStats.View = System.Windows.Forms.View.Details;
             this.dlvTypeStats.VirtualMode = true;
             // 
+            // regexFilterControl
+            // 
+            this.regexFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.regexFilterControl.Location = new System.Drawing.Point(0, 20);
+            this.regexFilterControl.Name = "regexFilterControl";
+            this.regexFilterControl.Size = new System.Drawing.Size(449, 26);
+            this.regexFilterControl.TabIndex = 1;
+            // 
             // TypeStatModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.regexFilterControl);
             this.Controls.Add(this.dlvTypeStats);
             this.Name = "TypeStatModule";
-            this.Size = new System.Drawing.Size(426, 405);
+            this.Size = new System.Drawing.Size(452, 486);
             ((System.ComponentModel.ISupportInitialize)(this.dlvTypeStats)).EndInit();
             this.ResumeLayout(false);
 
@@ -63,5 +76,6 @@
         #endregion
 
         private WinFwk.UITools.DefaultListView dlvTypeStats;
+        private MemoScope.Tools.RegexFilter.RegexFilterControl regexFilterControl;
     }
 }

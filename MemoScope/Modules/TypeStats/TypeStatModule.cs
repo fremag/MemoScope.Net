@@ -6,6 +6,8 @@ using WinFwk.UIModules;
 using MemoScope.Modules.TypeDetails;
 using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
+using System.Text.RegularExpressions;
+using System;
 
 namespace MemoScope.Modules.TypeStats
 {
@@ -39,6 +41,22 @@ namespace MemoScope.Modules.TypeStats
             dlvTypeStats.SetUpTypeColumn(nameof(ClrTypeStats.TypeName));
             dlvTypeStats.SetObjects(typeStats);
             dlvTypeStats.Sort(dlvTypeStats.AllColumns[2], SortOrder.Descending);
+            dlvTypeStats.UseFilterIndicator = true;
+
+            regexFilterControl.RegexApplied += (regex) => {
+                dlvTypeStats.ModelFilter = new ModelFilter((o) =>
+                {
+                    var stat = o as ClrTypeStats;
+                    if( o == null)
+                    {
+                        return true;
+                    }
+                    var b = regex.IsMatch(stat.TypeName);
+                    return b;
+                });
+                dlvTypeStats.UseFiltering = true;
+            };
+            regexFilterControl.RegexCancelled += () => dlvTypeStats.UseFiltering = false;
         }
 
         ClrDumpType UIDataProvider<ClrDumpType>.Data

@@ -146,11 +146,11 @@
     <Compile Include="Core\Helpers\ObjectListViewHelpers.cs" />
     <Compile Include="Core\Helpers\TypeAlias.cs" />
     <Compile Include="Core\Helpers\TypeHelpers.cs" />
-    <Compile Include="MemoScope.cs">
+    <Compile Include="MemoScopeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MemoScope.Designer.cs">
-      <DependentUpon>MemoScope.cs</DependentUpon>
+    <Compile Include="MemoScopeForm.Designer.cs">
+      <DependentUpon>MemoScopeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MemoScopeSettings.cs" />
     <Compile Include="Modules\About\AboutCommand.cs" />
@@ -222,8 +222,14 @@
     <Compile Include="Services\DumpLoaderService.cs" />
     <Compile Include="Core\SimpleTask.cs" />
     <Compile Include="Core\SingleThreadWorker.cs" />
-    <EmbeddedResource Include="MemoScope.resx">
-      <DependentUpon>MemoScope.cs</DependentUpon>
+    <Compile Include="Tools\RegexFilter\RegexFilterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tools\RegexFilter\RegexFilterControl.Designer.cs">
+      <DependentUpon>RegexFilterControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MemoScopeForm.resx">
+      <DependentUpon>MemoScopeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\About\AboutModule.resx">
       <DependentUpon>AboutModule.cs</DependentUpon>
@@ -256,6 +262,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Tools\RegexFilter\RegexFilterControl.resx">
+      <DependentUpon>RegexFilterControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -295,11 +304,13 @@
     <Content Include="Icons\Logos\memoscope_logo_32x32.png" />
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.png" />
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.svg" />
+    <Content Include="Icons\Small\accept_button.png" />
     <Content Include="Icons\Small\application_double.png" />
     <Content Include="Icons\Large\clock_go.png" />
     <Content Include="Icons\Large\clock_stop.png" />
     <Content Include="Icons\Small\application_view_list.png" />
     <Content Include="Icons\Small\blueprint.png" />
+    <Content Include="Icons\Small\cancel.png" />
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
     <Content Include="Icons\Small\database_go.png" />
@@ -311,6 +322,7 @@
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\page_delete.png" />
     <Content Include="Icons\Small\save_data.png" />
+    <Content Include="Icons\Small\text_uppercase.png" />
     <Content Include="libs\x86\dbghelp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -334,6 +346,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

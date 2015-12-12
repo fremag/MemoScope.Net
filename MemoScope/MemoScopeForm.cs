@@ -9,9 +9,9 @@ using WinFwk.UIServices;
 
 namespace MemoScope
 {
-    public partial class MemoScope : UIModuleForm, IMessageListener<ClrDumpLoadedMessage>
+    public partial class MemoScopeForm : UIModuleForm, IMessageListener<ClrDumpLoadedMessage>
     {
-        public MemoScope()
+        public MemoScopeForm()
         {
             InitializeComponent();
         }

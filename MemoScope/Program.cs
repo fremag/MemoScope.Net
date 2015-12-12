@@ -18,7 +18,7 @@ namespace MemoScope
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MemoScope());
+            Application.Run(new MemoScopeForm());
         }
     }
 }
