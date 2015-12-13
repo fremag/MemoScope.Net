@@ -7,6 +7,7 @@ namespace MemoScope.Core
 {
     public class ClrTypeStats
     {
+        public int Id { get; }
         public ClrType Type { get; }
         public ulong MethodTable { get; }
 
@@ -19,13 +20,14 @@ namespace MemoScope.Core
         [OLVColumn(Title = "Total Size", AspectToStringFormat = "{0:###,###,###,##0}", TextAlign = HorizontalAlignment.Right)]
         public ulong TotalSize { get; private set; }
 
-        public ClrTypeStats(ClrType type)
+        public ClrTypeStats(int id, ClrType type)
         {
+            Id = id;
             MethodTable = type.MethodTable;
             Type = type;
         }
 
-        public ClrTypeStats(ClrType type, long nbInstances, ulong totalSize) : this(type)
+        public ClrTypeStats(int id, ClrType type, long nbInstances, ulong totalSize) : this(id, type)
         {
             NbInstances = nbInstances;
             TotalSize= totalSize;

@@ -64,48 +64,7 @@ namespace MemoScope.Core
             var type = Eval(() => Heap.GetTypeByMethodTable(methodTable));
             return type;
         }
-
-        private List<ClrTypeStats> GetTypeStatsImpl()
-        {
-            MessageBus.Log(this, "GetTypeStatsImpl: " + DumpPath);
-            MessageBus.Status("GetTypeStatsImpl: " + DumpPath, StatusType.BeginTask);
-            int n = 0;
-            Dictionary<ClrType, ClrTypeStats> stats = new Dictionary<ClrType, ClrTypeStats>();
-            foreach (var address in Heap.EnumerateObjectAddresses())
-            {
-                ClrType type = Heap.GetObjectType(address);
-                if (type == null)
-                {
-                    continue;
-                }
-                ulong size = type.GetSize(address);
-
-                ClrTypeStats stat;
-                if (!stats.TryGetValue(type, out stat))
-                {
-                    stat = new ClrTypeStats(type);
-                    stats[type] = stat;
-                }
-                stat.Inc(size);
-                n++;
-                if (n % 1024 == 0)
-                {
-                    MessageBus.Status($"Computing stats: n={n:###,###,###,##0}");
-                }
-            }
-            MessageBus.Log(this, "Type stats computed: " + DumpPath);
-            MessageBus.Status("Type stats computed: " + DumpPath, StatusType.EndTask);
-
-            cache.BeginUpdate();
-            foreach(var stat in stats.Values)
-            {
-                cache.InsertTypeStat(stat);
-            }
-            cache.EndUpdate();
-
-            return stats.Values.ToList();
-        }
-
+        
         public T Eval<T>(Func<T> func)
         {
             return worker.Eval(func);
