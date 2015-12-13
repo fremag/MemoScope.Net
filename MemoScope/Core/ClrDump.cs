@@ -14,11 +14,11 @@ namespace MemoScope.Core
     {
         private static int n = 0;
         public int Id { get; }
-        private ClrRuntime Runtime { get; set; }
-        private DataTarget Target { get; }
+        public ClrRuntime Runtime { get; set; }
+        public DataTarget Target { get; }
         public string DumpPath { get; }
-        private ClrHeap Heap => Runtime.GetHeap();
-        private MessageBus MessageBus { get; }
+        public ClrHeap Heap => Runtime.GetHeap();
+        public MessageBus MessageBus { get; }
 
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;
@@ -55,8 +55,14 @@ namespace MemoScope.Core
 
         public List<ClrTypeStats> GetTypeStats()
         {
-            var stats = worker.Eval(GetTypeStatsImpl);
+            var stats = cache.LoadTypeStat();
             return stats;
+        }
+
+        public ClrType GetType(ulong methodTable)
+        {
+            var type = Eval(() => Heap.GetTypeByMethodTable(methodTable));
+            return type;
         }
 
         private List<ClrTypeStats> GetTypeStatsImpl()
@@ -77,7 +83,7 @@ namespace MemoScope.Core
                 ClrTypeStats stat;
                 if (!stats.TryGetValue(type, out stat))
                 {
-                    stat = new ClrTypeStats(stats.Count, type);
+                    stat = new ClrTypeStats(type);
                     stats[type] = stat;
                 }
                 stat.Inc(size);
