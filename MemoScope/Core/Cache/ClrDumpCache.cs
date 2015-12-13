@@ -31,7 +31,6 @@ namespace MemoScope.Core.Cache
             string cxionString = $"Data Source={dbPath};Version=3;Cache Size=2000000;Page Size=8192;journal_mode=OFF;synchronous=OFF;count_changes=OFF;temp_store=MEMORY";
             cxion = new SQLiteConnection(cxionString);
             cxion.Open();
-
             CreateTables();
             CreateIndices();
         }
@@ -58,22 +57,12 @@ namespace MemoScope.Core.Cache
         private void CreateTables()
         {
             RunCommand("CREATE TABLE Types (Id INTEGER, Name TEXT, Count INT, TotalSize INTEGER)");
-            cmdInsertType = cxion.CreateCommand();
-            cmdInsertType.CommandText = "INSERT INTO Types(Id, Name, Count, TotalSize) VALUES (@Id, @Name, @Count, @TotalSize)";
-            cmdInsertType.Prepare();
+            cmdInsertType = cxion.PrepareCommand("INSERT INTO Types(Id, Name, Count, TotalSize) VALUES (@Id, @Name, @Count, @TotalSize)");
 
-            paramId = cmdInsertType.CreateParameter();
-            paramId.ParameterName = "Id";
-            paramName = cmdInsertType.CreateParameter();
-            paramName.ParameterName= "Name";
-            paramCount = cmdInsertType.CreateParameter();
-            paramCount.ParameterName = "Count";
-            paramTotalSize = cmdInsertType.CreateParameter();
-            paramTotalSize.ParameterName = "TotalSize";
-            cmdInsertType.Parameters.Add(paramId);
-            cmdInsertType.Parameters.Add(paramName);
-            cmdInsertType.Parameters.Add(paramCount);
-            cmdInsertType.Parameters.Add(paramTotalSize);
+            paramId = cmdInsertType.CreateParameter("Id");
+            paramName = cmdInsertType.CreateParameter("Name");
+            paramCount = cmdInsertType.CreateParameter("Count");
+            paramTotalSize = cmdInsertType.CreateParameter("TotalSize");
         }
 
         public void BeginUpdate()
