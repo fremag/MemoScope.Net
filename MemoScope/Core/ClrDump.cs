@@ -6,7 +6,7 @@ using System;
 using WinFwk.UITools.Log;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
-using System.Threading;
+using MemoScope.Core.Cache;
 
 namespace MemoScope.Core
 {
@@ -21,6 +21,7 @@ namespace MemoScope.Core
         private MessageBus MessageBus { get; }
 
         private readonly SingleThreadWorker worker;
+        private ClrDumpCache cache;
 
         public ClrDump(DataTarget target, string dumpPath, MessageBus msgBus)
         {
@@ -30,6 +31,9 @@ namespace MemoScope.Core
             MessageBus = msgBus;
             worker = new SingleThreadWorker(dumpPath);
             worker.Run(InitRuntime);
+
+            cache = new ClrDumpCache(this);
+            cache.Init();
         }
 
         private void InitRuntime()
@@ -73,7 +77,7 @@ namespace MemoScope.Core
                 ClrTypeStats stat;
                 if (!stats.TryGetValue(type, out stat))
                 {
-                    stat = new ClrTypeStats(type);
+                    stat = new ClrTypeStats(stats.Count, type);
                     stats[type] = stat;
                 }
                 stat.Inc(size);
@@ -85,6 +89,14 @@ namespace MemoScope.Core
             }
             MessageBus.Log(this, "Type stats computed: " + DumpPath);
             MessageBus.Status("Type stats computed: " + DumpPath, StatusType.EndTask);
+
+            cache.BeginUpdate();
+            foreach(var stat in stats.Values)
+            {
+                cache.InsertTypeStat(stat);
+            }
+            cache.EndUpdate();
+
             return stats.Values.ToList();
         }
 
