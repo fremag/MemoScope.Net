@@ -196,6 +196,13 @@
     </Compile>
     <Compile Include="Modules\Explorer\FileData.cs" />
     <Compile Include="Modules\Explorer\OpenDumpRequest.cs" />
+    <Compile Include="Modules\Instances\InstancesCommand.cs" />
+    <Compile Include="Modules\Instances\InstancesModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Instances\InstancesModule.Designer.cs">
+      <DependentUpon>InstancesModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Process\DumpRequest.cs" />
     <Compile Include="Modules\Process\MemoScopeService .cs" />
     <Compile Include="Modules\Process\DumpTrigger.cs" />
@@ -235,6 +242,7 @@
     </Compile>
     <Compile Include="Modules\TypeDetails\TypeInformation.cs" />
     <Compile Include="Modules\TypeDetails\TypeInformations.cs" />
+    <Compile Include="Core\Data\AddressList.cs" />
     <Compile Include="Modules\TypeStats\TypeStatModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -262,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Instances\InstancesModule.resx">
+      <DependentUpon>InstancesModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Process\ProcessInfoViewer.resx">
       <DependentUpon>ProcessInfoViewer.cs</DependentUpon>
@@ -323,6 +334,7 @@
     <Content Include="Icons\Large\help.png" />
     <Content Include="Icons\Large\new_data.png" />
     <Content Include="Icons\Large\save_data.png" />
+    <Content Include="Icons\Large\scroll_pane_list.png" />
     <Content Include="Icons\Logos\memoscope.svg" />
     <Content Include="Icons\Logos\memoscope_logo.ico" />
     <Content Include="Icons\Logos\memoscope_logo.png" />
@@ -348,6 +360,7 @@
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\page_delete.png" />
     <Content Include="Icons\Small\save_data.png" />
+    <Content Include="Icons\Small\scroll_pane_list.png" />
     <Content Include="Icons\Small\text_uppercase.png" />
     <Content Include="libs\x86\dbghelp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -20,7 +20,7 @@ namespace MemoScope.Modules.TypeDetails
         public string Name => clrField.RealName();
 
         [OLVColumn(Title = "Type", Width = 150)]
-        public string Type => TypeHelpers.ManageAlias(clrField.Type.Name);
+        public string Type => clrField.Type.Name;
 
         [OLVColumn(Title = "Size", Width = 50, TextAlign = HorizontalAlignment.Right)]
         public int Size => clrField.Size;

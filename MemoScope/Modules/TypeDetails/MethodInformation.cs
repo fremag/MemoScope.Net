@@ -18,7 +18,7 @@ namespace MemoScope.Modules.TypeDetails
         [OLVColumn(Title = "Name", Width = 150)]
         public string Name => clrMethod.Name;
         [OLVColumn(Title = "Type", Width = 150)]
-        public string Type => TypeHelpers.ManageAlias(clrMethod.Type.Name);
+        public string Type => clrMethod.Type.Name;
         [OLVColumn(Title = "CompilationType", Width = 150)]
         public MethodCompilationType CompilationType => clrMethod.CompilationType;
         [OLVColumn(Title = "Signature", Width = 450)]

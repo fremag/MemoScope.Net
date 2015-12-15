@@ -59,6 +59,12 @@ namespace MemoScope.Core
             return stats;
         }
 
+        public List<ulong> GetInstances(int typeId)
+        {
+            var instances = cache.LoadInstances(typeId);
+            return instances;
+        }
+
         public ClrType GetType(ulong methodTable)
         {
             var type = Eval(() => Heap.GetTypeByMethodTable(methodTable));

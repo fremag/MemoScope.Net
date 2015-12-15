@@ -1,6 +1,8 @@
 ﻿using BrightIdeasSoftware;
+using System;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace MemoScope.Core.Helpers
 {
@@ -28,7 +30,18 @@ namespace MemoScope.Core.Helpers
                     }
                 }
             };
+            col.AspectToStringConverter = o => TypeHelpers.ManageAlias((string)o);
             listView.UseCellFormatEvents = true;
+        }
+
+        public static void AddAddressColumn(this ObjectListView listView, AspectGetterDelegate aspectGetter)
+        {
+            var col = new OLVColumn("Address", null) {
+                AspectGetter = aspectGetter,
+                AspectToStringFormat = "{0:X}",
+                TextAlign = HorizontalAlignment.Right,
+                Width = 110 };
+            listView.AllColumns.Add(col);
         }
     }
 }

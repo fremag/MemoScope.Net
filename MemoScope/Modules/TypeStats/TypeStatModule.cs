@@ -6,14 +6,13 @@ using WinFwk.UIModules;
 using MemoScope.Modules.TypeDetails;
 using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
-using System.Text.RegularExpressions;
-using System;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.TypeStats
 {
-    public partial class TypeStatModule : UIModule, UIDataProvider<ClrDumpType>
+    public partial class TypeStatModule : UIModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>
     {
-        protected ClrDump Dump { get; set; }
+        protected ClrDump ClrDump { get; set; }
         private List<ClrTypeStats> typeStats;
         public TypeStatModule()
         {
@@ -21,17 +20,17 @@ namespace MemoScope.Modules.TypeStats
             Icon = Properties.Resources.application_view_list;
         }
 
-        public void Setup(ClrDump dump)
+        public void Setup(ClrDump clrDump)
         {
-            Dump = dump;
-            Name = $"#{Dump.Id} - "+dump.DumpPath;
-            tbDumpPath.Text = dump.DumpPath;
+            ClrDump = clrDump;
+            Name = $"#{ClrDump.Id} - "+clrDump.DumpPath;
+            tbDumpPath.Text = clrDump.DumpPath;
         }
 
         public override void  Init()
         {
             Log("Computing type statistics...", WinFwk.UITools.Log.LogLevelType.Info);
-            typeStats = Dump.GetTypeStats();
+            typeStats = ClrDump.GetTypeStats();
             Summary = $"{typeStats.Count} types";
             Log("Type statistics computed.", WinFwk.UITools.Log.LogLevelType.Info);
         }
@@ -67,7 +66,20 @@ namespace MemoScope.Modules.TypeStats
                 var obj = dlvTypeStats.SelectedObject as ClrTypeStats;
                 if (obj != null)
                 {
-                    return new ClrDumpType(Dump, obj.Type);
+                    return new ClrDumpType(ClrDump, obj.Type);
+                }
+                return null;
+            }
+        }
+
+        public AddressList Data
+        {
+            get
+            {
+                var obj = dlvTypeStats.SelectedObject as ClrTypeStats;
+                if (obj != null)
+                {
+                    return new AddressList(ClrDump, obj.Type, ClrDump.GetInstances(obj.Id));
                 }
                 return null;
             }

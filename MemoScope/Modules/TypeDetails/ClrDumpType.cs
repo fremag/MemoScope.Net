@@ -1,6 +1,4 @@
-﻿using BrightIdeasSoftware;
-using MemoScope.Core;
-using MemoScope.Core.Helpers;
+﻿using MemoScope.Core;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
