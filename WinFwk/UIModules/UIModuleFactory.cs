@@ -21,7 +21,7 @@ namespace WinFwk.UIModules
             var t0 = Task.Factory.StartNew(() => module = new T(), CancellationToken.None, TaskCreationOptions.None, UiScheduler);
             var t1 = t0.ContinueWith(t => module.InitBus(MessageBus), UiScheduler);
             var t1Bis = t1.ContinueWith(t => setup(module), UiScheduler);
-            var t2 = t1.ContinueWith(t => module.Init());
+            var t2 = t1Bis.ContinueWith(t => module.Init());
             var t3 = t2.ContinueWith(t => module.PostInit(), UiScheduler);
             var t4 = t3.ContinueWith(t => finish(module), UiScheduler);
         }

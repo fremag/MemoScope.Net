@@ -1,5 +1,4 @@
 ﻿using BrightIdeasSoftware;
-using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 
 namespace MemoScope.Modules.TypeDetails

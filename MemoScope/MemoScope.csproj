@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="Modules\Explorer\FileData.cs" />
     <Compile Include="Modules\Explorer\OpenDumpRequest.cs" />
+    <Compile Include="Modules\Instances\FieldNode.cs" />
     <Compile Include="Modules\Instances\InstancesCommand.cs" />
     <Compile Include="Modules\Instances\InstancesModule.cs">
       <SubType>UserControl</SubType>

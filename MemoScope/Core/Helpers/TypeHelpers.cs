@@ -60,7 +60,9 @@ namespace MemoScope.Core.Helpers
                 if( aliasIndex >=0 )
                 {
                     var typeAlias = typeAliases[aliasIndex];
-                    colorCache[name] = new Tuple<Color, Color>(typeAlias.BackColor, typeAlias.ForeColor);
+                    var colors = new Tuple<Color, Color>(typeAlias.BackColor, typeAlias.ForeColor);
+                    colorCache[typeName] = colors;
+                    colorCache[name] = colors;
                 }
                 return name;
             }
@@ -93,7 +95,9 @@ namespace MemoScope.Core.Helpers
             if (aliasIndex >= 0)
             {
                 var typeAlias = typeAliases[aliasIndex];
-                colorCache[res] = new Tuple<Color, Color> (typeAlias.BackColor, typeAlias.ForeColor);
+                var colors = new Tuple<Color, Color>(typeAlias.BackColor, typeAlias.ForeColor);
+                colorCache[res] = colors;
+                colorCache[typeName] = colors;
             }
             return res;
         }
