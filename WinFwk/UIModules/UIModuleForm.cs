@@ -210,7 +210,7 @@ namespace WinFwk.UIModules
 
         private void UIModuleForm_Load(object sender, EventArgs e)
         {
-            Text = string.Format("{0} {1}", Application.ProductName, Application.ProductVersion);
+            Text = string.Format("{0} {1} ({2})", Application.ProductName, Application.ProductVersion, Environment.Is64BitProcess ? "x64" : "x86");
         }
 
         protected override bool ProcessCmdKey(ref Message message, Keys keys)
