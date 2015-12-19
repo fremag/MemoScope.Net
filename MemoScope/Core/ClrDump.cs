@@ -7,6 +7,8 @@ using WinFwk.UITools.Log;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 using MemoScope.Core.Cache;
+using MemoScope.Modules.Instances;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Core
 {
@@ -74,6 +76,27 @@ namespace MemoScope.Core
         public T Eval<T>(Func<T> func)
         {
             return worker.Eval(func);
+        }
+        public object GetFieldValue(ulong address, ClrType type, List<ClrInstanceField> fields)
+        {
+            var obj = Eval(() => GetFieldValueImpl(address, type, fields));
+            return obj;
+        }
+
+        private object GetFieldValueImpl(ulong address, ClrType type, List<ClrInstanceField> fields)
+        {
+            ClrObject obj = new ClrObject(address, type);
+            for (int i = 0; i < fields.Count; i++)
+            {
+                var field = fields[i];
+                obj = obj[field];
+                if( obj.IsNull )
+                {
+                    return null;
+                }
+            }
+
+            return obj.HasSimpleValue ? obj.SimpleValue : obj.Address.ToString("X");
         }
     }
 }

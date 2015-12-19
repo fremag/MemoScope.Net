@@ -9,8 +9,8 @@ namespace MemoScope.Modules.Instances
 {
     public class FieldNode
     {
-        ClrInstanceField Field { get; }
-        ClrDump ClrDump { get; }
+        public ClrInstanceField Field { get; }
+        public ClrDump ClrDump { get; }
         public FieldNode(ClrInstanceField field, ClrDump clrDump)
         {
             Field = field;
@@ -22,7 +22,6 @@ namespace MemoScope.Modules.Instances
 
         [OLVColumn(Title = "Type", Width = 250)]
         public string TypeName => Field.Type.Name;
-
 
         public bool HasChildren => !Field.Type.IsPrimitive && ClrDump.Eval(() => Field.Type.Fields.Any());
 

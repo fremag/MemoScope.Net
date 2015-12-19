@@ -169,6 +169,7 @@
     <Compile Include="Core\Dac\DacFinder32.cs" />
     <Compile Include="Core\Dac\DacFinder64.cs" />
     <Compile Include="Core\Dac\DacFinderFactory.cs" />
+    <Compile Include="Core\Data\ClrObject.cs" />
     <Compile Include="Core\Helpers\ObjectListViewHelpers.cs" />
     <Compile Include="Core\Helpers\TypeAlias.cs" />
     <Compile Include="Core\Helpers\TypeHelpers.cs" />
@@ -353,6 +354,8 @@
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
     <Content Include="Icons\Small\database_go.png" />
+    <Content Include="Icons\Small\database_green.png" />
+    <Content Include="Icons\Small\database_yellow.png" />
     <Content Include="Icons\Small\ddr_memory.png" />
     <Content Include="Icons\Small\file_extension_bin.png" />
     <Content Include="Icons\Small\folder.png" />

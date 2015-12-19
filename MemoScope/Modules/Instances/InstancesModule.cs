@@ -1,5 +1,4 @@
 ﻿using BrightIdeasSoftware;
-using MemoScope.Core;
 using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using MemoScope.Modules.TypeDetails;
@@ -30,7 +29,6 @@ namespace MemoScope.Modules.Instances
             Name = $"#{addressList.ClrDump.Id} - {addressList.ClrType.Name}";
             dlvAdresses.AddAddressColumn(o => o);
             dlvAdresses.RebuildColumns();
-            
 
             Generator.GenerateColumns(dtlvFields, typeof(FieldNode), false);
             dtlvFields.SetUpTypeColumn(nameof(FieldNode.TypeName));
@@ -49,7 +47,7 @@ namespace MemoScope.Modules.Instances
                 AddFieldColumn(rowObject as FieldNode);
             }
 
-            foreach (FieldNode fieldNode in dtlvFields.CheckedObjects)
+            foreach (FieldNode fieldNode in dtlvFields.CheckedObjects.OfType<FieldNode>().Where(fn => fn != rowObject))
             {
                 AddFieldColumn(fieldNode);
             }
@@ -67,7 +65,40 @@ namespace MemoScope.Modules.Instances
             }
 
             var col = new OLVColumn(fieldNode.Name, null);
+            col.Width = 120;
+            switch( fieldNode.Field.ElementType)
+            {
+                case ClrElementType.Float:
+                case ClrElementType.Int16:
+                case ClrElementType.Int32:
+                case ClrElementType.Int64:
+                case ClrElementType.Int8:
+                case ClrElementType.Double:
+                case ClrElementType.UInt16:
+                case ClrElementType.UInt32:
+                case ClrElementType.UInt64:
+                case ClrElementType.UInt8:
+                    col.TextAlign = HorizontalAlignment.Right;
+                    break;
+            }
             dlvAdresses.AllColumns.Add(col);
+
+            List<ClrInstanceField> fields = new List<ClrInstanceField>();
+            ClrInstanceField field = fieldNode.Field;
+            do
+            {
+                fields.Insert(0, field);
+                var parent = dtlvFields.GetParent(fieldNode);
+                fieldNode =  parent as FieldNode;
+                field = fieldNode == null ? null : fieldNode.Field;
+            } while (fieldNode != null);
+
+            col.AspectGetter = o =>
+            {
+                ulong address = (ulong)o;
+                var type = AddressList.ClrType;
+                return AddressList.ClrDump.GetFieldValue(address, type, fields);
+            };
 
         }
 
