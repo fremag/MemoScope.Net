@@ -37,12 +37,15 @@ namespace MemoDummy
         {
             if (script != null)
             {
-                Task.Factory.StartNew(() => script.Run());
+                timer1.Enabled = true;
+                var sched = TaskScheduler.FromCurrentSynchronizationContext();
+                Task.Factory.StartNew(() => script.Run()).ContinueWith(task => timer1.Enabled = false, sched);
             }
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             if (script != null)
                 script.Stop();
         }
