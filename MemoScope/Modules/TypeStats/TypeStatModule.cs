@@ -7,6 +7,7 @@ using MemoScope.Modules.TypeDetails;
 using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
+using MemoScope.Modules.Instances;
 
 namespace MemoScope.Modules.TypeStats
 {
@@ -82,6 +83,19 @@ namespace MemoScope.Modules.TypeStats
                     return new AddressList(ClrDump, obj.Type, ClrDump.GetInstances(obj.Id));
                 }
                 return null;
+            }
+        }
+
+        private void dlvTypeStats_CellClick(object sender, CellClickEventArgs e)
+        {
+            if( e.ClickCount != 2)
+            {
+                return;
+            }
+            var addresses = Data;
+            if( addresses != null)
+            {
+                InstancesModule.Create(addresses, this, mod => RequestDockModule(mod));
             }
         }
     }

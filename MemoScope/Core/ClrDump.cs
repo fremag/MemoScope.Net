@@ -5,9 +5,7 @@ using Microsoft.Diagnostics.Runtime;
 using System;
 using WinFwk.UITools.Log;
 using WinFwk.UIMessages;
-using WinFwk.UIModules;
 using MemoScope.Core.Cache;
-using MemoScope.Modules.Instances;
 using MemoScope.Core.Data;
 
 namespace MemoScope.Core
@@ -72,11 +70,23 @@ namespace MemoScope.Core
             var type = Eval(() => Heap.GetTypeByMethodTable(methodTable));
             return type;
         }
-        
+
+        public bool IsString(ClrType type)
+        {
+            var res = Eval(() => type.IsString);
+            return res;
+        }
+        public bool IsPrimitive(ClrType type)
+        {
+            var res = Eval(() => type.IsPrimitive);
+            return res;
+        }
+
         public T Eval<T>(Func<T> func)
         {
             return worker.Eval(func);
         }
+
         public object GetFieldValue(ulong address, ClrType type, List<ClrInstanceField> fields)
         {
             var obj = Eval(() => GetFieldValueImpl(address, type, fields));

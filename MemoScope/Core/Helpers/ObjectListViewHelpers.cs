@@ -1,4 +1,6 @@
 ﻿using BrightIdeasSoftware;
+using Microsoft.Diagnostics.Runtime;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -40,6 +42,55 @@ namespace MemoScope.Core.Helpers
                 AspectToStringFormat = "{0:X}",
                 TextAlign = HorizontalAlignment.Right,
                 Width = 110 };
+            listView.AllColumns.Add(col);
+        }
+
+        public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
+        {
+            if (! dump.IsPrimitive(type) && ! dump.IsString(type))
+            {
+                return;
+            }
+
+            var col = new OLVColumn("Value", null)
+            {
+                Width = 150
+            };
+
+            col.AspectGetter = o =>
+            {
+                ulong address = addressGetter(o);
+                object result = dump.Eval( 
+                    () => {
+                        if (type.IsPrimitive || type.IsString)
+                            return type.GetValue(address);
+                        return address;
+                    }
+                );
+                return result;
+            };
+            col.AspectToStringFormat = "{0:X}";
+            listView.AllColumns.Add(col);
+        }
+
+        public static void AddSizeColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
+        {
+            var col = new OLVColumn("Size", null)
+            {
+                Width = 60, TextAlign = HorizontalAlignment.Right
+            };
+
+            col.AspectGetter = o =>
+            {
+                ulong address = addressGetter(o);
+                object result = dump.Eval(
+                    () => {
+                        return type.GetSize(address);
+                    }
+                );
+                return result;
+            };
+            col.AspectToStringFormat = "{0:###,###,###,##0}";
             listView.AllColumns.Add(col);
         }
     }

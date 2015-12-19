@@ -8,12 +8,26 @@ using System.Linq;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 using System.Windows.Forms;
+using System;
 
 namespace MemoScope.Modules.Instances
 {
     public partial class InstancesModule : UIModule, UIDataProvider<ClrDumpType>
     {
         private IList<ClrInstanceField> fields;
+
+        public static void Create(AddressList addresses, UIModule parent, Action<InstancesModule> postInit )
+        {
+            if( addresses == null)
+            {
+                MessageBox.Show("No instances selected !", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            UIModuleFactory.CreateModule<InstancesModule>(
+                mod => { mod.UIModuleParent = parent; mod.Setup(addresses); },
+                mod => postInit(mod)
+                );
+        }
 
         private AddressList AddressList { get; set; }
 
@@ -27,7 +41,7 @@ namespace MemoScope.Modules.Instances
         {
             AddressList = addressList;
             Name = $"#{addressList.ClrDump.Id} - {addressList.ClrType.Name}";
-            dlvAdresses.AddAddressColumn(o => o);
+            CreateDefaultColumns();
             dlvAdresses.RebuildColumns();
 
             Generator.GenerateColumns(dtlvFields, typeof(FieldNode), false);
@@ -38,10 +52,18 @@ namespace MemoScope.Modules.Instances
             dtlvFields.ChildrenGetter = o => ((FieldNode)o).Children;
         }
 
-        private CheckState OnCheckStateChanged(object rowObject, CheckState newValue)
+        private void CreateDefaultColumns()
         {
             dlvAdresses.AllColumns.Clear();
             dlvAdresses.AddAddressColumn(o => o);
+            dlvAdresses.AddSimpleValueColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
+            dlvAdresses.AddSizeColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
+        }
+
+        private CheckState OnCheckStateChanged(object rowObject, CheckState newValue)
+        {
+            CreateDefaultColumns();
+
             if (newValue == CheckState.Checked)
             {
                 AddFieldColumn(rowObject as FieldNode);

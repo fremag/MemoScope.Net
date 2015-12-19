@@ -52,6 +52,7 @@
             this.dlvTypeStats.UseCompatibleStateImageBehavior = false;
             this.dlvTypeStats.View = System.Windows.Forms.View.Details;
             this.dlvTypeStats.VirtualMode = true;
+            this.dlvTypeStats.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.dlvTypeStats_CellClick);
             // 
             // regexFilterControl
             // 

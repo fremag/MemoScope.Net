@@ -1,6 +1,4 @@
 ﻿using MemoScope.Core.Data;
-using MemoScope.Modules.TypeStats;
-using System.Collections.Generic;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
@@ -15,10 +13,7 @@ namespace MemoScope.Modules.Instances
 
         protected override void HandleData(AddressList addresses)
         {
-            UIModuleFactory.CreateModule<InstancesModule>(
-                mod => { mod.UIModuleParent = selectedModule; mod.Setup(addresses); },
-                mod => DockModule(mod)
-                );
+            InstancesModule.Create(addresses, selectedModule, mod => DockModule(mod) );
         }
     }
 }
