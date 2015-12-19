@@ -22,14 +22,16 @@ namespace WinFwk.UITools.ToolBar
 
         public void HandleMessage(ModuleEventMessage eventMessage)
         {
-            if( eventMessage.Module == this)
+            if( eventMessage.Module != null && eventMessage.Module.GetType() == typeof(UIToolbar))
             {
                 return;
             }
             foreach (var kvp in dicoCommands)
             {
-                kvp.Key.SetSelectedModule(eventMessage.Module);
-                kvp.Value.Enabled = kvp.Key.Enabled;
+                var command = kvp.Key;
+                var button = kvp.Value;
+                command.SetSelectedModule(eventMessage.Module);
+                button.Enabled = command.Enabled;
             }
         }
 

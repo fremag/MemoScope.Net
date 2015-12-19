@@ -108,7 +108,7 @@ namespace WinFwk.UIMessages
 
                 try
                 {
-                    Debug.WriteLine(subscriberType+", "+interfaceType+" : "+sched);
+                    //Debug.WriteLine(subscriberType+", "+interfaceType+" : "+sched);
                     if (sched)
                     {
                         taskFactory.StartNew(() => sub.HandleMessage(message));
