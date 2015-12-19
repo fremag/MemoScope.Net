@@ -6,6 +6,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 using WinFwk.UIServices;
+using WinFwk.UITools.ToolBar;
 
 namespace MemoScope
 {
@@ -19,6 +20,7 @@ namespace MemoScope
         private void MemoScope_Load(object sender, System.EventArgs e)
         {
             InitModuleFactory();
+            toolbarSettings.Add(new UIToolBarSettings("Dump", 1, Properties.Resources.database_green));
             InitToolBars();
             InitWorkplace(DockState.DockLeftAutoHide);
             InitLog();
