@@ -73,7 +73,7 @@ namespace MemoScope.Modules.TypeStats
             }
         }
 
-        public AddressList Data
+        AddressList UIDataProvider<AddressList>.Data
         {
             get
             {
@@ -92,7 +92,7 @@ namespace MemoScope.Modules.TypeStats
             {
                 return;
             }
-            var addresses = Data;
+            var addresses = ((UIDataProvider<AddressList>)this).Data;
             if( addresses != null)
             {
                 InstancesModule.Create(addresses, this, mod => RequestDockModule(mod));

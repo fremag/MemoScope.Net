@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using WinFwk.UIModules;
 
@@ -10,7 +9,7 @@ namespace WinFwk.UICommands
         protected UIDataProvider<T> dataProvider;
         protected UIModule selectedModule;
 
-        protected AbstractTypedUICommand(string name, string toolTip, string @group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, @group, icon, shortcut)
+        protected AbstractTypedUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, group, icon, shortcut)
         {
             Enabled = false;
         }
