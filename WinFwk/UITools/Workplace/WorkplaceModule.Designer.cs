@@ -32,17 +32,14 @@
             this.tlvModules = new WinFwk.UITools.DefaultTreeListView();
             this.colName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colSummary = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.colIcon = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.tlvModules)).BeginInit();
             this.SuspendLayout();
             // 
             // tlvModules
             // 
-            this.tlvModules.AllColumns.Add(this.colIcon);
             this.tlvModules.AllColumns.Add(this.colName);
             this.tlvModules.AllColumns.Add(this.colSummary);
             this.tlvModules.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colIcon,
             this.colName,
             this.colSummary});
             this.tlvModules.DataSource = null;
@@ -72,10 +69,6 @@
             this.colSummary.Text = "Summary";
             this.colSummary.Width = 250;
             // 
-            // colIcon
-            // 
-            this.colIcon.Text = "Icon";
-            // 
             // WorkplaceModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -93,6 +86,5 @@
         private DefaultTreeListView tlvModules;
         private BrightIdeasSoftware.OLVColumn colName;
         private BrightIdeasSoftware.OLVColumn colSummary;
-        private BrightIdeasSoftware.OLVColumn colIcon;
     }
 }

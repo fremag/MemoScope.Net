@@ -19,10 +19,8 @@ namespace WinFwk.UITools.Workplace
             Icon = Properties.Resources.globe_place;
 
             colName.AspectGetter = model.GetName;
+            colName.ImageGetter = model.GetIcon;
             colSummary.AspectGetter = model.GetSummary;
-
-            colIcon.Renderer = new ImageRenderer();
-            colIcon.ImageGetter = model.GetIcon;
 
             tlvModules.CanExpandGetter = model.HasChild;
             tlvModules.ChildrenGetter = model.GetChildren;
