@@ -5,6 +5,7 @@ using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using WinFwk.UIModules;
+using MemoScope.Core.Helpers;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -27,10 +28,16 @@ namespace MemoScope.Modules.TypeDetails
             Generator.GenerateColumns(dlvFields, typeof(FieldInformation), false);
             dlvFields.SetUpTypeColumn(nameof(FieldInformation.Type));
             dlvFields.SetObjects(dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField)));
+            dlvFields.RegiserDataProvider(() => {
+                return new ClrDumpType(dump, dlvFields.SelectedObject<FieldInformation>()?.ClrType);
+            }, this);
 
             Generator.GenerateColumns(dlvMethods, typeof(MethodInformation), false);
             dlvMethods.SetUpTypeColumn(nameof(MethodInformation.Type));
             dlvMethods.SetObjects(dumpType.Methods.Select(clrMethod => new MethodInformation(dumpType, clrMethod)));
+            dlvMethods.RegiserDataProvider(() => {
+                return new ClrDumpType(dump, dlvMethods.SelectedObject<MethodInformation>()?.ClrType);
+            }, this);
 
             var b = new TypeInformation(dumpType.BaseType); 
             var x = dumpType.Interfaces;

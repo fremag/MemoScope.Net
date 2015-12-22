@@ -43,6 +43,8 @@ namespace MemoScope.Modules.TypeStats
             dlvTypeStats.SetObjects(typeStats);
             dlvTypeStats.Sort(dlvTypeStats.AllColumns[2], SortOrder.Descending);
             dlvTypeStats.UseFilterIndicator = true;
+            dlvTypeStats.RegiserDataProvider(() => ((UIDataProvider<AddressList>)this).Data, this);
+            dlvTypeStats.RegiserDataProvider(() => ((UIDataProvider<ClrDumpType>)this).Data, this);
 
             regexFilterControl.RegexApplied += (regex) => {
                 dlvTypeStats.ModelFilter = new ModelFilter((o) =>

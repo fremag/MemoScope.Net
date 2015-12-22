@@ -50,6 +50,7 @@ namespace MemoScope.Modules.Instances
             dtlvFields.CheckStatePutter += OnCheckStateChanged;
             dtlvFields.CanExpandGetter = o => ((FieldNode)o).HasChildren;
             dtlvFields.ChildrenGetter = o => ((FieldNode)o).Children;
+            dtlvFields.RegiserDataProvider(() => { return new ClrDumpType(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); }, this);
         }
 
         private void CreateDefaultColumns()

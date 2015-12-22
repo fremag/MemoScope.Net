@@ -36,5 +36,7 @@ namespace MemoScope.Modules.TypeDetails
         public bool IsProtected => clrField.IsProtected;
         [OLVColumn(Title = "IsPublic", Width = 70)]
         public bool IsPublic => clrField.IsPublic;
+
+        public ClrType ClrType => clrField.Type;
     }
 }

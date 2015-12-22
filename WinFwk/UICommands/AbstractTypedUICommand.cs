@@ -20,10 +20,14 @@ namespace WinFwk.UICommands
         public override void SetSelectedModule(UIModule module)
         {
             selectedModule = module;
-            dataProvider = module as UIDataProvider<T>;
-            Enabled = (dataProvider != null);
+            InitDataProvider(module as UIDataProvider<T>);
         }
 
+        public void InitDataProvider(UIDataProvider<T> uiDataProvider)
+        {
+            dataProvider = uiDataProvider;
+            Enabled = (dataProvider != null);
+        }
         public override void Run()
         {
             if (dataProvider == null)

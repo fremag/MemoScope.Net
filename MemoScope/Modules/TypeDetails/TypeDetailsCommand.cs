@@ -1,5 +1,4 @@
-﻿using System;
-using WinFwk.UICommands;
+﻿using WinFwk.UICommands;
 using WinFwk.UIModules;
 
 namespace MemoScope.Modules.TypeDetails

@@ -44,5 +44,7 @@ namespace MemoScope.Modules.TypeDetails
         public bool IsStatic => clrMethod.IsStatic;
         [OLVColumn(Title = "IsVirtual", Width = 150)]
         public bool IsVirtual => clrMethod.IsVirtual;
+
+        public ClrType ClrType=> clrMethod.Type;
     }
 }

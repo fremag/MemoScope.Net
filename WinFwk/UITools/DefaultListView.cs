@@ -8,5 +8,6 @@ namespace WinFwk.UITools
         {
             this.Init();
         }
+
     }
 }

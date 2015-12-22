@@ -4,6 +4,9 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using WinFwk;
+using WinFwk.UICommands;
+using WinFwk.UIModules;
 
 namespace MemoScope.Core.Helpers
 {
@@ -93,5 +96,36 @@ namespace MemoScope.Core.Helpers
             col.AspectToStringFormat = "{0:###,###,###,##0}";
             listView.AllColumns.Add(col);
         }
+
+        public static void RegiserDataProvider<T>(this ObjectListView listView, Func<T> dataProvider, UIModule parentModule)
+        {
+            if (listView.ContextMenuStrip == null)
+            {
+                listView.ContextMenuStrip = new ContextMenuStrip();
+            }
+            var types = WinFwkHelper.GetDerivedTypes(typeof(AbstractTypedUICommand<T>));
+            foreach (var type in types)
+            {
+                var command = Activator.CreateInstance(type, null) as AbstractTypedUICommand<T>;
+                command.InitBus(parentModule.MessageBus);
+                command.SetSelectedModule(parentModule);
+                command.InitDataProvider(new UIDataProviderAdapter<T>(dataProvider));
+                var menuItem = new ToolStripMenuItem(command.ToolTip);
+                menuItem.Image = command.Icon;
+                listView.ContextMenuStrip.Items.Add(menuItem);
+                menuItem.Click += (o, e) => OnMenuItemClick(command, dataProvider);
+            }
+        }
+
+        private static void OnMenuItemClick<T>(AbstractTypedUICommand<T> command, Func<T> dataProvider)
+        {
+            command.Run();
+        }
+
+        public static T SelectedObject<T>(this ObjectListView listView) where T : class
+        {
+            return (listView.SelectedObject) as T;
+        }
+
     }
 }
