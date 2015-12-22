@@ -23,6 +23,8 @@ namespace MemoScope.Modules.Instances
         [OLVColumn(Title = "Type", Width = 250)]
         public string TypeName => Field.Type.Name;
 
+        public ClrType ClrType => Field.Type;
+
         public bool HasChildren => !Field.Type.IsPrimitive && ClrDump.Eval(() => Field.Type.Fields.Any());
 
         public List<FieldNode> Children
