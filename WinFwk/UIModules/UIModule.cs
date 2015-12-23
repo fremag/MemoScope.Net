@@ -54,9 +54,13 @@ namespace WinFwk.UIModules
             MessageBus.SendMessage(new LogMessage(this, text, exception));
         }
 
-        protected void RequestDockModule(UIModule uiModule)
+        public void RequestDockModule(UIModule uiModule)
         {
             MessageBus.SendMessage(new DockRequest(uiModule));
+        }
+        public void RequestDockModule()
+        {
+            RequestDockModule(this);
         }
     }
 }

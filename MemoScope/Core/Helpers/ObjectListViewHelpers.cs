@@ -1,4 +1,5 @@
 ﻿using BrightIdeasSoftware;
+using MemoScope.Modules.InstanceDetails;
 using Microsoft.Diagnostics.Runtime;
 using System;
 using System.Drawing;
@@ -38,7 +39,7 @@ namespace MemoScope.Core.Helpers
             listView.UseCellFormatEvents = true;
         }
 
-        public static void AddAddressColumn(this ObjectListView listView, AspectGetterDelegate aspectGetter)
+        public static void AddAddressColumn(this ObjectListView listView, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
         {
             var col = new OLVColumn("Address", null) {
                 AspectGetter = aspectGetter,
@@ -46,6 +47,23 @@ namespace MemoScope.Core.Helpers
                 TextAlign = HorizontalAlignment.Right,
                 Width = 110 };
             listView.AllColumns.Add(col);
+            listView.CellClick += (o, e) =>
+            {
+                if( e.ClickCount == 2 && e.Column == col)
+                {
+                    var addressObj = aspectGetter(e.Model);
+                    if( addressObj  is ulong)
+                    {
+                        var address = (ulong)addressObj;
+                        var type = typeGetter(e.Item.RowObject);
+                        var clrDumpObject = new ClrDumpObject(dump, type, address);
+                        UIModuleFactory.CreateModule<InstanceDetailsModule>(
+                            mod => { mod.UIModuleParent = parentModule; mod.Setup(clrDumpObject); },
+                            mod => mod.RequestDockModule()
+                         );
+                    }
+                }
+            };
         }
 
         public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)

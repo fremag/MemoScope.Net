@@ -197,6 +197,14 @@
     </Compile>
     <Compile Include="Modules\Explorer\FileData.cs" />
     <Compile Include="Modules\Explorer\OpenDumpRequest.cs" />
+    <Compile Include="Modules\InstanceDetails\ClrDumpObject.cs" />
+    <Compile Include="Modules\InstanceDetails\InstanceDetailsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\InstanceDetails\InstanceDetailsModule.Designer.cs">
+      <DependentUpon>InstanceDetailsModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\InstanceDetails\InstanceDetailsCommand.cs" />
     <Compile Include="Modules\Instances\FieldNode.cs" />
     <Compile Include="Modules\Instances\InstancesCommand.cs" />
     <Compile Include="Modules\Instances\InstancesModule.cs">
@@ -273,6 +281,9 @@
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\InstanceDetails\InstanceDetailsModule.resx">
+      <DependentUpon>InstanceDetailsModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Instances\InstancesModule.resx">
       <DependentUpon>InstancesModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -332,7 +343,9 @@
     <Content Include="Icons\Large\blueprint.png" />
     <Content Include="Icons\Large\bow.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
+    <Content Include="Icons\Large\elements.png" />
     <Content Include="Icons\Large\folders_explorer.png" />
+    <Content Include="Icons\Large\geolocation_sight.png" />
     <Content Include="Icons\Large\help.png" />
     <Content Include="Icons\Large\new_data.png" />
     <Content Include="Icons\Large\save_data.png" />
@@ -389,9 +402,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\InstanceDetails\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
