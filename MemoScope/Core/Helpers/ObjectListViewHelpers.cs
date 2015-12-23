@@ -1,4 +1,5 @@
 ﻿using BrightIdeasSoftware;
+using MemoScope.Core.Data;
 using MemoScope.Modules.InstanceDetails;
 using Microsoft.Diagnostics.Runtime;
 using System;

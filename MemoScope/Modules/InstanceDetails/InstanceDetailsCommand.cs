@@ -1,4 +1,5 @@
-﻿using MemoScope.Modules.InstanceDetails;
+﻿using MemoScope.Core.Data;
+using MemoScope.Modules.InstanceDetails;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 

@@ -3,7 +3,7 @@ using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MemoScope.Modules.TypeDetails
+namespace MemoScope.Core.Data
 {
     public class ClrDumpType 
     {
@@ -19,9 +19,10 @@ namespace MemoScope.Modules.TypeDetails
         public ClrElementType ElementType => ClrDump.Eval(() => ClrType.ElementType);
         
         public ClrDumpType BaseType => ClrDump.Eval(() => ClrType.BaseType == null ? null : new ClrDumpType(ClrDump, ClrType.BaseType));
-        public List<InterfaceInformation> Interfaces => ClrDump.Eval(() => ClrType.Interfaces.Select(interf => new InterfaceInformation(ClrDump, interf)).ToList());
 
         public string Name => ClrDump.Eval(() => ClrType.Name);
+
+        public IList<ClrInterface> Interfaces => ClrDump.Eval(() => ClrType.Interfaces);
 
         public ClrDumpType(ClrDump clrDump, ClrType clrType)
         {

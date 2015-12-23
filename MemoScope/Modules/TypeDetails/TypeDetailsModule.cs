@@ -5,7 +5,7 @@ using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using WinFwk.UIModules;
-using MemoScope.Core.Helpers;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -40,7 +40,7 @@ namespace MemoScope.Modules.TypeDetails
             }, this);
 
             var b = new TypeInformation(dumpType.BaseType); 
-            var x = dumpType.Interfaces;
+            var x = InterfaceInformation.GetInterfaces(dumpType);
             Generator.GenerateColumns(defaultTreeListView1, typeof(AbstractTypeInformation), false);
             defaultTreeListView1.SetUpTypeColumn(nameof(AbstractTypeInformation.Name));
             defaultTreeListView1.CanExpandGetter = model => ((AbstractTypeInformation)model).HasChildren;

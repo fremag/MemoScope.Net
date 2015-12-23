@@ -1,7 +1,9 @@
 ﻿using MemoScope.Core;
+using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -34,6 +36,11 @@ namespace MemoScope.Modules.TypeDetails
             Name = TypeHelpers.ManageAlias(interf.Name);
             ClrDump = clrDump;
             ClrInterface = interf;
+        }
+
+        public static List<InterfaceInformation> GetInterfaces(ClrDumpType clrDumpType) {
+            var clrInterfaces = clrDumpType.Interfaces;
+            return clrInterfaces.Select(interf => new InterfaceInformation(clrDumpType.ClrDump, interf)).ToList();
         }
     }
 }

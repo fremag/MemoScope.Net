@@ -2,6 +2,7 @@
 using BrightIdeasSoftware;
 using MemoScope.Core.Helpers;
 using System.Windows.Forms;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.TypeDetails
 {

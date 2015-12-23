@@ -28,17 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblAddress = new System.Windows.Forms.Label();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.gbInformation = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gbFields = new System.Windows.Forms.GroupBox();
             this.gbReferences = new System.Windows.Forms.GroupBox();
+            this.dtlvFieldsValues = new WinFwk.UITools.DefaultTreeListView();
+            this.dtlvReferences = new WinFwk.UITools.DefaultListView();
             this.gbInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.gbFields.SuspendLayout();
+            this.gbReferences.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtlvFieldsValues)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtlvReferences)).BeginInit();
             this.SuspendLayout();
             // 
             // lblAddress
@@ -92,6 +99,7 @@
             // 
             // gbFields
             // 
+            this.gbFields.Controls.Add(this.dtlvFieldsValues);
             this.gbFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbFields.Location = new System.Drawing.Point(0, 0);
             this.gbFields.Name = "gbFields";
@@ -102,6 +110,7 @@
             // 
             // gbReferences
             // 
+            this.gbReferences.Controls.Add(this.dtlvReferences);
             this.gbReferences.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbReferences.Location = new System.Drawing.Point(0, 0);
             this.gbReferences.Name = "gbReferences";
@@ -109,6 +118,40 @@
             this.gbReferences.TabIndex = 0;
             this.gbReferences.TabStop = false;
             this.gbReferences.Text = "References";
+            // 
+            // dtlvFieldsValues
+            // 
+            this.dtlvFieldsValues.DataSource = null;
+            this.dtlvFieldsValues.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtlvFieldsValues.FullRowSelect = true;
+            this.dtlvFieldsValues.HideSelection = false;
+            this.dtlvFieldsValues.Location = new System.Drawing.Point(3, 18);
+            this.dtlvFieldsValues.Name = "dtlvFieldsValues";
+            this.dtlvFieldsValues.OwnerDraw = true;
+            this.dtlvFieldsValues.RootKeyValueString = "";
+            this.dtlvFieldsValues.ShowGroups = false;
+            this.dtlvFieldsValues.ShowImagesOnSubItems = true;
+            this.dtlvFieldsValues.Size = new System.Drawing.Size(650, 352);
+            this.dtlvFieldsValues.TabIndex = 0;
+            this.dtlvFieldsValues.UseCompatibleStateImageBehavior = false;
+            this.dtlvFieldsValues.View = System.Windows.Forms.View.Details;
+            this.dtlvFieldsValues.VirtualMode = true;
+            // 
+            // dtlvReferences
+            // 
+            this.dtlvReferences.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtlvReferences.FullRowSelect = true;
+            this.dtlvReferences.HideSelection = false;
+            this.dtlvReferences.Location = new System.Drawing.Point(3, 18);
+            this.dtlvReferences.Name = "dtlvReferences";
+            this.dtlvReferences.OwnerDraw = true;
+            this.dtlvReferences.ShowGroups = false;
+            this.dtlvReferences.ShowImagesOnSubItems = true;
+            this.dtlvReferences.Size = new System.Drawing.Size(650, 357);
+            this.dtlvReferences.TabIndex = 0;
+            this.dtlvReferences.UseCompatibleStateImageBehavior = false;
+            this.dtlvReferences.View = System.Windows.Forms.View.Details;
+            this.dtlvReferences.VirtualMode = true;
             // 
             // InstanceDetailsModule
             // 
@@ -124,6 +167,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.gbFields.ResumeLayout(false);
+            this.gbReferences.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtlvFieldsValues)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtlvReferences)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -136,5 +183,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox gbFields;
         private System.Windows.Forms.GroupBox gbReferences;
+        private WinFwk.UITools.DefaultTreeListView dtlvFieldsValues;
+        private WinFwk.UITools.DefaultListView dtlvReferences;
     }
 }

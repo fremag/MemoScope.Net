@@ -1,4 +1,5 @@
-﻿using WinFwk.UIModules;
+﻿using MemoScope.Core.Data;
+using WinFwk.UIModules;
 
 namespace MemoScope.Modules.InstanceDetails
 {
@@ -18,8 +19,8 @@ namespace MemoScope.Modules.InstanceDetails
 
         public override void PostInit()
         {
-            Name = "#" + ClrDumpObject.Dump.Id + " - " + ClrDumpObject.Address.ToString("X");
-            Summary = ClrDumpObject.Type.Name;
+            Name = "#" + ClrDumpObject.ClrDump.Id + " - " + ClrDumpObject.Address.ToString("X");
+            Summary = ClrDumpObject.ClrType.Name;
         }
     }
 

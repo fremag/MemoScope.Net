@@ -1,4 +1,5 @@
-﻿using Microsoft.Diagnostics.Runtime;
+﻿using MemoScope.Core.Data;
+using Microsoft.Diagnostics.Runtime;
 using System.ComponentModel;
 
 namespace MemoScope.Modules.TypeDetails

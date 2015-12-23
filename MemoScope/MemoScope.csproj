@@ -197,7 +197,7 @@
     </Compile>
     <Compile Include="Modules\Explorer\FileData.cs" />
     <Compile Include="Modules\Explorer\OpenDumpRequest.cs" />
-    <Compile Include="Modules\InstanceDetails\ClrDumpObject.cs" />
+    <Compile Include="Core\Data\ClrDumpObject.cs" />
     <Compile Include="Modules\InstanceDetails\InstanceDetailsModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -238,7 +238,7 @@
     </Compile>
     <Compile Include="Modules\Process\ProcessWrapper.cs" />
     <Compile Include="Modules\TypeDetails\AbstractTypeInformation.cs" />
-    <Compile Include="Modules\TypeDetails\ClrDumpType.cs" />
+    <Compile Include="Core\Data\ClrDumpType.cs" />
     <Compile Include="Modules\TypeDetails\FieldInformation.cs" />
     <Compile Include="Modules\TypeDetails\InterfaceInformation.cs" />
     <Compile Include="Modules\TypeDetails\MethodInformation.cs" />

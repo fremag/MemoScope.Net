@@ -1,4 +1,5 @@
-﻿using MemoScope.Core.Helpers;
+﻿using MemoScope.Core.Data;
+using MemoScope.Core.Helpers;
 using System.Collections.Generic;
 
 namespace MemoScope.Modules.TypeDetails
