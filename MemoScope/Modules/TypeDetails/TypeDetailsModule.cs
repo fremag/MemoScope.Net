@@ -39,16 +39,16 @@ namespace MemoScope.Modules.TypeDetails
                 return new ClrDumpType(dump, dlvMethods.SelectedObject<MethodInformation>()?.ClrType);
             }, this);
 
-            var b = new TypeInformation(dumpType.BaseType); 
-            var x = InterfaceInformation.GetInterfaces(dumpType);
-            Generator.GenerateColumns(defaultTreeListView1, typeof(AbstractTypeInformation), false);
-            defaultTreeListView1.SetUpTypeColumn(nameof(AbstractTypeInformation.Name));
-            defaultTreeListView1.CanExpandGetter = model => ((AbstractTypeInformation)model).HasChildren;
-            defaultTreeListView1.ChildrenGetter = model => ((AbstractTypeInformation)model).Children;
+            Generator.GenerateColumns(dtlvParentClasses, typeof(AbstractTypeInformation), false);
+            dtlvParentClasses.SetUpTypeColumn(nameof(AbstractTypeInformation.Name));
+            dtlvParentClasses.CanExpandGetter = model => ((AbstractTypeInformation)model).HasChildren;
+            dtlvParentClasses.ChildrenGetter = model => ((AbstractTypeInformation)model).Children;
             var l = new List<object>();
-            l.Add(b);
-            l.AddRange(x);
-            defaultTreeListView1.Roots = l;
+            var typeInformation = new TypeInformation(dumpType.BaseType);
+            var interfaceInformations = InterfaceInformation.GetInterfaces(dumpType);
+            l.Add(typeInformation);
+            l.AddRange(interfaceInformations);
+            dtlvParentClasses.Roots = l;
         }
 
         public override void PostInit()

@@ -242,7 +242,6 @@
     <Compile Include="Modules\TypeDetails\FieldInformation.cs" />
     <Compile Include="Modules\TypeDetails\InterfaceInformation.cs" />
     <Compile Include="Modules\TypeDetails\MethodInformation.cs" />
-    <Compile Include="Modules\TypeDetails\OlvColumnAttribute.cs" />
     <Compile Include="Modules\TypeDetails\TypeDetailsCommand.cs" />
     <Compile Include="Modules\TypeDetails\TypeDetailsModule.cs">
       <SubType>UserControl</SubType>

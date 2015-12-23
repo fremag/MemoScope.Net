@@ -39,7 +39,7 @@
             this.dlvMethods = new WinFwk.UITools.DefaultListView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.gbInterfaces = new System.Windows.Forms.GroupBox();
-            this.defaultTreeListView1 = new WinFwk.UITools.DefaultTreeListView();
+            this.dtlvParentClasses = new WinFwk.UITools.DefaultTreeListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,7 +58,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.gbInterfaces.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.defaultTreeListView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtlvParentClasses)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -192,7 +192,7 @@
             // 
             // gbInterfaces
             // 
-            this.gbInterfaces.Controls.Add(this.defaultTreeListView1);
+            this.gbInterfaces.Controls.Add(this.dtlvParentClasses);
             this.gbInterfaces.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbInterfaces.Location = new System.Drawing.Point(0, 0);
             this.gbInterfaces.Name = "gbInterfaces";
@@ -203,21 +203,21 @@
             // 
             // defaultTreeListView1
             // 
-            this.defaultTreeListView1.DataSource = null;
-            this.defaultTreeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.defaultTreeListView1.FullRowSelect = true;
-            this.defaultTreeListView1.HideSelection = false;
-            this.defaultTreeListView1.Location = new System.Drawing.Point(3, 18);
-            this.defaultTreeListView1.Name = "defaultTreeListView1";
-            this.defaultTreeListView1.OwnerDraw = true;
-            this.defaultTreeListView1.RootKeyValueString = "";
-            this.defaultTreeListView1.ShowGroups = false;
-            this.defaultTreeListView1.ShowImagesOnSubItems = true;
-            this.defaultTreeListView1.Size = new System.Drawing.Size(226, 150);
-            this.defaultTreeListView1.TabIndex = 1;
-            this.defaultTreeListView1.UseCompatibleStateImageBehavior = false;
-            this.defaultTreeListView1.View = System.Windows.Forms.View.Details;
-            this.defaultTreeListView1.VirtualMode = true;
+            this.dtlvParentClasses.DataSource = null;
+            this.dtlvParentClasses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtlvParentClasses.FullRowSelect = true;
+            this.dtlvParentClasses.HideSelection = false;
+            this.dtlvParentClasses.Location = new System.Drawing.Point(3, 18);
+            this.dtlvParentClasses.Name = "defaultTreeListView1";
+            this.dtlvParentClasses.OwnerDraw = true;
+            this.dtlvParentClasses.RootKeyValueString = "";
+            this.dtlvParentClasses.ShowGroups = false;
+            this.dtlvParentClasses.ShowImagesOnSubItems = true;
+            this.dtlvParentClasses.Size = new System.Drawing.Size(226, 150);
+            this.dtlvParentClasses.TabIndex = 1;
+            this.dtlvParentClasses.UseCompatibleStateImageBehavior = false;
+            this.dtlvParentClasses.View = System.Windows.Forms.View.Details;
+            this.dtlvParentClasses.VirtualMode = true;
             // 
             // TypeDetailsModule
             // 
@@ -244,7 +244,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.gbInterfaces.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.defaultTreeListView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtlvParentClasses)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,6 +261,6 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox gbInterfaces;
-        private WinFwk.UITools.DefaultTreeListView defaultTreeListView1;
+        private WinFwk.UITools.DefaultTreeListView dtlvParentClasses;
     }
 }
