@@ -34,8 +34,8 @@
             this.gbInformation = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gbFields = new System.Windows.Forms.GroupBox();
-            this.gbReferences = new System.Windows.Forms.GroupBox();
             this.dtlvFieldsValues = new WinFwk.UITools.DefaultTreeListView();
+            this.gbReferences = new System.Windows.Forms.GroupBox();
             this.dtlvReferences = new WinFwk.UITools.DefaultListView();
             this.gbInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -43,8 +43,8 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.gbFields.SuspendLayout();
-            this.gbReferences.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtlvFieldsValues)).BeginInit();
+            this.gbReferences.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtlvReferences)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,6 +82,9 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(3, 85);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -108,17 +111,6 @@
             this.gbFields.TabStop = false;
             this.gbFields.Text = "Fields / Properties";
             // 
-            // gbReferences
-            // 
-            this.gbReferences.Controls.Add(this.dtlvReferences);
-            this.gbReferences.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbReferences.Location = new System.Drawing.Point(0, 0);
-            this.gbReferences.Name = "gbReferences";
-            this.gbReferences.Size = new System.Drawing.Size(656, 378);
-            this.gbReferences.TabIndex = 0;
-            this.gbReferences.TabStop = false;
-            this.gbReferences.Text = "References";
-            // 
             // dtlvFieldsValues
             // 
             this.dtlvFieldsValues.DataSource = null;
@@ -136,6 +128,17 @@
             this.dtlvFieldsValues.UseCompatibleStateImageBehavior = false;
             this.dtlvFieldsValues.View = System.Windows.Forms.View.Details;
             this.dtlvFieldsValues.VirtualMode = true;
+            // 
+            // gbReferences
+            // 
+            this.gbReferences.Controls.Add(this.dtlvReferences);
+            this.gbReferences.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbReferences.Location = new System.Drawing.Point(0, 0);
+            this.gbReferences.Name = "gbReferences";
+            this.gbReferences.Size = new System.Drawing.Size(656, 378);
+            this.gbReferences.TabIndex = 0;
+            this.gbReferences.TabStop = false;
+            this.gbReferences.Text = "References";
             // 
             // dtlvReferences
             // 
@@ -168,8 +171,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.gbFields.ResumeLayout(false);
-            this.gbReferences.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtlvFieldsValues)).EndInit();
+            this.gbReferences.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtlvReferences)).EndInit();
             this.ResumeLayout(false);
 

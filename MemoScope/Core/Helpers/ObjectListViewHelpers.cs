@@ -65,6 +65,20 @@ namespace MemoScope.Core.Helpers
                     }
                 }
             };
+            listView.RegisterDataProvider(
+                () =>
+                {
+                    var addressObj = aspectGetter(listView.SelectedObject);
+                    if (addressObj is ulong)
+                    {
+                        var address = (ulong)addressObj;
+                        var type = typeGetter(listView.SelectedObject);
+                        var clrDumpObject = new ClrDumpObject(dump, type, address);
+                        return clrDumpObject;
+                    }
+                    return null;
+                }, parentModule
+            );
         }
 
         public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
@@ -116,7 +130,7 @@ namespace MemoScope.Core.Helpers
             listView.AllColumns.Add(col);
         }
 
-        public static void RegiserDataProvider<T>(this ObjectListView listView, Func<T> dataProvider, UIModule parentModule)
+        public static void RegisterDataProvider<T>(this ObjectListView listView, Func<T> dataProvider, UIModule parentModule)
         {
             if (listView.ContextMenuStrip == null)
             {

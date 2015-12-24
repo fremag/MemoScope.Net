@@ -1,7 +1,6 @@
 ﻿using BrightIdeasSoftware;
 using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
-using MemoScope.Modules.TypeDetails;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +39,7 @@ namespace MemoScope.Modules.Instances
         internal void Setup(AddressList addressList)
         {
             AddressList = addressList;
-            Name = $"#{addressList.ClrDump.Id} - {addressList.ClrType.Name}";
+            Name = $"#{addressList.ClrDump.Id} - {TypeHelpers.ManageAlias(addressList.ClrType.Name)}";
             CreateDefaultColumns();
             dlvAdresses.RebuildColumns();
 
@@ -50,13 +49,13 @@ namespace MemoScope.Modules.Instances
             dtlvFields.CheckStatePutter += OnCheckStateChanged;
             dtlvFields.CanExpandGetter = o => ((FieldNode)o).HasChildren;
             dtlvFields.ChildrenGetter = o => ((FieldNode)o).Children;
-            dtlvFields.RegiserDataProvider(() => { return new ClrDumpType(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); }, this);
+            dtlvFields.RegisterDataProvider(() => { return new ClrDumpType(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); }, this);
         }
 
         private void CreateDefaultColumns()
         {
             dlvAdresses.AllColumns.Clear();
-            dlvAdresses.AddAddressColumn(o => o, (o) => AddressList.ClrType, AddressList.ClrDump, this);
+            dlvAdresses.AddAddressColumn(o => (ulong)o, (o) => AddressList.ClrType, AddressList.ClrDump, this);
             dlvAdresses.AddSimpleValueColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
             dlvAdresses.AddSizeColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
         }

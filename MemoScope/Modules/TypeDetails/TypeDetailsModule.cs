@@ -28,14 +28,14 @@ namespace MemoScope.Modules.TypeDetails
             Generator.GenerateColumns(dlvFields, typeof(FieldInformation), false);
             dlvFields.SetUpTypeColumn(nameof(FieldInformation.Type));
             dlvFields.SetObjects(dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField)));
-            dlvFields.RegiserDataProvider(() => {
+            dlvFields.RegisterDataProvider(() => {
                 return new ClrDumpType(dump, dlvFields.SelectedObject<FieldInformation>()?.ClrType);
             }, this);
 
             Generator.GenerateColumns(dlvMethods, typeof(MethodInformation), false);
             dlvMethods.SetUpTypeColumn(nameof(MethodInformation.Type));
             dlvMethods.SetObjects(dumpType.Methods.Select(clrMethod => new MethodInformation(dumpType, clrMethod)));
-            dlvMethods.RegiserDataProvider(() => {
+            dlvMethods.RegisterDataProvider(() => {
                 return new ClrDumpType(dump, dlvMethods.SelectedObject<MethodInformation>()?.ClrType);
             }, this);
 
