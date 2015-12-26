@@ -8,6 +8,10 @@ namespace MemoScope.Core.Data
         public ClrDump ClrDump {get;}
         public ClrType ClrType { get; }
         public bool IsAbstract => ClrDump.Eval(() => ClrType.IsAbstract);
+        public bool IsPrimitive => ClrDump.Eval(() => ClrType.IsPrimitive);
+        public bool IsString => ClrDump.Eval(() => ClrType.IsString);
+        public bool IsPrimitiveOrString => ClrDump.Eval(() => ClrType.IsPrimitive || ClrType.IsString);
+
         public bool IsFinalizable => ClrDump.Eval(() => ClrType.IsFinalizable);
         public string BaseTypeName => ClrDump.Eval(() => ClrType.BaseType == null ? null : ClrType.BaseType.Name);
 
@@ -18,7 +22,7 @@ namespace MemoScope.Core.Data
         
         public ClrDumpType BaseType => ClrDump.Eval(() => ClrType.BaseType == null ? null : new ClrDumpType(ClrDump, ClrType.BaseType));
 
-        public string Name => ClrDump.Eval(() => ClrType.Name);
+        public string TypeName => ClrDump.Eval(() => ClrType.Name);
 
         public IList<ClrInterface> Interfaces => ClrDump.Eval(() => ClrType.Interfaces);
 

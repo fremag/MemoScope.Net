@@ -198,6 +198,7 @@
     <Compile Include="Modules\Explorer\FileData.cs" />
     <Compile Include="Modules\Explorer\OpenDumpRequest.cs" />
     <Compile Include="Core\Data\ClrDumpObject.cs" />
+    <Compile Include="Modules\InstanceDetails\FieldValueInformation.cs" />
     <Compile Include="Modules\InstanceDetails\InstanceDetailsModule.cs">
       <SubType>UserControl</SubType>
     </Compile>

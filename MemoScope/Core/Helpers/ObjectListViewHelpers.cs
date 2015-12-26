@@ -42,18 +42,29 @@ namespace MemoScope.Core.Helpers
 
         public static void AddAddressColumn(this ObjectListView listView, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
         {
-            var col = new OLVColumn("Address", null) {
-                AspectGetter = aspectGetter,
-                AspectToStringFormat = "{0:X}",
-                TextAlign = HorizontalAlignment.Right,
-                Width = 110 };
+            var col = new OLVColumn("Address", null) {AspectGetter = aspectGetter};
+
+            SetupAddressColumn(listView, col, aspectGetter, typeGetter, dump, parentModule);
             listView.AllColumns.Add(col);
+        }
+        public static void SetupAddressColumn(ObjectListView listView, string colName, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
+        {
+            var col = listView.AllColumns.First(c => c.Name == colName);
+            SetupAddressColumn(listView, col, aspectGetter, typeGetter, dump, parentModule);
+        }
+
+        public static void SetupAddressColumn(ObjectListView listView, OLVColumn col, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
+        {
+            col.AspectToStringFormat = "{0:X}";
+            col.TextAlign = HorizontalAlignment.Right;
+            col.Width = 110;
+
             listView.CellClick += (o, e) =>
             {
-                if( e.ClickCount == 2 && e.Column == col)
+                if (e.ClickCount == 2 && e.Column == col)
                 {
                     var addressObj = aspectGetter(e.Model);
-                    if( addressObj  is ulong)
+                    if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
                         var type = typeGetter(e.Item.RowObject);
@@ -79,8 +90,8 @@ namespace MemoScope.Core.Helpers
                     return null;
                 }, parentModule
             );
-        }
 
+        }
         public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
         {
             if (! dump.IsPrimitive(type) && ! dump.IsString(type))

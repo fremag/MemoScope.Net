@@ -37,6 +37,8 @@
             this.dtlvFieldsValues = new WinFwk.UITools.DefaultTreeListView();
             this.gbReferences = new System.Windows.Forms.GroupBox();
             this.dtlvReferences = new WinFwk.UITools.DefaultListView();
+            this.tbType = new System.Windows.Forms.TextBox();
+            this.lblType = new System.Windows.Forms.Label();
             this.gbInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -59,18 +61,18 @@
             // 
             // tbAddress
             // 
-            this.tbAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAddress.Location = new System.Drawing.Point(100, 21);
+            this.tbAddress.Location = new System.Drawing.Point(81, 21);
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.ReadOnly = true;
-            this.tbAddress.Size = new System.Drawing.Size(556, 22);
+            this.tbAddress.Size = new System.Drawing.Size(157, 22);
             this.tbAddress.TabIndex = 1;
             // 
             // gbInformation
             // 
             this.gbInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbInformation.Controls.Add(this.tbType);
+            this.gbInformation.Controls.Add(this.lblType);
             this.gbInformation.Controls.Add(this.tbAddress);
             this.gbInformation.Controls.Add(this.lblAddress);
             this.gbInformation.Location = new System.Drawing.Point(3, 3);
@@ -156,6 +158,25 @@
             this.dtlvReferences.View = System.Windows.Forms.View.Details;
             this.dtlvReferences.VirtualMode = true;
             // 
+            // tbType
+            // 
+            this.tbType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbType.Location = new System.Drawing.Point(325, 21);
+            this.tbType.Name = "tbType";
+            this.tbType.ReadOnly = true;
+            this.tbType.Size = new System.Drawing.Size(328, 22);
+            this.tbType.TabIndex = 3;
+            // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Location = new System.Drawing.Point(277, 23);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(48, 17);
+            this.lblType.TabIndex = 2;
+            this.lblType.Text = "Type :";
+            // 
             // InstanceDetailsModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -188,5 +209,7 @@
         private System.Windows.Forms.GroupBox gbReferences;
         private WinFwk.UITools.DefaultTreeListView dtlvFieldsValues;
         private WinFwk.UITools.DefaultListView dtlvReferences;
+        private System.Windows.Forms.TextBox tbType;
+        private System.Windows.Forms.Label lblType;
     }
 }

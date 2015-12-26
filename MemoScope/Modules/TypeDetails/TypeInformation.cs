@@ -10,7 +10,7 @@ namespace MemoScope.Modules.TypeDetails
         public TypeInformation(ClrDumpType clrDumpType)
         {
             ClrDumpType = clrDumpType;
-            Name = TypeHelpers.ManageAlias(ClrDumpType.Name);
+            Name = TypeHelpers.ManageAlias(ClrDumpType.TypeName);
         }
         public override IEnumerable<object> Children
         {
