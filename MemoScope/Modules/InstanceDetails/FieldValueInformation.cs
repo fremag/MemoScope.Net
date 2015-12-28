@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BrightIdeasSoftware;
 using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
@@ -50,8 +49,30 @@ namespace MemoScope.Modules.InstanceDetails
             return values;
         }
 
+        internal static List<FieldValueInformation> GetElements(ClrDumpObject clrDumpObject)
+        {
+            List<FieldValueInformation> values = clrDumpObject.ClrDump.Eval(() =>
+            {
+                var clrObject = new ClrObject(clrDumpObject.Address, clrDumpObject.ClrType, clrDumpObject.IsInterior);
+                var l = new List<FieldValueInformation>();
+                var n = clrDumpObject.ClrType.GetArrayLength(clrDumpObject.Address);
+                for (int i=0; i < n; i++)
+                {
+                    var fieldValue = clrObject[i];
+                    var fieldValueInfo = new FieldValueInformation($"[{i}]", new ClrDumpObject(clrDumpObject.ClrDump, fieldValue.Type, fieldValue.Address, fieldValue.IsInterior));
+                    l.Add(fieldValueInfo);
+                }
+                return l;
+            });
+            return values;
+        }
         public List<FieldValueInformation> GetChildren()
         {
+            if( clrDumpObject.ClrType.IsArray)
+            {
+                var elems = GetElements(clrDumpObject);
+                return elems;
+            }
             var values = GetValues(clrDumpObject);
             return values;
         }

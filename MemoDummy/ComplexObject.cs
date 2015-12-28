@@ -18,7 +18,9 @@ namespace MemoDummy
         TimeSpan time;
         StructData structData;
         Color color;
-        string[] someStrings;
+        public string[] SomeStrings { get; set; }
+        int[] someInts;
+        double[] someDoubles;
 
         public ComplexObject()
         {
@@ -43,8 +45,17 @@ namespace MemoDummy
             value = 4 * id;
             date = new DateTime(2015, 12, 18).AddDays(id);
             time = TimeSpan.Zero.Add(TimeSpan.FromSeconds(id));
+            SomeStrings = new string[id];
+            someInts = new int[id];
+            someDoubles = new double[id];
+            for(int i=0; i < id; i++)
+            {
+                SomeStrings[i] = i.ToString("X");
+                someInts[i] = i;
+                someDoubles[i] = 2 * i;
+            }
         }
-        
+
     }
     enum Flags { _True_, _False_, _FileNotFound_}
 

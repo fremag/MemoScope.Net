@@ -39,7 +39,10 @@ namespace MemoDummy
             {
                 timer1.Enabled = true;
                 var sched = TaskScheduler.FromCurrentSynchronizationContext();
-                Task.Factory.StartNew(() => script.Run()).ContinueWith(task => timer1.Enabled = false, sched);
+                Task.Factory.StartNew(() => script.Run()).ContinueWith(task => {
+                    timer1.Enabled = false;
+                    propertyGrid1.Refresh();
+                    }, sched);
             }
         }
 
