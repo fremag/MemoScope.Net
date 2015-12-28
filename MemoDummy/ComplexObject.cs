@@ -8,6 +8,9 @@ namespace MemoDummy
         static private int n = 0;
         int id;
         string Desc { get; }
+
+        internal StructData StructData => structData;
+
         double value;
         InternalData data;
         bool isEven;
