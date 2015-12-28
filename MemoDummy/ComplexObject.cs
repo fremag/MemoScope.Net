@@ -18,6 +18,7 @@ namespace MemoDummy
         TimeSpan time;
         StructData structData;
         Color color;
+        string[] someStrings;
 
         public ComplexObject()
         {
@@ -28,13 +29,13 @@ namespace MemoDummy
             switch (id % 3)
             {
                 case 0:
-                    structData.myFlags = Flags.False;
+                    structData.myFlags = Flags._False_;
                     break;
                 case 1:
-                    structData.myFlags = Flags.True;
+                    structData.myFlags = Flags._True_;
                     break;
                 default:
-                    structData.myFlags = Flags.FileNotFound;
+                    structData.myFlags = Flags._FileNotFound_;
                     break;
             }
             color = Color.FromArgb(id % 255, (id + 1) % 255, (id + 2 % 255));
@@ -45,7 +46,7 @@ namespace MemoDummy
         }
         
     }
-    enum Flags { True, False, FileNotFound}
+    enum Flags { _True_, _False_, _FileNotFound_}
 
     struct StructData
     {

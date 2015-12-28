@@ -124,6 +124,11 @@ namespace MemoScope.Core.Data
 
                 ClrType type = obj.Type;
                 ClrHeap heap = type.Heap;
+                if (type.IsEnum)
+                {
+                    var val = type.GetValue(obj.Address);
+                    return type.GetEnumName(val);
+                }
 
                 if (type.IsPrimitive || type.IsString)
                     return type.GetValue(obj.Address);
