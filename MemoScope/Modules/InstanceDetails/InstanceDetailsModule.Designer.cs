@@ -36,7 +36,7 @@
             this.gbFields = new System.Windows.Forms.GroupBox();
             this.dtlvFieldsValues = new WinFwk.UITools.DefaultTreeListView();
             this.gbReferences = new System.Windows.Forms.GroupBox();
-            this.dtlvReferences = new WinFwk.UITools.DefaultTreeListView();
+            this.dtlvReferences = new WinFwk.UITools.DefaultListView();
             this.tbType = new System.Windows.Forms.TextBox();
             this.lblType = new System.Windows.Forms.Label();
             this.gbInformation.SuspendLayout();
@@ -208,7 +208,7 @@
         private System.Windows.Forms.GroupBox gbFields;
         private System.Windows.Forms.GroupBox gbReferences;
         private WinFwk.UITools.DefaultTreeListView dtlvFieldsValues;
-        private WinFwk.UITools.DefaultTreeListView dtlvReferences;
+        private WinFwk.UITools.DefaultListView dtlvReferences;
         private System.Windows.Forms.TextBox tbType;
         private System.Windows.Forms.Label lblType;
     }

@@ -17,7 +17,6 @@ namespace MemoScope.Core.Helpers
         public static void SetUpTypeColumn(this ObjectListView listView, string colName)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
-
             listView.FormatCell += (sender, e) =>
             {
                 if (e.Column == col)
@@ -38,7 +37,7 @@ namespace MemoScope.Core.Helpers
                 }
             };
             col.AspectToStringConverter = o => TypeHelpers.ManageAlias((string)o);
-            col.Width = 300;
+
             listView.UseCellFormatEvents = true;
         }
 
@@ -60,7 +59,7 @@ namespace MemoScope.Core.Helpers
         {
             col.AspectToStringFormat = "{0:X}";
             col.TextAlign = HorizontalAlignment.Right;
-            col.Width = 150;
+            col.Width = 110;
 
             listView.CellClick += (o, e) =>
             {
