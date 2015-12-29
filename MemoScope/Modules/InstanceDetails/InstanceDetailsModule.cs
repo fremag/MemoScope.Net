@@ -75,6 +75,7 @@ namespace MemoScope.Modules.InstanceDetails
 
             Name = "#" + ClrDumpObject.ClrDump.Id + " - " + ClrDumpObject.Address.ToString("X");
             Summary = ClrDumpObject.ClrType.Name;
+            Icon = Properties.Resources.elements_small;
         }
     }
 
