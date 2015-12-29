@@ -48,6 +48,11 @@ namespace MemoScope.Core.Helpers
         }
         public static string ManageAlias(string typeName, List<TypeAlias> typeAliases)
         {
+            if( typeName == null)
+            {
+                return "Unknown";
+            }
+
             string alias;
             if (aliasCache.TryGetValue(typeName, out alias))
             {

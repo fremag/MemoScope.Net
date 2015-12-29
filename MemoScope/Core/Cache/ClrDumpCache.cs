@@ -85,7 +85,7 @@ namespace MemoScope.Core.Cache
 
                 type.EnumerateRefsOfObject(address, delegate (ulong child, int offset)
                 {
-                    InsertReferences(address, child);
+                    InsertReferences(child, address);
                 });
 
                 n++;
@@ -195,6 +195,20 @@ namespace MemoScope.Core.Cache
                 list.Add(address);
             }
             return list;
+        }
+
+        public bool HasReferences(ulong instanceAddress)
+        {
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = cxion;
+            cmd.CommandText = "SELECT count(*) FROM InstanceReferences WHERE InstanceAddress=" + instanceAddress;
+            SQLiteDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                var count = dr.GetInt32(0);
+                return count > 0;
+            }
+            return false;
         }
 
         #endregion
