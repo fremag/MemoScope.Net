@@ -197,9 +197,22 @@ namespace MemoScope.Core.Cache
             return list;
         }
 
-        #endregion
+        public bool HasReferences(ulong instanceAddress)
+        {
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = cxion;
+            cmd.CommandText = "SELECT count(*) FROM InstanceReferences WHERE InstanceAddress=" + instanceAddress;
+            SQLiteDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                var count = dr.GetInt32(0);
+                return count > 0;
+            }
+            return false;
+        }
+#endregion
 
-        private void CreateIndices()
+private void CreateIndices()
         {
             ClrDump.MessageBus.Log(this, "Creating Indexes...");
             RunCommand("CREATE UNIQUE INDEX IdxTypes ON Types (Id)");

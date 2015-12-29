@@ -114,5 +114,33 @@ namespace MemoScope.Core
 
             return obj.HasSimpleValue ? obj.SimpleValue : obj.Address.ToString("X");
         }
+
+        public List<ulong> GetReferences(ulong address)
+        {
+            var references = cache.LoadReferences(address);
+            return references;
+        }
+
+        public bool HasReferences(ulong address)
+        {
+            var hasReferences = cache.HasReferences(address);
+            return hasReferences;
+        }
+
+        public string GetObjectTypeName(ulong address)
+        {
+            var name = worker.Eval(() =>
+            {
+                var clrType = Heap.GetObjectType(address);
+                return clrType?.Name;
+            });
+            return name;
+        }
+
+        public ClrType GetObjectType(ulong address)
+        {
+            var clrType = worker.Eval(() => Heap.GetObjectType(address));
+            return clrType;
+        }
     }
 }
