@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.IO;
+using System.Windows.Forms;
 using MemoScope.Modules.Explorer;
 using MemoScope.Modules.TypeStats;
 using MemoScope.Services;
@@ -12,6 +13,8 @@ namespace MemoScope
 {
     public partial class MemoScopeForm : UIModuleForm, IMessageListener<ClrDumpLoadedMessage>
     {
+        public FileInfo[] AutoLoadFiles { get; internal set; }
+
         public MemoScopeForm()
         {
             InitializeComponent();
@@ -28,6 +31,11 @@ namespace MemoScope
             InitModuleFactory();
             DockModule(new ExplorerModule(), DockState.DockLeft, false);
             WindowState = FormWindowState.Maximized;
+
+            if( AutoLoadFiles != null)
+            {
+                msgBus.SendMessage(new OpenDumpRequest(AutoLoadFiles));
+            }
         }
 
         public void HandleMessage(ClrDumpLoadedMessage message)
