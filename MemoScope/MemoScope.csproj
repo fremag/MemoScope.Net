@@ -206,6 +206,7 @@
       <DependentUpon>InstanceDetailsModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\InstanceDetails\InstanceDetailsCommand.cs" />
+    <Compile Include="Modules\InstanceDetails\ReferenceInformation.cs" />
     <Compile Include="Modules\Instances\FieldNode.cs" />
     <Compile Include="Modules\Instances\InstancesCommand.cs" />
     <Compile Include="Modules\Instances\InstancesModule.cs">

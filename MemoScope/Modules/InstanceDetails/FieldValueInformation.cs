@@ -66,7 +66,13 @@ namespace MemoScope.Modules.InstanceDetails
             });
             return values;
         }
+
         public List<FieldValueInformation> GetChildren()
+        {
+            return GetChildren(clrDumpObject);
+        }
+
+        public static List<FieldValueInformation> GetChildren(ClrDumpObject clrDumpObject)
         {
             if( clrDumpObject.ClrType.IsArray)
             {
