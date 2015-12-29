@@ -8,10 +8,11 @@ using WinFwk.UICommands;
 using WinFwk.UIModules;
 using System.Windows.Forms;
 using System;
+using MemoScope.Core;
 
 namespace MemoScope.Modules.Instances
 {
-    public partial class InstancesModule : UIModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>
+    public partial class InstancesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>, UIDataProvider<ClrDumpObject>
     {
         private IList<ClrInstanceField> fields;
 
@@ -39,6 +40,7 @@ namespace MemoScope.Modules.Instances
         internal void Setup(AddressList addressList)
         {
             AddressList = addressList;
+            ClrDump = addressList.ClrDump;
             Name = $"#{addressList.ClrDump.Id} - {addressList.ClrType.Name}";
             CreateDefaultColumns();
             dlvAdresses.RebuildColumns();
@@ -154,7 +156,26 @@ namespace MemoScope.Modules.Instances
         {
             get
             {
-                return new AddressList(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); 
+                var type = dtlvFields.SelectedObject<FieldNode>()?.ClrType;
+                if (type != null)
+                {
+                    return new AddressList(AddressList.ClrDump, type);
+                }
+                return null;
+            }
+        }
+
+        ClrDumpObject UIDataProvider<ClrDumpObject>.Data
+        {
+            get
+            {
+                var selectedAddressObj = dlvAdresses.SelectedObject;
+                if( selectedAddressObj is ulong)
+                {
+                    ulong address = (ulong)selectedAddressObj;
+                    return new ClrDumpObject(AddressList.ClrDump, AddressList.ClrDump.GetObjectType(address), address);
+                }
+                return null;
             }
         }
     }

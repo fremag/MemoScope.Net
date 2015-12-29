@@ -4,15 +4,13 @@ using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
-using WinFwk.UIModules;
 using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.TypeDetails
 {
-    public partial class TypeDetailsModule : UIModule
+    public partial class TypeDetailsModule : UIClrDumpModule
     {
         private ClrType type;
-        private ClrDump dump;
         public TypeDetailsModule()
         {
             InitializeComponent();
@@ -22,21 +20,21 @@ namespace MemoScope.Modules.TypeDetails
         public void Setup(ClrDumpType dumpType)
         {
             type = dumpType.ClrType;
-            dump = dumpType.ClrDump;
+            ClrDump = dumpType.ClrDump;
             pgTypeInfo.SelectedObject = new TypeInformations(dumpType);
 
             Generator.GenerateColumns(dlvFields, typeof(FieldInformation), false);
             dlvFields.SetUpTypeColumn(nameof(FieldInformation.Type));
             dlvFields.SetObjects(dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField)));
             dlvFields.RegisterDataProvider(() => {
-                return new ClrDumpType(dump, dlvFields.SelectedObject<FieldInformation>()?.ClrType);
+                return new ClrDumpType(ClrDump, dlvFields.SelectedObject<FieldInformation>()?.ClrType);
             }, this);
 
             Generator.GenerateColumns(dlvMethods, typeof(MethodInformation), false);
             dlvMethods.SetUpTypeColumn(nameof(MethodInformation.Type));
             dlvMethods.SetObjects(dumpType.Methods.Select(clrMethod => new MethodInformation(dumpType, clrMethod)));
             dlvMethods.RegisterDataProvider(() => {
-                return new ClrDumpType(dump, dlvMethods.SelectedObject<MethodInformation>()?.ClrType);
+                return new ClrDumpType(ClrDump, dlvMethods.SelectedObject<MethodInformation>()?.ClrType);
             }, this);
 
             Generator.GenerateColumns(dtlvParentClasses, typeof(AbstractTypeInformation), false);
@@ -53,7 +51,7 @@ namespace MemoScope.Modules.TypeDetails
 
         public override void PostInit()
         {
-            Name = "#"+dump.Id+" - "+type.Name;
+            Name = $"#{ClrDump.Id} - {type.Name}";
             Summary = type.Name;
         }
     }

@@ -2,8 +2,6 @@
 using System.Windows.Forms;
 using BrightIdeasSoftware;
 using MemoScope.Core;
-using WinFwk.UIModules;
-using MemoScope.Modules.TypeDetails;
 using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
@@ -11,9 +9,8 @@ using MemoScope.Modules.Instances;
 
 namespace MemoScope.Modules.TypeStats
 {
-    public partial class TypeStatModule : UIModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>
+    public partial class TypeStatModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>
     {
-        protected ClrDump ClrDump { get; set; }
         private List<ClrTypeStats> typeStats;
         public TypeStatModule()
         {

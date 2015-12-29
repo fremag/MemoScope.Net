@@ -1,5 +1,6 @@
 ﻿using MemoScope.Core.Data;
 using MemoScope.Modules.InstanceDetails;
+using System.Windows.Forms;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
@@ -14,6 +15,12 @@ namespace MemoScope.Modules.TypeDetails
 
         protected override void HandleData(ClrDumpObject data)
         {
+            if( data == null)
+            {
+                MessageBox.Show("Can't show instance details: nothing selected !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             UIModuleFactory.CreateModule<InstanceDetailsModule>(
                 mod => { mod.UIModuleParent = selectedModule; mod.Setup(data); },
                 mod => DockModule(mod)

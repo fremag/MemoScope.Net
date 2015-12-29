@@ -211,6 +211,15 @@
   <data name="geolocation_sight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\large\geolocation_sight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="award_star_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\large\award_star_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="award_star_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\large\award_star_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="award_star_gold_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\large\award_star_gold_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="elements_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\elements.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

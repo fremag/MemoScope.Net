@@ -1,12 +1,12 @@
 ﻿using BrightIdeasSoftware;
+using MemoScope.Core;
 using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using System.Collections.Generic;
-using WinFwk.UIModules;
 
 namespace MemoScope.Modules.InstanceDetails
 {
-    public partial class InstanceDetailsModule : UIModule
+    public partial class InstanceDetailsModule : UIClrDumpModule
     {
         private ClrDumpObject ClrDumpObject { get; set; }
         private List<FieldValueInformation> mainFieldValues;
@@ -19,6 +19,7 @@ namespace MemoScope.Modules.InstanceDetails
         internal void Setup(ClrDumpObject clrDumpObject)
         {
             ClrDumpObject = clrDumpObject;
+            ClrDump = clrDumpObject.ClrDump;
             tbAddress.Text = clrDumpObject.Address.ToString("X");
             tbType.Text = clrDumpObject.ClrType.Name;
 

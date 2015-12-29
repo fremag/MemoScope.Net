@@ -164,6 +164,12 @@
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
+    <Compile Include="Core\UIClrDumpModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\UIClrDumpModule.Designer.cs">
+      <DependentUpon>UIClrDumpModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\ClrTypeStats.cs" />
     <Compile Include="Core\Dac\AbstractDacFinder.cs" />
     <Compile Include="Core\Dac\DacFinder32.cs" />
@@ -187,6 +193,16 @@
     <Compile Include="Modules\About\AboutModule.Designer.cs">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Bookmarks\BookmarkCommand.cs" />
+    <Compile Include="Modules\Bookmarks\BookmarkModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Bookmarks\BookmarkModule.Designer.cs">
+      <DependentUpon>BookmarkModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Bookmarks\DeleteBookmarkCommand.cs" />
+    <Compile Include="Modules\Bookmarks\AddBookmarkCommand.cs" />
+    <Compile Include="Modules\Bookmarks\BookmarkRequest.cs" />
     <Compile Include="Modules\Explorer\AbstractDumpExplorerData.cs" />
     <Compile Include="Modules\Explorer\DirectoryData.cs" />
     <Compile Include="Modules\Explorer\ExplorerModule.cs">
@@ -341,6 +357,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\Large\award_star_add.png" />
+    <Content Include="Icons\Large\award_star_delete.png" />
+    <Content Include="Icons\Large\award_star_gold_blue.png" />
     <Content Include="Icons\Large\blueprint.png" />
     <Content Include="Icons\Large\bow.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
@@ -458,9 +477,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\Bookmarks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
