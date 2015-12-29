@@ -85,7 +85,7 @@ namespace MemoScope.Core.Cache
 
                 type.EnumerateRefsOfObject(address, delegate (ulong child, int offset)
                 {
-                    InsertReferences(address, child);
+                    InsertReferences(child, address);
                 });
 
                 n++;
