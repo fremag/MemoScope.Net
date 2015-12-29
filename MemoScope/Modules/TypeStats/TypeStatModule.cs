@@ -82,7 +82,7 @@ namespace MemoScope.Modules.TypeStats
                 var obj = dlvTypeStats.SelectedObject as ClrTypeStats;
                 if (obj != null)
                 {
-                    return new AddressList(ClrDump, obj.Type, ClrDump.GetInstances(obj.Id));
+                    return new AddressList(ClrDump, obj.Type);
                 }
                 return null;
             }

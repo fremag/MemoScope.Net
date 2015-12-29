@@ -11,7 +11,7 @@ using System;
 
 namespace MemoScope.Modules.Instances
 {
-    public partial class InstancesModule : UIModule, UIDataProvider<ClrDumpType>
+    public partial class InstancesModule : UIModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>
     {
         private IList<ClrInstanceField> fields;
 
@@ -39,7 +39,7 @@ namespace MemoScope.Modules.Instances
         internal void Setup(AddressList addressList)
         {
             AddressList = addressList;
-            Name = $"#{addressList.ClrDump.Id} - {TypeHelpers.ManageAlias(addressList.ClrType.Name)}";
+            Name = $"#{addressList.ClrDump.Id} - {addressList.ClrType.Name}";
             CreateDefaultColumns();
             dlvAdresses.RebuildColumns();
 
@@ -50,12 +50,13 @@ namespace MemoScope.Modules.Instances
             dtlvFields.CanExpandGetter = o => ((FieldNode)o).HasChildren;
             dtlvFields.ChildrenGetter = o => ((FieldNode)o).Children;
             dtlvFields.RegisterDataProvider(() => { return new ClrDumpType(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); }, this);
+            dtlvFields.RegisterDataProvider( ()=>((UIDataProvider<AddressList>)this).Data, this);
         }
 
         private void CreateDefaultColumns()
         {
             dlvAdresses.AllColumns.Clear();
-            dlvAdresses.AddAddressColumn(o => (ulong)o, (o) => AddressList.ClrType, AddressList.ClrDump, this);
+            dlvAdresses.AddAddressColumn(o => o, (o) => AddressList.ClrType, AddressList.ClrDump, this);
             dlvAdresses.AddSimpleValueColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
             dlvAdresses.AddSizeColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
         }
@@ -146,6 +147,14 @@ namespace MemoScope.Modules.Instances
             get
             {
                 return new ClrDumpType(AddressList.ClrDump, AddressList.ClrType);
+            }
+        }
+
+        AddressList UIDataProvider<AddressList>.Data
+        {
+            get
+            {
+                return new AddressList(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); 
             }
         }
     }

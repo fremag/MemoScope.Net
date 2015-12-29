@@ -59,6 +59,12 @@ namespace MemoScope.Core
             return stats;
         }
 
+        public List<ulong> GetInstances(ClrType type)
+        {
+            int typeId = cache.GetTypeId(type.Name);
+            return GetInstances(typeId);
+        }
+
         public List<ulong> GetInstances(int typeId)
         {
             var instances = cache.LoadInstances(typeId);

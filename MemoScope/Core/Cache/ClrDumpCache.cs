@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using WinFwk.UITools.Log;
+using System;
 
 namespace MemoScope.Core.Cache
 {
@@ -130,6 +131,20 @@ namespace MemoScope.Core.Cache
                 list.Add(clrTypeStats);
             }
             return list;
+        }
+
+        public int GetTypeId(string name)
+        {
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = cxion;
+            cmd.CommandText = $"SELECT Id FROM Types WHERE name='{name}'";
+            SQLiteDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                int id = dr.GetInt32(0);
+                return id;
+            }
+            return -1;
         }
 
         #endregion

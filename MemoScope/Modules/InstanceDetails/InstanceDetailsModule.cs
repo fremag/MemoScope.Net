@@ -1,9 +1,7 @@
 ﻿using BrightIdeasSoftware;
 using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
-using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
-using System.Linq;
 using WinFwk.UIModules;
 
 namespace MemoScope.Modules.InstanceDetails
@@ -22,9 +20,28 @@ namespace MemoScope.Modules.InstanceDetails
             tbAddress.Text = clrDumpObject.Address.ToString("X");
             tbType.Text = clrDumpObject.ClrType.Name;
             Generator.GenerateColumns(dtlvFieldsValues, typeof(FieldValueInformation), false);
-            ObjectListViewHelpers.SetUpTypeColumn(dtlvFieldsValues, nameof(FieldValueInformation.TypeName));
             dtlvFieldsValues.CanExpandGetter = o => ((FieldValueInformation)o).HasChildren;
             dtlvFieldsValues.ChildrenGetter = o => ((FieldValueInformation)o).GetChildren();
+
+            dtlvFieldsValues.RegisterDataProvider(() =>
+            {
+                var type = dtlvFieldsValues.SelectedObject<FieldValueInformation>()?.ClrType;
+                if (type != null)
+                {
+                    return new AddressList(ClrDumpObject.ClrDump, type);
+                }
+                return null;
+            }, this);
+            dtlvFieldsValues.RegisterDataProvider(() =>
+            {
+                var type = dtlvFieldsValues.SelectedObject<FieldValueInformation>()?.ClrType;
+                if (type != null)
+                {
+                    return new ClrDumpType(ClrDumpObject.ClrDump, type);
+                }
+                return null;
+            }, this);
+
         }
 
         public override void Init( )
@@ -35,7 +52,8 @@ namespace MemoScope.Modules.InstanceDetails
 
         public override void PostInit()
         {
-            ObjectListViewHelpers.SetupAddressColumn(dtlvFieldsValues, nameof(FieldValueInformation.Address),
+            ObjectListViewHelpers.SetUpTypeColumn(dtlvFieldsValues, nameof(FieldValueInformation.TypeName));
+            ObjectListViewHelpers.SetUpAddressColumn(dtlvFieldsValues, nameof(FieldValueInformation.Address),
                 (o) => ((FieldValueInformation)o).Address,
                 (o) => ((FieldValueInformation)o).ClrType,
                 ClrDumpObject.ClrDump, this);

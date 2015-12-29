@@ -37,6 +37,7 @@ namespace MemoScope.Core.Helpers
                 }
             };
             col.AspectToStringConverter = o => TypeHelpers.ManageAlias((string)o);
+
             listView.UseCellFormatEvents = true;
         }
 
@@ -47,7 +48,8 @@ namespace MemoScope.Core.Helpers
             SetupAddressColumn(listView, col, aspectGetter, typeGetter, dump, parentModule);
             listView.AllColumns.Add(col);
         }
-        public static void SetupAddressColumn(ObjectListView listView, string colName, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
+
+        public static void SetUpAddressColumn(ObjectListView listView, string colName, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
             SetupAddressColumn(listView, col, aspectGetter, typeGetter, dump, parentModule);
