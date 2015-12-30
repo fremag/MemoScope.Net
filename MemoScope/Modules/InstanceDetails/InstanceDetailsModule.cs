@@ -47,8 +47,8 @@ namespace MemoScope.Modules.InstanceDetails
                 return null;
             }, this);
 
-            ObjectListViewHelpers.SetUpTypeColumn(dtlvFieldsValues, nameof(FieldValueInformation.TypeName));
-            ObjectListViewHelpers.SetUpAddressColumn(dtlvFieldsValues, nameof(FieldValueInformation.Address),
+            dtlvFieldsValues.SetUpTypeColumn(nameof(FieldValueInformation.TypeName));
+            dtlvFieldsValues.SetUpAddressColumn(nameof(FieldValueInformation.Address),
                 (o) => ((FieldValueInformation)o).Address,
                 (o) => ((FieldValueInformation)o).ClrType,
                 ClrDumpObject.ClrDump, this);
@@ -57,8 +57,8 @@ namespace MemoScope.Modules.InstanceDetails
             Generator.GenerateColumns(dtlvReferences, typeof(ReferenceInformation), false);
             dtlvReferences.CanExpandGetter = o => ((ReferenceInformation)o).HasChildren;
             dtlvReferences.ChildrenGetter = o => ((ReferenceInformation)o).Children;
-            ObjectListViewHelpers.SetUpTypeColumn(dtlvReferences, nameof(ReferenceInformation.TypeName));
-            ObjectListViewHelpers.SetUpAddressColumn(dtlvReferences, nameof(ReferenceInformation.Address),
+            dtlvReferences.SetUpTypeColumn(nameof(ReferenceInformation.TypeName));
+            dtlvReferences.SetUpAddressColumn(nameof(ReferenceInformation.Address),
             (o) => ((ReferenceInformation)o).Address,
             (o) => ((ReferenceInformation)o).ClrType,
             ClrDumpObject.ClrDump, this);

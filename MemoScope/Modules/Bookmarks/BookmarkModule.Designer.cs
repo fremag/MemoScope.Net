@@ -28,10 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.dlvBookmarks = new WinFwk.UITools.DefaultListView();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvBookmarks)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dlvBookmarks
+            // 
+            this.dlvBookmarks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlvBookmarks.FullRowSelect = true;
+            this.dlvBookmarks.HideSelection = false;
+            this.dlvBookmarks.Location = new System.Drawing.Point(0, 0);
+            this.dlvBookmarks.Name = "dlvBookmarks";
+            this.dlvBookmarks.OwnerDraw = true;
+            this.dlvBookmarks.ShowGroups = false;
+            this.dlvBookmarks.ShowImagesOnSubItems = true;
+            this.dlvBookmarks.Size = new System.Drawing.Size(568, 548);
+            this.dlvBookmarks.TabIndex = 0;
+            this.dlvBookmarks.UseCompatibleStateImageBehavior = false;
+            this.dlvBookmarks.View = System.Windows.Forms.View.Details;
+            this.dlvBookmarks.VirtualMode = true;
+            // 
+            // BookmarkModule
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dlvBookmarks);
+            this.Name = "BookmarkModule";
+            this.Size = new System.Drawing.Size(568, 548);
+            ((System.ComponentModel.ISupportInitialize)(this.dlvBookmarks)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private WinFwk.UITools.DefaultListView dlvBookmarks;
     }
 }

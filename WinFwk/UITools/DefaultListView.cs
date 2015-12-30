@@ -1,4 +1,5 @@
 ﻿using BrightIdeasSoftware;
+using System.Windows.Forms;
 
 namespace WinFwk.UITools
 {
@@ -9,5 +10,11 @@ namespace WinFwk.UITools
             this.Init();
         }
 
+        public void BuildGroups(string colName, SortOrder order, bool colIsVisible=false)
+        {
+            var col = AllColumns.Find(c => c.Name == colName);
+            col.IsVisible = colIsVisible;
+            BuildGroups(col, order);
+        }
     }
 }

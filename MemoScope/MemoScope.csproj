@@ -161,6 +161,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Bookmark\BookmarkMgr.cs" />
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Modules\About\AboutModule.Designer.cs">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Bookmark\Bookmark.cs" />
     <Compile Include="Modules\Bookmarks\BookmarkCommand.cs" />
     <Compile Include="Modules\Bookmarks\BookmarkModule.cs">
       <SubType>UserControl</SubType>
@@ -200,9 +202,10 @@
     <Compile Include="Modules\Bookmarks\BookmarkModule.Designer.cs">
       <DependentUpon>BookmarkModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Bookmarks\BookmarkService.cs" />
     <Compile Include="Modules\Bookmarks\DeleteBookmarkCommand.cs" />
     <Compile Include="Modules\Bookmarks\AddBookmarkCommand.cs" />
-    <Compile Include="Modules\Bookmarks\BookmarkRequest.cs" />
+    <Compile Include="Modules\Bookmarks\BookmarkMessage.cs" />
     <Compile Include="Modules\Explorer\AbstractDumpExplorerData.cs" />
     <Compile Include="Modules\Explorer\DirectoryData.cs" />
     <Compile Include="Modules\Explorer\ExplorerModule.cs">
@@ -294,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\About\AboutModule.resx">
       <DependentUpon>AboutModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Bookmarks\BookmarkModule.resx">
+      <DependentUpon>BookmarkModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>

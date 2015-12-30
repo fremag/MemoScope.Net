@@ -50,7 +50,7 @@ namespace MemoScope.Core.Helpers
             listView.AllColumns.Add(col);
         }
 
-        public static void SetUpAddressColumn(ObjectListView listView, string colName, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
+        public static void SetUpAddressColumn(this ObjectListView listView, string colName, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
             SetupAddressColumn(listView, col, aspectGetter, typeGetter, dump, parentModule);

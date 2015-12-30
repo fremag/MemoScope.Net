@@ -11,7 +11,7 @@ namespace MemoScope.Modules.Bookmarks
         }
         protected override void HandleData(ClrDumpObject data)
         {
-            
+            MessageBus.SendMessage(new BookmarkMessage(BookmarkAction.Add, data));
         }
     }
 }

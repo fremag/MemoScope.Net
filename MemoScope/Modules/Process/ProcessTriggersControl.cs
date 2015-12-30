@@ -40,8 +40,7 @@ namespace MemoScope.Modules.Process
         private void RefreshTriggers()
         {
             defaultListView1.SetObjects(triggers);
-            var col = defaultListView1.AllColumns.Find(c => c.Name == nameof(DumpTrigger.Group));
-            defaultListView1.BuildGroups(col, SortOrder.Ascending);
+            defaultListView1.BuildGroups(nameof(DumpTrigger.Group), SortOrder.Ascending);
         }
 
         private void tsbSaveAllTriggers_Click(object sender, System.EventArgs e)

@@ -7,6 +7,7 @@ using WinFwk.UITools.Log;
 using WinFwk.UIMessages;
 using MemoScope.Core.Cache;
 using MemoScope.Core.Data;
+using MemoScope.Core.Bookmark;
 
 namespace MemoScope.Core
 {
@@ -19,10 +20,11 @@ namespace MemoScope.Core
         public string DumpPath { get; }
         public ClrHeap Heap => Runtime.GetHeap();
         public MessageBus MessageBus { get; }
+        public BookmarkMgr BookmarkMgr { get; }
 
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;
-
+        
         public ClrDump(DataTarget target, string dumpPath, MessageBus msgBus)
         {
             Id = n++;
@@ -34,6 +36,8 @@ namespace MemoScope.Core
 
             cache = new ClrDumpCache(this);
             cache.Init();
+
+            BookmarkMgr = new BookmarkMgr(dumpPath);
         }
 
         private void InitRuntime()
