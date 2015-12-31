@@ -19,10 +19,7 @@ namespace MemoScope.Modules.Bookmarks
         {
             ClrDump = clrDump;
             Generator.GenerateColumns(dlvBookmarks, typeof(Bookmark), false);
-            dlvBookmarks.SetUpAddressColumn(nameof(Bookmark.Address), 
-                o => ((Bookmark)o).Address, 
-                o => clrDump.GetObjectType(((Bookmark)o).Address),
-                ClrDump, this);
+            dlvBookmarks.SetUpAddressColumn(nameof(Bookmark.Address), o => ((Bookmark)o).Address, ClrDump, this);
             dlvBookmarks.SetUpTypeColumn(nameof(Bookmark.TypeName));
             LoadBookmarks();
         }

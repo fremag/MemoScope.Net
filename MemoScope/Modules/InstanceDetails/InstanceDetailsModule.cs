@@ -48,20 +48,14 @@ namespace MemoScope.Modules.InstanceDetails
             }, this);
 
             dtlvFieldsValues.SetUpTypeColumn(nameof(FieldValueInformation.TypeName));
-            dtlvFieldsValues.SetUpAddressColumn(nameof(FieldValueInformation.Address),
-                (o) => ((FieldValueInformation)o).Address,
-                (o) => ((FieldValueInformation)o).ClrType,
-                ClrDumpObject.ClrDump, this);
+            dtlvFieldsValues.SetUpAddressColumn(nameof(FieldValueInformation.Address), o => ((FieldValueInformation)o).Address, ClrDumpObject.ClrDump, this);
 
             // References
             Generator.GenerateColumns(dtlvReferences, typeof(ReferenceInformation), false);
             dtlvReferences.CanExpandGetter = o => ((ReferenceInformation)o).HasChildren;
             dtlvReferences.ChildrenGetter = o => ((ReferenceInformation)o).Children;
             dtlvReferences.SetUpTypeColumn(nameof(ReferenceInformation.TypeName));
-            dtlvReferences.SetUpAddressColumn(nameof(ReferenceInformation.Address),
-            (o) => ((ReferenceInformation)o).Address,
-            (o) => ((ReferenceInformation)o).ClrType,
-            ClrDumpObject.ClrDump, this);
+            dtlvReferences.SetUpAddressColumn(nameof(ReferenceInformation.Address), o => ((ReferenceInformation)o).Address, ClrDumpObject.ClrDump, this);
         }
 
         public override void Init( )

@@ -58,7 +58,7 @@ namespace MemoScope.Modules.Instances
         private void CreateDefaultColumns()
         {
             dlvAdresses.AllColumns.Clear();
-            dlvAdresses.AddAddressColumn(o => o, (o) => AddressList.ClrType, AddressList.ClrDump, this);
+            dlvAdresses.AddAddressColumn(o => o, AddressList.ClrDump, this);
             dlvAdresses.AddSimpleValueColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
             dlvAdresses.AddSizeColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
         }

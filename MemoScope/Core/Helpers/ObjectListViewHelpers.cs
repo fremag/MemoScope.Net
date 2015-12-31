@@ -42,21 +42,21 @@ namespace MemoScope.Core.Helpers
             listView.UseCellFormatEvents = true;
         }
 
-        public static void AddAddressColumn(this ObjectListView listView, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
+        public static void AddAddressColumn(this ObjectListView listView, AspectGetterDelegate addressGetter, ClrDump dump, UIModule parentModule)
         {
-            var col = new OLVColumn("Address", null) {AspectGetter = aspectGetter};
+            var col = new OLVColumn("Address", null) {AspectGetter = addressGetter};
 
-            SetupAddressColumn(listView, col, aspectGetter, typeGetter, dump, parentModule);
+            SetupAddressColumn(listView, col, addressGetter, dump, parentModule);
             listView.AllColumns.Add(col);
         }
 
-        public static void SetUpAddressColumn(this ObjectListView listView, string colName, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
+        public static void SetUpAddressColumn(this ObjectListView listView, string colName, AspectGetterDelegate addressGetter, ClrDump dump, UIModule parentModule)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
-            SetupAddressColumn(listView, col, aspectGetter, typeGetter, dump, parentModule);
+            SetupAddressColumn(listView, col, addressGetter, dump, parentModule);
         }
 
-        public static void SetupAddressColumn(ObjectListView listView, OLVColumn col, AspectGetterDelegate aspectGetter, Func<object, ClrType> typeGetter, ClrDump dump, UIModule parentModule)
+        public static void SetupAddressColumn(ObjectListView listView, OLVColumn col, AspectGetterDelegate aspectGetter, ClrDump dump, UIModule parentModule)
         {
             col.AspectToStringFormat = "{0:X}";
             col.TextAlign = HorizontalAlignment.Right;
@@ -66,11 +66,15 @@ namespace MemoScope.Core.Helpers
             {
                 if (e.ClickCount == 2 && e.Column == col)
                 {
+                    if( e.Model == null)
+                    {
+                        return;
+                    }
                     var addressObj = aspectGetter(e.Model);
                     if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
-                        var type = typeGetter(e.Item.RowObject);
+                        var type = dump.GetObjectType(address);
                         var clrDumpObject = new ClrDumpObject(dump, type, address);
                         UIModuleFactory.CreateModule<InstanceDetailsModule>(
                             mod => { mod.UIModuleParent = parentModule; mod.Setup(clrDumpObject); },
@@ -79,14 +83,18 @@ namespace MemoScope.Core.Helpers
                     }
                 }
             };
-            listView.RegisterDataProvider(
-                () =>
+            listView.RegisterDataProvider( () =>
                 {
-                    var addressObj = aspectGetter(listView.SelectedObject);
+                    var selectedObject = listView.SelectedObject;
+                    if(selectedObject == null)
+                    {
+                        return null;
+                    }
+                    var addressObj = aspectGetter(selectedObject);
                     if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
-                        var type = typeGetter(listView.SelectedObject);
+                        var type = dump.GetObjectType(address);
                         var clrDumpObject = new ClrDumpObject(dump, type, address);
                         return clrDumpObject;
                     }
