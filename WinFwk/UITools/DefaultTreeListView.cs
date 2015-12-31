@@ -10,5 +10,12 @@ namespace WinFwk.UITools
             HideSelection = false;
             ShowImagesOnSubItems = true;
         }
+
+        public void InitData<T>() where T : ITreeNodeInformation<T>
+        {
+            Generator.GenerateColumns(this, typeof(T), false);
+            CanExpandGetter = o => ((T)o).CanExpand;
+            ChildrenGetter = o => ((T)o).Children;
+        }
     }
 }

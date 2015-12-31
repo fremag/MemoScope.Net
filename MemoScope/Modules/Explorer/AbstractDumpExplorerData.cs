@@ -3,10 +3,11 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using BrightIdeasSoftware;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Explorer
 {
-    public abstract class AbstractDumpExplorerData
+    public abstract class AbstractDumpExplorerData : ITreeNodeInformation<AbstractDumpExplorerData>
     {
         [OLVColumn(Width = 350, ImageAspectName = nameof(Icon))]
         public string Name { get; protected set; }
@@ -16,10 +17,10 @@ namespace MemoScope.Modules.Explorer
 
         public abstract FileInfo FileInfo { get; }
 
-        public abstract bool HasChildren { get;  }
-        public abstract IEnumerable<AbstractDumpExplorerData> Children { get;  }
+        public abstract bool CanExpand { get;  }
+        public abstract List<AbstractDumpExplorerData> Children { get;  }
 
-        public static IEnumerable<AbstractDumpExplorerData> GetItems(string mainDir)
+        public static List<AbstractDumpExplorerData> GetItems(string mainDir)
         {
             string[] dirs = Directory.GetDirectories(mainDir);
             List<AbstractDumpExplorerData> items = new List<AbstractDumpExplorerData>();

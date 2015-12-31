@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="UIModules\UIModuleHelper.cs" />
     <Compile Include="UIServices\AbstractUIService.cs" />
+    <Compile Include="UITools\ITreeNodeInformation.cs" />
     <Compile Include="UITools\Log\LogHelper.cs" />
     <Compile Include="UITools\Settings\UISettings.cs" />
     <Compile Include="UITools\DefaultListView.cs">

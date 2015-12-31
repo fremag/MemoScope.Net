@@ -21,11 +21,8 @@ namespace MemoScope.Modules.Explorer
             {
                 tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             }
-            dtlvExplorer.CanExpandGetter = model => ((AbstractDumpExplorerData) model).HasChildren;
-            dtlvExplorer.ChildrenGetter= model => ((AbstractDumpExplorerData) model).Children;
-
+            dtlvExplorer.InitData<AbstractDumpExplorerData>();
             RefreshRootDir();
-            Generator.GenerateColumns(dtlvExplorer, typeof(AbstractDumpExplorerData), false);
         }
 
         private void RefreshRootDir()

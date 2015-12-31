@@ -14,7 +14,7 @@ namespace MemoScope.Modules.Explorer
         }
 
         public override long Size => FileInfo.Length/1000000;
-        public override bool HasChildren => false;
-        public override IEnumerable<AbstractDumpExplorerData> Children => null;
+        public override bool CanExpand => false;
+        public override List<AbstractDumpExplorerData> Children => null;
     }
 }

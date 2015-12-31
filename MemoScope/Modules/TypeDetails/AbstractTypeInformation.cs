@@ -1,12 +1,14 @@
-﻿using BrightIdeasSoftware;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using BrightIdeasSoftware;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.TypeDetails
 {
-    public abstract class AbstractTypeInformation
+    public abstract class AbstractTypeInformation : ITreeNodeInformation<AbstractTypeInformation>
     {
-        public abstract bool HasChildren { get; }
-        public abstract IEnumerable<object> Children { get; }
+        public abstract bool CanExpand { get; }
+        public abstract List<AbstractTypeInformation> Children { get; }
+
         [OLVColumn(Title = "Name", FillsFreeSpace = true)]
         public string Name { get; protected set; }
     }

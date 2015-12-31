@@ -37,10 +37,9 @@ namespace MemoScope.Modules.TypeDetails
                 return new ClrDumpType(ClrDump, dlvMethods.SelectedObject<MethodInformation>()?.ClrType);
             }, this);
 
-            Generator.GenerateColumns(dtlvParentClasses, typeof(AbstractTypeInformation), false);
+            dtlvParentClasses.InitData<AbstractTypeInformation>();
             dtlvParentClasses.SetUpTypeColumn(nameof(AbstractTypeInformation.Name));
-            dtlvParentClasses.CanExpandGetter = model => ((AbstractTypeInformation)model).HasChildren;
-            dtlvParentClasses.ChildrenGetter = model => ((AbstractTypeInformation)model).Children;
+
             var l = new List<object>();
             var typeInformation = new TypeInformation(dumpType.BaseType);
             var interfaceInformations = InterfaceInformation.GetInterfaces(dumpType);

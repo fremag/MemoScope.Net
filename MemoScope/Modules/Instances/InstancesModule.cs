@@ -45,12 +45,10 @@ namespace MemoScope.Modules.Instances
             CreateDefaultColumns();
             dlvAdresses.RebuildColumns();
 
-            Generator.GenerateColumns(dtlvFields, typeof(FieldNode), false);
+            dtlvFields.InitData<FieldNode>();
             dtlvFields.SetUpTypeColumn(nameof(FieldNode.TypeName));
             dtlvFields.CheckBoxes = true;
             dtlvFields.CheckStatePutter += OnCheckStateChanged;
-            dtlvFields.CanExpandGetter = o => ((FieldNode)o).HasChildren;
-            dtlvFields.ChildrenGetter = o => ((FieldNode)o).Children;
             dtlvFields.RegisterDataProvider(() => { return new ClrDumpType(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); }, this);
             dtlvFields.RegisterDataProvider( ()=>((UIDataProvider<AddressList>)this).Data, this);
         }

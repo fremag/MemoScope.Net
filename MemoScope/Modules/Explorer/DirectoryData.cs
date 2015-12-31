@@ -18,7 +18,7 @@ namespace MemoScope.Modules.Explorer
 
         public override FileInfo FileInfo => null;
 
-        public override bool HasChildren
+        public override bool CanExpand
         {
             get
             {
@@ -27,6 +27,6 @@ namespace MemoScope.Modules.Explorer
             } 
         }
 
-        public override IEnumerable<AbstractDumpExplorerData> Children => GetItems(DirInfo.FullName);
+        public override List<AbstractDumpExplorerData> Children => GetItems(DirInfo.FullName);
     }
 }

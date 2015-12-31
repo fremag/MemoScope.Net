@@ -11,21 +11,14 @@ namespace MemoScope.Modules.TypeDetails
     {
         public ClrDump ClrDump { get; }
         public ClrInterface ClrInterface { get; }
+        public override bool CanExpand=> ClrInterface.BaseInterface != null;
 
-        public override bool HasChildren
-        {
-            get
-            {
-                return ClrInterface.BaseInterface != null;
-            }
-        }
-
-        public override IEnumerable<object> Children
+        public override List<AbstractTypeInformation> Children
         {
             get
             {
                 var x = new InterfaceInformation(ClrDump, ClrInterface.BaseInterface);
-                var l = new List<object>();
+                var l = new List<AbstractTypeInformation>();
                 l.Add(x);
                 return l;
             }

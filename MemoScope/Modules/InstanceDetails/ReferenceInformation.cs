@@ -3,10 +3,11 @@ using MemoScope.Core;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Diagnostics.Runtime;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.InstanceDetails
 {
-    public class ReferenceInformation
+    public class ReferenceInformation : ITreeNodeInformation<ReferenceInformation>
     {
         ClrDump ClrDump { get; }
 
@@ -24,7 +25,7 @@ namespace MemoScope.Modules.InstanceDetails
             Address = address;
        }
 
-        public bool HasChildren => ClrDump.HasReferences(Address);
+        public bool CanExpand => ClrDump.HasReferences(Address);
         public List<ReferenceInformation> Children => ClrDump.GetReferences(Address).Select(address => new ReferenceInformation(ClrDump, address)).ToList();
     }
 }

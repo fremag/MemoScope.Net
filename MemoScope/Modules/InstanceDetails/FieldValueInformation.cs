@@ -3,10 +3,11 @@ using BrightIdeasSoftware;
 using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.InstanceDetails
 {
-    internal class FieldValueInformation
+    internal class FieldValueInformation : ITreeNodeInformation<FieldValueInformation>
     {
         private ClrDumpObject clrDumpObject;
         private string name;
@@ -30,7 +31,9 @@ namespace MemoScope.Modules.InstanceDetails
         public string TypeName => clrDumpObject.TypeName;
 
         public ClrType ClrType => clrDumpObject.ClrType;
-        public bool HasChildren => ! clrDumpObject.IsPrimitiveOrString;
+        
+        public bool CanExpand => ! clrDumpObject.IsPrimitiveOrString;
+        public List<FieldValueInformation> Children => GetChildren(clrDumpObject);
 
         internal static List<FieldValueInformation> GetValues(ClrDumpObject clrDumpObject)
         {
@@ -65,11 +68,6 @@ namespace MemoScope.Modules.InstanceDetails
                 return l;
             });
             return values;
-        }
-
-        public List<FieldValueInformation> GetChildren()
-        {
-            return GetChildren(clrDumpObject);
         }
 
         public static List<FieldValueInformation> GetChildren(ClrDumpObject clrDumpObject)

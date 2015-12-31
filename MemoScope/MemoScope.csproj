@@ -260,6 +260,7 @@
     <Compile Include="Modules\Process\ProcessWrapper.cs" />
     <Compile Include="Modules\TypeDetails\AbstractTypeInformation.cs" />
     <Compile Include="Core\Data\ClrDumpType.cs" />
+    <Compile Include="Modules\TypeDetails\DummyTypeInformation.cs" />
     <Compile Include="Modules\TypeDetails\FieldInformation.cs" />
     <Compile Include="Modules\TypeDetails\InterfaceInformation.cs" />
     <Compile Include="Modules\TypeDetails\MethodInformation.cs" />

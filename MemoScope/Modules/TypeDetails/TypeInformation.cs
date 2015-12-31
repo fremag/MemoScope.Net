@@ -1,6 +1,7 @@
 ﻿using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -12,20 +13,20 @@ namespace MemoScope.Modules.TypeDetails
             ClrDumpType = clrDumpType;
             Name = TypeHelpers.ManageAlias(ClrDumpType.TypeName);
         }
-        public override IEnumerable<object> Children
+        public override List<AbstractTypeInformation> Children
         {
             get
             {
                 var baseType = new TypeInformation(ClrDumpType.BaseType);
-                var interfs = ClrDumpType.Interfaces;
-                var l = new List<object>();
+                var interfs = ClrDumpType.Interfaces.Select( interf => new DummyTypeInformation(interf));
+                var l = new List<AbstractTypeInformation>();
                 l.Add(baseType);
                 l.AddRange(interfs);
                 return l;
             }
         }
 
-        public override bool HasChildren
+        public override bool CanExpand
         {
             get
             {

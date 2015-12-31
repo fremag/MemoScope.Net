@@ -4,10 +4,11 @@ using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Instances
 {
-    public class FieldNode
+    public class FieldNode : ITreeNodeInformation<FieldNode>
     {
         public ClrInstanceField Field { get; }
         public ClrDump ClrDump { get; }
@@ -25,7 +26,7 @@ namespace MemoScope.Modules.Instances
 
         public ClrType ClrType => Field.Type;
 
-        public bool HasChildren => !Field.Type.IsPrimitive && ClrDump.Eval(() => Field.Type.Fields.Any());
+        public bool CanExpand => !Field.Type.IsPrimitive && ClrDump.Eval(() => Field.Type.Fields.Any());
 
         public List<FieldNode> Children
         {

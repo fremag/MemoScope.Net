@@ -24,9 +24,7 @@ namespace MemoScope.Modules.InstanceDetails
             tbType.Text = clrDumpObject.ClrType.Name;
 
             // Fields
-            Generator.GenerateColumns(dtlvFieldsValues, typeof(FieldValueInformation), false);
-            dtlvFieldsValues.CanExpandGetter = o => ((FieldValueInformation)o).HasChildren;
-            dtlvFieldsValues.ChildrenGetter = o => ((FieldValueInformation)o).GetChildren();
+            dtlvFieldsValues.InitData<FieldValueInformation>();
 
             dtlvFieldsValues.RegisterDataProvider(() =>
             {
@@ -51,9 +49,7 @@ namespace MemoScope.Modules.InstanceDetails
             dtlvFieldsValues.SetUpAddressColumn(nameof(FieldValueInformation.Address), o => ((FieldValueInformation)o).Address, ClrDumpObject.ClrDump, this);
 
             // References
-            Generator.GenerateColumns(dtlvReferences, typeof(ReferenceInformation), false);
-            dtlvReferences.CanExpandGetter = o => ((ReferenceInformation)o).HasChildren;
-            dtlvReferences.ChildrenGetter = o => ((ReferenceInformation)o).Children;
+            dtlvReferences.InitData<ReferenceInformation>();
             dtlvReferences.SetUpTypeColumn(nameof(ReferenceInformation.TypeName));
             dtlvReferences.SetUpAddressColumn(nameof(ReferenceInformation.Address), o => ((ReferenceInformation)o).Address, ClrDumpObject.ClrDump, this);
         }
