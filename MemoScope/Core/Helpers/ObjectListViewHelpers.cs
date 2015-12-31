@@ -49,6 +49,10 @@ namespace MemoScope.Core.Helpers
             SetupAddressColumn(listView, col, addressGetter, dump, parentModule);
             listView.AllColumns.Add(col);
         }
+        public static void SetUpAddressColumn<T>(this ObjectListView listView, string colName, ClrDump dump, UIModule parentModule) where T : IAddressData
+        {
+            SetUpAddressColumn(listView, colName, o => ((IAddressData)o).Address, dump, parentModule);
+        }
 
         public static void SetUpAddressColumn(this ObjectListView listView, string colName, AspectGetterDelegate addressGetter, ClrDump dump, UIModule parentModule)
         {

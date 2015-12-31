@@ -1,5 +1,4 @@
 ﻿using System;
-using BrightIdeasSoftware;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Diagnostics.Runtime;
 using WinFwk.UITools;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.InstanceDetails
 {
-    public class ReferenceInformation : ITreeNodeInformation<ReferenceInformation>
+    public class ReferenceInformation : ITreeNodeInformation<ReferenceInformation>, IAddressData
     {
         ClrDump ClrDump { get; }
 

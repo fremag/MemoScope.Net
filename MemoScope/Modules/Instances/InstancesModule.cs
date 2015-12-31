@@ -50,12 +50,13 @@ namespace MemoScope.Modules.Instances
             dtlvFields.CheckBoxes = true;
             dtlvFields.CheckStatePutter += OnCheckStateChanged;
             dtlvFields.RegisterDataProvider(() => { return new ClrDumpType(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); }, this);
-            dtlvFields.RegisterDataProvider( ()=>((UIDataProvider<AddressList>)this).Data, this);
+            dtlvFields.RegisterDataProvider(()=>((UIDataProvider<AddressList>)this).Data, this);
         }
 
         private void CreateDefaultColumns()
         {
             dlvAdresses.AllColumns.Clear();
+            dlvAdresses.AllColumns.Add(new OLVColumn("Address", null));
             dlvAdresses.AddAddressColumn(o => o, AddressList.ClrDump, this);
             dlvAdresses.AddSimpleValueColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
             dlvAdresses.AddSizeColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);

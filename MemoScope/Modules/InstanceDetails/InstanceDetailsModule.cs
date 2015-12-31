@@ -46,12 +46,12 @@ namespace MemoScope.Modules.InstanceDetails
             }, this);
 
             dtlvFieldsValues.SetUpTypeColumn(nameof(FieldValueInformation.TypeName));
-            dtlvFieldsValues.SetUpAddressColumn(nameof(FieldValueInformation.Address), o => ((FieldValueInformation)o).Address, ClrDumpObject.ClrDump, this);
+            dtlvFieldsValues.SetUpAddressColumn<FieldValueInformation>(nameof(FieldValueInformation.Address), ClrDumpObject.ClrDump, this);
 
             // References
             dtlvReferences.InitData<ReferenceInformation>();
             dtlvReferences.SetUpTypeColumn(nameof(ReferenceInformation.TypeName));
-            dtlvReferences.SetUpAddressColumn(nameof(ReferenceInformation.Address), o => ((ReferenceInformation)o).Address, ClrDumpObject.ClrDump, this);
+            dtlvReferences.SetUpAddressColumn<ReferenceInformation>(nameof(ReferenceInformation.Address), ClrDumpObject.ClrDump, this);
         }
 
         public override void Init( )

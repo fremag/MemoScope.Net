@@ -1,8 +1,9 @@
 ﻿using BrightIdeasSoftware;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Core.Bookmark
 {
-    public class Bookmark
+    public class Bookmark : IAddressData
     {
         [OLVColumn]
         public ulong Address { get; set; }
