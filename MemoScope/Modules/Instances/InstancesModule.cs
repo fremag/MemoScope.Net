@@ -46,18 +46,16 @@ namespace MemoScope.Modules.Instances
             dlvAdresses.RebuildColumns();
 
             dtlvFields.InitData<FieldNode>();
-            dtlvFields.SetUpTypeColumn(nameof(FieldNode.TypeName));
+            dtlvFields.SetUpTypeColumn(nameof(FieldNode.TypeName), this);
             dtlvFields.CheckBoxes = true;
             dtlvFields.CheckStatePutter += OnCheckStateChanged;
-            dtlvFields.RegisterDataProvider(() => { return new ClrDumpType(AddressList.ClrDump, dtlvFields.SelectedObject<FieldNode>()?.ClrType); }, this);
-            dtlvFields.RegisterDataProvider(()=>((UIDataProvider<AddressList>)this).Data, this);
         }
 
         private void CreateDefaultColumns()
         {
             dlvAdresses.AllColumns.Clear();
             dlvAdresses.AllColumns.Add(new OLVColumn("Address", null));
-            dlvAdresses.AddAddressColumn(o => o, AddressList.ClrDump, this);
+            dlvAdresses.AddAddressColumn(o => o, this);
             dlvAdresses.AddSimpleValueColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
             dlvAdresses.AddSizeColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
         }

@@ -5,7 +5,7 @@ namespace MemoScope.Core
 {
     public partial class UIClrDumpModule : UIModule, UIDataProvider<ClrDump>
     {
-        protected ClrDump ClrDump { get; set; }
+        public  ClrDump ClrDump { get; protected set; }
 
         public UIClrDumpModule()
         {

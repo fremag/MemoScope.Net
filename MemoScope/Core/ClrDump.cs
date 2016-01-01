@@ -57,6 +57,12 @@ namespace MemoScope.Core
             return t;
         }
 
+        public ClrType GetClrType(string typeName)
+        {
+            ClrType t = worker.Eval(() => t = Heap.EnumerateTypes().FirstOrDefault(clrType => clrType.Name == typeName));
+            return t;
+        }
+
         public List<ClrTypeStats> GetTypeStats()
         {
             var stats = cache.LoadTypeStat();

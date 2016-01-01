@@ -41,11 +41,14 @@ namespace MemoScope.Modules.InstanceDetails
             {
                 var clrObject = new ClrObject(clrDumpObject.Address, clrDumpObject.ClrType, clrDumpObject.IsInterior);
                 var l = new List<FieldValueInformation>();
-                foreach (var field in clrDumpObject.ClrType.Fields)
+                if (clrDumpObject.ClrType != null)
                 {
-                    var fieldValue = clrObject[field];
-                    var fieldValueInfo = new FieldValueInformation(field.RealName(), new ClrDumpObject(clrDumpObject.ClrDump, fieldValue.Type, fieldValue.Address, fieldValue.IsInterior));
-                    l.Add(fieldValueInfo);
+                    foreach (var field in clrDumpObject.ClrType.Fields)
+                    {
+                        var fieldValue = clrObject[field];
+                        var fieldValueInfo = new FieldValueInformation(field.RealName(), new ClrDumpObject(clrDumpObject.ClrDump, fieldValue.Type, fieldValue.Address, fieldValue.IsInterior));
+                        l.Add(fieldValueInfo);
+                    }
                 }
                 return l;
             });
@@ -72,7 +75,7 @@ namespace MemoScope.Modules.InstanceDetails
 
         public static List<FieldValueInformation> GetChildren(ClrDumpObject clrDumpObject)
         {
-            if( clrDumpObject.ClrType.IsArray)
+            if(clrDumpObject.ClrType != null && clrDumpObject.ClrType.IsArray)
             {
                 var elems = GetElements(clrDumpObject);
                 return elems;

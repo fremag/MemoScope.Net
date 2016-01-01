@@ -1,5 +1,4 @@
-﻿using BrightIdeasSoftware;
-using MemoScope.Core;
+﻿using MemoScope.Core;
 using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using System.Collections.Generic;
@@ -21,37 +20,17 @@ namespace MemoScope.Modules.InstanceDetails
             ClrDumpObject = clrDumpObject;
             ClrDump = clrDumpObject.ClrDump;
             tbAddress.Text = clrDumpObject.Address.ToString("X");
-            tbType.Text = clrDumpObject.ClrType.Name;
+            tbType.Text = clrDumpObject.ClrType?.Name;
 
             // Fields
             dtlvFieldsValues.InitData<FieldValueInformation>();
-
-            dtlvFieldsValues.RegisterDataProvider(() =>
-            {
-                var type = dtlvFieldsValues.SelectedObject<FieldValueInformation>()?.ClrType;
-                if (type != null)
-                {
-                    return new AddressList(ClrDumpObject.ClrDump, type);
-                }
-                return null;
-            }, this);
-            dtlvFieldsValues.RegisterDataProvider(() =>
-            {
-                var type = dtlvFieldsValues.SelectedObject<FieldValueInformation>()?.ClrType;
-                if (type != null)
-                {
-                    return new ClrDumpType(ClrDumpObject.ClrDump, type);
-                }
-                return null;
-            }, this);
-
-            dtlvFieldsValues.SetUpTypeColumn(nameof(FieldValueInformation.TypeName));
-            dtlvFieldsValues.SetUpAddressColumn<FieldValueInformation>(nameof(FieldValueInformation.Address), ClrDumpObject.ClrDump, this);
+            dtlvFieldsValues.SetUpTypeColumn(nameof(FieldValueInformation.TypeName), this);
+            dtlvFieldsValues.SetUpAddressColumn<FieldValueInformation>(nameof(FieldValueInformation.Address), this);
 
             // References
             dtlvReferences.InitData<ReferenceInformation>();
-            dtlvReferences.SetUpTypeColumn(nameof(ReferenceInformation.TypeName));
-            dtlvReferences.SetUpAddressColumn<ReferenceInformation>(nameof(ReferenceInformation.Address), ClrDumpObject.ClrDump, this);
+            dtlvReferences.SetUpTypeColumn(nameof(ReferenceInformation.TypeName), this);
+            dtlvReferences.SetUpAddressColumn<ReferenceInformation>(nameof(ReferenceInformation.Address), this);
         }
 
         public override void Init( )
@@ -65,7 +44,7 @@ namespace MemoScope.Modules.InstanceDetails
             dtlvReferences.Roots = new[] { new ReferenceInformation(ClrDumpObject.ClrDump, ClrDumpObject.Address) };
 
             Name = "#" + ClrDumpObject.ClrDump.Id + " - " + ClrDumpObject.Address.ToString("X");
-            Summary = ClrDumpObject.ClrType.Name;
+            Summary = ClrDumpObject.ClrType == null ? "Unkown" : ClrDumpObject.ClrType.Name;
             Icon = Properties.Resources.elements_small;
         }
     }

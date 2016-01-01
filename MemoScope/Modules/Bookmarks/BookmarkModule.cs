@@ -19,8 +19,8 @@ namespace MemoScope.Modules.Bookmarks
         {
             ClrDump = clrDump;
             Generator.GenerateColumns(dlvBookmarks, typeof(Bookmark), false);
-            dlvBookmarks.SetUpAddressColumn<Bookmark>(nameof(Bookmark.Address), ClrDump, this);
-            dlvBookmarks.SetUpTypeColumn(nameof(Bookmark.TypeName));
+            dlvBookmarks.SetUpAddressColumn<Bookmark>(nameof(Bookmark.Address), this);
+            dlvBookmarks.SetUpTypeColumn(nameof(Bookmark.TypeName), this);
             LoadBookmarks();
         }
 
