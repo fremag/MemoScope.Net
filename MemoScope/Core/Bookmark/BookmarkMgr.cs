@@ -17,7 +17,7 @@ namespace MemoScope.Core.Bookmark
                 return xml;
             } }
 
-        private List<Bookmark> bookmarks = new List<Bookmark>();
+        private Dictionary<ulong, Bookmark> bookmarks = new Dictionary<ulong, Bookmark>();
 
         public BookmarkMgr(string dumpPath)
         {
@@ -31,29 +31,38 @@ namespace MemoScope.Core.Bookmark
                 using (var reader = new StreamReader(bookmarkPath))
                 {
                     var bookmarksObj = XML.Deserialize(reader);
-                    bookmarks = bookmarksObj as List<Bookmark>;
+                    var bookmarkList = bookmarksObj as List<Bookmark>;
+                    bookmarks = bookmarkList.ToDictionary(bookmark => bookmark.Address);
                 }
             }
-            return bookmarks;
+            return bookmarks.Values.ToList();
         }
 
         public void Remove(ulong address, ClrType clrType)
         {
-            var bookmark = bookmarks.FirstOrDefault(b => b.Address == address);
-            if (bookmark != null)
+            if (bookmarks != null && bookmarks.ContainsKey(address))
             {
-                bookmarks.Remove(bookmark);
+                bookmarks.Remove(address);
                 SaveBookmarks();
             }
         }
 
+        public Bookmark Get(ulong address)
+        {
+            Bookmark bookmark;
+            if( bookmarks.TryGetValue(address, out bookmark) )
+            {
+                return bookmark;
+            }
+            return null;
+        }
+
         public void Add(ulong address, ClrType clrType)
         {
-            var bookmark = bookmarks.FirstOrDefault(b => b.Address == address);
-            if (bookmark == null)
+            if (bookmarks != null && ! bookmarks.ContainsKey(address) )
             {
-                bookmark = new Bookmark(address, clrType.Name);
-                bookmarks.Add(bookmark);
+                var bookmark = new Bookmark(address, clrType.Name);
+                bookmarks[address] = bookmark;
                 SaveBookmarks();
             }
         }
@@ -72,7 +81,7 @@ namespace MemoScope.Core.Bookmark
             }
             using (var reader = new StreamWriter(bookmarkPath))
             {
-                XML.Serialize(reader, bookmarks);
+                XML.Serialize(reader, bookmarks.Values.ToList());
             }
         }
     }

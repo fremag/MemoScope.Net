@@ -223,4 +223,7 @@
   <data name="elements_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\elements.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="color_management" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\small\color_management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

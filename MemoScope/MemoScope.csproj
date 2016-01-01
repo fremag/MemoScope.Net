@@ -117,8 +117,8 @@
       <HintPath>..\packages\Microsoft.Diagnostics.Runtime.0.8.31-beta\lib\net40\Microsoft.Diagnostics.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ObjectListView, Version=2.8.1.33936, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
-      <HintPath>..\packages\ObjectListView.Official.2.8.1\lib\net20\ObjectListView.dll</HintPath>
+    <Reference Include="ObjectListView, Version=2.9.0.25611, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.Official.2.9.0\lib\net20\ObjectListView.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ParallelExtensionsExtras, Version=1.2.3.0, Culture=neutral, PublicKeyToken=665f4d61f853b5a9, processorArchitecture=MSIL">
@@ -448,6 +448,7 @@
     <Content Include="Icons\Small\cancel.png" />
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
+    <Content Include="Icons\Small\color_management.png" />
     <Content Include="Icons\Small\database_go.png" />
     <Content Include="Icons\Small\database_green.png" />
     <Content Include="Icons\Small\database_yellow.png" />

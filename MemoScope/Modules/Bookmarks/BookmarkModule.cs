@@ -2,9 +2,10 @@
 using MemoScope.Core;
 using MemoScope.Core.Bookmark;
 using MemoScope.Core.Helpers;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using WinFwk.UIMessages;
-using System;
 
 namespace MemoScope.Modules.Bookmarks
 {
@@ -21,6 +22,41 @@ namespace MemoScope.Modules.Bookmarks
             Generator.GenerateColumns(dlvBookmarks, typeof(Bookmark), false);
             dlvBookmarks.SetUpAddressColumn<Bookmark>(nameof(Bookmark.Address), this);
             dlvBookmarks.SetUpTypeColumn(nameof(Bookmark.TypeName), this);
+            var colColor = dlvBookmarks.AllColumns.FirstOrDefault(c => c.Name == nameof(Bookmark.Color));
+            dlvBookmarks.FormatCell += (o, e) =>
+            {
+                if ( e.Column != colColor)
+                {
+                    return;
+                }
+                var rowObj = e.Model;
+                var bookmark = rowObj as Bookmark;
+                if (bookmark != null)
+                {
+                    e.SubItem.BackColor = bookmark.Color;
+                    e.SubItem.Text = bookmark.Color != Color.Empty ? null : "Select Color...";
+                }
+            };
+            var colPick = dlvBookmarks.AllColumns.FirstOrDefault(c => c.Name == nameof(Bookmark.ColorPick));
+            colPick.IsButton = true;
+            colPick.ButtonSizing = OLVColumn.ButtonSizingMode.CellBounds;
+
+            dlvBookmarks.ButtonClick += (o, e) =>
+            {
+                var rowObj = e.Model;
+                var bookmark = rowObj as Bookmark;
+                if (bookmark != null)
+                {
+                    ColorDialog colDiag = new ColorDialog();
+                    colDiag.Color = bookmark.Color;
+                    if (colDiag.ShowDialog() == DialogResult.OK)
+                    {
+                        bookmark.Color = colDiag.Color;
+                        ClrDump.BookmarkMgr.SaveBookmarks();
+                    }
+                }
+            };
+            dlvBookmarks.UseCellFormatEvents = true;
             LoadBookmarks();
         }
 

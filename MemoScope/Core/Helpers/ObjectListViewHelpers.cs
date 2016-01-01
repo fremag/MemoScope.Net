@@ -128,7 +128,20 @@ namespace MemoScope.Core.Helpers
                     return null;
                 }, dumpModule
             );
-
+            listView.FormatCell += (o, e) =>
+            {
+                if( e.Column != col)
+                {
+                    return;
+                }
+                var address = (ulong)e.SubItem.ModelValue;
+                var bookmark = dumpModule.ClrDump.BookmarkMgr.Get(address);
+                if (bookmark != null)
+                {
+                    e.SubItem.BackColor = bookmark.Color;
+                }
+            };
+            listView.UseCellFormatEvents = true;
         }
         public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
         {
