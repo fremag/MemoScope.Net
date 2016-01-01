@@ -10,11 +10,18 @@ namespace MemoScope.Core.Bookmark
     {
         private string bookmarkPath;
         private XmlSerializer xml;
+        private XmlSerializer XML { get {
+                if (xml == null) {
+                    xml = new XmlSerializer(typeof(List<Bookmark>));
+                }
+                return xml;
+            } }
+
         private List<Bookmark> bookmarks = new List<Bookmark>();
+
         public BookmarkMgr(string dumpPath)
         {
             bookmarkPath = Path.ChangeExtension(dumpPath, "xml");
-            xml = new XmlSerializer(typeof(List<Bookmark>));
         }
 
         public List<Bookmark> GetBookmarks()
@@ -23,7 +30,7 @@ namespace MemoScope.Core.Bookmark
             {
                 using (var reader = new StreamReader(bookmarkPath))
                 {
-                    var bookmarksObj = xml.Deserialize(reader);
+                    var bookmarksObj = XML.Deserialize(reader);
                     bookmarks = bookmarksObj as List<Bookmark>;
                 }
             }
@@ -65,7 +72,7 @@ namespace MemoScope.Core.Bookmark
             }
             using (var reader = new StreamWriter(bookmarkPath))
             {
-                xml.Serialize(reader, bookmarks);
+                XML.Serialize(reader, bookmarks);
             }
         }
     }

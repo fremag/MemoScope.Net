@@ -7,6 +7,7 @@ namespace MemoScope.Core.Bookmark
     {
         [OLVColumn]
         public ulong Address { get; set; }
+
         [OLVColumn(Title="Type", IsVisible =false)]
         public string TypeName { get; set; }
 
