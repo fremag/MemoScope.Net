@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 using BrightIdeasSoftware;
-using System.Diagnostics;
 
 namespace MemoScope.Modules.Instances
 {
@@ -20,7 +19,9 @@ namespace MemoScope.Modules.Instances
             }
             foreach (FieldNode fieldNode in data.ModelObjects)
             {
-                tbFilterCode.Text = fieldNode.FullName;
+                string prefix = fieldNode.ClrType.ElementType.ToString();
+                string code = $" x._{prefix}({fieldNode.FullName}) ";
+                tbFilterCode.Text = tbFilterCode.Text.Insert(tbFilterCode.SelectionStart, code);
             }
         }
 
