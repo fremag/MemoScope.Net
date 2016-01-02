@@ -49,6 +49,7 @@ namespace MemoScope.Modules.Instances
             dtlvFields.SetUpTypeColumn(nameof(FieldNode.TypeName), this);
             dtlvFields.CheckBoxes = true;
             dtlvFields.CheckStatePutter += OnCheckStateChanged;
+            dtlvFields.IsSimpleDragSource = true;
         }
 
         private void CreateDefaultColumns()
@@ -86,7 +87,7 @@ namespace MemoScope.Modules.Instances
                 return;
             }
 
-            var col = new OLVColumn(fieldNode.Name, null);
+            var col = new OLVColumn(fieldNode.FullName, null);
             col.Width = 120;
             switch( fieldNode.Field.ElementType)
             {
@@ -101,6 +102,10 @@ namespace MemoScope.Modules.Instances
                 case ClrElementType.UInt64:
                 case ClrElementType.UInt8:
                     col.TextAlign = HorizontalAlignment.Right;
+                    break;
+                case ClrElementType.Object:
+                case ClrElementType.Struct:
+                    dlvAdresses.SetUpAddressColumn(col, o => o, this);
                     break;
             }
             dlvAdresses.AllColumns.Add(col);

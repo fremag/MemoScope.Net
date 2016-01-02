@@ -228,6 +228,12 @@
     <Compile Include="Modules\InstanceDetails\InstanceDetailsCommand.cs" />
     <Compile Include="Modules\InstanceDetails\ReferenceInformation.cs" />
     <Compile Include="Modules\Instances\FieldNode.cs" />
+    <Compile Include="Modules\Instances\InstanceFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Instances\InstanceFilter.Designer.cs">
+      <DependentUpon>InstanceFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Instances\InstancesCommand.cs" />
     <Compile Include="Modules\Instances\InstancesModule.cs">
       <SubType>UserControl</SubType>
@@ -308,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\InstanceDetails\InstanceDetailsModule.resx">
       <DependentUpon>InstanceDetailsModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Instances\InstanceFilter.resx">
+      <DependentUpon>InstanceFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Instances\InstancesModule.resx">
       <DependentUpon>InstancesModule.cs</DependentUpon>

@@ -122,7 +122,7 @@ namespace MemoScope.Core
                 }
             }
 
-            return obj.HasSimpleValue ? obj.SimpleValue : obj.Address.ToString("X");
+            return obj.HasSimpleValue ? obj.SimpleValue : obj.Address;
         }
 
         public List<ulong> GetReferences(ulong address)

@@ -69,7 +69,7 @@ namespace MemoScope.Core.Helpers
         {
             var col = new OLVColumn("Address", null) {AspectGetter = addressGetter};
 
-            SetupAddressColumn(listView, col, addressGetter, dumpModule);
+            SetUpAddressColumn(listView, col, addressGetter, dumpModule);
             listView.AllColumns.Add(col);
         }
         public static void SetUpAddressColumn<T>(this ObjectListView listView, string colName, UIClrDumpModule dumpModule) where T : IAddressData
@@ -80,10 +80,10 @@ namespace MemoScope.Core.Helpers
         public static void SetUpAddressColumn(this ObjectListView listView, string colName, AspectGetterDelegate addressGetter, UIClrDumpModule dumpModule)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
-            SetupAddressColumn(listView, col, addressGetter, dumpModule);
+            SetUpAddressColumn(listView, col, addressGetter, dumpModule);
         }
 
-        public static void SetupAddressColumn(ObjectListView listView, OLVColumn col, AspectGetterDelegate aspectGetter, UIClrDumpModule dumpModule)
+        public static void SetUpAddressColumn(this ObjectListView listView, OLVColumn col, AspectGetterDelegate aspectGetter, UIClrDumpModule dumpModule)
         {
             col.AspectToStringFormat = "{0:X}";
             col.TextAlign = HorizontalAlignment.Right;

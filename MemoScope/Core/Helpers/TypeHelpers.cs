@@ -13,18 +13,24 @@ namespace MemoScope.Core.Helpers
         private static Dictionary<string, Tuple<Color, Color>> colorCache = new Dictionary<string, Tuple<Color, Color>>();
         private static readonly Tuple<Color, Color> defaultTuple = new Tuple<Color, Color> (Color.Transparent, Color.Transparent);
 
-        public static string RealName(this ClrInstanceField field)
+        public static string RealName(this ClrInstanceField field, string backingFieldSuffix=" [*]")
         {
-            return RealName(field.Name);
+            return RealName(field.Name, backingFieldSuffix);
         }
 
-        public static string RealName(string fieldName)
+        public static string RealName(string fieldName, string backingFieldSuffix= " [*]")
         {
             var match = fieldNameRegex.Match(fieldName);
 
             if (match.Success)
-                return match.Groups[1].Value + " [*]";
-
+            {
+                string realName = match.Groups[1].Value;
+                if (! string.IsNullOrEmpty(backingFieldSuffix))
+                {
+                    realName += backingFieldSuffix; 
+                }
+                return realName;
+            }
             return fieldName;
         }
 
