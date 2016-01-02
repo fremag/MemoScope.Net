@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.defaultListView1 = new WinFwk.UITools.DefaultListView();
+            this.dlvTriggers = new WinFwk.UITools.DefaultListView();
             this.lblCode = new System.Windows.Forms.Label();
             this.tbCode = new System.Windows.Forms.TextBox();
             this.tbGroup = new System.Windows.Forms.TextBox();
@@ -40,21 +40,21 @@
             this.cbActive = new System.Windows.Forms.CheckBox();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tslPeriod = new System.Windows.Forms.ToolStripLabel();
-            this.tscbPeriod = new System.Windows.Forms.ToolStripComboBox();
             this.tsbNetTrigger = new System.Windows.Forms.ToolStripButton();
             this.tsbSaveAllTriggers = new System.Windows.Forms.ToolStripButton();
             this.tsbCloneTrigger = new System.Windows.Forms.ToolStripButton();
             this.tsbDeleteTrigger = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tslPeriod = new System.Windows.Forms.ToolStripLabel();
+            this.tscbPeriod = new System.Windows.Forms.ToolStripComboBox();
             this.tsbClock = new System.Windows.Forms.ToolStripButton();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.tslNextTick = new System.Windows.Forms.ToolStripLabel();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.defaultListView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvTriggers)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -71,7 +71,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.defaultListView1);
+            this.splitContainer1.Panel1.Controls.Add(this.dlvTriggers);
             // 
             // splitContainer1.Panel2
             // 
@@ -86,23 +86,25 @@
             this.splitContainer1.SplitterDistance = 432;
             this.splitContainer1.TabIndex = 0;
             // 
-            // defaultListView1
+            // dlvTriggers
             // 
-            this.defaultListView1.CheckBoxes = true;
-            this.defaultListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.defaultListView1.FullRowSelect = true;
-            this.defaultListView1.HideSelection = false;
-            this.defaultListView1.Location = new System.Drawing.Point(0, 0);
-            this.defaultListView1.Name = "defaultListView1";
-            this.defaultListView1.OwnerDraw = true;
-            this.defaultListView1.ShowGroups = false;
-            this.defaultListView1.ShowImagesOnSubItems = true;
-            this.defaultListView1.Size = new System.Drawing.Size(432, 411);
-            this.defaultListView1.TabIndex = 0;
-            this.defaultListView1.UseCompatibleStateImageBehavior = false;
-            this.defaultListView1.View = System.Windows.Forms.View.Details;
-            this.defaultListView1.VirtualMode = true;
-            this.defaultListView1.SelectedIndexChanged += new System.EventHandler(this.defaultListView1_SelectedIndexChanged);
+            this.dlvTriggers.CellEditUseWholeCell = false;
+            this.dlvTriggers.CheckBoxes = true;
+            this.dlvTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlvTriggers.FullRowSelect = true;
+            this.dlvTriggers.HideSelection = false;
+            this.dlvTriggers.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.dlvTriggers.HighlightForegroundColor = System.Drawing.Color.Empty;
+            this.dlvTriggers.Location = new System.Drawing.Point(0, 0);
+            this.dlvTriggers.Name = "dlvTriggers";
+            this.dlvTriggers.ShowGroups = false;
+            this.dlvTriggers.ShowImagesOnSubItems = true;
+            this.dlvTriggers.Size = new System.Drawing.Size(432, 411);
+            this.dlvTriggers.TabIndex = 0;
+            this.dlvTriggers.UseCompatibleStateImageBehavior = false;
+            this.dlvTriggers.View = System.Windows.Forms.View.Details;
+            this.dlvTriggers.VirtualMode = true;
+            this.dlvTriggers.SelectedIndexChanged += new System.EventHandler(this.defaultListView1_SelectedIndexChanged);
             // 
             // lblCode
             // 
@@ -213,41 +215,6 @@
             this.toolStrip.Size = new System.Drawing.Size(320, 28);
             this.toolStrip.TabIndex = 0;
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
-            // 
-            // tslPeriod
-            // 
-            this.tslPeriod.Name = "tslPeriod";
-            this.tslPeriod.Size = new System.Drawing.Size(59, 25);
-            this.tslPeriod.Text = "Period :";
-            // 
-            // tscbPeriod
-            // 
-            this.tscbPeriod.AutoToolTip = true;
-            this.tscbPeriod.Items.AddRange(new object[] {
-            "00:00:01",
-            "00:00:05",
-            "00:00:10",
-            "00:00:30",
-            "00:01:00",
-            "00:05:00",
-            "00:15:00",
-            "00:30:00",
-            "01:00:00",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""});
-            this.tscbPeriod.Name = "tscbPeriod";
-            this.tscbPeriod.Size = new System.Drawing.Size(121, 28);
-            this.tscbPeriod.Text = "00:00:01";
-            // 
             // tsbNetTrigger
             // 
             this.tsbNetTrigger.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -289,6 +256,41 @@
             this.tsbDeleteTrigger.ToolTipText = "Delete Trigger";
             this.tsbDeleteTrigger.Click += new System.EventHandler(this.tsbDeleteTrigger_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            // 
+            // tslPeriod
+            // 
+            this.tslPeriod.Name = "tslPeriod";
+            this.tslPeriod.Size = new System.Drawing.Size(59, 25);
+            this.tslPeriod.Text = "Period :";
+            // 
+            // tscbPeriod
+            // 
+            this.tscbPeriod.AutoToolTip = true;
+            this.tscbPeriod.Items.AddRange(new object[] {
+            "00:00:01",
+            "00:00:05",
+            "00:00:10",
+            "00:00:30",
+            "00:01:00",
+            "00:05:00",
+            "00:15:00",
+            "00:30:00",
+            "01:00:00",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""});
+            this.tscbPeriod.Name = "tscbPeriod";
+            this.tscbPeriod.Size = new System.Drawing.Size(121, 28);
+            this.tscbPeriod.Text = "00:00:01";
+            // 
             // tsbClock
             // 
             this.tsbClock.CheckOnClick = true;
@@ -302,15 +304,15 @@
             this.tsbClock.CheckStateChanged += new System.EventHandler(this.tsbClock_CheckStateChanged);
             this.tsbClock.Click += new System.EventHandler(this.tsbClock_Click);
             // 
-            // timer
-            // 
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
             // tslNextTick
             // 
             this.tslNextTick.Name = "tslNextTick";
             this.tslNextTick.Size = new System.Drawing.Size(0, 25);
             this.tslNextTick.Visible = false;
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // ProcessTriggersControl
             // 
@@ -325,7 +327,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.defaultListView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvTriggers)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
@@ -340,7 +342,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private WinFwk.UITools.DefaultListView defaultListView1;
+        private WinFwk.UITools.DefaultListView dlvTriggers;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton tsbNetTrigger;

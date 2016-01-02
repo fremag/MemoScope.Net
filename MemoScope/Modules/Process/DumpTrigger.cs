@@ -1,5 +1,4 @@
-﻿using System;
-using BrightIdeasSoftware;
+﻿using BrightIdeasSoftware;
 
 namespace MemoScope.Modules.Process
 {

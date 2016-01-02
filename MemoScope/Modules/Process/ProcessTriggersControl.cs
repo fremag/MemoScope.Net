@@ -22,13 +22,13 @@ namespace MemoScope.Modules.Process
         {
             InitializeComponent();
 
-            defaultListView1.CheckStatePutter = (rowObject, value) =>
+            dlvTriggers.CheckStatePutter = (rowObject, value) =>
             {
                 ((DumpTrigger) rowObject).Active = (value == CheckState.Checked);
                 return value;
             };
-            defaultListView1.CheckStateGetter = rowObject => ((DumpTrigger) rowObject).Active ? CheckState.Checked : CheckState.Unchecked;
-            Generator.GenerateColumns(defaultListView1, typeof (DumpTrigger), false);
+            dlvTriggers.CheckStateGetter = rowObject => ((DumpTrigger) rowObject).Active ? CheckState.Checked : CheckState.Unchecked;
+            Generator.GenerateColumns(dlvTriggers, typeof (DumpTrigger), false);
         }
 
         private void tsbNetTrigger_Click(object sender, System.EventArgs e)
@@ -39,8 +39,8 @@ namespace MemoScope.Modules.Process
 
         private void RefreshTriggers()
         {
-            defaultListView1.SetObjects(triggers);
-            defaultListView1.BuildGroups(nameof(DumpTrigger.Group), SortOrder.Ascending);
+            dlvTriggers.SetObjects(triggers);
+            dlvTriggers.BuildGroups(nameof(DumpTrigger.Group), SortOrder.Ascending);
         }
 
         private void tsbSaveAllTriggers_Click(object sender, System.EventArgs e)
@@ -51,7 +51,7 @@ namespace MemoScope.Modules.Process
 
         private void tsbCloneTrigger_Click(object sender, System.EventArgs e)
         {
-            ListView.SelectedIndexCollection selectedTriggers = defaultListView1.SelectedIndices;
+            ListView.SelectedIndexCollection selectedTriggers = dlvTriggers.SelectedIndices;
             foreach (int idx in selectedTriggers)
             {
                 DumpTrigger trig = triggers[idx];
@@ -63,7 +63,7 @@ namespace MemoScope.Modules.Process
 
         private void tsbDeleteTrigger_Click(object sender, System.EventArgs e)
         {
-            ListView.SelectedIndexCollection selectedTriggers = defaultListView1.SelectedIndices;
+            ListView.SelectedIndexCollection selectedTriggers = dlvTriggers.SelectedIndices;
             foreach (int idx in selectedTriggers)
             {
                 DumpTrigger trig = triggers[idx];
@@ -74,7 +74,7 @@ namespace MemoScope.Modules.Process
 
         private void defaultListView1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            currentTrigger = defaultListView1.SelectedObject as DumpTrigger;
+            currentTrigger = dlvTriggers.SelectedObject as DumpTrigger;
 
             tbGroup.Text = currentTrigger?.Group;
             tbName.Text = currentTrigger?.Name;
