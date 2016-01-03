@@ -35,7 +35,7 @@
             this.dtlvFields = new WinFwk.UITools.DefaultTreeListView();
             this.gbInstances = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.instanceFilter1 = new MemoScope.Modules.Instances.InstanceFilter();
+            this.codeTriggersControl = new MemoScope.Tools.CodeTriggers.CodeTriggersControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvAdresses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -56,6 +56,8 @@
             this.dlvAdresses.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvAdresses.FullRowSelect = true;
             this.dlvAdresses.HideSelection = false;
+            this.dlvAdresses.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.dlvAdresses.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dlvAdresses.Location = new System.Drawing.Point(3, 18);
             this.dlvAdresses.Name = "dlvAdresses";
             this.dlvAdresses.ShowGroups = false;
@@ -101,6 +103,8 @@
             this.dtlvFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtlvFields.FullRowSelect = true;
             this.dtlvFields.HideSelection = false;
+            this.dtlvFields.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.dtlvFields.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dtlvFields.Location = new System.Drawing.Point(3, 18);
             this.dtlvFields.Name = "dtlvFields";
             this.dtlvFields.RootKeyValueString = "";
@@ -136,18 +140,19 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.instanceFilter1);
+            this.splitContainer2.Panel2.Controls.Add(this.codeTriggersControl);
             this.splitContainer2.Size = new System.Drawing.Size(570, 544);
             this.splitContainer2.SplitterDistance = 272;
             this.splitContainer2.TabIndex = 2;
             // 
-            // instanceFilter1
+            // codeTriggersControl
             // 
-            this.instanceFilter1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.instanceFilter1.Location = new System.Drawing.Point(0, 0);
-            this.instanceFilter1.Name = "instanceFilter1";
-            this.instanceFilter1.Size = new System.Drawing.Size(570, 268);
-            this.instanceFilter1.TabIndex = 0;
+            this.codeTriggersControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeTriggersControl.Location = new System.Drawing.Point(0, 0);
+            this.codeTriggersControl.MessageBus = null;
+            this.codeTriggersControl.Name = "codeTriggersControl";
+            this.codeTriggersControl.Size = new System.Drawing.Size(570, 268);
+            this.codeTriggersControl.TabIndex = 0;
             // 
             // InstancesModule
             // 
@@ -180,6 +185,6 @@
         private WinFwk.UITools.DefaultTreeListView dtlvFields;
         private System.Windows.Forms.GroupBox gbInstances;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private InstanceFilter instanceFilter1;
+        private Tools.CodeTriggers.CodeTriggersControl codeTriggersControl;
     }
 }

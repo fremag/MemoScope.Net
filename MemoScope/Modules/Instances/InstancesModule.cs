@@ -9,6 +9,7 @@ using WinFwk.UIModules;
 using System.Windows.Forms;
 using System;
 using MemoScope.Core;
+using MemoScope.Tools.CodeTriggers;
 
 namespace MemoScope.Modules.Instances
 {
@@ -35,6 +36,33 @@ namespace MemoScope.Modules.Instances
         {
             InitializeComponent();
             Icon = Properties.Resources.scroll_pane_list;
+            InitCodeEditor();
+        }
+
+        private void InitCodeEditor()
+        {
+            codeTriggersControl.CodeGetter = o =>
+            {
+                var fieldNode = o as FieldNode;
+                string prefix = fieldNode.ClrType.ElementType.ToString();
+                string code = $" x._{prefix}({fieldNode.FullName}) ";
+                return code;
+            };
+
+            codeTriggersControl.SaveTriggers = triggers =>
+            {
+                MemoScopeSettings.Instance.InstanceFilters = triggers;
+                MemoScopeSettings.Instance.Save();
+            };
+
+            codeTriggersControl.LoadTriggers = () =>
+            {
+                if (MemoScopeSettings.Instance != null)
+                {
+                    return new List<CodeTrigger>(MemoScopeSettings.Instance.InstanceFilters.Select(t => t.Clone()));
+                }
+                return null;
+            };
         }
 
         internal void Setup(AddressList addressList)

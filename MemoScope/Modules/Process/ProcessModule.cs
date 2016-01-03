@@ -45,14 +45,14 @@ namespace MemoScope.Modules.Process
             processTriggersControl.CodeGetter = o => ((ProcessInfoValue)o).Alias;
             processTriggersControl.SaveTriggers = triggers =>
             {
-                MemoScopeSettings.Instance.Triggers = triggers;
+                MemoScopeSettings.Instance.ProcessTriggers = triggers;
                 MemoScopeSettings.Instance.Save();
             };
             processTriggersControl.LoadTriggers = () =>
             {
                 if (MemoScopeSettings.Instance != null)
                 {
-                    return new List<CodeTrigger>(MemoScopeSettings.Instance.Triggers.Select(t => t.Clone()));
+                    return new List<CodeTrigger>(MemoScopeSettings.Instance.ProcessTriggers.Select(t => t.Clone()));
                 }
                 return null;
             };

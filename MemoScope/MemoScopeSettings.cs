@@ -20,7 +20,10 @@ namespace MemoScope
         public string LastProcessName { get; set; }
 
         [Category("Process Dump")]
-        public List<CodeTrigger> Triggers { get; set; } = new List<CodeTrigger>();
+        public List<CodeTrigger> ProcessTriggers { get; set; } = new List<CodeTrigger>();
+
+        [Category("Instances")]
+        public List<CodeTrigger> InstanceFilters { get; set; } = new List<CodeTrigger>();
 
         public void Save()
         {

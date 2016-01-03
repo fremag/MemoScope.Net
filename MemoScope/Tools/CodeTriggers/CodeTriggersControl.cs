@@ -94,8 +94,11 @@ namespace MemoScope.Tools.CodeTriggers
 
         private void ProcessTriggers_Load(object sender, System.EventArgs e)
         {
-            triggers = LoadTriggers();
-            RefreshTriggers();
+            if (LoadTriggers != null)
+            {
+                triggers = LoadTriggers();
+                RefreshTriggers();
+            }
         }
 
         private void tbName_TextChanged(object sender, System.EventArgs e)
