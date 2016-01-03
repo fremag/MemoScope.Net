@@ -1,8 +1,8 @@
 ﻿using BrightIdeasSoftware;
 
-namespace MemoScope.Modules.Process
+namespace MemoScope.Core.Data
 {
-    public class DumpTrigger 
+    public class CodeTrigger 
     {
         public bool Active { get; set; }
 
@@ -15,9 +15,9 @@ namespace MemoScope.Modules.Process
         [OLVColumn(FillsFreeSpace = true)]
         public string Code { get; set; }
 
-        public DumpTrigger Clone()
+        public CodeTrigger Clone()
         {
-            return (DumpTrigger) MemberwiseClone();
+            return (CodeTrigger) MemberwiseClone();
         }
     }
 }

@@ -34,19 +34,26 @@
             this.lblRootDir = new System.Windows.Forms.Label();
             this.tbRootDir = new System.Windows.Forms.TextBox();
             this.btnDump = new System.Windows.Forms.Button();
-            this.btnFindProcess = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.gbProcess = new System.Windows.Forms.GroupBox();
-            this.processInfoViewer = new ProcessInfoViewer();
+            this.processInfoViewer = new MemoScope.Modules.Process.ProcessInfoViewer();
             this.gbTriggers = new System.Windows.Forms.GroupBox();
-            this.processTriggersControl = new ProcessTriggersControl();
+            this.processTriggersControl = new MemoScope.Modules.Process.ProcessTriggersControl();
+            this.gbDumpCommands = new System.Windows.Forms.GroupBox();
+            this.lblNextTick = new System.Windows.Forms.Label();
+            this.cbPeriod = new System.Windows.Forms.ComboBox();
+            this.lblPeriod = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.cbClock = new System.Windows.Forms.CheckBox();
+            this.btnFindProcess = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.gbProcess.SuspendLayout();
             this.gbTriggers.SuspendLayout();
+            this.gbDumpCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblProcess
@@ -65,7 +72,7 @@
             this.cbProcess.FormattingEnabled = true;
             this.cbProcess.Location = new System.Drawing.Point(147, 12);
             this.cbProcess.Name = "cbProcess";
-            this.cbProcess.Size = new System.Drawing.Size(733, 24);
+            this.cbProcess.Size = new System.Drawing.Size(424, 24);
             this.cbProcess.TabIndex = 1;
             this.cbProcess.DropDown += new System.EventHandler(this.cbProcess_DropDown);
             this.cbProcess.SelectedValueChanged += new System.EventHandler(this.cbProcess_SelectedValueChanged);
@@ -86,32 +93,19 @@
             this.tbRootDir.Location = new System.Drawing.Point(147, 39);
             this.tbRootDir.Name = "tbRootDir";
             this.tbRootDir.ReadOnly = true;
-            this.tbRootDir.Size = new System.Drawing.Size(733, 22);
+            this.tbRootDir.Size = new System.Drawing.Size(424, 22);
             this.tbRootDir.TabIndex = 6;
             // 
             // btnDump
             // 
-            this.btnDump.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDump.Location = new System.Drawing.Point(901, 13);
+            this.btnDump.Image = global::MemoScope.Properties.Resources.compile;
+            this.btnDump.Location = new System.Drawing.Point(184, 17);
             this.btnDump.Name = "btnDump";
-            this.btnDump.Size = new System.Drawing.Size(75, 23);
+            this.btnDump.Size = new System.Drawing.Size(37, 23);
             this.btnDump.TabIndex = 7;
-            this.btnDump.Text = "Dump !";
             this.toolTip1.SetToolTip(this.btnDump, "Dump Process Now !");
             this.btnDump.UseVisualStyleBackColor = true;
             this.btnDump.Click += new System.EventHandler(this.btnDump_Click);
-            // 
-            // btnFindProcess
-            // 
-            this.btnFindProcess.Image = global::MemoScope.Properties.Resources.bow;
-            this.btnFindProcess.Location = new System.Drawing.Point(19, 12);
-            this.btnFindProcess.Name = "btnFindProcess";
-            this.btnFindProcess.Size = new System.Drawing.Size(49, 49);
-            this.btnFindProcess.TabIndex = 8;
-            this.toolTip1.SetToolTip(this.btnFindProcess, "Drag button and drop it on process window...");
-            this.btnFindProcess.UseVisualStyleBackColor = true;
-            this.btnFindProcess.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnFindProcess_MouseDown);
-            this.btnFindProcess.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnFindProcess_MouseUp);
             // 
             // splitContainer2
             // 
@@ -129,8 +123,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.gbTriggers);
-            this.splitContainer2.Size = new System.Drawing.Size(973, 604);
-            this.splitContainer2.SplitterDistance = 302;
+            this.splitContainer2.Size = new System.Drawing.Size(803, 526);
+            this.splitContainer2.SplitterDistance = 263;
             this.splitContainer2.TabIndex = 9;
             // 
             // gbProcess
@@ -139,7 +133,7 @@
             this.gbProcess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbProcess.Location = new System.Drawing.Point(0, 0);
             this.gbProcess.Name = "gbProcess";
-            this.gbProcess.Size = new System.Drawing.Size(973, 302);
+            this.gbProcess.Size = new System.Drawing.Size(803, 263);
             this.gbProcess.TabIndex = 1;
             this.gbProcess.TabStop = false;
             this.gbProcess.Text = "Process";
@@ -149,7 +143,7 @@
             this.processInfoViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.processInfoViewer.Location = new System.Drawing.Point(3, 18);
             this.processInfoViewer.Name = "processInfoViewer";
-            this.processInfoViewer.Size = new System.Drawing.Size(967, 281);
+            this.processInfoViewer.Size = new System.Drawing.Size(797, 242);
             this.processInfoViewer.TabIndex = 0;
             // 
             // gbTriggers
@@ -158,38 +152,121 @@
             this.gbTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbTriggers.Location = new System.Drawing.Point(0, 0);
             this.gbTriggers.Name = "gbTriggers";
-            this.gbTriggers.Size = new System.Drawing.Size(973, 298);
+            this.gbTriggers.Size = new System.Drawing.Size(803, 259);
             this.gbTriggers.TabIndex = 0;
             this.gbTriggers.TabStop = false;
             this.gbTriggers.Text = "Triggers";
             // 
-            // ProcessTriggersControl
+            // processTriggersControl
             // 
             this.processTriggersControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.processTriggersControl.Location = new System.Drawing.Point(3, 18);
-            this.processTriggersControl.Name = "_processTriggersControl";
-            this.processTriggersControl.Size = new System.Drawing.Size(967, 277);
+            this.processTriggersControl.MessageBus = null;
+            this.processTriggersControl.Name = "processTriggersControl";
+            this.processTriggersControl.Size = new System.Drawing.Size(797, 238);
             this.processTriggersControl.TabIndex = 0;
+            // 
+            // gbDumpCommands
+            // 
+            this.gbDumpCommands.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbDumpCommands.Controls.Add(this.lblNextTick);
+            this.gbDumpCommands.Controls.Add(this.cbClock);
+            this.gbDumpCommands.Controls.Add(this.cbPeriod);
+            this.gbDumpCommands.Controls.Add(this.lblPeriod);
+            this.gbDumpCommands.Controls.Add(this.btnDump);
+            this.gbDumpCommands.Location = new System.Drawing.Point(577, 8);
+            this.gbDumpCommands.Name = "gbDumpCommands";
+            this.gbDumpCommands.Size = new System.Drawing.Size(226, 60);
+            this.gbDumpCommands.TabIndex = 10;
+            this.gbDumpCommands.TabStop = false;
+            this.gbDumpCommands.Text = "Dump";
+            // 
+            // lblNextTick
+            // 
+            this.lblNextTick.Location = new System.Drawing.Point(6, 44);
+            this.lblNextTick.Name = "lblNextTick";
+            this.lblNextTick.Size = new System.Drawing.Size(214, 15);
+            this.lblNextTick.TabIndex = 11;
+            this.lblNextTick.Visible = false;
+            // 
+            // cbPeriod
+            // 
+            this.cbPeriod.FormattingEnabled = true;
+            this.cbPeriod.Items.AddRange(new object[] {
+            "00:00:01",
+            "00:00:05",
+            "00:00:15",
+            "00:00:30",
+            "00:01:00",
+            "00:05:00",
+            "00:15:00",
+            "00:30:00",
+            "01:00:00"});
+            this.cbPeriod.Location = new System.Drawing.Point(69, 17);
+            this.cbPeriod.Name = "cbPeriod";
+            this.cbPeriod.Size = new System.Drawing.Size(84, 24);
+            this.cbPeriod.TabIndex = 9;
+            this.cbPeriod.Text = "00:00:01";
+            // 
+            // lblPeriod
+            // 
+            this.lblPeriod.AutoSize = true;
+            this.lblPeriod.Location = new System.Drawing.Point(6, 20);
+            this.lblPeriod.Name = "lblPeriod";
+            this.lblPeriod.Size = new System.Drawing.Size(57, 17);
+            this.lblPeriod.TabIndex = 8;
+            this.lblPeriod.Text = "Period :";
+            // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // cbClock
+            // 
+            this.cbClock.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cbClock.AutoSize = true;
+            this.cbClock.Image = global::MemoScope.Properties.Resources.clock_go;
+            this.cbClock.Location = new System.Drawing.Point(159, 17);
+            this.cbClock.Name = "cbClock";
+            this.cbClock.Size = new System.Drawing.Size(22, 22);
+            this.cbClock.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.cbClock, "Start timer");
+            this.cbClock.UseVisualStyleBackColor = true;
+            this.cbClock.CheckedChanged += new System.EventHandler(this.cbClock_CheckedChanged);
+            // 
+            // btnFindProcess
+            // 
+            this.btnFindProcess.Image = global::MemoScope.Properties.Resources.bow;
+            this.btnFindProcess.Location = new System.Drawing.Point(19, 12);
+            this.btnFindProcess.Name = "btnFindProcess";
+            this.btnFindProcess.Size = new System.Drawing.Size(49, 49);
+            this.btnFindProcess.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.btnFindProcess, "Drag button and drop it on process window...");
+            this.btnFindProcess.UseVisualStyleBackColor = true;
+            this.btnFindProcess.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnFindProcess_MouseDown);
+            this.btnFindProcess.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnFindProcess_MouseUp);
             // 
             // ProcessModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gbDumpCommands);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.btnFindProcess);
-            this.Controls.Add(this.btnDump);
             this.Controls.Add(this.tbRootDir);
             this.Controls.Add(this.lblRootDir);
             this.Controls.Add(this.cbProcess);
             this.Controls.Add(this.lblProcess);
             this.Name = "ProcessModule";
-            this.Size = new System.Drawing.Size(980, 674);
+            this.Size = new System.Drawing.Size(810, 596);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.gbProcess.ResumeLayout(false);
             this.gbTriggers.ResumeLayout(false);
+            this.gbDumpCommands.ResumeLayout(false);
+            this.gbDumpCommands.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +286,11 @@
         private System.Windows.Forms.GroupBox gbProcess;
         private ProcessInfoViewer processInfoViewer;
         private ProcessTriggersControl processTriggersControl;
+        private System.Windows.Forms.GroupBox gbDumpCommands;
+        private System.Windows.Forms.Label lblPeriod;
+        private System.Windows.Forms.ComboBox cbPeriod;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.CheckBox cbClock;
+        private System.Windows.Forms.Label lblNextTick;
     }
 }

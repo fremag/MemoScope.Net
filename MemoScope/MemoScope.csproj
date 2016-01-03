@@ -165,6 +165,7 @@
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
+    <Compile Include="Core\Data\CodeTrigger.cs" />
     <Compile Include="Core\Data\IAddressData.cs" />
     <Compile Include="Core\UIClrDumpModule.cs">
       <SubType>UserControl</SubType>
@@ -243,7 +244,6 @@
     </Compile>
     <Compile Include="Modules\Process\DumpRequest.cs" />
     <Compile Include="Modules\Process\MemoScopeService .cs" />
-    <Compile Include="Modules\Process\DumpTrigger.cs" />
     <Compile Include="Modules\Process\ProcessCommand.cs" />
     <Compile Include="Modules\Process\ProcessInfoValue.cs" />
     <Compile Include="Modules\Process\ProcessInfoViewer.cs">
@@ -458,6 +458,7 @@
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
     <Content Include="Icons\Small\color_management.png" />
+    <Content Include="Icons\Small\compile.png" />
     <Content Include="Icons\Small\database_go.png" />
     <Content Include="Icons\Small\database_green.png" />
     <Content Include="Icons\Small\database_yellow.png" />

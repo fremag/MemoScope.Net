@@ -11,6 +11,9 @@ using WinFwk.UIMessages;
 using WinFwk.UIModules;
 using WinFwk.UITools.Log;
 using Cursor = System.Windows.Forms.Cursor;
+using ExpressionEvaluator;
+using System.Text.RegularExpressions;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.Process
 {
@@ -39,7 +42,7 @@ namespace MemoScope.Modules.Process
 
             tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             MemoScopeService.Instance.DumpRequested += OnDumpRequested;
-            processTriggersControl.Init(processInfoViewer.ProcessInfoValues);
+            processTriggersControl.CodeGetter = o => ((ProcessInfoValue)o).Alias;
         }
 
         private void cbProcess_DropDown(object sender, EventArgs e)
@@ -66,7 +69,6 @@ namespace MemoScope.Modules.Process
             }
 
             processInfoViewer.ProcessWrapper = proc;
-            processTriggersControl.ProcessWrapper = proc;
         }
 
         // Called in UI thread
@@ -233,6 +235,76 @@ namespace MemoScope.Modules.Process
             if (message.ProcessWrapper == proc)
             {
                 Dump();
+            }
+        }
+
+        private void cbClock_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbClock.Checked)
+            {
+                string timespanStr = cbPeriod.Text;
+                TimeSpan timespan;
+                if (TimeSpan.TryParse(timespanStr, out timespan))
+                {
+                    timer.Interval = (int)timespan.TotalMilliseconds;
+                    timer.Enabled = true;
+                }
+                else
+                {
+                    Log("Can't parse timespan: '" + timespanStr + "'", LogLevelType.Error);
+                    cbClock.Checked = false;
+                }
+            }
+            else
+            {
+                timer.Enabled = false;
+            }
+            RefreshNextTick();
+        }
+
+        private void RefreshNextTick()
+        {
+            lblNextTick.Visible = cbClock.Checked;
+            lblNextTick.Text = "Next: " + (DateTime.Now + TimeSpan.FromMilliseconds(timer.Interval)).ToString("HH:mm:ss");
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (proc == null || proc.Process.HasExited)
+            {
+                timer.Enabled = false;
+                cbClock.Checked = false;
+            }
+            else
+            {
+                CheckDumpTriggers();
+            }
+            RefreshNextTick();
+        }
+
+        private void CheckDumpTriggers()
+        {
+            TypeRegistry reg = new TypeRegistry();
+            reg.RegisterType<DateTime>();
+            reg.RegisterType<TimeSpan>();
+            reg.RegisterType<Regex>();
+
+            foreach (var procInfoVal in processInfoViewer.ProcessInfoValues)
+            {
+                reg.RegisterSymbol(procInfoVal.Alias, procInfoVal.Value);
+            }
+
+            foreach (CodeTrigger trigger in processTriggersControl.Triggers.Where(dt => dt.Active))
+            {
+                CompiledExpression<bool> exp = new CompiledExpression<bool>(trigger.Code) { TypeRegistry = reg };
+                bool r = exp.Eval();
+                if (r)
+                {
+                    trigger.Active = false;
+                    Log("Trigger: " + trigger.Name + ", Code: " + trigger.Code);
+                    processTriggersControl.RefreshTriggers();
+                    MessageBus.SendMessage(new DumpRequest(proc));
+                }
             }
         }
     }

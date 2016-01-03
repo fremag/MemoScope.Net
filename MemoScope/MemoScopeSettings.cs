@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MemoScope.Modules.Process;
 using WinFwk.UITools.Settings;
 using MemoScope.Core.Helpers;
+using MemoScope.Core.Data;
 
 namespace MemoScope
 {
@@ -20,7 +21,7 @@ namespace MemoScope
         public string LastProcessName { get; set; }
 
         [Category("Process Dump")]
-        public List<DumpTrigger> Triggers { get; set; } = new List<DumpTrigger>();
+        public List<CodeTrigger> Triggers { get; set; } = new List<CodeTrigger>();
 
         public void Save()
         {

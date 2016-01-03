@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using BrightIdeasSoftware;
-using ExpressionEvaluator;
 using WinFwk.UIMessages;
 using WinFwk.UITools.Log;
+using MemoScope.Core.Data;
+using System;
 
 namespace MemoScope.Modules.Process
 {
     public partial class ProcessTriggersControl : UserControl
     {
-        private List<DumpTrigger> triggers;
-        private DumpTrigger currentTrigger;
+        public List<CodeTrigger> Triggers => triggers;
         public MessageBus MessageBus { get; set; }
-        public List<ProcessInfoValue> ProcessInfoValues { get; set; }
-        public ProcessWrapper ProcessWrapper { get; set; }
+        public Func<object, string> CodeGetter;
+
+        private List<CodeTrigger> triggers;
+        private CodeTrigger currentTrigger;
 
         public ProcessTriggersControl()
         {
@@ -24,28 +24,28 @@ namespace MemoScope.Modules.Process
 
             dlvTriggers.CheckStatePutter = (rowObject, value) =>
             {
-                ((DumpTrigger) rowObject).Active = (value == CheckState.Checked);
+                ((CodeTrigger) rowObject).Active = (value == CheckState.Checked);
                 return value;
             };
-            dlvTriggers.CheckStateGetter = rowObject => ((DumpTrigger) rowObject).Active ? CheckState.Checked : CheckState.Unchecked;
-            Generator.GenerateColumns(dlvTriggers, typeof (DumpTrigger), false);
+            dlvTriggers.CheckStateGetter = rowObject => ((CodeTrigger) rowObject).Active ? CheckState.Checked : CheckState.Unchecked;
+            Generator.GenerateColumns(dlvTriggers, typeof (CodeTrigger), false);
         }
 
         private void tsbNetTrigger_Click(object sender, System.EventArgs e)
         {
-            triggers.Add(new DumpTrigger());
+            triggers.Add(new CodeTrigger());
             RefreshTriggers();
         }
 
-        private void RefreshTriggers()
+        public void RefreshTriggers()
         {
             dlvTriggers.SetObjects(triggers);
-            dlvTriggers.BuildGroups(nameof(DumpTrigger.Group), SortOrder.Ascending);
+            dlvTriggers.BuildGroups(nameof(CodeTrigger.Group), SortOrder.Ascending);
         }
 
         private void tsbSaveAllTriggers_Click(object sender, System.EventArgs e)
         {
-            MemoScopeSettings.Instance.Triggers = new List<DumpTrigger>(triggers.Select(t => t.Clone()));
+            MemoScopeSettings.Instance.Triggers = new List<CodeTrigger>(triggers.Select(t => t.Clone()));
             MemoScopeSettings.Instance.Save();
         }
 
@@ -54,7 +54,7 @@ namespace MemoScope.Modules.Process
             ListView.SelectedIndexCollection selectedTriggers = dlvTriggers.SelectedIndices;
             foreach (int idx in selectedTriggers)
             {
-                DumpTrigger trig = triggers[idx];
+                CodeTrigger trig = triggers[idx];
                 var newTrig = trig.Clone();
                 triggers.Add(newTrig);
             }
@@ -66,15 +66,15 @@ namespace MemoScope.Modules.Process
             ListView.SelectedIndexCollection selectedTriggers = dlvTriggers.SelectedIndices;
             foreach (int idx in selectedTriggers)
             {
-                DumpTrigger trig = triggers[idx];
+                CodeTrigger trig = triggers[idx];
                 triggers.Remove(trig);
             }
             RefreshTriggers();
         }
 
-        private void defaultListView1_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void dlvTriggers_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            currentTrigger = dlvTriggers.SelectedObject as DumpTrigger;
+            currentTrigger = dlvTriggers.SelectedObject as CodeTrigger;
 
             tbGroup.Text = currentTrigger?.Group;
             tbName.Text = currentTrigger?.Name;
@@ -95,7 +95,7 @@ namespace MemoScope.Modules.Process
         {
             if (MemoScopeSettings.Instance != null)
             {
-                triggers = new List<DumpTrigger>(MemoScopeSettings.Instance.Triggers.Select(t => t.Clone()));
+                triggers = new List<CodeTrigger>(MemoScopeSettings.Instance.Triggers.Select(t => t.Clone()));
                 RefreshTriggers();
             }
         }
@@ -130,104 +130,22 @@ namespace MemoScope.Modules.Process
             {
                 return;
             }
-            foreach (ProcessInfoValue piv in data.ModelObjects)
+            foreach (object obj in data.ModelObjects)
             {
                 if (tbCode.Text == null)
                 {
-                    tbCode.Text = piv.Name;
+                    tbCode.Text = CodeGetter(obj);
                 }
                 else
                 {
-                    tbCode.Text = tbCode.Text.Insert(tbCode.SelectionStart, piv.Alias);
+                    tbCode.Text = tbCode.Text.Insert(tbCode.SelectionStart, CodeGetter(obj));
                 }
             }
         }
-
-        private void tsbClock_CheckStateChanged(object sender, System.EventArgs e)
-        {
-            tsbClock.Image = tsbClock.Checked ? Properties.Resources.clock_stop : Properties.Resources.clock_go;
-            tsbClock.ToolTipText = tsbClock.Checked ? "Stop": "Start";
-        }
-
-        private void tsbClock_Click(object sender, System.EventArgs e)
-        {
-            if (tsbClock.Checked)
-            {
-                string timespanStr = tscbPeriod.Text;
-                TimeSpan timespan;
-                if (TimeSpan.TryParse(timespanStr, out timespan))
-                {
-                    timer.Interval = (int) timespan.TotalMilliseconds;
-                    timer.Enabled = true;
-                }
-                else
-                {
-                    Log("Can't parse timespan: '"+timespanStr+"'", LogLevelType.Error);
-                    tsbClock.Checked = false;
-                }
-            }
-            else
-            {
-                timer.Enabled = false;
-            }
-            RefreshNextTick();
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            if (ProcessWrapper == null || ProcessWrapper.Process.HasExited)
-            {
-                timer.Enabled = false;
-                tsbClock.Checked = false;
-            }
-            else
-            {
-                CheckDumpTriggers();
-            }
-            RefreshNextTick();
-        }
-
-        private void CheckDumpTriggers()
-        {
-            TypeRegistry reg = new TypeRegistry();
-            reg.RegisterType<DateTime>();
-            reg.RegisterType<TimeSpan>();
-            reg.RegisterType<Regex>();
-
-            foreach (var procInfoVal in ProcessInfoValues)
-            {
-                reg.RegisterSymbol(procInfoVal.Alias, procInfoVal.Value);
-            }
-            
-            foreach (DumpTrigger trigger in triggers.Where(dt => dt.Active))
-            {
-                CompiledExpression<bool> exp = new CompiledExpression<bool>(trigger.Code) {TypeRegistry = reg};
-                bool r = exp.Eval();
-                if (r)
-                {
-                    trigger.Active = false;
-                    Log("Trigger: " +trigger.Name+", Code: "+trigger.Code);
-                    RefreshTriggers();
-                    MessageBus.SendMessage(new DumpRequest(ProcessWrapper));
-                }
-            }
-        }
-
-        private void RefreshNextTick()
-        {
-            tslNextTick.Visible = tsbClock.Checked;
-            tslNextTick.Text = "Next: " + (DateTime.Now + TimeSpan.FromMilliseconds(timer.Interval)).ToString("HH:mm:ss");
-        }
-
-        public void Init(List<ProcessInfoValue> processInfoValues)
-        {
-            ProcessInfoValues  = processInfoValues;
-        }
-
+        
         protected void Log(string text, LogLevelType logLevel = LogLevelType.Info)
         {
             MessageBus.SendMessage(new LogMessage(this, text, logLevel));
         }
-
     }
 }
