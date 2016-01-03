@@ -1,4 +1,6 @@
-﻿namespace MemoScope.Modules.Process
+﻿using MemoScope.Tools.CodeTriggers;
+
+namespace MemoScope.Modules.Process
 {
     partial class ProcessModule
     {
@@ -39,7 +41,7 @@
             this.gbProcess = new System.Windows.Forms.GroupBox();
             this.processInfoViewer = new MemoScope.Modules.Process.ProcessInfoViewer();
             this.gbTriggers = new System.Windows.Forms.GroupBox();
-            this.processTriggersControl = new MemoScope.Modules.Process.ProcessTriggersControl();
+            this.processTriggersControl = new CodeTriggersControl();
             this.gbDumpCommands = new System.Windows.Forms.GroupBox();
             this.lblNextTick = new System.Windows.Forms.Label();
             this.cbPeriod = new System.Windows.Forms.ComboBox();
@@ -285,7 +287,7 @@
         private System.Windows.Forms.GroupBox gbTriggers;
         private System.Windows.Forms.GroupBox gbProcess;
         private ProcessInfoViewer processInfoViewer;
-        private ProcessTriggersControl processTriggersControl;
+        private CodeTriggersControl processTriggersControl;
         private System.Windows.Forms.GroupBox gbDumpCommands;
         private System.Windows.Forms.Label lblPeriod;
         private System.Windows.Forms.ComboBox cbPeriod;

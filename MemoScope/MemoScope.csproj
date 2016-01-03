@@ -165,7 +165,7 @@
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
-    <Compile Include="Core\Data\CodeTrigger.cs" />
+    <Compile Include="Tools\CodeTriggers\CodeTrigger.cs" />
     <Compile Include="Core\Data\IAddressData.cs" />
     <Compile Include="Core\UIClrDumpModule.cs">
       <SubType>UserControl</SubType>
@@ -258,11 +258,11 @@
     <Compile Include="Modules\Process\ProcessModule.Designer.cs">
       <DependentUpon>ProcessModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Process\ProcessTriggersControl.cs">
+    <Compile Include="Tools\CodeTriggers\CodeTriggersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Process\ProcessTriggersControl.Designer.cs">
-      <DependentUpon>ProcessTriggersControl.cs</DependentUpon>
+    <Compile Include="Tools\CodeTriggers\CodeTriggersControl.Designer.cs">
+      <DependentUpon>CodeTriggersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Process\ProcessWrapper.cs" />
     <Compile Include="Modules\TypeDetails\AbstractTypeInformation.cs" />
@@ -327,8 +327,8 @@
     <EmbeddedResource Include="Modules\Process\ProcessModule.resx">
       <DependentUpon>ProcessModule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Process\ProcessTriggersControl.resx">
-      <DependentUpon>ProcessTriggersControl.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\CodeTriggers\CodeTriggersControl.resx">
+      <DependentUpon>CodeTriggersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\TypeDetails\TypeDetailsModule.resx">
       <DependentUpon>TypeDetailsModule.cs</DependentUpon>

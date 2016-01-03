@@ -1,6 +1,6 @@
-﻿namespace MemoScope.Modules.Process
+﻿namespace MemoScope.Tools.CodeTriggers
 {
-    partial class ProcessTriggersControl
+    partial class CodeTriggersControl
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.

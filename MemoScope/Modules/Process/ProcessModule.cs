@@ -13,13 +13,12 @@ using WinFwk.UITools.Log;
 using Cursor = System.Windows.Forms.Cursor;
 using ExpressionEvaluator;
 using System.Text.RegularExpressions;
-using MemoScope.Core.Data;
+using MemoScope.Tools.CodeTriggers;
 
 namespace MemoScope.Modules.Process
 {
     public partial class ProcessModule : UIModule,
         IMessageListener<DumpRequest>
-
     {
         public static readonly MemoScopeServer DumpServer;
         private ProcessWrapper proc;
@@ -42,7 +41,21 @@ namespace MemoScope.Modules.Process
 
             tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             MemoScopeService.Instance.DumpRequested += OnDumpRequested;
+
             processTriggersControl.CodeGetter = o => ((ProcessInfoValue)o).Alias;
+            processTriggersControl.SaveTriggers = triggers =>
+            {
+                MemoScopeSettings.Instance.Triggers = triggers;
+                MemoScopeSettings.Instance.Save();
+            };
+            processTriggersControl.LoadTriggers = () =>
+            {
+                if (MemoScopeSettings.Instance != null)
+                {
+                    return new List<CodeTrigger>(MemoScopeSettings.Instance.Triggers.Select(t => t.Clone()));
+                }
+                return null;
+            };
         }
 
         private void cbProcess_DropDown(object sender, EventArgs e)

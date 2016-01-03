@@ -1,6 +1,6 @@
 ﻿using BrightIdeasSoftware;
 
-namespace MemoScope.Core.Data
+namespace MemoScope.Tools.CodeTriggers
 {
     public class CodeTrigger 
     {

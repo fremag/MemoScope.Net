@@ -4,21 +4,22 @@ using System.Windows.Forms;
 using BrightIdeasSoftware;
 using WinFwk.UIMessages;
 using WinFwk.UITools.Log;
-using MemoScope.Core.Data;
 using System;
 
-namespace MemoScope.Modules.Process
+namespace MemoScope.Tools.CodeTriggers
 {
-    public partial class ProcessTriggersControl : UserControl
+    public partial class CodeTriggersControl : UserControl
     {
         public List<CodeTrigger> Triggers => triggers;
         public MessageBus MessageBus { get; set; }
         public Func<object, string> CodeGetter;
+        public Action<List<CodeTrigger>> SaveTriggers;
+        public Func<List<CodeTrigger>> LoadTriggers;
 
         private List<CodeTrigger> triggers;
         private CodeTrigger currentTrigger;
 
-        public ProcessTriggersControl()
+        public CodeTriggersControl()
         {
             InitializeComponent();
 
@@ -45,8 +46,8 @@ namespace MemoScope.Modules.Process
 
         private void tsbSaveAllTriggers_Click(object sender, System.EventArgs e)
         {
-            MemoScopeSettings.Instance.Triggers = new List<CodeTrigger>(triggers.Select(t => t.Clone()));
-            MemoScopeSettings.Instance.Save();
+            var triggersToSave = new List<CodeTrigger>(triggers.Select(t => t.Clone()));
+            SaveTriggers(triggersToSave);
         }
 
         private void tsbCloneTrigger_Click(object sender, System.EventArgs e)
@@ -93,11 +94,8 @@ namespace MemoScope.Modules.Process
 
         private void ProcessTriggers_Load(object sender, System.EventArgs e)
         {
-            if (MemoScopeSettings.Instance != null)
-            {
-                triggers = new List<CodeTrigger>(MemoScopeSettings.Instance.Triggers.Select(t => t.Clone()));
-                RefreshTriggers();
-            }
+            triggers = LoadTriggers();
+            RefreshTriggers();
         }
 
         private void tbName_TextChanged(object sender, System.EventArgs e)
