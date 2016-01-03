@@ -456,6 +456,8 @@
     <Content Include="Icons\Small\ddr_memory.png" />
     <Content Include="Icons\Small\elements.png" />
     <Content Include="Icons\Small\file_extension_bin.png" />
+    <Content Include="Icons\Small\filter_clear.png" />
+    <Content Include="Icons\Small\filter_reapply.png" />
     <Content Include="Icons\Small\folder.png" />
     <Content Include="Icons\Small\folders_explorer.png" />
     <Content Include="Icons\Small\folder_explore.png" />

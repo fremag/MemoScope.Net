@@ -36,6 +36,10 @@
             this.gbInstances = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.codeTriggersControl = new MemoScope.Tools.CodeTriggers.CodeTriggersControl();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.tspApplyfilter = new System.Windows.Forms.ToolStripButton();
+            this.tsbClearFilter = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dlvAdresses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -48,6 +52,10 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
+            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dlvAdresses
@@ -58,11 +66,11 @@
             this.dlvAdresses.HideSelection = false;
             this.dlvAdresses.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvAdresses.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvAdresses.Location = new System.Drawing.Point(3, 18);
+            this.dlvAdresses.Location = new System.Drawing.Point(0, 0);
             this.dlvAdresses.Name = "dlvAdresses";
             this.dlvAdresses.ShowGroups = false;
             this.dlvAdresses.ShowImagesOnSubItems = true;
-            this.dlvAdresses.Size = new System.Drawing.Size(370, 251);
+            this.dlvAdresses.Size = new System.Drawing.Size(450, 266);
             this.dlvAdresses.TabIndex = 0;
             this.dlvAdresses.UseCompatibleStateImageBehavior = false;
             this.dlvAdresses.View = System.Windows.Forms.View.Details;
@@ -81,8 +89,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gbInstances);
-            this.splitContainer1.Size = new System.Drawing.Size(570, 272);
-            this.splitContainer1.SplitterDistance = 190;
+            this.splitContainer1.Size = new System.Drawing.Size(698, 322);
+            this.splitContainer1.SplitterDistance = 232;
             this.splitContainer1.TabIndex = 1;
             // 
             // gbFields
@@ -91,7 +99,7 @@
             this.gbFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbFields.Location = new System.Drawing.Point(0, 0);
             this.gbFields.Name = "gbFields";
-            this.gbFields.Size = new System.Drawing.Size(190, 272);
+            this.gbFields.Size = new System.Drawing.Size(232, 322);
             this.gbFields.TabIndex = 0;
             this.gbFields.TabStop = false;
             this.gbFields.Text = "Fields";
@@ -110,7 +118,7 @@
             this.dtlvFields.RootKeyValueString = "";
             this.dtlvFields.ShowGroups = false;
             this.dtlvFields.ShowImagesOnSubItems = true;
-            this.dtlvFields.Size = new System.Drawing.Size(184, 251);
+            this.dtlvFields.Size = new System.Drawing.Size(226, 301);
             this.dtlvFields.TabIndex = 0;
             this.dtlvFields.UseCompatibleStateImageBehavior = false;
             this.dtlvFields.View = System.Windows.Forms.View.Details;
@@ -118,11 +126,11 @@
             // 
             // gbInstances
             // 
-            this.gbInstances.Controls.Add(this.dlvAdresses);
+            this.gbInstances.Controls.Add(this.toolStripContainer1);
             this.gbInstances.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbInstances.Location = new System.Drawing.Point(0, 0);
             this.gbInstances.Name = "gbInstances";
-            this.gbInstances.Size = new System.Drawing.Size(376, 272);
+            this.gbInstances.Size = new System.Drawing.Size(462, 322);
             this.gbInstances.TabIndex = 1;
             this.gbInstances.TabStop = false;
             this.gbInstances.Text = "Instances";
@@ -141,8 +149,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.codeTriggersControl);
-            this.splitContainer2.Size = new System.Drawing.Size(570, 544);
-            this.splitContainer2.SplitterDistance = 272;
+            this.splitContainer2.Size = new System.Drawing.Size(698, 677);
+            this.splitContainer2.SplitterDistance = 322;
             this.splitContainer2.TabIndex = 2;
             // 
             // codeTriggersControl
@@ -151,8 +159,58 @@
             this.codeTriggersControl.Location = new System.Drawing.Point(0, 0);
             this.codeTriggersControl.MessageBus = null;
             this.codeTriggersControl.Name = "codeTriggersControl";
-            this.codeTriggersControl.Size = new System.Drawing.Size(570, 268);
+            this.codeTriggersControl.Size = new System.Drawing.Size(698, 351);
             this.codeTriggersControl.TabIndex = 0;
+            // 
+            // toolStripContainer1
+            // 
+            this.toolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.dlvAdresses);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(450, 266);
+            this.toolStripContainer1.Location = new System.Drawing.Point(6, 23);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(450, 293);
+            this.toolStripContainer1.TabIndex = 1;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            // 
+            // tspApplyfilter
+            // 
+            this.tspApplyfilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tspApplyfilter.Image = global::MemoScope.Properties.Resources.filter_reapply;
+            this.tspApplyfilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tspApplyfilter.Name = "tspApplyfilter";
+            this.tspApplyfilter.Size = new System.Drawing.Size(24, 24);
+            this.tspApplyfilter.Text = "Apply Filter";
+            // 
+            // tsbClearFilter
+            // 
+            this.tsbClearFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbClearFilter.Image = global::MemoScope.Properties.Resources.filter_clear;
+            this.tsbClearFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbClearFilter.Name = "tsbClearFilter";
+            this.tsbClearFilter.Size = new System.Drawing.Size(24, 24);
+            this.tsbClearFilter.Text = "Clear Filter";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tspApplyfilter,
+            this.tsbClearFilter});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(99, 27);
+            this.toolStrip1.TabIndex = 0;
             // 
             // InstancesModule
             // 
@@ -160,7 +218,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer2);
             this.Name = "InstancesModule";
-            this.Size = new System.Drawing.Size(570, 544);
+            this.Size = new System.Drawing.Size(698, 677);
             ((System.ComponentModel.ISupportInitialize)(this.dlvAdresses)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -173,6 +231,13 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -186,5 +251,9 @@
         private System.Windows.Forms.GroupBox gbInstances;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private Tools.CodeTriggers.CodeTriggersControl codeTriggersControl;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStripButton tsbClearFilter;
+        private System.Windows.Forms.ToolStripButton tspApplyfilter;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }
