@@ -101,7 +101,7 @@ namespace MemoScope.Modules.Process
             if (lastProcess != null)
             {
                 cbProcess.SelectedItem = lastProcess;
-                proc = (ProcessWrapper)lastProcess;
+                proc = lastProcess;
             }
             processInfoViewer.ProcessWrapper = proc;
             processTriggersControl.MessageBus = MessageBus;

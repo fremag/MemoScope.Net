@@ -10,12 +10,16 @@ using System.Windows.Forms;
 using System;
 using MemoScope.Core;
 using MemoScope.Tools.CodeTriggers;
+using ExpressionEvaluator;
+using System.Text.RegularExpressions;
 
 namespace MemoScope.Modules.Instances
 {
-    public partial class InstancesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>, UIDataProvider<ClrDumpObject>
+    public partial class InstancesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>, UIDataProvider<ClrDumpObject>, IModelFilter
     {
         private IList<ClrInstanceField> fields;
+        List<CompiledExpression<bool>> filters;
+        FieldAccessor myFieldAccessor;
 
         public static void Create(AddressList addresses, UIModule parent, Action<InstancesModule> postInit )
         {
@@ -37,6 +41,7 @@ namespace MemoScope.Modules.Instances
             InitializeComponent();
             Icon = Properties.Resources.scroll_pane_list;
             InitCodeEditor();
+            dlvAdresses.ModelFilter = this;
         }
 
         private void InitCodeEditor()
@@ -44,8 +49,8 @@ namespace MemoScope.Modules.Instances
             codeTriggersControl.CodeGetter = o =>
             {
                 var fieldNode = o as FieldNode;
-                string prefix = fieldNode.ClrType.ElementType.ToString();
-                string code = $" x._{prefix}({fieldNode.FullName}) ";
+                string prefix = FieldAccessor.GetFuncName(fieldNode.ClrType.ElementType);
+                string code = $" x._{prefix}(\"{fieldNode.FullName}\") ";
                 return code;
             };
 
@@ -70,6 +75,8 @@ namespace MemoScope.Modules.Instances
             AddressList = addressList;
             ClrDump = addressList.ClrDump;
             Name = $"#{addressList.ClrDump.Id} - {addressList.ClrType.Name}";
+            myFieldAccessor = new FieldAccessor(ClrDump, addressList.ClrType );
+
             CreateDefaultColumns();
             dlvAdresses.RebuildColumns();
 
@@ -207,6 +214,44 @@ namespace MemoScope.Modules.Instances
                 }
                 return null;
             }
+        }
+
+        private void tspApplyfilter_Click(object sender, EventArgs e)
+        {
+            var triggers = codeTriggersControl.Triggers.Where(trig => trig.Active).ToArray();
+            TypeRegistry reg = new TypeRegistry();
+            reg.RegisterType<DateTime>();
+            reg.RegisterType<TimeSpan>();
+            reg.RegisterType<Regex>();
+            reg.RegisterSymbol("x", myFieldAccessor);
+            filters = new List<CompiledExpression<bool>>();
+            foreach (var trigger in triggers)
+            {
+                CompiledExpression<bool> exp = new CompiledExpression<bool>(trigger.Code) { TypeRegistry = reg };
+                filters.Add(exp);
+            }
+
+            dlvAdresses.UseFiltering = true;
+        }
+
+        public bool Filter(object modelObject)
+        {
+            ulong address = (ulong)modelObject;
+            myFieldAccessor.Address = address;
+            foreach (var filter in filters)
+            {
+                bool result = filter.Eval();
+                if( result)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void tsbClearFilter_Click(object sender, EventArgs e)
+        {
+            dlvAdresses.UseFiltering = false;
         }
     }
 }
