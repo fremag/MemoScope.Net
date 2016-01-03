@@ -165,6 +165,7 @@
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
+    <Compile Include="Core\Data\SimpleValueHelper.cs" />
     <Compile Include="Modules\Instances\FieldAccessor.cs" />
     <Compile Include="Tools\CodeTriggers\CodeTrigger.cs" />
     <Compile Include="Core\Data\IAddressData.cs" />

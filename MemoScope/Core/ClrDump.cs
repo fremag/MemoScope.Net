@@ -102,6 +102,22 @@ namespace MemoScope.Core
         {
             return worker.Eval(func);
         }
+        public object GetSimpleValue(ulong address, ClrType type)
+        {
+            var obj = Eval(() => GetSimpleValueImpl(address, type));
+            return obj;
+        }
+
+        private object GetSimpleValueImpl(ulong address, ClrType type)
+        {
+            if (SimpleValueHelper.IsSimpleValue(type))
+            {
+                var value = SimpleValueHelper.GetSimpleValue(address, type, false);
+                return value;
+            }
+            
+            return address;
+        }
 
         public object GetFieldValue(ulong address, ClrType type, List<ClrInstanceField> fields)
         {
@@ -112,6 +128,7 @@ namespace MemoScope.Core
         private object GetFieldValueImpl(ulong address, ClrType type, List<ClrInstanceField> fields)
         {
             ClrObject obj = new ClrObject(address, type);
+
             for (int i = 0; i < fields.Count; i++)
             {
                 var field = fields[i];

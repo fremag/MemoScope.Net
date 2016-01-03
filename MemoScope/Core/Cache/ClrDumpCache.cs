@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using System.IO;
 using WinFwk.UITools.Log;
 using System;
+using WinFwk.UIModules;
 
 namespace MemoScope.Core.Cache
 {
@@ -38,6 +39,9 @@ namespace MemoScope.Core.Cache
             ClrDump = clrDump;
         }
 
+        long n = 0;
+        DateTime startTime ;
+
         public void Init()
         {
             string dbPath = GetCachePath();
@@ -47,22 +51,23 @@ namespace MemoScope.Core.Cache
                 Open(dbPath);
                 return;
             }
-            ClrDump.MessageBus.Log(this, $"Creating cache: {dbPath}");
+            startTime = DateTime.Now;
+            n = 0;
+            ClrDump.MessageBus.Status("Initializing cache...", StatusType.BeginTask);
             Open(dbPath);
 
-            ClrDump.MessageBus.Log(this, $"Creating tables...");
+            ClrDump.MessageBus.Status($"Creating tables...");
             CreateTables();
-            ClrDump.MessageBus.Log(this, $"Storing data...");
+            ClrDump.MessageBus.Status($"Storing data...");
             StoreData();
-            ClrDump.MessageBus.Log(this, $"Creating indices...");
+            ClrDump.MessageBus.Status($"Creating indices...");
             CreateIndices();
+            ClrDump.MessageBus.Status($"Cache Initialized: {GetStats()}", StatusType.EndTask);
         }
 
         private void StoreData()
         {
-            ClrDump.MessageBus.Log(this, "Initializing cache...");
             BeginUpdate();
-            int n = 0;
             Dictionary<ClrType, ClrTypeStats> stats = new Dictionary<ClrType, ClrTypeStats>();
             foreach (var address in ClrDump.Heap.EnumerateObjectAddresses())
             {
@@ -89,7 +94,13 @@ namespace MemoScope.Core.Cache
                 });
 
                 n++;
+                if( n % 1024*64==0)
+                {
+                    ClrDump.MessageBus.Status(GetStats());
+                }
             }
+
+
             ClrDump.MessageBus.Log(this, "Inserting type stats...");
             foreach (var stat in stats.Values)
             {
@@ -97,7 +108,14 @@ namespace MemoScope.Core.Cache
             }
 
             EndUpdate();
-            ClrDump.MessageBus.Log(this, "Initializing cache...");
+            ClrDump.MessageBus.Status("Cache Initialized.", StatusType.EndTask);
+        }
+
+        private string GetStats()
+        {
+            var now = DateTime.Now;
+            var elapsed = now - startTime;
+            return $"# instances: {n:###,###,###,###}, inst/sec: {n / elapsed.TotalSeconds:###,###,##0}, time: {elapsed:hh\\:mm\\:ss}";
         }
         #region TypeStats
 
@@ -157,14 +175,15 @@ namespace MemoScope.Core.Cache
             cmdInsertInstance.ExecuteNonQuery();
         }
 
-        public List<ulong> LoadInstances(int typeId)
+        public List<ulong> LoadInstances(int typeId, int max = 2 * 1000 * 1000)
         {
             var list = new List<ulong>();
             SQLiteCommand cmd = new SQLiteCommand();
             cmd.Connection = cxion;
             cmd.CommandText = "SELECT Address FROM Instances WHERE TypeId=" + typeId;
             SQLiteDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            int n = max;
+            while (dr.Read() && n-- != 0)
             {
                 var address = (ulong)dr.GetInt64(0);
                 list.Add(address);
@@ -214,7 +233,6 @@ namespace MemoScope.Core.Cache
 
 private void CreateIndices()
         {
-            ClrDump.MessageBus.Log(this, "Creating Indexes...");
             RunCommand("CREATE UNIQUE INDEX IdxTypes ON Types (Id)");
             RunCommand("CREATE INDEX IdxInstances ON Instances (TypeId)");
             RunCommand("CREATE INDEX IdxReferences ON InstanceReferences (InstanceAddress)");
@@ -249,7 +267,8 @@ private void CreateIndices()
         #region SQL 
         private void Open(string dbPath)
         {
-            string cxionString = $"Data Source={dbPath};Version=3;Cache Size=2000000;Page Size=8192;journal_mode=OFF;synchronous=OFF;count_changes=OFF;temp_store=MEMORY";
+//            string cxionString = $"Data Source={dbPath};Version=3;Cache Size=2000000;Page Size=8192;journal_mode=OFF;synchronous=OFF;count_changes=OFF;temp_store=MEMORY";
+            string cxionString = $"Data Source={dbPath};Version=3;Page Size=65536;journal_mode=OFF;synchronous=OFF;count_changes=OFF;temp_store=MEMORY";
             cxion = new SQLiteConnection(cxionString);
             cxion.Open();
         }

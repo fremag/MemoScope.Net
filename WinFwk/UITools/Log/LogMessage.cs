@@ -3,9 +3,7 @@ using WinFwk.UIMessages;
 
 namespace WinFwk.UITools.Log
 {
-    public enum LogLevelType { Debug, Info, Warn, Error, Exception,
-        Notify
-    }
+    public enum LogLevelType { Debug, Info, Warn, Error, Exception, Notify }
     public class LogMessage : AbstractUIMessage
     {
         public DateTime TimeStamp { get; private set; }

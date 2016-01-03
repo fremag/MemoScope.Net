@@ -240,6 +240,7 @@ namespace MemoScope.Modules.Instances
             myFieldAccessor.Address = address;
             foreach (var filter in filters)
             {
+                
                 bool result = filter.Eval();
                 if( result)
                 {

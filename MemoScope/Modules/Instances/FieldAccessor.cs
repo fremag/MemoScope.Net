@@ -144,7 +144,10 @@ namespace MemoScope.Modules.Instances
         {
             return (decimal)Eval(arg);
         }
-
-
+        public override string ToString()
+        {
+            var obj = ClrDump.GetSimpleValue(Address, ClrType);
+            return obj != null ? obj.ToString() : string.Empty;
+        }
     }
 }
