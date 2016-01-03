@@ -3,6 +3,21 @@ using System.Drawing;
 
 namespace MemoDummy
 {
+    enum Flags { _True_, _False_, _FileNotFound_ }
+
+    struct StructData
+    {
+        public Flags myFlags;
+    }
+
+    class InternalData
+    {
+        public string Desc;
+        public bool IsNeg;
+        public double X { get; set; }
+        public double Y { get; set; }
+    }
+
     internal class ComplexObject
     {
         static private int n = 0;
@@ -40,7 +55,10 @@ namespace MemoDummy
                     structData.myFlags = Flags._FileNotFound_;
                     break;
             }
-            color = Color.FromArgb(id % 255, (id + 1) % 255, (id + 2 % 255));
+            var r = id % 255;
+            var g = (id + 1) % 255;
+            var b = (id + 2) % 255;
+            color = Color.FromArgb(r, g, b);
             isEven = (id % 2 == 0);
             value = 4 * id;
             date = new DateTime(2015, 12, 18).AddDays(id);
@@ -48,26 +66,14 @@ namespace MemoDummy
             SomeStrings = new string[id];
             someInts = new int[id];
             someDoubles = new double[id];
-            for(int i=0; i < id; i++)
+            for(int i=0; i < id % 32; i++)
             {
-                SomeStrings[i] = i.ToString("X");
-                someInts[i] = i;
-                someDoubles[i] = 2 * i;
+                int n = (id + i);
+                SomeStrings[i] = n.ToString("X");
+                someInts[i] = n;
+                someDoubles[i] = 2 * (n + i);
             }
         }
 
-    }
-    enum Flags { _True_, _False_, _FileNotFound_}
-
-    struct StructData
-    {
-        public Flags myFlags;
-    }
-    class InternalData
-    {
-        public string Desc;
-        public bool IsNeg;
-        public double X { get; set; }
-        public double Y { get; set; }
     }
 }

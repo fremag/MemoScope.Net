@@ -10,7 +10,7 @@ namespace MemoDummy
         public override string Description => "Creates some complex objects, frequency, quantity etc can be configured";
 
         [Category("Config")]
-        public long MaxObject { get; set; } = int.MaxValue;
+        public long MaxObject { get; set; } = 10000000;
 
         [Category("Config")]
         [DisplayName(nameof(Period) + " (ms)")]
