@@ -56,8 +56,6 @@
             this.dlvAdresses.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvAdresses.FullRowSelect = true;
             this.dlvAdresses.HideSelection = false;
-            this.dlvAdresses.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.dlvAdresses.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dlvAdresses.Location = new System.Drawing.Point(3, 18);
             this.dlvAdresses.Name = "dlvAdresses";
             this.dlvAdresses.ShowGroups = false;
@@ -103,8 +101,6 @@
             this.dtlvFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtlvFields.FullRowSelect = true;
             this.dtlvFields.HideSelection = false;
-            this.dtlvFields.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.dtlvFields.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dtlvFields.Location = new System.Drawing.Point(3, 18);
             this.dtlvFields.Name = "dtlvFields";
             this.dtlvFields.RootKeyValueString = "";
