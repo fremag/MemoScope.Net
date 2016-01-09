@@ -229,9 +229,16 @@ namespace MemoScope.Modules.Instances
             filters = new List<Func<bool>>();
             foreach (var trigger in triggers)
             {
-                CompiledExpression<bool> exp = new CompiledExpression<bool>(trigger.Code) { TypeRegistry = reg };
-                Func<bool> comp = exp.Compile();
-                filters.Add(comp);
+                try
+                {
+                    CompiledExpression<bool> exp = new CompiledExpression<bool>(trigger.Code) { TypeRegistry = reg };
+                    Func<bool> comp = exp.Compile();
+                    filters.Add(comp);
+                }
+                catch (Exception ex)
+                {
+                    Log($"Can't compile expression: {trigger.Code}", ex);
+                }
             }
             Status("Filtering instances...", StatusType.BeginTask);
             Task.Run(() => FilterAddresses())

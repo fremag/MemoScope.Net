@@ -55,6 +55,7 @@ namespace WinFwk.UITools.Log
                     MessageBox.Show(message.Text, "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 case LogLevelType.Exception:
+                    MessageBox.Show($"{message.Text}{Environment.NewLine}Exception: {message.Exception.Message}", "Exception !", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Error(message.Exception, message.Text);
                     break;
                 case LogLevelType.Notify:
