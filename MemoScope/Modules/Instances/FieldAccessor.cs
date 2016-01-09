@@ -49,7 +49,7 @@ namespace MemoScope.Modules.Instances
                 lastFields = fields;
                 lastArg = arg;
             }
-            var value = ClrDump.GetFieldValue(Address, ClrType, fields);
+            var value = ClrDump.GetFieldValueImpl(Address, ClrType, fields);
             return value;
         }
 

@@ -12,13 +12,14 @@ using MemoScope.Core;
 using MemoScope.Tools.CodeTriggers;
 using ExpressionEvaluator;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace MemoScope.Modules.Instances
 {
     public partial class InstancesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>, UIDataProvider<ClrDumpObject>, IModelFilter
     {
         private IList<ClrInstanceField> fields;
-        List<CompiledExpression<bool>> filters;
+        List<Func<bool>> filters;
         FieldAccessor myFieldAccessor;
 
         public static void Create(AddressList addresses, UIModule parent, Action<InstancesModule> postInit )
@@ -179,6 +180,7 @@ namespace MemoScope.Modules.Instances
             dtlvFields.Roots = fieldNodes;
             dlvAdresses.SetObjects(AddressList.Addresses);
             Summary = $"{AddressList.Addresses.Count:###,###,###,##0} instances";
+            RefreshInstanceCounter();
         }
 
         ClrDumpType UIDataProvider<ClrDumpType>.Data
@@ -224,24 +226,70 @@ namespace MemoScope.Modules.Instances
             reg.RegisterType<TimeSpan>();
             reg.RegisterType<Regex>();
             reg.RegisterSymbol("x", myFieldAccessor);
-            filters = new List<CompiledExpression<bool>>();
+            filters = new List<Func<bool>>();
             foreach (var trigger in triggers)
             {
                 CompiledExpression<bool> exp = new CompiledExpression<bool>(trigger.Code) { TypeRegistry = reg };
-                filters.Add(exp);
+                Func<bool> comp = exp.Compile();
+                filters.Add(comp);
             }
-
-            dlvAdresses.UseFiltering = true;
+            Status("Filtering instances...", StatusType.BeginTask);
+            Task.Run(() => FilterAddresses())
+                .ContinueWith(task => {
+                    dlvAdresses.UseFiltering = true;
+                    RefreshInstanceCounter();
+                    Status("Instances filtered.", StatusType.EndTask);
+                }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
+        private void RefreshInstanceCounter()
+        {
+            if (dlvAdresses.UseFiltering)
+            {
+                tsbInstancesCount.Text = $"# instances: {filteredAddresses.Count:###,###,###,##0} / {AddressList.Addresses.Count:###,###,###,##0}";
+            }
+            else
+            {
+                tsbInstancesCount.Text = $"# instances: {AddressList.Addresses.Count:###,###,###,##0}";
+            }
+        }
+
+        private void FilterAddresses()
+        {
+            ClrDump.Run(() =>
+            {
+                var addresses = AddressList.Addresses;
+                int c = addresses.Count;
+                for (int i = 0; i < c; i++)
+                {
+                    ulong address = addresses[i];
+                    if (DoFilter(address))
+                    {
+                        filteredAddresses.Add(address);
+                    }
+                    if( (i % 65 * 1024) == 0)
+                    {
+                        Status($"Filtering: {i:###,###,###,##0} / {c:###,###,###,##0}");
+                    }
+                }
+            });
+        }
+
+        HashSet<ulong> filteredAddresses = new HashSet<ulong>();
         public bool Filter(object modelObject)
         {
             ulong address = (ulong)modelObject;
+            bool b = filteredAddresses.Contains(address);
+            return b;
+        }
+
+        public bool DoFilter(ulong address)
+        {
             myFieldAccessor.Address = address;
             foreach (var filter in filters)
             {
                 
-                bool result = filter.Eval();
+                bool result = filter();
                 if( result)
                 {
                     return true;
@@ -253,6 +301,8 @@ namespace MemoScope.Modules.Instances
         private void tsbClearFilter_Click(object sender, EventArgs e)
         {
             dlvAdresses.UseFiltering = false;
+            filteredAddresses.Clear();
+            RefreshInstanceCounter();
         }
     }
 }

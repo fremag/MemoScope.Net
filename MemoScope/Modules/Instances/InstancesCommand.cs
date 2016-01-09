@@ -1,6 +1,5 @@
 ﻿using MemoScope.Core.Data;
 using WinFwk.UICommands;
-using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Instances
 {

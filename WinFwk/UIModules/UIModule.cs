@@ -44,6 +44,11 @@ namespace WinFwk.UIModules
             MessageBus.Subscribe(this);
         }
 
+        protected void Status(string text, StatusType status = StatusType.Text )
+        {
+            MessageBus.SendMessage(new StatusMessage(text, status));
+        }
+
         protected void Log(string text, LogLevelType logLevel = LogLevelType.Info)
         {
             MessageBus.SendMessage(new LogMessage(this, text, logLevel));

@@ -180,6 +180,11 @@ namespace MemoScope.Core.Helpers
 
             col.AspectGetter = o =>
             {
+                if( o == null)
+                {
+                    return null;
+                }
+
                 ulong address = addressGetter(o);
                 object result = dump.Eval(
                     () => {

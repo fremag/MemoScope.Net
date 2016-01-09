@@ -63,9 +63,9 @@ namespace MemoDummy
             value = 4 * id;
             date = new DateTime(2015, 12, 18).AddDays(id);
             time = TimeSpan.Zero.Add(TimeSpan.FromSeconds(id));
-            SomeStrings = new string[id];
-            someInts = new int[id];
-            someDoubles = new double[id];
+            SomeStrings = new string[id%32];
+            someInts = new int[id % 32];
+            someDoubles = new double[id % 32];
             for(int i=0; i < id % 32; i++)
             {
                 int n = (id + i);

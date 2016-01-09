@@ -40,6 +40,7 @@
             this.tsbClearFilter = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.codeTriggersControl = new MemoScope.Tools.CodeTriggers.CodeTriggersControl();
+            this.tsbInstancesCount = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dlvAdresses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -161,7 +162,8 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspApplyfilter,
-            this.tsbClearFilter});
+            this.tsbClearFilter,
+            this.tsbInstancesCount});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(99, 27);
@@ -214,6 +216,11 @@
             this.codeTriggersControl.Size = new System.Drawing.Size(698, 351);
             this.codeTriggersControl.TabIndex = 0;
             // 
+            // tsbInstancesCount
+            // 
+            this.tsbInstancesCount.Name = "tsbInstancesCount";
+            this.tsbInstancesCount.Size = new System.Drawing.Size(0, 24);
+            // 
             // InstancesModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -257,5 +264,6 @@
         private System.Windows.Forms.ToolStripButton tsbClearFilter;
         private System.Windows.Forms.ToolStripButton tspApplyfilter;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel tsbInstancesCount;
     }
 }
