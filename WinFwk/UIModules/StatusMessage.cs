@@ -26,9 +26,13 @@ namespace WinFwk.UIModules
         {
             msgBus.SendMessage(new StatusMessage(text, status));
         }
-        public static void BeginTask(this MessageBus msgBus, string text, CancellationTokenSource cancellationTokenSource)
+        public static void BeginTask(this MessageBus msgBus, string text, CancellationTokenSource cancellationTokenSource=null)
         {
             msgBus.SendMessage(new StatusMessage(text, cancellationTokenSource));
+        }
+        public static void EndTask(this MessageBus msgBus, string text)
+        {
+            Status(msgBus, text, StatusType.EndTask);
         }
     }
 }

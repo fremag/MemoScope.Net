@@ -62,8 +62,8 @@ namespace WinFwk.UIModules
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspbProgressBar,
-            this.tsslStatusMessage,
-            this.tssbCancel});
+            this.tssbCancel,
+            this.tsslStatusMessage});
             this.statusStrip.Location = new System.Drawing.Point(0, 0);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(925, 26);

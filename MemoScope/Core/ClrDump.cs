@@ -8,6 +8,7 @@ using WinFwk.UIMessages;
 using MemoScope.Core.Cache;
 using MemoScope.Core.Data;
 using MemoScope.Core.Bookmark;
+using System.Threading;
 
 namespace MemoScope.Core
 {
@@ -34,10 +35,13 @@ namespace MemoScope.Core
             worker = new SingleThreadWorker(dumpPath);
             worker.Run(InitRuntime);
 
-            cache = new ClrDumpCache(this);
-            cache.Init();
-
             BookmarkMgr = new BookmarkMgr(dumpPath);
+        }
+
+        public void InitCache(CancellationToken token)
+        {
+            cache = new ClrDumpCache(this);
+            cache.Init(token);
         }
 
         private void InitRuntime()
@@ -55,6 +59,18 @@ namespace MemoScope.Core
         {
             List<ClrType> t = worker.Eval( () => t = Heap.EnumerateTypes().ToList());
             return t;
+        }
+
+        internal void Destroy()
+        {
+            Dispose();
+            cache.Destroy();
+        }
+
+        internal void Dispose()
+        {
+            cache.Dispose();
+            Runtime.DataTarget.Dispose();
         }
 
         public ClrType GetClrType(string typeName)

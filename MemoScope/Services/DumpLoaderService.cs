@@ -6,6 +6,8 @@ using MemoScope.Modules.Explorer;
 using Microsoft.Diagnostics.Runtime;
 using WinFwk.UIMessages;
 using WinFwk.UIServices;
+using WinFwk.UIModules;
+using System.Threading;
 
 namespace MemoScope.Services
 {
@@ -21,11 +23,13 @@ namespace MemoScope.Services
 
         public void HandleMessage(OpenDumpRequest openDumpRequest)
         {
+            CancellationTokenSource source = new CancellationTokenSource();
+            var token = source.Token;
             foreach (var fileInfo in openDumpRequest.FileInfos)
             {
                 fact.StartNew(() =>
                 {
-                    Log("Loading file: " + fileInfo.FullName);
+                    BeginTask("Loading file: " + fileInfo.FullName, source);
                     DataTarget target = DataTarget.LoadCrashDump(fileInfo.FullName);
                     try
                     {
@@ -35,8 +39,17 @@ namespace MemoScope.Services
                         }
 
                         var clrDump = new ClrDump(target, fileInfo.FullName, MessageBus);
-                        Log("File loaded: " + fileInfo.FullName);
-                        MessageBus.SendMessage(new ClrDumpLoadedMessage(clrDump));
+                        clrDump.InitCache(token);
+                        if (token.IsCancellationRequested)
+                        {
+                            clrDump.Destroy();
+                            EndTask("File NOT loaded: " + fileInfo.FullName);
+                        }
+                        else
+                        {
+                            MessageBus.SendMessage(new ClrDumpLoadedMessage(clrDump));
+                            EndTask("File loaded: " + fileInfo.FullName);
+                        }
                     }
                     catch
                     {

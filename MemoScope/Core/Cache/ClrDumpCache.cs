@@ -5,6 +5,7 @@ using System.IO;
 using WinFwk.UITools.Log;
 using System;
 using WinFwk.UIModules;
+using System.Threading;
 
 namespace MemoScope.Core.Cache
 {
@@ -42,7 +43,7 @@ namespace MemoScope.Core.Cache
         long n = 0;
         DateTime startTime ;
 
-        public void Init()
+        public void Init(CancellationToken token)
         {
             string dbPath = GetCachePath();
             if (File.Exists(dbPath))
@@ -53,19 +54,43 @@ namespace MemoScope.Core.Cache
             }
             startTime = DateTime.Now;
             n = 0;
-            ClrDump.MessageBus.Status("Initializing cache...", StatusType.BeginTask);
+            ClrDump.MessageBus.Status("Initializing cache...");
             Open(dbPath);
 
             ClrDump.MessageBus.Status($"Creating tables...");
             CreateTables();
             ClrDump.MessageBus.Status($"Storing data...");
-            StoreData();
+            StoreData(token);
+            if( token.IsCancellationRequested)
+            {
+                ClrDump.MessageBus.EndTask("Cache Initialization cancelled.");
+                return;
+            }
             ClrDump.MessageBus.Status($"Creating indices...");
             CreateIndices();
             ClrDump.MessageBus.Status($"Cache Initialized: {GetStats()}", StatusType.EndTask);
         }
 
-        private void StoreData()
+        internal void Destroy()
+        {
+            Dispose();
+            string dbPath = GetCachePath();
+            if (File.Exists(dbPath))
+            {
+                ClrDump.MessageBus.Log(this, $"Deleting cache: {dbPath}");
+                File.Delete(dbPath);
+            }
+        }
+
+        internal void Dispose()
+        {
+            cmdInsertInstance.Dispose();
+            cmdInsertReference.Dispose();
+            cmdInsertType.Dispose();
+            cxion.Dispose();
+        }
+
+        private void StoreData(CancellationToken token)
         {
             BeginUpdate();
             Dictionary<ClrType, ClrTypeStats> stats = new Dictionary<ClrType, ClrTypeStats>();
@@ -96,6 +121,10 @@ namespace MemoScope.Core.Cache
                 n++;
                 if( n % 1024*64==0)
                 {
+                    if( token.IsCancellationRequested)
+                    {
+                        return;
+                    }
                     ClrDump.MessageBus.Status(GetStats());
                 }
             }
