@@ -18,6 +18,7 @@ namespace MemoScope.Modules.Instances
         {
             Field = field;
             ClrDump = clrDump;
+            CanExpand = !Field.Type.IsPrimitive && ClrDump.Eval(() => Field.Type.Fields.Any());
         }
         public FieldNode(ClrInstanceField field, ClrDump clrDump, FieldNode parent) : this(field, clrDump)
         {
@@ -32,7 +33,7 @@ namespace MemoScope.Modules.Instances
 
         public ClrType ClrType => Field.Type;
 
-        public bool CanExpand => !Field.Type.IsPrimitive && ClrDump.Eval(() => Field.Type.Fields.Any());
+        public bool CanExpand { get; }
 
         public List<FieldNode> Children
         {

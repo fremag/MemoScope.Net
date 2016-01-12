@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -21,7 +22,7 @@ namespace WinFwk.UIModules
         protected readonly MessageBus msgBus = new MessageBus();
         protected readonly List<UIToolBarSettings> toolbarSettings = new List<UIToolBarSettings>();
         private readonly Dictionary<Keys, AbstractUICommand> dicoKeys = new Dictionary<Keys, AbstractUICommand>();
-
+        private CancellationTokenSource cancellationTokenSource;
         private int nbTasks;
 
         public StatusStrip StatusBar => statusStrip;
@@ -58,6 +59,8 @@ namespace WinFwk.UIModules
                         tspbProgressBar.Style = ProgressBarStyle.Marquee;
                         tspbProgressBar.MarqueeAnimationSpeed = 30;
                         tspbProgressBar.Visible = true;
+                        cancellationTokenSource = message.CancellationTokenSource;
+                        tssbCancel.Visible = cancellationTokenSource != null;
                         break;
                     case StatusType.EndTask:
                         nbTasks--;
@@ -66,6 +69,7 @@ namespace WinFwk.UIModules
                             tspbProgressBar.Style = ProgressBarStyle.Continuous;
                             tspbProgressBar.MarqueeAnimationSpeed = 0;
                             tspbProgressBar.Visible = false;
+                            tssbCancel.Visible = false;
                         }
                         break;
                 }
@@ -228,5 +232,13 @@ namespace WinFwk.UIModules
         {
             UIModuleFactory.Init(this.msgBus, TaskScheduler.FromCurrentSynchronizationContext());
         }
-    }
+
+        private void tssbCancel_ButtonClick(object sender, EventArgs e)
+        {
+            if(cancellationTokenSource != null)
+            {
+                cancellationTokenSource.Cancel();
+            }
+        }
+   }
 }

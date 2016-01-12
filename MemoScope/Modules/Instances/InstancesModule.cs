@@ -13,6 +13,7 @@ using MemoScope.Tools.CodeTriggers;
 using ExpressionEvaluator;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace MemoScope.Modules.Instances
 {
@@ -240,14 +241,25 @@ namespace MemoScope.Modules.Instances
                     Log($"Can't compile expression: {trigger.Code}", ex);
                 }
             }
-            Status("Filtering instances...", StatusType.BeginTask);
-            Task.Run(() => FilterAddresses())
+            CancellationTokenSource source = new CancellationTokenSource();
+            var token = source.Token;
+            BeginTask("Filtering instances...", source);
+            dlvAdresses.BeginUpdate();
+            Task.Run(() => FilterAddresses(token)  )
                 .ContinueWith(task => {
-                    dlvAdresses.UseFiltering = true;
+                    if (token.IsCancellationRequested)
+                    {
+                        Status("Instances NOT filtered.", StatusType.EndTask);
+                    }
+                    else {
+                        dlvAdresses.UseFiltering = true;
+                        Status("Instances filtered.", StatusType.EndTask);
+                    }
+                    dlvAdresses.EndUpdate();
                     RefreshInstanceCounter();
-                    Status("Instances filtered.", StatusType.EndTask);
                 }, TaskScheduler.FromCurrentSynchronizationContext());
         }
+
 
         private void RefreshInstanceCounter()
         {
@@ -261,25 +273,32 @@ namespace MemoScope.Modules.Instances
             }
         }
 
-        private void FilterAddresses()
+        private void FilterAddresses(CancellationToken token)
         {
-            ClrDump.Run(() =>
+            var addresses = AddressList.Addresses;
+            int c = addresses.Count;
+            const int batchSize = 16 * 1024;
+            for (int i = 0; i < c && ! token.IsCancellationRequested; i += batchSize)
             {
-                var addresses = AddressList.Addresses;
-                int c = addresses.Count;
-                for (int i = 0; i < c; i++)
+                Status($"Filtering: {i:###,###,###,##0} / {c:###,###,###,##0}");
+                ClrDump.Run(() =>
                 {
-                    ulong address = addresses[i];
-                    if (DoFilter(address))
+                    int max = Math.Min(i + batchSize, c);
+                    for (int j = i; j < max; j++)
                     {
-                        filteredAddresses.Add(address);
+                        ulong address = addresses[j];
+                        if (DoFilter(address))
+                        {
+                            filteredAddresses.Add(address);
+                        }
+                        if (token.IsCancellationRequested)
+                        {
+                            filteredAddresses.Clear();
+                            return ;
+                        }
                     }
-                    if( (i % 65 * 1024) == 0)
-                    {
-                        Status($"Filtering: {i:###,###,###,##0} / {c:###,###,###,##0}");
-                    }
-                }
-            });
+                });
+            }
         }
 
         HashSet<ulong> filteredAddresses = new HashSet<ulong>();
@@ -295,7 +314,6 @@ namespace MemoScope.Modules.Instances
             myFieldAccessor.Address = address;
             foreach (var filter in filters)
             {
-                
                 bool result = filter();
                 if( result)
                 {
@@ -310,6 +328,7 @@ namespace MemoScope.Modules.Instances
             dlvAdresses.UseFiltering = false;
             filteredAddresses.Clear();
             RefreshInstanceCounter();
+            Status("Filter removed.");
         }
     }
 }

@@ -38,6 +38,7 @@ namespace WinFwk.UIModules
             this.tspbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsslStatusMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.tssbCancel = new System.Windows.Forms.ToolStripSplitButton();
             this.statusStrip.SuspendLayout();
             this.toolStripContainer2.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer2.ContentPanel.SuspendLayout();
@@ -51,7 +52,7 @@ namespace WinFwk.UIModules
             this.mainPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(925, 694);
+            this.mainPanel.Size = new System.Drawing.Size(925, 693);
             this.mainPanel.TabIndex = 1;
             this.mainPanel.ActiveContentChanged += new System.EventHandler(this.OnActiveContentChanged);
             // 
@@ -61,24 +62,25 @@ namespace WinFwk.UIModules
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspbProgressBar,
-            this.tsslStatusMessage});
+            this.tsslStatusMessage,
+            this.tssbCancel});
             this.statusStrip.Location = new System.Drawing.Point(0, 0);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(925, 25);
+            this.statusStrip.Size = new System.Drawing.Size(925, 26);
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
             // tspbProgressBar
             // 
             this.tspbProgressBar.Name = "tspbProgressBar";
-            this.tspbProgressBar.Size = new System.Drawing.Size(100, 19);
+            this.tspbProgressBar.Size = new System.Drawing.Size(100, 20);
             this.tspbProgressBar.Visible = false;
             // 
             // tsslStatusMessage
             // 
             this.tsslStatusMessage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsslStatusMessage.Name = "tsslStatusMessage";
-            this.tsslStatusMessage.Size = new System.Drawing.Size(910, 20);
+            this.tsslStatusMessage.Size = new System.Drawing.Size(744, 21);
             this.tsslStatusMessage.Spring = true;
             this.tsslStatusMessage.Text = "Ok.";
             this.tsslStatusMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,13 +95,26 @@ namespace WinFwk.UIModules
             // toolStripContainer2.ContentPanel
             // 
             this.toolStripContainer2.ContentPanel.Controls.Add(this.mainPanel);
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(925, 694);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(925, 693);
             this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer2.Name = "toolStripContainer2";
             this.toolStripContainer2.Size = new System.Drawing.Size(925, 744);
             this.toolStripContainer2.TabIndex = 5;
             this.toolStripContainer2.Text = "toolStripContainer2";
+            // 
+            // tssbCancel
+            // 
+            this.tssbCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tssbCancel.DropDownButtonWidth = 0;
+            this.tssbCancel.Image = global::WinFwk.Properties.Resources.cancel;
+            this.tssbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tssbCancel.Name = "tssbCancel";
+            this.tssbCancel.Size = new System.Drawing.Size(25, 24);
+            this.tssbCancel.Text = "toolStripSplitButton1";
+            this.tssbCancel.ToolTipText = "Cancel";
+            this.tssbCancel.Visible = false;
+            this.tssbCancel.ButtonClick += new System.EventHandler(this.tssbCancel_ButtonClick);
             // 
             // UIModuleForm
             // 
@@ -140,5 +155,7 @@ namespace WinFwk.UIModules
         {
             DockModule(new LogModule(), DockState.DockBottomAutoHide, false);
         }
+
+        private System.Windows.Forms.ToolStripSplitButton tssbCancel;
     }
 }

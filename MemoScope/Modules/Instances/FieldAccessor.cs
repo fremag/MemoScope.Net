@@ -102,7 +102,12 @@ namespace MemoScope.Modules.Instances
         }
         public double _double(string arg)
         {
-            return (double)Eval(arg);
+            var val = Eval(arg);
+            if (val != null)
+            {
+                return (double)val;
+            }
+            return double.NaN;
         }
         public bool _bool(string arg)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using WinFwk.UIMessages;
 using WinFwk.UITools.Log;
@@ -46,7 +47,17 @@ namespace WinFwk.UIModules
 
         protected void Status(string text, StatusType status = StatusType.Text )
         {
-            MessageBus.SendMessage(new StatusMessage(text, status));
+            MessageBus.Status(text, status);
+        }
+
+        protected void BeginTask(string text, CancellationTokenSource cancellationTokenSource)
+        {
+            MessageBus.BeginTask(text, cancellationTokenSource);
+        }
+
+        protected void BeginTask(string text)
+        {
+            MessageBus.BeginTask(text, null);
         }
 
         protected void Log(string text, LogLevelType logLevel = LogLevelType.Info)
