@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using BrightIdeasSoftware;
 using WinFwk.UITools;
+using System;
 
 namespace MemoScope.Modules.Explorer
 {
@@ -11,9 +12,32 @@ namespace MemoScope.Modules.Explorer
     {
         [OLVColumn(Width = 350, ImageAspectName = nameof(Icon))]
         public string Name { get; protected set; }
-        [OLVColumn(Title="Size (Mo)", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}", Width = 50)]
+        [OLVColumn(Title = "Size (Mo)", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}", Width = 50)]
         public abstract long Size { get; }
         public Image Icon { get; protected set; }
+        
+        [OLVColumn(Title = "Cache Size (Mo)", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}", Width = 50)]
+        public long? CacheSize
+        {
+            get
+            {
+                string cachePath = GetCachePath();
+                if (File.Exists(cachePath))
+                {
+                    FileInfo cacheFileInfo = new FileInfo(cachePath);
+                    return Math.Max(cacheFileInfo.Length / (long)1e6, 1) ;
+                }
+
+                return null;
+            }
+        }
+        [OLVColumn(Title = "Delete Cache", Width=100, TextAlign =HorizontalAlignment.Center)]
+        public string DeleteCache => CacheSize != null ? "Delete" : null;
+
+        public virtual string GetCachePath()
+        {
+            return null;
+        }
 
         public abstract FileInfo FileInfo { get; }
 

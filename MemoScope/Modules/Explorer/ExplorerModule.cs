@@ -5,10 +5,13 @@ using System.Linq;
 using System.Windows.Forms;
 using BrightIdeasSoftware;
 using WinFwk.UIModules;
+using System;
+using WinFwk.UIMessages;
+using MemoScope.Services;
 
 namespace MemoScope.Modules.Explorer
 {
-    public partial class ExplorerModule : UIModule
+    public partial class ExplorerModule : UIModule, IMessageListener<ClrDumpLoadedMessage>
     {
         public ExplorerModule()
         {
@@ -22,6 +25,26 @@ namespace MemoScope.Modules.Explorer
                 tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             }
             dtlvExplorer.InitData<AbstractDumpExplorerData>();
+            var col = dtlvExplorer.AllColumns.Find(c => c.Name == nameof(AbstractDumpExplorerData.DeleteCache));
+            col.IsButton = true;
+            col.ButtonSizing = OLVColumn.ButtonSizingMode.CellBounds;
+
+            dtlvExplorer.ButtonClick += (o, e) =>
+            {
+                var rowObj = e.Model;
+                var data = rowObj as AbstractDumpExplorerData;
+                var cachePath = data.GetCachePath();
+                if(cachePath != null && File.Exists(cachePath) ) {
+                    try {
+                        File.Delete(cachePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log("Can't delete file: " + cachePath, ex);
+                    }
+                }
+                dtlvExplorer.RefreshObject(rowObj);
+            };
             RefreshRootDir();
         }
 
@@ -92,6 +115,18 @@ namespace MemoScope.Modules.Explorer
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 tbRootDir.Text = dialog.SelectedPath;
+            }
+        }
+
+        void IMessageListener<ClrDumpLoadedMessage>.HandleMessage(ClrDumpLoadedMessage message)
+        {
+            var path = message.ClrDump.DumpPath;
+            foreach(AbstractDumpExplorerData data in dtlvExplorer.Objects)
+            {
+                if( data.FileInfo != null && data.FileInfo.FullName == path)
+                {
+                    dtlvExplorer.RefreshObject(data);
+                }
             }
         }
     }

@@ -45,7 +45,7 @@ namespace MemoScope.Core.Cache
 
         public void Init(CancellationToken token)
         {
-            string dbPath = GetCachePath();
+            string dbPath = GetCachePath(ClrDump.DumpPath);
             if (File.Exists(dbPath))
             {
                 ClrDump.MessageBus.Log(this, $"Opening cache: {dbPath}");
@@ -74,7 +74,7 @@ namespace MemoScope.Core.Cache
         internal void Destroy()
         {
             Dispose();
-            string dbPath = GetCachePath();
+            string dbPath = GetCachePath(ClrDump.DumpPath);
             if (File.Exists(dbPath))
             {
                 ClrDump.MessageBus.Log(this, $"Deleting cache: {dbPath}");
@@ -318,13 +318,12 @@ private void CreateIndices()
             transaction.Commit();
         }
 
-        public string GetCachePath()
+        public static string GetCachePath(string dumpFileName)
         {
-            string dumpPath = ClrDump.DumpPath;
+            string dumpPath = dumpFileName;
             var sqlitePath = Path.ChangeExtension(dumpPath, "sqlite");
             return sqlitePath;
         }
-
-        #endregion    }
+        #endregion
     }
 }
