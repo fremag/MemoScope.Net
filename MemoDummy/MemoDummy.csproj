@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="MemoScopeApiScript.cs" />
     <Compile Include="ComplexObjectGeneratorScript.cs" />
+    <Compile Include="XmlModuleGenerator.cs" />
     <Compile Include="TypeHierarchyScript.cs" />
     <Compile Include="ObjectGeneratorScript.cs" />
     <Compile Include="Program.cs" />

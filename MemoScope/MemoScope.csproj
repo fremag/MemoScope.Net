@@ -167,6 +167,14 @@
     <Compile Include="Core\Cache\SqliteHelper.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
     <Compile Include="Modules\Instances\FieldAccessor.cs" />
+    <Compile Include="Modules\Modules\ModuleInformation.cs" />
+    <Compile Include="Modules\Modules\ModuleCommand.cs" />
+    <Compile Include="Modules\Modules\ModuleModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Modules\ModuleModule.Designer.cs">
+      <DependentUpon>ModuleModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Regions\RegionInformation.cs" />
     <Compile Include="Modules\Regions\RegionsCommand.cs" />
     <Compile Include="Modules\Regions\RegionsModule.cs">
@@ -336,6 +344,9 @@
     <EmbeddedResource Include="Modules\Process\ProcessModule.resx">
       <DependentUpon>ProcessModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Modules\ModuleModule.resx">
+      <DependentUpon>ModuleModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Regions\RegionsModule.resx">
       <DependentUpon>RegionsModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -394,11 +405,13 @@
     <Content Include="Icons\Large\award_star_gold_blue.png" />
     <Content Include="Icons\Large\blueprint.png" />
     <Content Include="Icons\Large\bow.png" />
+    <Content Include="Icons\Large\class_module.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\elements.png" />
     <Content Include="Icons\Large\folders_explorer.png" />
     <Content Include="Icons\Large\geolocation_sight.png" />
     <Content Include="Icons\Large\help.png" />
+    <Content Include="Icons\Large\module.png" />
     <Content Include="Icons\Large\new_data.png" />
     <None Include="Icons\Large\outline_wight_gallery.png" />
     <Content Include="Icons\Large\processor.png" />
@@ -473,6 +486,7 @@
     <Content Include="Icons\Small\blueprint.png" />
     <Content Include="Icons\Small\borders_accent.png" />
     <Content Include="Icons\Small\cancel.png" />
+    <Content Include="Icons\Small\class_module.png" />
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
     <Content Include="Icons\Small\color_management.png" />
@@ -488,6 +502,7 @@
     <Content Include="Icons\Small\folder.png" />
     <Content Include="Icons\Small\folders_explorer.png" />
     <Content Include="Icons\Small\folder_explore.png" />
+    <Content Include="Icons\Small\module.png" />
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\outline_wight_gallery.png" />
     <Content Include="Icons\Small\page_delete.png" />
