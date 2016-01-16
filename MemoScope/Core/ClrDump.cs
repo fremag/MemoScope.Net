@@ -22,7 +22,9 @@ namespace MemoScope.Core
         public ClrHeap Heap => Runtime.GetHeap();
         public MessageBus MessageBus { get; }
         public BookmarkMgr BookmarkMgr { get; }
-        public IList<ClrSegment> Segments => Runtime.GetHeap().Segments; 
+        public IList<ClrSegment> Segments => Runtime.GetHeap().Segments;
+
+        public List<ClrMemoryRegion> Regions => Runtime.EnumerateMemoryRegions().ToList();
 
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;
