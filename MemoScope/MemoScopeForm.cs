@@ -24,6 +24,7 @@ namespace MemoScope
         {
             InitModuleFactory();
             toolbarSettings.Add(new UIToolBarSettings("Dump", 1, Properties.Resources.database_green));
+            toolbarSettings.Add(new UIToolBarSettings("Memory", 2, Properties.Resources.ddr_memory_small));
             InitToolBars();
             InitWorkplace(DockState.DockLeftAutoHide);
             InitLog();

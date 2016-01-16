@@ -29,7 +29,7 @@ namespace MemoScope.Tools.CodeTriggers
                 return value;
             };
             dlvTriggers.CheckStateGetter = rowObject => ((CodeTrigger) rowObject).Active ? CheckState.Checked : CheckState.Unchecked;
-            Generator.GenerateColumns(dlvTriggers, typeof (CodeTrigger), false);
+            dlvTriggers.InitColumns<CodeTrigger>();
         }
 
         private void tsbNetTrigger_Click(object sender, System.EventArgs e)

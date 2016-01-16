@@ -37,7 +37,7 @@ namespace MemoScope.Modules.Process
             InitializeComponent();
             Name = "Process";
             Summary = "No process selected";
-            Icon = Properties.Resources.ddr_memory_small;
+            Icon = Properties.Resources.processor_small;
 
             tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             MemoScopeService.Instance.DumpRequested += OnDumpRequested;

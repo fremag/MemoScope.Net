@@ -16,5 +16,10 @@ namespace WinFwk.UITools
             col.IsVisible = colIsVisible;
             BuildGroups(col, order);
         }
+
+        public void InitColumns<T>()
+        {
+            Generator.GenerateColumns(this, typeof(T), false);
+        }
     }
 }

@@ -23,11 +23,11 @@ namespace MemoScope.Modules.TypeDetails
             ClrDump = dumpType.ClrDump;
             pgTypeInfo.SelectedObject = new TypeInformations(dumpType);
 
-            Generator.GenerateColumns(dlvFields, typeof(FieldInformation), false);
+            dlvFields.InitColumns<FieldInformation>();
             dlvFields.SetUpTypeColumn(nameof(FieldInformation.Type), this);
             dlvFields.SetObjects(dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField)));
 
-            Generator.GenerateColumns(dlvMethods, typeof(MethodInformation), false);
+            dlvMethods.InitColumns<MethodInformation>();
             dlvMethods.SetUpTypeColumn(nameof(MethodInformation.Type), this);
             dlvMethods.SetObjects(dumpType.Methods.Select(clrMethod => new MethodInformation(dumpType, clrMethod)));
 

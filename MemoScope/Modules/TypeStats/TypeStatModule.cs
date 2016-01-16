@@ -35,7 +35,7 @@ namespace MemoScope.Modules.TypeStats
 
         public override void PostInit()
         {
-            Generator.GenerateColumns(dlvTypeStats, typeof(ClrTypeStats), false);
+            dlvTypeStats.InitColumns<ClrTypeStats>();
             dlvTypeStats.SetUpTypeColumn(nameof(ClrTypeStats.TypeName), this);
             dlvTypeStats.SetObjects(typeStats);
             dlvTypeStats.Sort(dlvTypeStats.AllColumns[2], SortOrder.Descending);

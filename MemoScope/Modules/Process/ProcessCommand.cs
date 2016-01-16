@@ -7,7 +7,7 @@ namespace MemoScope.Modules.Process
 {
     public class ProcessCommand : AbstractVoidUICommand
     {
-        public ProcessCommand() : base("Process", "Display process", UIToolBarSettings.File.Name, Properties.Resources.ddr_memory, Keys.Control|Keys.F2)
+        public ProcessCommand() : base("Process", "Display process", UIToolBarSettings.File.Name, Properties.Resources.processor, Keys.Control|Keys.F2)
         {
         }
 

@@ -167,6 +167,14 @@
     <Compile Include="Core\Cache\SqliteHelper.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
     <Compile Include="Modules\Instances\FieldAccessor.cs" />
+    <Compile Include="Modules\Segments\SegmentInformation.cs" />
+    <Compile Include="Modules\Segments\SegmentsCommand.cs" />
+    <Compile Include="Modules\Segments\SegmentsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Segments\SegmentsModule.Designer.cs">
+      <DependentUpon>SegmentsModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\CodeTriggers\CodeTrigger.cs" />
     <Compile Include="Core\Data\IAddressData.cs" />
     <Compile Include="Core\UIClrDumpModule.cs">
@@ -320,6 +328,9 @@
     <EmbeddedResource Include="Modules\Process\ProcessModule.resx">
       <DependentUpon>ProcessModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Segments\SegmentsModule.resx">
+      <DependentUpon>SegmentsModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tools\CodeTriggers\CodeTriggersControl.resx">
       <DependentUpon>CodeTriggersControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -379,6 +390,7 @@
     <Content Include="Icons\Large\help.png" />
     <Content Include="Icons\Large\new_data.png" />
     <None Include="Icons\Large\outline_wight_gallery.png" />
+    <Content Include="Icons\Large\processor.png" />
     <Content Include="Icons\Large\save_data.png" />
     <Content Include="Icons\Large\scroll_pane_list.png" />
     <Content Include="Icons\Logos\memoscope.svg" />
@@ -467,6 +479,7 @@
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\outline_wight_gallery.png" />
     <Content Include="Icons\Small\page_delete.png" />
+    <Content Include="Icons\Small\processor.png" />
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />
     <Content Include="Icons\Small\text_uppercase.png" />
