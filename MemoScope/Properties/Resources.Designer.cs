@@ -403,6 +403,26 @@ namespace MemoScope.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_wight_gallery {
+            get {
+                object obj = ResourceManager.GetObject("outline_wight_gallery", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_wight_gallery_small {
+            get {
+                object obj = ResourceManager.GetObject("outline_wight_gallery_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap page_delete {
             get {
                 object obj = ResourceManager.GetObject("page_delete", resourceCulture);
