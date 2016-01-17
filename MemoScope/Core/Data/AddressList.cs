@@ -15,5 +15,11 @@ namespace MemoScope.Core.Data
             ClrType = clrType;
             Addresses = ClrDump.GetInstances(clrType);
         }
+        public AddressList(ClrDump clrDump, ClrType clrType, List<ulong> addresses)
+        {
+            ClrDump = clrDump;
+            ClrType = clrType;
+            Addresses = addresses;
+        }
     }
 }

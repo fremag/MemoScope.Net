@@ -49,7 +49,7 @@ namespace MemoScope.Core.Helpers
                     return new AddressList(dumpModule.ClrDump, type);
                 }
                 return null;
-            }, dumpModule);
+            }, dumpModule, "All");
             listView.RegisterDataProvider(() =>
             {
                 var cellItem = listView.SelectedItem.SubItems[col.Index];
@@ -200,7 +200,7 @@ namespace MemoScope.Core.Helpers
             listView.AllColumns.Add(col);
         }
 
-        public static void RegisterDataProvider<T>(this ObjectListView listView, Func<T> dataProvider, UIModule parentModule)
+        public static void RegisterDataProvider<T>(this ObjectListView listView, Func<T> dataProvider, UIModule parentModule, string suffix = null)
         {
             if (listView.ContextMenuStrip == null)
             {
@@ -213,7 +213,12 @@ namespace MemoScope.Core.Helpers
                 command.InitBus(parentModule.MessageBus);
                 command.SetSelectedModule(parentModule);
                 command.InitDataProvider(new UIDataProviderAdapter<T>(dataProvider));
-                var menuItem = new ToolStripMenuItem(command.ToolTip);
+                string menuItemText = command.ToolTip;
+                if( suffix != null)
+                {
+                    menuItemText += " ("+suffix+")";
+                }
+                var menuItem = new ToolStripMenuItem(menuItemText);
                 menuItem.Image = command.Icon;
                 listView.ContextMenuStrip.Items.Add(menuItem);
                 menuItem.Click += (o, e) => OnMenuItemClick(command, dataProvider);
@@ -229,11 +234,12 @@ namespace MemoScope.Core.Helpers
         {
             return (listView.SelectedObject) as T;
         }
+
         public static void AddMenuSeparator(this ObjectListView listView) {
             if( listView.ContextMenuStrip != null)
             {
                 listView.ContextMenuStrip.Items.Add("-");
             }
-                }
+       }
     }
 }

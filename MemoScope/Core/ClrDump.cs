@@ -28,6 +28,8 @@ namespace MemoScope.Core
         public IList<ClrModule> Modules => Runtime.Modules;
 
         public List<ClrHandle> Handles => Runtime.EnumerateHandles().ToList();
+        public List<ulong> FinalizerQueueObjectAddresses => Runtime.EnumerateFinalizerQueueObjectAddresses().ToList();
+        public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy( address => GetObjectType(address));
 
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;

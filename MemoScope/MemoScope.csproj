@@ -166,6 +166,14 @@
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
+    <Compile Include="Modules\Finalizer\FinalizerInformation.cs" />
+    <Compile Include="Modules\Finalizer\FinalizerCommand.cs" />
+    <Compile Include="Modules\Finalizer\FinalizerModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Finalizer\FinalizerModule.Designer.cs">
+      <DependentUpon>FinalizerModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Instances\FieldAccessor.cs" />
     <Compile Include="Modules\Handles\HandlesCommand.cs" />
     <Compile Include="Modules\Handles\HandleInformation.cs" />
@@ -340,6 +348,9 @@
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Finalizer\FinalizerModule.resx">
+      <DependentUpon>FinalizerModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\InstanceDetails\InstanceDetailsModule.resx">
       <DependentUpon>InstanceDetailsModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -416,6 +427,7 @@
     <Content Include="Icons\Large\award_star_gold_blue.png" />
     <Content Include="Icons\Large\blueprint.png" />
     <Content Include="Icons\Large\bow.png" />
+    <Content Include="Icons\Large\broom.png" />
     <Content Include="Icons\Large\class_module.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\elements.png" />
@@ -497,6 +509,7 @@
     <Content Include="Icons\Small\application_view_list.png" />
     <Content Include="Icons\Small\blueprint.png" />
     <Content Include="Icons\Small\borders_accent.png" />
+    <Content Include="Icons\Small\broom.png" />
     <Content Include="Icons\Small\cancel.png" />
     <Content Include="Icons\Small\class_module.png" />
     <Content Include="Icons\Small\clock_go.png" />
