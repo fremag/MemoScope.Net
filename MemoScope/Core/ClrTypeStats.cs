@@ -2,10 +2,11 @@ using System.Windows.Forms;
 using BrightIdeasSoftware;
 using Microsoft.Diagnostics.Runtime;
 using MemoScope.Core.Helpers;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Core
 {
-    public class ClrTypeStats
+    public class ClrTypeStats : ITypeNameData
     {
         public int Id { get; }
         public ClrType Type { get; }

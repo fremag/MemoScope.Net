@@ -1,13 +1,11 @@
 ﻿using MemoScope.Core;
 using Microsoft.Diagnostics.Runtime;
-using System.Collections.Generic;
 using MemoScope.Core.Data;
 using BrightIdeasSoftware;
-using System.Windows.Forms;
 
 namespace MemoScope.Modules.ClrRoots
 {
-    public class ClrRootsInformation : IAddressData
+    public class ClrRootsInformation : IAddressData, ITypeNameData
     {
         ClrDump ClrDump { get; }
         ClrRoot ClrRoot { get; }

@@ -6,7 +6,7 @@ using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.TypeDetails
 {
-    public class FieldInformation
+    public class FieldInformation : ITypeNameData
     {
         private ClrInstanceField clrField;
         private ClrDumpType dumpType;
@@ -21,7 +21,7 @@ namespace MemoScope.Modules.TypeDetails
         public string Name => clrField.RealName();
 
         [OLVColumn(Title = "Type", Width = 150)]
-        public string Type => clrField.Type.Name;
+        public string TypeName => clrField.Type.Name;
 
         [OLVColumn(Title = "Size", Width = 50, TextAlign = HorizontalAlignment.Right)]
         public int Size => clrField.Size;

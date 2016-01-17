@@ -24,15 +24,15 @@ namespace MemoScope.Modules.TypeDetails
             pgTypeInfo.SelectedObject = new TypeInformations(dumpType);
 
             dlvFields.InitColumns<FieldInformation>();
-            dlvFields.SetUpTypeColumn(nameof(FieldInformation.Type), this);
+            dlvFields.SetUpTypeColumn<FieldInformation>(this);
             dlvFields.SetObjects(dumpType.Fields.Select(clrField => new FieldInformation(dumpType, clrField)));
 
             dlvMethods.InitColumns<MethodInformation>();
-            dlvMethods.SetUpTypeColumn(nameof(MethodInformation.Type), this);
+            dlvMethods.SetUpTypeColumn<MethodInformation>(this);
             dlvMethods.SetObjects(dumpType.Methods.Select(clrMethod => new MethodInformation(dumpType, clrMethod)));
 
             dtlvParentClasses.InitData<AbstractTypeInformation>();
-            dtlvParentClasses.SetUpTypeColumn(nameof(AbstractTypeInformation.Name), this);
+            dtlvParentClasses.SetUpTypeColumn<AbstractTypeInformation>(this);
 
             var l = new List<object>();
             var typeInformation = new TypeInformation(dumpType.BaseType);

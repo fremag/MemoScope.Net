@@ -10,7 +10,7 @@ namespace MemoScope.Modules.TypeDetails
         public DummyTypeInformation(ClrInterface interf)
         {
             this.interf = interf;
-            Name = interf.Name;
+            TypeName = interf.Name;
         }
 
         public override bool CanExpand => false;

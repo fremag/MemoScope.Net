@@ -1,11 +1,12 @@
 ﻿using BrightIdeasSoftware;
 using MemoScope.Core;
+using MemoScope.Core.Data;
 using Microsoft.Diagnostics.Runtime;
 using System.Windows.Forms;
 
 namespace MemoScope.Modules.Handles
 {
-    public class HandleInformation
+    public class HandleInformation : ITypeNameData
     {
         private ClrHandle clrHandle;
 
@@ -16,8 +17,8 @@ namespace MemoScope.Modules.Handles
 
         [OLVColumn]
         public ulong Object => clrHandle.Object;
-        [OLVColumn]
-        public string Type => clrHandle.Type.Name;
+        [OLVColumn(Title="Name")]
+        public string TypeName => clrHandle.Type.Name;
         [OLVColumn]
         public HandleType HandleType => clrHandle.HandleType;
         [OLVColumn(Width = 50, TextAlign = HorizontalAlignment.Center)]

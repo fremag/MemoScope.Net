@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace MemoScope.Core.Bookmark
 {
-    public class Bookmark : IAddressData
+    public class Bookmark : IAddressData, ITypeNameData
     {
         [OLVColumn]
         public ulong Address { get; set; }

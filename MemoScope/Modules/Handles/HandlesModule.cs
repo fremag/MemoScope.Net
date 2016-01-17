@@ -27,7 +27,7 @@ namespace MemoScope.Modules.Handles
             base.Init();
             Handles = ClrDump.Handles.Select(handle=> new HandleInformation(ClrDump, handle)).ToList();
             dlvHandles.SetUpAddressColumn(nameof(HandleInformation.Object), this);
-            dlvHandles.SetUpTypeColumn(nameof(HandleInformation.Type), this);
+            dlvHandles.SetUpTypeColumn<HandleInformation>(this);
         }
 
         public override void PostInit()

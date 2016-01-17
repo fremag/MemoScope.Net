@@ -1,5 +1,6 @@
 ﻿using BrightIdeasSoftware;
 using MemoScope.Core;
+using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using WinFwk.UITools;
 
 namespace MemoScope.Modules.Instances
 {
-    public class FieldNode : ITreeNodeInformation<FieldNode>
+    public class FieldNode : ITreeNodeInformation<FieldNode>, ITypeNameData
     {
         public ClrInstanceField Field { get; }
         public ClrDump ClrDump { get; }
@@ -28,7 +29,7 @@ namespace MemoScope.Modules.Instances
         [OLVColumn(Title = "Name", Width = 150)]
         public string Name => Field.RealName();
 
-        [OLVColumn(Title = "Type", Width = 250)]
+        [OLVColumn(Title = "Type")]
         public string TypeName => Field.Type.Name;
 
         public ClrType ClrType => Field.Type;

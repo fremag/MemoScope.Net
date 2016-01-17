@@ -8,7 +8,7 @@ using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.InstanceDetails
 {
-    public class ReferenceInformation : ITreeNodeInformation<ReferenceInformation>, IAddressData
+    public class ReferenceInformation : ITreeNodeInformation<ReferenceInformation>, IAddressData, ITypeNameData
     {
         ClrDump ClrDump { get; }
 

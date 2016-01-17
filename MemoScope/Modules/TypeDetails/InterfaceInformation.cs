@@ -26,7 +26,7 @@ namespace MemoScope.Modules.TypeDetails
 
         public InterfaceInformation(ClrDump clrDump, ClrInterface interf)
         {
-            Name = TypeHelpers.ManageAlias(interf.Name);
+            TypeName = TypeHelpers.ManageAlias(interf.Name);
             ClrDump = clrDump;
             ClrInterface = interf;
         }

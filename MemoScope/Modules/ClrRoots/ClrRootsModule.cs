@@ -26,7 +26,7 @@ namespace MemoScope.Modules.ClrRoots
             dlvClrRoots.InitColumns<ClrRootsInformation>();
             dlvClrRoots.SetUpAddressColumn<ClrRootsInformation>(this);
             dlvClrRoots.SetUpAddressColumn(nameof(ClrRootsInformation.ObjectAddress), this);
-            dlvClrRoots.SetUpTypeColumn(nameof(ClrRootsInformation.TypeName), this);
+            dlvClrRoots.SetUpTypeColumn<ClrRootsInformation>(this);
         }
 
         public override void Init()

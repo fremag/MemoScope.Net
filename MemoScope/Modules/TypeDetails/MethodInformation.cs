@@ -4,7 +4,7 @@ using Microsoft.Diagnostics.Runtime;
 
 namespace MemoScope.Modules.TypeDetails
 {
-    internal class MethodInformation
+    internal class MethodInformation : ITypeNameData
     {
         private ClrMethod clrMethod;
         private ClrDumpType dumpType;
@@ -17,8 +17,8 @@ namespace MemoScope.Modules.TypeDetails
 
         [OLVColumn(Title = "Name", Width = 150)]
         public string Name => clrMethod.Name;
-        [OLVColumn(Title = "Type", Width = 150)]
-        public string Type => clrMethod.Type.Name;
+        [OLVColumn(Title = "Type")]
+        public string TypeName => clrMethod.Type.Name;
         [OLVColumn(Title = "CompilationType", Width = 150)]
         public MethodCompilationType CompilationType => clrMethod.CompilationType;
         [OLVColumn(Title = "Signature", Width = 450)]

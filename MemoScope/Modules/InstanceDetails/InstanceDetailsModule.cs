@@ -24,12 +24,12 @@ namespace MemoScope.Modules.InstanceDetails
 
             // Fields
             dtlvFieldsValues.InitData<FieldValueInformation>();
-            dtlvFieldsValues.SetUpTypeColumn(nameof(FieldValueInformation.TypeName), this);
+            dtlvFieldsValues.SetUpTypeColumn<FieldValueInformation>(this);
             dtlvFieldsValues.SetUpAddressColumn<FieldValueInformation>(this);
 
             // References
             dtlvReferences.InitData<ReferenceInformation>();
-            dtlvReferences.SetUpTypeColumn(nameof(ReferenceInformation.TypeName), this);
+            dtlvReferences.SetUpTypeColumn<ReferenceInformation>(this);
             dtlvReferences.SetUpAddressColumn<ReferenceInformation>(this);
         }
 

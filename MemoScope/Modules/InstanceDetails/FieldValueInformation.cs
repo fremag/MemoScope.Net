@@ -7,7 +7,7 @@ using WinFwk.UITools;
 
 namespace MemoScope.Modules.InstanceDetails
 {
-    internal class FieldValueInformation : ITreeNodeInformation<FieldValueInformation>, IAddressData
+    internal class FieldValueInformation : ITreeNodeInformation<FieldValueInformation>, IAddressData, ITypeNameData
     {
         private ClrDumpObject clrDumpObject;
         private string name;
@@ -18,7 +18,7 @@ namespace MemoScope.Modules.InstanceDetails
             this.clrDumpObject = clrDumpObject;
         }
 
-        [OLVColumn(Title = "Field name")]
+        [OLVColumn(Title = "Field Name")]
         public string Name => name;
 
         [OLVColumn(Title = "Value")]
@@ -27,7 +27,7 @@ namespace MemoScope.Modules.InstanceDetails
         [OLVColumn(Title = "Address", AspectToStringFormat = "{0:X}")]
         public ulong Address => clrDumpObject.Address;
 
-        [OLVColumn(Title = "Type name")]
+        [OLVColumn(Title = "Type")]
         public string TypeName => clrDumpObject.TypeName;
 
         public ClrType ClrType => clrDumpObject.ClrType;

@@ -21,7 +21,7 @@ namespace MemoScope.Modules.Bookmarks
             ClrDump = clrDump;
             dlvBookmarks.InitColumns<Bookmark>();
             dlvBookmarks.SetUpAddressColumn<Bookmark>(this);
-            dlvBookmarks.SetUpTypeColumn(nameof(Bookmark.TypeName), this);
+            dlvBookmarks.SetUpTypeColumn<Bookmark>(this);
             var colColor = dlvBookmarks.AllColumns.FirstOrDefault(c => c.Name == nameof(Bookmark.Color));
             dlvBookmarks.FormatCell += (o, e) =>
             {

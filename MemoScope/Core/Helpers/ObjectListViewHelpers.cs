@@ -14,7 +14,12 @@ namespace MemoScope.Core.Helpers
 {
     public static class ObjectListViewHelpers
     {
-        public static void SetUpTypeColumn(this ObjectListView listView, string colName, UIClrDumpModule dumpModule)
+        public static void SetUpTypeColumn<T>(this ObjectListView listView, UIClrDumpModule dumpModule) where T : ITypeNameData
+        {
+            SetUpTypeColumn(listView, nameof(ITypeNameData.TypeName), dumpModule);
+        }
+
+        private static void SetUpTypeColumn(this ObjectListView listView, string colName, UIClrDumpModule dumpModule)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
             listView.FormatCell += (sender, e) =>

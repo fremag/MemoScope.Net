@@ -11,7 +11,7 @@ namespace MemoScope.Modules.TypeDetails
         public TypeInformation(ClrDumpType clrDumpType)
         {
             ClrDumpType = clrDumpType;
-            Name = TypeHelpers.ManageAlias(ClrDumpType.TypeName);
+            TypeName = TypeHelpers.ManageAlias(ClrDumpType.TypeName);
         }
         public override List<AbstractTypeInformation> Children
         {

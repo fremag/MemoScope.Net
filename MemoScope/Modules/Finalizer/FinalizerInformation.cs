@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace MemoScope.Modules.Finalizer
 {
-    public class FinalizerInformation
+    public class FinalizerInformation: ITypeNameData
     {
         public AddressList AddressList { get; }
 
