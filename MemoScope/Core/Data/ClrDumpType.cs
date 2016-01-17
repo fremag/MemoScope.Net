@@ -22,7 +22,7 @@ namespace MemoScope.Core.Data
         
         public ClrDumpType BaseType => ClrDump.Eval(() => ClrType.BaseType == null ? null : new ClrDumpType(ClrDump, ClrType.BaseType));
 
-        public string TypeName => ClrDump.Eval(() => ClrType.Name);
+        public string TypeName => ClrType == null ? null : ClrDump.Eval(() => ClrType.Name);
 
         public IList<ClrInterface> Interfaces => ClrDump.Eval(() => ClrType.Interfaces);
 

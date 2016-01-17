@@ -167,6 +167,14 @@
     <Compile Include="Core\Cache\SqliteHelper.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
     <Compile Include="Modules\Instances\FieldAccessor.cs" />
+    <Compile Include="Modules\Handles\HandlesCommand.cs" />
+    <Compile Include="Modules\Handles\HandleInformation.cs" />
+    <Compile Include="Modules\Handles\HandlesModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Handles\HandlesModule.Designer.cs">
+      <DependentUpon>HandlesModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Modules\ModuleInformation.cs" />
     <Compile Include="Modules\Modules\ModuleCommand.cs" />
     <Compile Include="Modules\Modules\ModuleModule.cs">
@@ -338,6 +346,9 @@
     <EmbeddedResource Include="Modules\Instances\InstancesModule.resx">
       <DependentUpon>InstancesModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Handles\HandlesModule.resx">
+      <DependentUpon>HandlesModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Process\ProcessInfoViewer.resx">
       <DependentUpon>ProcessInfoViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -414,6 +425,7 @@
     <Content Include="Icons\Large\module.png" />
     <Content Include="Icons\Large\new_data.png" />
     <None Include="Icons\Large\outline_wight_gallery.png" />
+    <Content Include="Icons\Large\plugin_link.png" />
     <Content Include="Icons\Large\processor.png" />
     <Content Include="Icons\Large\save_data.png" />
     <Content Include="Icons\Large\scroll_pane_list.png" />
@@ -506,6 +518,7 @@
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\outline_wight_gallery.png" />
     <Content Include="Icons\Small\page_delete.png" />
+    <Content Include="Icons\Small\plugin_link.png" />
     <Content Include="Icons\Small\processor.png" />
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />

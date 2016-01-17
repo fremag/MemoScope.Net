@@ -142,6 +142,7 @@ namespace MemoScope.Core.Helpers
                 }
             };
             listView.UseCellFormatEvents = true;
+            listView.AddMenuSeparator();
         }
         public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
         {
@@ -226,6 +227,11 @@ namespace MemoScope.Core.Helpers
         {
             return (listView.SelectedObject) as T;
         }
-
+        public static void AddMenuSeparator(this ObjectListView listView) {
+            if( listView.ContextMenuStrip != null)
+            {
+                listView.ContextMenuStrip.Items.Add("-");
+            }
+                }
     }
 }

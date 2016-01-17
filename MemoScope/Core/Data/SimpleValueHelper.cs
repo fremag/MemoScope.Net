@@ -13,6 +13,10 @@ namespace MemoScope.Core.Data
 
         public static bool IsSimpleValue(ClrType type)
         {
+            if( type == null)
+            {
+                return false;
+            }
             if (type.IsPrimitive || type.IsString)
                 return true;
 

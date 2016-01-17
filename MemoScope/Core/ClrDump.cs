@@ -27,6 +27,8 @@ namespace MemoScope.Core
         public List<ClrMemoryRegion> Regions => Runtime.EnumerateMemoryRegions().ToList();
         public IList<ClrModule> Modules => Runtime.Modules;
 
+        public List<ClrHandle> Handles => Runtime.EnumerateHandles().ToList();
+
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;
         
