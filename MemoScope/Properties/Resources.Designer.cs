@@ -593,9 +593,9 @@ namespace MemoScope.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap scroll_pane_list_large {
+        internal static System.Drawing.Bitmap scroll_pane_list_small {
             get {
-                object obj = ResourceManager.GetObject("scroll_pane_list_large", resourceCulture);
+                object obj = ResourceManager.GetObject("scroll_pane_list_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -36,19 +36,6 @@ namespace MemoScope.Modules.Instances
                 mod => postInit(mod)
                 );
         }
-        public static void Create(ClrDumpType clrDumpType, UIModule parent, Action<InstancesModule> postInit)
-        {
-            if (clrDumpType == null)
-            {
-                MessageBox.Show("No type selected !", "Error", MessageBoxButtons.OK);
-                return;
-            }
-            var addresses = new TypeInstancesAddressList(clrDumpType);
-            UIModuleFactory.CreateModule<InstancesModule>(
-                mod => { mod.UIModuleParent = parent; mod.Setup(addresses); },
-                mod => postInit(mod)
-                );
-        }
 
         public InstancesModule()
         {

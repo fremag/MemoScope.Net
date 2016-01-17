@@ -194,6 +194,9 @@
       <DependentUpon>HandlesModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Instances\TypeInstancesCommand.cs" />
+    <Compile Include="Modules\Instances\TypeInstancesModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Modules\Modules\ModuleInformation.cs" />
     <Compile Include="Modules\Modules\ModuleCommand.cs" />
     <Compile Include="Modules\Modules\ModuleModule.cs">

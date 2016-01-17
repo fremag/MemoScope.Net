@@ -79,7 +79,7 @@ namespace MemoScope.Modules.TypeStats
             var clrDumpType = ((UIDataProvider<ClrDumpType>)this).Data;
             if(clrDumpType != null)
             {
-                InstancesModule.Create(clrDumpType, this, mod => RequestDockModule(mod));
+                TypeInstancesModule.Create(clrDumpType, this, mod => RequestDockModule(mod));
             }
         }
     }

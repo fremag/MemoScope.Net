@@ -5,7 +5,7 @@ namespace MemoScope.Modules.Instances
 {
     public class TypeInstancesCommand :  AbstractTypedUICommand<ClrDumpType>
     {
-        public TypeInstancesCommand() : base("All Instances", "Display all instances from type", "Dump", Properties.Resources.scroll_pane_list_large)
+        public TypeInstancesCommand() : base("All Instances", "Display all instances from type", "Dump", Properties.Resources.scroll_pane_list)
         {
 
         }
