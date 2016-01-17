@@ -166,6 +166,14 @@
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
+    <Compile Include="Modules\ClrRoots\ClrRootsCommand.cs" />
+    <Compile Include="Modules\ClrRoots\ClrRootInformation.cs" />
+    <Compile Include="Modules\ClrRoots\ClrRootsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ClrRoots\ClrRootsModule.Designer.cs">
+      <DependentUpon>ClrRootsModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Finalizer\FinalizerInformation.cs" />
     <Compile Include="Modules\Finalizer\FinalizerCommand.cs" />
     <Compile Include="Modules\Finalizer\FinalizerModule.cs">
@@ -348,6 +356,9 @@
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ClrRoots\ClrRootsModule.resx">
+      <DependentUpon>ClrRootsModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Finalizer\FinalizerModule.resx">
       <DependentUpon>FinalizerModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -450,7 +461,7 @@
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.svg" />
     <Content Include="Icons\New\3d_glasses.png" />
     <Content Include="Icons\New\add_on.png" />
-    <Content Include="Icons\New\anchor.png" />
+    <Content Include="Icons\Large\anchor.png" />
     <Content Include="Icons\New\attributes_display.png" />
     <Content Include="Icons\New\barchart.png" />
     <Content Include="Icons\New\blogs.png" />
@@ -502,6 +513,7 @@
     <Content Include="Icons\New\vbox.png" />
     <Content Include="Icons\New\viewstack.png" />
     <Content Include="Icons\Small\accept_button.png" />
+    <Content Include="Icons\Small\anchor.png" />
     <Content Include="Icons\Small\application_double.png" />
     <Content Include="Icons\Large\clock_go.png" />
     <Content Include="Icons\Large\clock_stop.png" />
