@@ -9,7 +9,7 @@ using MemoScope.Modules.Instances;
 
 namespace MemoScope.Modules.TypeStats
 {
-    public partial class TypeStatModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>
+    public partial class TypeStatModule : UIClrDumpModule, UIDataProvider<ClrDumpType>
     {
         private List<ClrTypeStats> typeStats;
         public TypeStatModule()
@@ -70,29 +70,16 @@ namespace MemoScope.Modules.TypeStats
             }
         }
 
-        AddressList UIDataProvider<AddressList>.Data
-        {
-            get
-            {
-                var obj = dlvTypeStats.SelectedObject as ClrTypeStats;
-                if (obj != null)
-                {
-                    return new AddressList(ClrDump, obj.Type);
-                }
-                return null;
-            }
-        }
-
         private void dlvTypeStats_CellClick(object sender, CellClickEventArgs e)
         {
             if( e.ClickCount != 2)
             {
                 return;
             }
-            var addresses = ((UIDataProvider<AddressList>)this).Data;
-            if( addresses != null)
+            var clrDumpType = ((UIDataProvider<ClrDumpType>)this).Data;
+            if(clrDumpType != null)
             {
-                InstancesModule.Create(addresses, this, mod => RequestDockModule(mod));
+                InstancesModule.Create(clrDumpType, this, mod => RequestDockModule(mod));
             }
         }
     }

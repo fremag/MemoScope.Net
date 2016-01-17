@@ -51,7 +51,7 @@ namespace MemoScope.Core.Helpers
                 ClrType type = dumpModule.ClrDump.GetClrType(typeName);
                 if (type != null)
                 {
-                    return new AddressList(dumpModule.ClrDump, type);
+                    return new TypeInstancesAddressList(dumpModule.ClrDump, type);
                 }
                 return null;
             }, dumpModule, "All");

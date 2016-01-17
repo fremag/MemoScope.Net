@@ -17,11 +17,12 @@ using System.Threading;
 
 namespace MemoScope.Modules.Instances
 {
-    public partial class InstancesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>, UIDataProvider<ClrDumpObject>, IModelFilter
+    public partial class InstancesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<ClrDumpObject>, IModelFilter
     {
         private IList<ClrInstanceField> fields;
-        List<Func<bool>> filters;
-        FieldAccessor myFieldAccessor;
+        private AddressList AddressList { get; set; }
+        private List<Func<bool>> filters;
+        private FieldAccessor myFieldAccessor;
 
         public static void Create(AddressList addresses, UIModule parent, Action<InstancesModule> postInit )
         {
@@ -35,13 +36,24 @@ namespace MemoScope.Modules.Instances
                 mod => postInit(mod)
                 );
         }
-
-        private AddressList AddressList { get; set; }
+        public static void Create(ClrDumpType clrDumpType, UIModule parent, Action<InstancesModule> postInit)
+        {
+            if (clrDumpType == null)
+            {
+                MessageBox.Show("No type selected !", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            var addresses = new TypeInstancesAddressList(clrDumpType);
+            UIModuleFactory.CreateModule<InstancesModule>(
+                mod => { mod.UIModuleParent = parent; mod.Setup(addresses); },
+                mod => postInit(mod)
+                );
+        }
 
         public InstancesModule()
         {
             InitializeComponent();
-            Icon = Properties.Resources.scroll_pane_list;
+            Icon = Properties.Resources.legend_small;
             InitCodeEditor();
             dlvAdresses.ModelFilter = this;
         }
@@ -140,6 +152,10 @@ namespace MemoScope.Modules.Instances
                 case ClrElementType.UInt8:
                     col.TextAlign = HorizontalAlignment.Right;
                     break;
+                case ClrElementType.Boolean:
+                    col.TextAlign = HorizontalAlignment.Center;
+                    col.CheckBoxes = true;
+                    break;
                 case ClrElementType.Object:
                 case ClrElementType.Struct:
                 case ClrElementType.Array:
@@ -166,7 +182,6 @@ namespace MemoScope.Modules.Instances
                 var type = AddressList.ClrType;
                 return AddressList.ClrDump.GetFieldValue(address, type, fields);
             };
-
         }
 
         // Not Gui thread
@@ -192,19 +207,6 @@ namespace MemoScope.Modules.Instances
             get
             {
                 return new ClrDumpType(AddressList.ClrDump, AddressList.ClrType);
-            }
-        }
-
-        AddressList UIDataProvider<AddressList>.Data
-        {
-            get
-            {
-                var type = dtlvFields.SelectedObject<FieldNode>()?.ClrType;
-                if (type != null)
-                {
-                    return new AddressList(AddressList.ClrDump, type);
-                }
-                return null;
             }
         }
 

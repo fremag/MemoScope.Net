@@ -165,6 +165,7 @@
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
+    <Compile Include="Core\Data\TypeInstancesAddressList.cs" />
     <Compile Include="Core\Data\ITypeNameData.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
     <Compile Include="Modules\ClrRoots\ClrRootsCommand.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Modules\Handles\HandlesModule.Designer.cs">
       <DependentUpon>HandlesModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Instances\TypeInstancesCommand.cs" />
     <Compile Include="Modules\Modules\ModuleInformation.cs" />
     <Compile Include="Modules\Modules\ModuleCommand.cs" />
     <Compile Include="Modules\Modules\ModuleModule.cs">
@@ -480,7 +482,7 @@
     <Content Include="Icons\New\flow.png" />
     <Content Include="Icons\New\handout_master.png" />
     <Content Include="Icons\New\labels_page.png" />
-    <Content Include="Icons\New\legend.png" />
+    <Content Include="Icons\Large\legend.png" />
     <Content Include="Icons\New\line_numbers.png" />
     <Content Include="Icons\New\magnet.png" />
     <Content Include="Icons\New\newsvine.png" />
@@ -539,6 +541,7 @@
     <Content Include="Icons\Small\folder.png" />
     <Content Include="Icons\Small\folders_explorer.png" />
     <Content Include="Icons\Small\folder_explore.png" />
+    <Content Include="Icons\Small\legend.png" />
     <Content Include="Icons\Small\module.png" />
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\outline_wight_gallery.png" />
