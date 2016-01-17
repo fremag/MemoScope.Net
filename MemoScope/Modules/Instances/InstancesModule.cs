@@ -91,7 +91,6 @@ namespace MemoScope.Modules.Instances
         private void CreateDefaultColumns()
         {
             dlvAdresses.AllColumns.Clear();
-            dlvAdresses.AllColumns.Add(new OLVColumn("Address", null));
             dlvAdresses.AddAddressColumn(o => o, this);
             dlvAdresses.AddSimpleValueColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
             dlvAdresses.AddSizeColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
@@ -125,18 +124,21 @@ namespace MemoScope.Modules.Instances
 
             var col = new OLVColumn(fieldNode.FullName, null);
             col.Width = 120;
-            switch( fieldNode.Field.ElementType)
+            switch (fieldNode.Field.ElementType)
             {
-                case ClrElementType.Float:
                 case ClrElementType.Int16:
                 case ClrElementType.Int32:
                 case ClrElementType.Int64:
                 case ClrElementType.Int8:
-                case ClrElementType.Double:
                 case ClrElementType.UInt16:
                 case ClrElementType.UInt32:
                 case ClrElementType.UInt64:
                 case ClrElementType.UInt8:
+                    col.TextAlign = HorizontalAlignment.Right;
+                    col.AspectToStringFormat = "{0:###,###,###,##0}";
+                    break;
+                case ClrElementType.Float:
+                case ClrElementType.Double:
                     col.TextAlign = HorizontalAlignment.Right;
                     break;
                 case ClrElementType.Boolean:
