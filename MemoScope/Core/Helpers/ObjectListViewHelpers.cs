@@ -73,15 +73,14 @@ namespace MemoScope.Core.Helpers
             SetUpAddressColumn(listView, col, dumpModule);
             listView.AllColumns.Add(col);
         }
-        public static void SetUpAddressColumn<T>(this ObjectListView listView, string colName, UIClrDumpModule dumpModule) where T : IAddressData
+        public static void SetUpAddressColumn<T>(this ObjectListView listView, UIClrDumpModule dumpModule) where T : IAddressData
         {
-            SetUpAddressColumn(listView, colName, o => ((IAddressData)o).Address, dumpModule);
+            SetUpAddressColumn(listView, nameof(IAddressData.Address), dumpModule);
         }
 
-        public static void SetUpAddressColumn(this ObjectListView listView, string colName, AspectGetterDelegate addressGetter, UIClrDumpModule dumpModule)
+        public static void SetUpAddressColumn(this ObjectListView listView, string colName, UIClrDumpModule dumpModule)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
-            col.AspectGetter = addressGetter;
             SetUpAddressColumn(listView, col, dumpModule);
         }
 
@@ -99,7 +98,12 @@ namespace MemoScope.Core.Helpers
                     {
                         return;
                     }
-                    var addressObj = col.AspectGetter(e.Model);
+                    var cellItem = listView.SelectedItem?.GetSubItem(col.Index);
+                    if( cellItem == null)
+                    {
+                        return;
+                    }
+                    var addressObj = cellItem.ModelValue;
                     if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
@@ -114,12 +118,12 @@ namespace MemoScope.Core.Helpers
             };
             listView.RegisterDataProvider( () =>
                 {
-                    var selectedObject = listView.SelectedObject;
-                    if(selectedObject == null)
+                    var cellItem = listView.SelectedItem?.GetSubItem(col.Index);
+                    if (cellItem == null)
                     {
                         return null;
                     }
-                    var addressObj = col.AspectGetter(selectedObject);
+                    var addressObj = cellItem.ModelValue;
                     if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
