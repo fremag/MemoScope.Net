@@ -457,7 +457,6 @@
     <Content Include="Icons\New\books_infront.png" />
     <Content Include="Icons\Large\borders_accent.png" />
     <Content Include="Icons\New\bricks.png" />
-    <Content Include="Icons\New\broom.png" />
     <Content Include="Icons\New\categories.png" />
     <Content Include="Icons\New\category.png" />
     <Content Include="Icons\New\consolidate.png" />
