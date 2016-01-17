@@ -32,7 +32,7 @@ namespace MemoScope.Modules.InstanceDetails
 
         public ClrType ClrType => clrDumpObject.ClrType;
         
-        public bool CanExpand => ! clrDumpObject.IsPrimitiveOrString;
+        public bool CanExpand => ! (clrDumpObject.IsPrimitiveOrString || clrDumpObject.Address == 0);
         public List<FieldValueInformation> Children => GetChildren(clrDumpObject);
 
         internal static List<FieldValueInformation> GetValues(ClrDumpObject clrDumpObject)

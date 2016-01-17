@@ -41,8 +41,8 @@ namespace MemoScope.Core.Helpers
 
             listView.RegisterDataProvider(() =>
             {
-                var obj = listView.SelectedObject;
-                string typeName = col.AspectGetter(obj) as string;
+                var cellItem = listView.SelectedItem.SubItems[col.Index];
+                string typeName = cellItem.Text;
                 ClrType type = dumpModule.ClrDump.GetClrType(typeName);
                 if (type != null)
                 {
@@ -52,8 +52,9 @@ namespace MemoScope.Core.Helpers
             }, dumpModule);
             listView.RegisterDataProvider(() =>
             {
-                var obj = listView.SelectedObject;
-                string typeName = col.AspectGetter(obj) as string;
+                var cellItem = listView.SelectedItem.SubItems[col.Index];
+                string typeName = cellItem.Text;
+
                 ClrType type = dumpModule.ClrDump.GetClrType(typeName);
                 if (type != null)
                 {
@@ -69,7 +70,7 @@ namespace MemoScope.Core.Helpers
         {
             var col = new OLVColumn("Address", null) {AspectGetter = addressGetter};
 
-            SetUpAddressColumn(listView, col, addressGetter, dumpModule);
+            SetUpAddressColumn(listView, col, dumpModule);
             listView.AllColumns.Add(col);
         }
         public static void SetUpAddressColumn<T>(this ObjectListView listView, string colName, UIClrDumpModule dumpModule) where T : IAddressData
@@ -80,10 +81,11 @@ namespace MemoScope.Core.Helpers
         public static void SetUpAddressColumn(this ObjectListView listView, string colName, AspectGetterDelegate addressGetter, UIClrDumpModule dumpModule)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
-            SetUpAddressColumn(listView, col, addressGetter, dumpModule);
+            col.AspectGetter = addressGetter;
+            SetUpAddressColumn(listView, col, dumpModule);
         }
 
-        public static void SetUpAddressColumn(this ObjectListView listView, OLVColumn col, AspectGetterDelegate aspectGetter, UIClrDumpModule dumpModule)
+        public static void SetUpAddressColumn(this ObjectListView listView, OLVColumn col, UIClrDumpModule dumpModule)
         {
             col.AspectToStringFormat = "{0:X}";
             col.TextAlign = HorizontalAlignment.Right;
@@ -97,7 +99,7 @@ namespace MemoScope.Core.Helpers
                     {
                         return;
                     }
-                    var addressObj = aspectGetter(e.Model);
+                    var addressObj = col.AspectGetter(e.Model);
                     if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
@@ -117,7 +119,7 @@ namespace MemoScope.Core.Helpers
                     {
                         return null;
                     }
-                    var addressObj = aspectGetter(selectedObject);
+                    var addressObj = col.AspectGetter(selectedObject);
                     if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
@@ -130,7 +132,7 @@ namespace MemoScope.Core.Helpers
             );
             listView.FormatCell += (o, e) =>
             {
-                if( e.Column != col)
+                if( e.Column != col || e.SubItem.ModelValue == null)
                 {
                     return;
                 }

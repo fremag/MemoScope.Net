@@ -142,7 +142,10 @@ namespace MemoScope.Modules.Instances
                     break;
                 case ClrElementType.Object:
                 case ClrElementType.Struct:
-                    dlvAdresses.SetUpAddressColumn(col, o => o, this);
+                case ClrElementType.Array:
+                case ClrElementType.SZArray:
+                    col.AspectGetter = o => o;
+                    dlvAdresses.SetUpAddressColumn(col, this);
                     break;
             }
             dlvAdresses.AllColumns.Add(col);
