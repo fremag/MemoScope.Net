@@ -38,7 +38,7 @@ namespace MemoScope.Modules.TypeStats
             dlvTypeStats.InitColumns<ClrTypeStats>();
             dlvTypeStats.SetUpTypeColumn<ClrTypeStats>(this);
             dlvTypeStats.SetObjects(typeStats);
-            dlvTypeStats.Sort(dlvTypeStats.AllColumns[2], SortOrder.Descending);
+            dlvTypeStats.Sort(dlvTypeStats.AllColumns.Find(c => c.Name == nameof(ClrTypeStats.NbInstances)), SortOrder.Descending);
             dlvTypeStats.UseFilterIndicator = true;
 
             regexFilterControl.RegexApplied += (regex) => {
