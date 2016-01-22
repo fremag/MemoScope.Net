@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace WinFwk.UIModules
     {
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
         protected readonly MessageBus msgBus = new MessageBus();
-        protected readonly List<UIToolBarSettings> toolbarSettings = new List<UIToolBarSettings>();
+        private readonly List<UIToolBarSettings> toolbarSettings = new List<UIToolBarSettings>();
         private readonly Dictionary<Keys, AbstractUICommand> dicoKeys = new Dictionary<Keys, AbstractUICommand>();
         private CancellationTokenSource cancellationTokenSource;
         private int nbTasks;
@@ -211,7 +212,7 @@ namespace WinFwk.UIModules
                     var toolbar = new UIToolbar();
                     toolbar.InitBus(msgBus);
                     toolbar.Init(setting.Icon, commandGroup);
-                    DockContent content = DockModule(toolbar, DockState.DockTop, false);
+                    DockContent content = DockModule(toolbar, setting.DockState, false);
                     if (firstToolbar == null)
                     {
                         firstToolbar = content;
@@ -255,5 +256,10 @@ namespace WinFwk.UIModules
                 cancellationTokenSource.Cancel();
             }
         }
-   }
+
+        protected void AddToolBar(string name, int priority, Bitmap icon, DockState dockState = DockState.DockTop)
+        {
+            toolbarSettings.Add(new UIToolBarSettings(name, priority, icon, dockState));
+        }
+    }
 }

@@ -5,7 +5,7 @@ namespace MemoScope.Modules.Bookmarks
 {
     public class AddBookmarkCommand : AbstractTypedUICommand<ClrDumpObject>
     {
-        public AddBookmarkCommand() : base("Add", "Add bookmark on instance", "Dump", Properties.Resources.award_star_add)  
+        public AddBookmarkCommand() : base("Add", "Add bookmark on instance", "Bookmarks", Properties.Resources.award_star_add)  
         {
 
         }

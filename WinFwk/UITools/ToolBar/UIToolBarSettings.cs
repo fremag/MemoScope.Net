@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace WinFwk.UITools.ToolBar
 {
@@ -9,16 +10,15 @@ namespace WinFwk.UITools.ToolBar
 
         public string Name { get; }
         public int Priority { get; }
-        public Bitmap Icon 
-        {
-            get;
-        }
+        public Bitmap Icon  { get; }
+        public DockState DockState { get; }
 
-        public UIToolBarSettings(string name, int priority, Bitmap icon)
+        public UIToolBarSettings(string name, int priority, Bitmap icon, DockState dockState = DockState.DockTopAutoHide)
         {
             Name = name;
             Priority = priority;
             Icon = icon;
+            DockState = dockState;
         }
     }
 }
