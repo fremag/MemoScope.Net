@@ -176,6 +176,9 @@
     <Compile Include="Modules\ClrRoots\ClrRootsModule.Designer.cs">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\DumpDiff\DiffColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modules\Finalizer\FinalizerInformation.cs" />
     <Compile Include="Modules\Finalizer\FinalizerCommand.cs" />
     <Compile Include="Modules\Finalizer\FinalizerModule.cs">

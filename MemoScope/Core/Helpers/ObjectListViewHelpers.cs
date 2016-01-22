@@ -14,14 +14,20 @@ namespace MemoScope.Core.Helpers
 {
     public static class ObjectListViewHelpers
     {
-        public static void SetUpTypeColumn<T>(this ObjectListView listView, UIClrDumpModule dumpModule) where T : ITypeNameData
+        public static void SetUpTypeColumn<T>(this ObjectListView listView, UIClrDumpModule dumpModule=null) where T : ITypeNameData
         {
             SetUpTypeColumn(listView, nameof(ITypeNameData.TypeName), dumpModule);
         }
 
-        private static void SetUpTypeColumn(this ObjectListView listView, string colName, UIClrDumpModule dumpModule)
+        public static void SetUpTypeColumn(this ObjectListView listView, string colName, UIClrDumpModule dumpModule=null)
         {
-            var col = listView.AllColumns.First(c => c.Name == colName);
+            OLVColumn col = listView.AllColumns.First(c => c.Name == colName);
+            SetUpTypeColumn(listView, col, dumpModule);
+        }
+
+        public static void SetUpTypeColumn(this ObjectListView listView, OLVColumn col, UIClrDumpModule dumpModule=null)
+        {
+            
             listView.FormatCell += (sender, e) =>
             {
                 if (e.Column == col)
@@ -43,31 +49,32 @@ namespace MemoScope.Core.Helpers
             };
             col.AspectToStringConverter = o => TypeHelpers.ManageAlias((string)o);
             col.Width = 300;
-
-            listView.RegisterDataProvider(() =>
+            if (dumpModule != null)
             {
-                var cellItem = listView.SelectedItem.SubItems[col.Index];
-                string typeName = cellItem.Text;
-                ClrType type = dumpModule.ClrDump.GetClrType(typeName);
-                if (type != null)
+                listView.RegisterDataProvider(() =>
                 {
-                    return new TypeInstancesAddressList(dumpModule.ClrDump, type);
-                }
-                return null;
-            }, dumpModule, "All");
-            listView.RegisterDataProvider(() =>
-            {
-                var cellItem = listView.SelectedItem.SubItems[col.Index];
-                string typeName = cellItem.Text;
-
-                ClrType type = dumpModule.ClrDump.GetClrType(typeName);
-                if (type != null)
+                    var cellItem = listView.SelectedItem.SubItems[col.Index];
+                    string typeName = cellItem.Text;
+                    ClrType type = dumpModule.ClrDump.GetClrType(typeName);
+                    if (type != null)
+                    {
+                        return new TypeInstancesAddressList(dumpModule.ClrDump, type);
+                    }
+                    return null;
+                }, dumpModule, "All");
+                listView.RegisterDataProvider(() =>
                 {
-                    return new ClrDumpType(dumpModule.ClrDump, type);
-                }
-                return null;
-            }, dumpModule);
+                    var cellItem = listView.SelectedItem.SubItems[col.Index];
+                    string typeName = cellItem.Text;
 
+                    ClrType type = dumpModule.ClrDump.GetClrType(typeName);
+                    if (type != null)
+                    {
+                        return new ClrDumpType(dumpModule.ClrDump, type);
+                    }
+                    return null;
+                }, dumpModule);
+            }
             listView.UseCellFormatEvents = true;
         }
 
