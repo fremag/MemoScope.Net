@@ -20,7 +20,7 @@ namespace MemoScope.Modules.DumpDiff
                 MessageBox.Show("Please, select two or more dumps in the workplace module !");
                 return;
             }
-            UIModuleFactory.CreateModule<DumpDiffModule>(module => { module.UIModuleParent = selectedModule; module.Setup(clrDumps); }, module => DockModule(module));
+            UIModuleFactory.CreateModule<DumpDiffModule>(module => { module.Setup(clrDumps); }, module => DockModule(module));
         }
     }
 }

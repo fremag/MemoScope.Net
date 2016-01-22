@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using WinFwk.UIModules;
 using BrightIdeasSoftware;
 using System.Drawing;
-using System;
 using MemoScope.Core.Data;
 using MemoScope.Modules.Instances;
 
