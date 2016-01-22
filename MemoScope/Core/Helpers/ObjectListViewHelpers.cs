@@ -48,7 +48,7 @@ namespace MemoScope.Core.Helpers
                 }
             };
             col.AspectToStringConverter = o => TypeHelpers.ManageAlias((string)o);
-            col.Width = 300;
+            col.Width = 600;
             if (dumpModule != null)
             {
                 listView.RegisterDataProvider(() =>

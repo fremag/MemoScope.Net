@@ -131,11 +131,27 @@ namespace WinFwk.UIModules
                 }
             }
         }
+
         [UIScheduler]
         protected DockContent DockModule(UIModule uiModule, DockState dockState = DockState.Document, bool allowclose = true)
         {
+            var content = BuildContent(uiModule, allowclose);
+            content.Show(mainPanel, dockState);
+            return content;
+        }
+
+        [UIScheduler]
+        protected DockContent DockModule(UIModule uiModule, DockContent parentContent, DockAlignment dockAlignment = DockAlignment.Top, bool allowclose = true)
+        {
+            var content = BuildContent(uiModule, allowclose);
+            content.Show(parentContent.Pane, DockAlignment.Top, 0.5);
+            return content;
+        }
+
+        private DockContent BuildContent(UIModule uiModule, bool allowclose)
+        {
             uiModule.InitBus(msgBus);
-            DockContent content = UIModuleHelper.BuildDockContent(uiModule, allowclose);
+            var content = UIModuleHelper.BuildDockContent(uiModule, allowclose);
             if (uiModule.Icon != null)
             {
                 content.Icon = System.Drawing.Icon.FromHandle(uiModule.Icon.GetHicon());
@@ -146,7 +162,6 @@ namespace WinFwk.UIModules
                 content.ShowIcon = false;
             }
             dicoModules[content] = uiModule;
-            content.Show(mainPanel, dockState);
             return content;
         }
 
