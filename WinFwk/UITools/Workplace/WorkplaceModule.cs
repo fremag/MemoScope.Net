@@ -11,7 +11,6 @@ namespace WinFwk.UITools.Workplace
         IMessageListener<ModuleEventMessage>
     {
         private readonly WorkplaceModel model = new WorkplaceModel();
-
         protected List<object> SelectedModules => tlvModules.CheckedObjects.OfType<object>().ToList();
 
         public WorkplaceModule()
@@ -38,6 +37,10 @@ namespace WinFwk.UITools.Workplace
                     break;
                 case ModuleEventType.Removed:
                     model.Remove(message.Module);
+                    if( message.Module.UIModuleParent != null)
+                    {
+                        MessageBus.SendMessage(new ActivationRequest(message.Module.UIModuleParent));
+                    }
                     break;
                 case ModuleEventType.Activated:
                     tlvModules.SelectedObject = message.Module;
