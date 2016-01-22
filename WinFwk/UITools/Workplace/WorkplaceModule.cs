@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
@@ -9,6 +11,8 @@ namespace WinFwk.UITools.Workplace
         IMessageListener<ModuleEventMessage>
     {
         private readonly WorkplaceModel model = new WorkplaceModel();
+
+        protected List<object> SelectedModules => tlvModules.CheckedObjects.OfType<object>().ToList();
 
         public WorkplaceModule()
         {

@@ -8,6 +8,7 @@ using WinFwk.UIMessages;
 using WinFwk.UIModules;
 using WinFwk.UIServices;
 using WinFwk.UITools.ToolBar;
+using MemoScope.Modules.Workplace;
 
 namespace MemoScope
 {
@@ -26,7 +27,7 @@ namespace MemoScope
             toolbarSettings.Add(new UIToolBarSettings("Dump", 1, Properties.Resources.database_green));
             toolbarSettings.Add(new UIToolBarSettings("Memory", 2, Properties.Resources.ddr_memory_small));
             InitToolBars();
-            InitWorkplace(DockState.DockLeftAutoHide);
+            InitWorkplace(new MemoScopeWorkplace(), DockState.DockLeftAutoHide);
             InitLog();
             UIServiceHelper.InitServices(msgBus);
             InitModuleFactory();

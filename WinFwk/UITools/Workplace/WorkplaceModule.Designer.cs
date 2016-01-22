@@ -39,6 +39,8 @@
             // 
             this.tlvModules.AllColumns.Add(this.colName);
             this.tlvModules.AllColumns.Add(this.colSummary);
+            this.tlvModules.CellEditUseWholeCell = false;
+            this.tlvModules.CheckBoxes = true;
             this.tlvModules.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colSummary});
@@ -46,9 +48,10 @@
             this.tlvModules.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlvModules.FullRowSelect = true;
             this.tlvModules.HideSelection = false;
+            this.tlvModules.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.tlvModules.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.tlvModules.Location = new System.Drawing.Point(0, 0);
             this.tlvModules.Name = "tlvModules";
-            this.tlvModules.OwnerDraw = true;
             this.tlvModules.RootKeyValueString = "";
             this.tlvModules.ShowGroups = false;
             this.tlvModules.ShowImagesOnSubItems = true;
