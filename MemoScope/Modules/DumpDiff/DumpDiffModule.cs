@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using WinFwk.UIModules;
 using BrightIdeasSoftware;
 using System.Drawing;
+using System;
+using MemoScope.Core.Data;
+using MemoScope.Modules.Instances;
 
 namespace MemoScope.Modules.DumpDiff
 {
@@ -22,7 +25,7 @@ namespace MemoScope.Modules.DumpDiff
             ClrDumps = clrDumps;
             Icon = Properties.Resources.subtotal_small;
             Name = $"Dump diff";
-            dlvTypes.SetUpTypeColumn(colType);
+            dlvDumpDiff.SetUpTypeColumn(colType);
             colType.Text = "Type";
             colType.AspectGetter = o => (string)o;
             ClrDump prevClrDump = null;
@@ -31,12 +34,52 @@ namespace MemoScope.Modules.DumpDiff
                 var clrDump = ClrDumps[i];
                 var stats = clrDump.GetTypeStats();
                 DiffColumn diffCol = new DiffColumn(clrDump, stats, prevClrDump?.GetTypeStats());
-                dlvTypes.AllColumns.Add(diffCol);
+                dlvDumpDiff.AllColumns.Add(diffCol);
                 prevClrDump = clrDump;
+                dlvDumpDiff.RegisterDataProvider(() => SelectedTypeInstancesAddressList(clrDump), this, $"#{clrDump.Id}");
             }
-            dlvTypes.RebuildColumns();
-            dlvTypes.UseCellFormatEvents = true;
-            dlvTypes.FormatCell += OnFormatCell;
+            dlvDumpDiff.RebuildColumns();
+            dlvDumpDiff.UseCellFormatEvents = true;
+            dlvDumpDiff.FormatCell += OnFormatCell;
+            dlvDumpDiff.CellClick += OnCellClick;
+
+            regexFilterControl.RegexApplied += (regex) => {
+                dlvDumpDiff.ModelFilter = new ModelFilter((o) =>
+                {
+                    var typeName = o as string;
+                    if (o == null)
+                    {
+                        return true;
+                    }
+                    var b = regex.IsMatch(typeName);
+                    return b;
+                });
+                dlvDumpDiff.UseFiltering = true;
+            };
+            regexFilterControl.RegexCancelled += () => dlvDumpDiff.UseFiltering = false;
+
+        }
+
+        private void OnCellClick(object sender, CellClickEventArgs e)
+        {
+            if(e.ClickCount != 2)
+            {
+                return;
+            }
+            var col = e.Column as DiffColumn;
+            if( col == null)
+            {
+                return;
+            }
+            var clrDumpType = SelectedTypeInstancesAddressList(col.ClrDump);
+            var addresses = new TypeInstancesAddressList(clrDumpType);
+            InstancesModule.Create(addresses, this, mod => RequestDockModule(mod));
+        }
+
+        private ClrDumpType SelectedTypeInstancesAddressList(ClrDump clrDump)
+        {
+            var selectedType = dlvDumpDiff.SelectedObject<string>();
+            return new ClrDumpType(clrDump, selectedType);
         }
 
         private void OnFormatCell(object sender, FormatCellEventArgs e)
@@ -68,7 +111,7 @@ namespace MemoScope.Modules.DumpDiff
                 var stats = clrDump.GetTypeStats();
                 foreach (var stat in stats)
                 {
-                    typeNames.Add(stat.TypeName);
+                    typeNames.Add(stat.Type.Name);
                 }
             }
         }
@@ -78,8 +121,8 @@ namespace MemoScope.Modules.DumpDiff
             base.PostInit();
             Summary = $"{ClrDumps.Count} dumps, {typeNames.Count} types";
 
-            dlvTypes.Objects = typeNames;
-            dlvTypes.Sort(colType);
+            dlvDumpDiff.Objects = typeNames;
+            dlvDumpDiff.Sort(colType);
         }
     }
 }

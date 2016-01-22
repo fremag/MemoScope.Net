@@ -12,8 +12,7 @@ namespace MemoScope.Modules.Instances
 
         protected override void HandleData(ClrDumpType clrDumpType)
         {
-            var addresses = new TypeInstancesAddressList(clrDumpType);
-            InstancesModule.Create(addresses, selectedModule, mod => DockModule(mod) );
+            TypeInstancesModule.Create(clrDumpType, selectedModule, mod => DockModule(mod));
         }
     }
 }

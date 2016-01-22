@@ -6,15 +6,16 @@ namespace MemoScope.Modules.DumpDiff
 {
     public class DiffColumn : OLVColumn
     {
-        private ClrDump clrDump;
+        public ClrDump ClrDump { get; }
         private List<ClrTypeStats> stats;
 
         private Dictionary<string, ClrTypeStats> dicoStats;
         private Dictionary<string, ClrTypeStats> dicoPrevStats;
 
+
         public DiffColumn(ClrDump clrDump, List<ClrTypeStats> stats, List<ClrTypeStats> prevStats)
         {
-            this.clrDump = clrDump;
+            ClrDump = clrDump;
             this.stats = stats;
             Text = "#" + clrDump.Id;
             TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -40,11 +41,11 @@ namespace MemoScope.Modules.DumpDiff
             foreach (var stat in stats)
             {
                 int n = 0;
-                string name = stat.TypeName;
+                string name = stat.Type.Name;
                 while (dico.ContainsKey(name))
                 {
                     n++;
-                    name = stat.TypeName + " #" + n;
+                    name = stat.Type.Name + " #" + n;
                 }
                 dico.Add(name, stat);
             }

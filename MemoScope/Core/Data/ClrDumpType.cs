@@ -31,5 +31,8 @@ namespace MemoScope.Core.Data
             ClrDump = clrDump;
             ClrType = clrType;
         }
+        public ClrDumpType(ClrDump clrDump, string typeName) : this(clrDump, clrDump.GetClrType(typeName))
+        {
+        }
     }
 }

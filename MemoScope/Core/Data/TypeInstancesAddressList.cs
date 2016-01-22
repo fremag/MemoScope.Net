@@ -12,5 +12,8 @@ namespace MemoScope.Core.Data
         public TypeInstancesAddressList(ClrDump clrDump, ClrType clrType) : base(clrDump, clrType, clrDump.GetInstances(clrType))
         {
         }
+        public TypeInstancesAddressList(ClrDump clrDump, string typeName) : this(clrDump, clrDump.GetClrType(typeName))
+        {
+        }
     }
 }
