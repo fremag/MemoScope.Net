@@ -18,14 +18,18 @@ namespace MemoScope.Modules.DumpDiff
             this.stats = stats;
             Text = "#" + clrDump.Id;
             TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            AspectToStringFormat = "{0:+###,###,###,##0;-###,###,###,##0;0}";
             Width = 150;
             ToolTipText = Text + " / " + clrDump.DumpPath;
 
             dicoStats = BuildDicoStat(stats);
             if (prevStats != null)
             {
+                AspectToStringFormat = "{0:+###,###,###,##0;-###,###,###,##0;0}";
                 dicoPrevStats = BuildDicoStat(prevStats);
+            }
+            else
+            {
+                AspectToStringFormat = "{0:###,###,###,##0}";
             }
             AspectGetter = GetCountFortype;
         }

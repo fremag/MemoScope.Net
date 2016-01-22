@@ -2,12 +2,16 @@
 using MemoScope.Core.Helpers;
 using System.Collections.Generic;
 using WinFwk.UIModules;
+using BrightIdeasSoftware;
+using System.Drawing;
 
 namespace MemoScope.Modules.DumpDiff
 {
     public partial class DumpDiffModule : UIModule
     {
         private List<ClrDump> ClrDumps { get; set; }
+        HashSet<string> typeNames = new HashSet<string>();
+
         public DumpDiffModule()
         {
             InitializeComponent();
@@ -31,8 +35,32 @@ namespace MemoScope.Modules.DumpDiff
                 prevClrDump = clrDump;
             }
             dlvTypes.RebuildColumns();
+            dlvTypes.UseCellFormatEvents = true;
+            dlvTypes.FormatCell += OnFormatCell;
         }
-        HashSet<string> typeNames = new HashSet<string>();
+
+        private void OnFormatCell(object sender, FormatCellEventArgs e)
+        {
+            if (e.Column == colType || e.ColumnIndex <= 1 || e.CellValue == null || ! (e.CellValue is long))
+            {
+                return;
+            }
+
+            var value = (long)e.CellValue;
+            if (value > 0)
+            {
+                e.SubItem.BackColor = Color.LightGreen;
+            }
+            else if (value < 0)
+            {
+                e.SubItem.BackColor = Color.LightPink;
+            }
+            else
+            {
+                e.SubItem.BackColor = Color.LightGray;
+            }
+        }
+
         public override void Init()
         {
             foreach (var clrDump in ClrDumps)
