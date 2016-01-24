@@ -32,6 +32,8 @@ namespace MemoScope.Core
         public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy( address => GetObjectType(address));
         public IEnumerable<ClrRoot> ClrRoots => Runtime.GetHeap().EnumerateRoots();
 
+        public IList<ClrThread> Threads => Runtime.Threads;
+
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;
         

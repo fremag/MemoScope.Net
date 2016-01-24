@@ -12,13 +12,14 @@ namespace WinFwk.UITools.ToolBar
         public int Priority { get; }
         public Bitmap Icon  { get; }
         public DockState DockState { get; }
-
-        public UIToolBarSettings(string name, int priority, Bitmap icon, DockState dockState = DockState.DockTopAutoHide)
+        public bool MainToolbar { get; }
+        public UIToolBarSettings(string name, int priority, Bitmap icon, DockState dockState = DockState.DockTopAutoHide, bool mainToolbar=false)
         {
             Name = name;
             Priority = priority;
             Icon = icon;
             DockState = dockState;
+            MainToolbar = mainToolbar;
         }
     }
 }

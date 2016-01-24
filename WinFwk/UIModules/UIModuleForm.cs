@@ -204,7 +204,7 @@ namespace WinFwk.UIModules
 
             // Order the toolbars by priority 
             DockContent firstToolbar = null;
-            foreach (var setting in dicoSettings.Values.OrderByDescending(setting => setting.Priority))
+            foreach (var setting in dicoSettings.Values.OrderBy(setting => setting.Priority))
             {
                 IGrouping<string, AbstractUICommand> commandGroup;
                 if( dicoCommands.TryGetValue(setting.Name, out commandGroup))
@@ -213,7 +213,7 @@ namespace WinFwk.UIModules
                     toolbar.InitBus(msgBus);
                     toolbar.Init(setting.Icon, commandGroup);
                     DockContent content = DockModule(toolbar, setting.DockState, false);
-                    if (firstToolbar == null)
+                    if (setting.MainToolbar)
                     {
                         firstToolbar = content;
                     }
@@ -257,9 +257,9 @@ namespace WinFwk.UIModules
             }
         }
 
-        protected void AddToolBar(string name, int priority, Bitmap icon, DockState dockState = DockState.DockTop)
+        protected void AddToolBar(string name, int priority, Bitmap icon, DockState dockState = DockState.DockTop, bool mainToolbar=false)
         {
-            toolbarSettings.Add(new UIToolBarSettings(name, priority, icon, dockState));
+            toolbarSettings.Add(new UIToolBarSettings(name, priority, icon, dockState, mainToolbar));
         }
     }
 }

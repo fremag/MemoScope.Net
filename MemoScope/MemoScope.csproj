@@ -179,6 +179,14 @@
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\Threads\ThreadsCommand.cs" />
+    <Compile Include="Modules\Threads\ThreadsInformation.cs" />
+    <Compile Include="Modules\Threads\ThreadsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Threads\ThreadsModule.Designer.cs">
+      <DependentUpon>ThreadsModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Finalizer\FinalizerInformation.cs" />
     <Compile Include="Modules\Finalizer\FinalizerCommand.cs" />
     <Compile Include="Modules\Finalizer\FinalizerModule.cs">
@@ -378,6 +386,9 @@
     <EmbeddedResource Include="Modules\ClrRoots\ClrRootsModule.resx">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Threads\ThreadsModule.resx">
+      <DependentUpon>ThreadsModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Finalizer\FinalizerModule.resx">
       <DependentUpon>FinalizerModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -455,6 +466,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\Large\action_log.png" />
     <Content Include="Icons\Large\award_star_add.png" />
     <Content Include="Icons\Large\award_star_delete.png" />
     <Content Include="Icons\Large\award_star_gold_blue.png" />
@@ -536,6 +548,7 @@
     <Content Include="Icons\New\vbox.png" />
     <Content Include="Icons\New\viewstack.png" />
     <Content Include="Icons\Small\accept_button.png" />
+    <Content Include="Icons\Small\action_log.png" />
     <Content Include="Icons\Small\anchor.png" />
     <Content Include="Icons\Small\application_double.png" />
     <Content Include="Icons\Large\clock_go.png" />

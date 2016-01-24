@@ -7,10 +7,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 using WinFwk.UIServices;
-using WinFwk.UITools.ToolBar;
 using MemoScope.Modules.Workplace;
-using System;
-using System.Drawing;
 
 namespace MemoScope
 {
@@ -26,9 +23,10 @@ namespace MemoScope
         private void MemoScope_Load(object sender, System.EventArgs e)
         {
             InitModuleFactory();
-            AddToolBar("Dump", 1, Properties.Resources.database_green);
+            AddToolBar("Dump", 1, Properties.Resources.database_green, DockState.DockTop, true);
             AddToolBar("Memory", 2, Properties.Resources.ddr_memory_small);
-            AddToolBar("Bookmarks", 3, Properties.Resources.award_star_gold_blue);
+            AddToolBar("Bookmarks",3, Properties.Resources.award_star_gold_blue);
+            AddToolBar("Threads", 4, Properties.Resources.processor_small);
             InitToolBars();
             var workContent = InitWorkplace(new MemoScopeWorkplace(), DockState.DockLeft);
             InitLog();
