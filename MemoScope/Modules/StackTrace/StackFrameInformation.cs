@@ -36,10 +36,15 @@ namespace MemoScope.Modules.StackTrace
 
         [OLVColumn]
         public string MethodName => Method != null ? Method.Name : "[*] "+DisplayString;
+
         [OLVColumn]
         public ClrStackFrameType Kind { get; private set; }
+
         [OLVColumn]
         public string DisplayString { get; }
+
+        [OLVColumn(AspectToStringFormat ="{0:X}")]
+        public ulong StackPointer => frame.StackPointer;
 
 #if LINE_AND_FILE
         [OLVColumn]
