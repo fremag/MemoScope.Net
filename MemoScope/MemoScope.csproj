@@ -180,6 +180,13 @@
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\ThreadException\ThreadExceptionCommand.cs" />
+    <Compile Include="Modules\ThreadException\ThreadExceptionModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ThreadException\ThreadExceptionModule.Designer.cs">
+      <DependentUpon>ThreadExceptionModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\StackTrace\StackFrameExtensions.cs" />
     <Compile Include="Modules\StackTrace\StackTraceCommand.cs" />
     <Compile Include="Modules\StackTrace\StackFrameInformation.cs" />
@@ -404,6 +411,9 @@
     <EmbeddedResource Include="Modules\ClrRoots\ClrRootsModule.resx">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ThreadException\ThreadExceptionModule.resx">
+      <DependentUpon>ThreadExceptionModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\StackTrace\StackTraceModule.resx">
       <DependentUpon>StackTraceModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -500,6 +510,7 @@
     <Content Include="Icons\Large\class_module.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\elements.png" />
+    <Content Include="Icons\Large\exclamation.png" />
     <Content Include="Icons\Large\folders_explorer.png" />
     <Content Include="Icons\Large\formatting_dublicate_value.png" />
     <Content Include="Icons\Large\geolocation_sight.png" />
@@ -594,6 +605,7 @@
     <Content Include="Icons\Small\database_yellow.png" />
     <Content Include="Icons\Small\ddr_memory.png" />
     <Content Include="Icons\Small\elements.png" />
+    <Content Include="Icons\Small\exclamation.png" />
     <Content Include="Icons\Small\file_extension_bin.png" />
     <Content Include="Icons\Small\filter_clear.png" />
     <Content Include="Icons\Small\filter_reapply.png" />

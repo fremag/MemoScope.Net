@@ -24,10 +24,11 @@ namespace MemoScope.Modules.Threads
 
             dlvThreads.InitColumns<ThreadInformation>();
             dlvThreads.SetUpAddressColumn<ThreadInformation>(this);
+            dlvThreads.RegisterDataProvider(() => Data, this);
             dlvThreads.SelectedIndexChanged += (s, e) =>
             {
                 var threadInfo = dlvThreads.SelectedObject<ThreadInformation>();
-                if( threadInfo == null)
+                if (threadInfo == null)
                 {
                     return;
                 }
@@ -39,7 +40,6 @@ namespace MemoScope.Modules.Threads
                 stackModule.Init();
                 stackModule.PostInit();
             };
-
             stackTraceModule.InitBus(MessageBus);
             stackModule.InitBus(MessageBus);
 
