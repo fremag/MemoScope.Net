@@ -179,6 +179,15 @@
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\StackTrace\StackFrameExtensions.cs" />
+    <Compile Include="Modules\StackTrace\StackTraceCommand.cs" />
+    <Compile Include="Modules\StackTrace\StackFrameInformation.cs" />
+    <Compile Include="Modules\StackTrace\StackTraceModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\StackTrace\StackTraceModule.Designer.cs">
+      <DependentUpon>StackTraceModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Threads\ThreadsCommand.cs" />
     <Compile Include="Modules\Threads\ThreadsInformation.cs" />
     <Compile Include="Modules\Threads\ThreadsModule.cs">
@@ -386,6 +395,9 @@
     <EmbeddedResource Include="Modules\ClrRoots\ClrRootsModule.resx">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\StackTrace\StackTraceModule.resx">
+      <DependentUpon>StackTraceModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Threads\ThreadsModule.resx">
       <DependentUpon>ThreadsModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -484,6 +496,7 @@
     <None Include="Icons\Large\outline_wight_gallery.png" />
     <Content Include="Icons\Large\plugin_link.png" />
     <Content Include="Icons\Large\processor.png" />
+    <Content Include="Icons\Large\red_line.png" />
     <Content Include="Icons\Large\save_data.png" />
     <Content Include="Icons\Large\scroll_pane_list.png" />
     <Content Include="Icons\Large\subtotal.png" />
@@ -581,6 +594,7 @@
     <Content Include="Icons\Small\page_delete.png" />
     <Content Include="Icons\Small\plugin_link.png" />
     <Content Include="Icons\Small\processor.png" />
+    <Content Include="Icons\Small\red_line.png" />
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />
     <Content Include="Icons\Small\subtotal.png" />

@@ -4,10 +4,13 @@ using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using WinFwk.UICommands;
+using System;
+using MemoScope.Modules.StackTrace;
 
 namespace MemoScope.Modules.Threads
 {
-    public partial class ThreadsModule : UIClrDumpModule
+    public partial class ThreadsModule : UIClrDumpModule, UIDataProvider<ClrDumpThread>
     {
         private List<ThreadInformation> Threads;
 
@@ -19,35 +22,33 @@ namespace MemoScope.Modules.Threads
         public void Setup(ClrDump clrDump)
         {
             ClrDump = clrDump;
-            Icon = Properties.Resources.broom_small;
+            Icon = Properties.Resources.processor_small;
             Name = $"#{clrDump.Id} - Threads";
 
             dlvThreads.InitColumns<ThreadInformation>();
             dlvThreads.SetUpAddressColumn<ThreadInformation>(this);
+            dlvThreads.SelectedIndexChanged += (s, e) =>
+            {
+                var thread = dlvThreads.SelectedObject<ThreadInformation>();
+                if( thread == null)
+                {
+                    return;
+                }
+                stackTraceModule.Init(thread);
+                stackTraceModule.PostInit();
+            };
+            stackTraceModule.Setup(clrDump);
         }
 
         public override void Init()
         {
             base.Init();
-            ClrType threadType = ClrDump.GetClrType(typeof(Thread).FullName);
-            var threadsInstances = ClrDump.GetInstances(threadType);
-            var nameField = threadType.GetFieldByName("m_Name");
-            var priorityField = threadType.GetFieldByName("m_Priority");
-            var idField = threadType.GetFieldByName("m_ManagedThreadId");
-            Dictionary<int, ThreadProperty> properties = new Dictionary<int, ThreadProperty>();
-            foreach(ulong threadAddress in threadsInstances)
-            {
-                string name = (string)ClrDump.GetFieldValue(threadAddress, threadType, nameField);
-                int priority = (int)ClrDump.GetFieldValue(threadAddress, threadType, priorityField);
-                int id = (int)ClrDump.GetFieldValue(threadAddress, threadType, idField);
-                properties[id] = new ThreadProperty { Address = threadAddress,  ManagedId = id, Priority = priority, Name = name };
-            }
 
             Threads = ClrDump.Threads.Select(thread =>
             {
                 var threadInfo = new ThreadInformation(ClrDump, thread);
                 ThreadProperty threadProp;
-                if( properties.TryGetValue(thread.ManagedThreadId, out threadProp))
+                if( ClrDump.ThreadProperties.TryGetValue(thread.ManagedThreadId, out threadProp))
                 {
                     threadInfo.Address = threadProp.Address;
                     threadInfo.Name = threadProp.Name;
@@ -56,14 +57,18 @@ namespace MemoScope.Modules.Threads
                 return threadInfo;
             }).ToList();
         }
-
-    internal class ThreadProperty
-    {
-        public ulong Address { get; set; }
-        public string Name { get; set; }
-        public int Priority { get;  set; }
-        public int ManagedId { get; set; }
-    }
+        public ClrDumpThread Data
+        {
+            get
+            {
+                var thread = dlvThreads.SelectedObject<ThreadInformation>();
+                if( thread == null)
+                {
+                    return null;
+                }
+                return new ClrDumpThread(thread.ClrDump, thread.Thread, thread.Name);
+            }
+        }
 
     public override void PostInit()
         {

@@ -34,6 +34,19 @@ namespace MemoScope.Core
 
         public IList<ClrThread> Threads => Runtime.Threads;
 
+        public Dictionary<int, ThreadProperty> ThreadProperties
+        {
+            get
+            {
+                if (threadProperties == null)
+                {
+                    InitThreadProperties();
+                }
+                return threadProperties;
+            }
+        }
+
+        Dictionary<int, ThreadProperty> threadProperties;
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;
         
@@ -217,5 +230,36 @@ namespace MemoScope.Core
             var clrType = worker.Eval(() => Heap.GetObjectType(address));
             return clrType;
         }
+
+        private void InitThreadProperties()
+        {
+            ClrType threadType = GetClrType(typeof(Thread).FullName);
+            var threadsInstances = GetInstances(threadType);
+            var nameField = threadType.GetFieldByName("m_Name");
+            var priorityField = threadType.GetFieldByName("m_Priority");
+            var idField = threadType.GetFieldByName("m_ManagedThreadId");
+            threadProperties = new Dictionary<int, ThreadProperty>();
+            foreach (ulong threadAddress in threadsInstances)
+            {
+                string name = (string)GetFieldValue(threadAddress, threadType, nameField);
+                int priority = (int)GetFieldValue(threadAddress, threadType, priorityField);
+                int id = (int)GetFieldValue(threadAddress, threadType, idField);
+                threadProperties[id] = new ThreadProperty
+                {
+                    Address = threadAddress,
+                    ManagedId = id,
+                    Priority = priority,
+                    Name = name
+                };
+            }
+        }
+    }
+
+    public class ThreadProperty
+    {
+        public ulong Address { get; set; }
+        public string Name { get; set; }
+        public int Priority { get; set; }
+        public int ManagedId { get; set; }
     }
 }

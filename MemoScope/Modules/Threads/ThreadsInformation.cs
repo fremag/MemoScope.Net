@@ -8,13 +8,13 @@ namespace MemoScope.Modules.Threads
 {
     public class ThreadInformation : IAddressData
     {
-        private ClrDump clrDump;
-        private ClrThread thread;
+        public ClrDump ClrDump { get; }
+        public ClrThread Thread { get; }
 
         public ThreadInformation(ClrDump clrDump, ClrThread thread)
         {
-            this.clrDump = clrDump;
-            this.thread = thread;
+            ClrDump = clrDump;
+            Thread = thread;
 
             clrDump.Run(() =>
            {
