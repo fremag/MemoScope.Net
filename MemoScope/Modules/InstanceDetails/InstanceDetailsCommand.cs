@@ -1,6 +1,7 @@
 ﻿using MemoScope.Core.Data;
 using MemoScope.Modules.InstanceDetails;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
@@ -23,7 +24,7 @@ namespace MemoScope.Modules.TypeDetails
 
             UIModuleFactory.CreateModule<InstanceDetailsModule>(
                 mod => { mod.UIModuleParent = selectedModule; mod.Setup(data); },
-                mod => DockModule(mod)
+                mod => DockModule(mod, DockState.DockRight)
              );
         }
     }

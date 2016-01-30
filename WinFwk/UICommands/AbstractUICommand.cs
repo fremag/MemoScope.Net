@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
@@ -34,9 +35,9 @@ namespace WinFwk.UICommands
             MessageBus.Subscribe(this);
         }
 
-        protected void DockModule(UIModule uiModule)
+        protected void DockModule(UIModule uiModule, DockState dockState = DockState.Document)
         {
-            MessageBus.SendMessage(new DockRequest(uiModule));
+            MessageBus.SendMessage(new DockRequest(uiModule, dockState) );
         }
     }
 }

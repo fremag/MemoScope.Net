@@ -44,7 +44,7 @@ namespace WinFwk.UIModules
         [UIScheduler]
         void IMessageListener<DockRequest>.HandleMessage(DockRequest message)
         {
-            DockModule(message.UIModule);
+            DockModule(message.UIModule, message.DockState);
         }
 
         [UIScheduler]

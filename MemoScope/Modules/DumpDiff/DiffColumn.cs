@@ -32,7 +32,7 @@ namespace MemoScope.Modules.DumpDiff
             {
                 AspectToStringFormat = "{0:###,###,###,##0}";
             }
-            AspectGetter = GetCountFortype;
+            AspectGetter = GetCountForType;
         }
 
         private static Dictionary<string, ClrTypeStats> BuildDicoStat(List<ClrTypeStats> stats)
@@ -52,7 +52,7 @@ namespace MemoScope.Modules.DumpDiff
             return dico;
         }
 
-        private object GetCountFortype(object rowObject)
+        private object GetCountForType(object rowObject)
         {
             string typeName = rowObject as string;
             ClrTypeStats stat;

@@ -1,6 +1,5 @@
 ﻿using MemoScope.Core;
 using System.Collections.Generic;
-using MemoScope.Modules.Threads;
 using System.Linq;
 using Microsoft.Diagnostics.Runtime;
 

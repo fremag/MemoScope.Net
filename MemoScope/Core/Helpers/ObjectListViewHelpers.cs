@@ -6,6 +6,7 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 using WinFwk;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
@@ -123,7 +124,7 @@ namespace MemoScope.Core.Helpers
                         var clrDumpObject = new ClrDumpObject(dumpModule.ClrDump, type, address);
                         UIModuleFactory.CreateModule<InstanceDetailsModule>(
                             mod => { mod.UIModuleParent = dumpModule; mod.Setup(clrDumpObject); },
-                            mod => mod.RequestDockModule()
+                            mod => mod.RequestDockModule(DockState.DockRight)
                          );
                     }
                 }

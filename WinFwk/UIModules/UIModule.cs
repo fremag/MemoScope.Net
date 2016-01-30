@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UIMessages;
 using WinFwk.UITools.Log;
 
@@ -70,13 +71,13 @@ namespace WinFwk.UIModules
             MessageBus.SendMessage(new LogMessage(this, text, exception));
         }
 
-        public void RequestDockModule(UIModule uiModule)
+        public void RequestDockModule(UIModule uiModule, DockState dockState=DockState.Document)
         {
-            MessageBus.SendMessage(new DockRequest(uiModule));
+            MessageBus.SendMessage(new DockRequest(uiModule, dockState));
         }
-        public void RequestDockModule()
+        public void RequestDockModule(DockState dockState = DockState.Document)
         {
-            RequestDockModule(this);
+            RequestDockModule(this, dockState);
         }
     }
 }
