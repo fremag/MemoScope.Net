@@ -165,6 +165,7 @@
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
+    <Compile Include="Core\Data\ClrDumpThread.cs" />
     <Compile Include="Core\Data\TypeInstancesAddressList.cs" />
     <Compile Include="Core\Data\ITypeNameData.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
@@ -187,6 +188,14 @@
     </Compile>
     <Compile Include="Modules\StackTrace\StackTraceModule.Designer.cs">
       <DependentUpon>StackTraceModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Stack\StackInstanceInformation.cs" />
+    <Compile Include="Modules\Stack\StackCommand.cs" />
+    <Compile Include="Modules\Stack\StackModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Stack\StackModule.Designer.cs">
+      <DependentUpon>StackModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Threads\ThreadsCommand.cs" />
     <Compile Include="Modules\Threads\ThreadsInformation.cs" />
@@ -398,6 +407,9 @@
     <EmbeddedResource Include="Modules\StackTrace\StackTraceModule.resx">
       <DependentUpon>StackTraceModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Stack\StackModule.resx">
+      <DependentUpon>StackModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Threads\ThreadsModule.resx">
       <DependentUpon>ThreadsModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -489,6 +501,7 @@
     <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\elements.png" />
     <Content Include="Icons\Large\folders_explorer.png" />
+    <Content Include="Icons\Large\formatting_dublicate_value.png" />
     <Content Include="Icons\Large\geolocation_sight.png" />
     <Content Include="Icons\Large\help.png" />
     <Content Include="Icons\Large\module.png" />
@@ -587,6 +600,7 @@
     <Content Include="Icons\Small\folder.png" />
     <Content Include="Icons\Small\folders_explorer.png" />
     <Content Include="Icons\Small\folder_explore.png" />
+    <Content Include="Icons\Small\formatting_dublicate_value.png" />
     <Content Include="Icons\Small\legend.png" />
     <Content Include="Icons\Small\module.png" />
     <Content Include="Icons\Small\new_data.png" />

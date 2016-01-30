@@ -1,4 +1,5 @@
-﻿using BrightIdeasSoftware;
+﻿//#define LINE_AND_FILE
+using BrightIdeasSoftware;
 using MemoScope.Core;
 using Microsoft.Diagnostics.Runtime;
 
@@ -8,7 +9,9 @@ namespace MemoScope.Modules.StackTrace
     {
         private ClrDump clrDump;
         private ClrStackFrame frame;
+#if LINE_AND_FILE
         private FileAndLineNumber? fileAndLineNumber;
+#endif
 
         public StackFrameInformation(ClrDump clrDump, ClrStackFrame frame)
         {
@@ -17,6 +20,7 @@ namespace MemoScope.Modules.StackTrace
             DisplayString = frame.DisplayString;
             Kind = frame.Kind;
             Method = frame.Method;
+            
 #if LINE_AND_FILE
             if (frame.Kind != ClrStackFrameType.Runtime)
             {

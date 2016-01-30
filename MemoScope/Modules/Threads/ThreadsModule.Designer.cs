@@ -32,6 +32,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.stackTraceModule = new MemoScope.Modules.StackTrace.StackTraceModule();
+            this.stackModule = new MemoScope.Modules.Stack.StackModule();
             ((System.ComponentModel.ISupportInitialize)(this.dlvThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -39,6 +40,7 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,18 +89,31 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.stackTraceModule);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.stackModule);
             this.splitContainer2.Size = new System.Drawing.Size(762, 225);
             this.splitContainer2.SplitterDistance = 254;
             this.splitContainer2.TabIndex = 0;
             // 
-            // stacksModule1
+            // stackTraceModule
             // 
             this.stackTraceModule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stackTraceModule.Location = new System.Drawing.Point(0, 0);
-            this.stackTraceModule.Name = "stacksModule1";
+            this.stackTraceModule.Name = "stackTraceModule";
             this.stackTraceModule.Size = new System.Drawing.Size(254, 225);
             this.stackTraceModule.TabIndex = 0;
             this.stackTraceModule.UIModuleParent = this.stackTraceModule;
+            // 
+            // stackModule
+            // 
+            this.stackModule.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stackModule.Location = new System.Drawing.Point(0, 0);
+            this.stackModule.Name = "stackModule";
+            this.stackModule.Size = new System.Drawing.Size(504, 225);
+            this.stackModule.TabIndex = 0;
+            this.stackModule.UIModuleParent = this.stackModule;
             // 
             // ThreadsModule
             // 
@@ -113,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -125,5 +141,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private StackTrace.StackTraceModule stackTraceModule;
+        private Stack.StackModule stackModule;
     }
 }

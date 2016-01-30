@@ -1,12 +1,9 @@
 ﻿using MemoScope.Core;
 using MemoScope.Core.Helpers;
-using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using WinFwk.UICommands;
-using System;
-using MemoScope.Modules.StackTrace;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.Threads
 {
@@ -29,15 +26,28 @@ namespace MemoScope.Modules.Threads
             dlvThreads.SetUpAddressColumn<ThreadInformation>(this);
             dlvThreads.SelectedIndexChanged += (s, e) =>
             {
-                var thread = dlvThreads.SelectedObject<ThreadInformation>();
-                if( thread == null)
+                var threadInfo = dlvThreads.SelectedObject<ThreadInformation>();
+                if( threadInfo == null)
                 {
                     return;
                 }
-                stackTraceModule.Init(thread);
+                stackTraceModule.Setup(ClrDump, threadInfo.Thread);
+                stackTraceModule.Init();
                 stackTraceModule.PostInit();
+
+                stackModule.Setup(ClrDump, threadInfo.Thread);
+                stackModule.Init();
+                stackModule.PostInit();
             };
-            stackTraceModule.Setup(clrDump);
+
+            stackTraceModule.InitBus(MessageBus);
+            stackModule.InitBus(MessageBus);
+
+            stackModule.UIModuleParent = this;
+            stackTraceModule.UIModuleParent = this;
+
+            stackTraceModule.Setup(clrDump, null);
+            stackModule.Setup(clrDump, null, this);
         }
 
         public override void Init()
@@ -70,7 +80,7 @@ namespace MemoScope.Modules.Threads
             }
         }
 
-    public override void PostInit()
+        public override void PostInit()
         {
             base.PostInit();
             Summary = $"{Threads.Count} Threads";

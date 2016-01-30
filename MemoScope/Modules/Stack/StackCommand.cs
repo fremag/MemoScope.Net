@@ -3,11 +3,11 @@ using System.Windows.Forms;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
-namespace MemoScope.Modules.StackTrace
+namespace MemoScope.Modules.Stack
 {
-    public class StackTraceCommand : AbstractTypedUICommand<ClrDumpThread>
+    public class StackCommand : AbstractTypedUICommand<ClrDumpThread>
     {
-        public StackTraceCommand() : base("Stack Trace", "Display Thread's Stack Trace", "Threads", Properties.Resources.red_line)
+        public StackCommand() : base("Stack", "Display Thread's Stack", "Threads", Properties.Resources.formatting_dublicate_value)
         {
 
         }
@@ -19,7 +19,7 @@ namespace MemoScope.Modules.StackTrace
                 MessageBox.Show("Please, select a thread !");
                 return;
             }
-            UIModuleFactory.CreateModule<StackTraceModule>(module => {
+            UIModuleFactory.CreateModule<StackModule>(module => {
                 module.UIModuleParent = selectedModule;
                 module.Setup(clrDumpThread.ClrDump, clrDumpThread.ClrThread);
                 module.Init();

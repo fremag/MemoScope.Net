@@ -423,6 +423,26 @@ namespace MemoScope.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap formatting_dublicate_value {
+            get {
+                object obj = ResourceManager.GetObject("formatting_dublicate_value", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap formatting_dublicate_value_small {
+            get {
+                object obj = ResourceManager.GetObject("formatting_dublicate_value_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap geolocation_sight {
             get {
                 object obj = ResourceManager.GetObject("geolocation_sight", resourceCulture);

@@ -17,11 +17,12 @@ namespace MemoScope.Modules.StackTrace
             InitializeComponent();
         }
 
-        public void Setup(ClrDump clrDump)
+        public void Setup(ClrDump clrDump, ClrThread thread)
         {
             ClrDump = clrDump;
+            Thread = thread;
             Icon = Properties.Resources.red_line_small;
-            Name = $"#{clrDump.Id} - StackTrace";
+            Name = $"#{clrDump.Id} - StackTrace - Id: {Thread?.ManagedThreadId}";
 
             dlvStackFrames.InitColumns<StackFrameInformation>();
         }
@@ -29,24 +30,19 @@ namespace MemoScope.Modules.StackTrace
         public override void PostInit()
         {
             base.PostInit();
-            Summary = $"Id: {Thread.ManagedThreadId}";
+            Summary = $"Id: {Thread?.ManagedThreadId}";
             ThreadProperty props;
-            if (ClrDump.ThreadProperties.TryGetValue(Thread.ManagedThreadId, out props) )
+            if (Thread != null && ClrDump.ThreadProperties.TryGetValue(Thread.ManagedThreadId, out props) )
             {
                 Summary = $"Name: {props.Name}, " + Summary;
             }
 
             dlvStackFrames.Objects = StackFrames;
         }
-        public void Init(ThreadInformation thread)
-        {
-            Init(thread.Thread);
-        }
 
-        public void Init(ClrThread thread)
+        public override void Init()
         {
-            Thread = thread;
-            StackFrames = ClrDump.Eval(() =>  thread.StackTrace.Select( frame => new StackFrameInformation(ClrDump, frame) )).ToList();
+            StackFrames = ClrDump.Eval(() =>  Thread.StackTrace.Select( frame => new StackFrameInformation(ClrDump, frame) )).ToList();
         }
     }
 }

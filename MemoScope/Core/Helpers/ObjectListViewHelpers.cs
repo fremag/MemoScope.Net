@@ -162,13 +162,18 @@ namespace MemoScope.Core.Helpers
             listView.UseCellFormatEvents = true;
             listView.AddMenuSeparator();
         }
+
         public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
         {
-            if (! dump.IsPrimitive(type) && ! dump.IsString(type))
+            if (!dump.IsPrimitive(type) && !dump.IsString(type))
             {
                 return;
             }
+            AddSimpleValueColumn(listView, addressGetter, dump, o => type);
+        }
 
+        public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, Func<object, ClrType> typeGetter)
+        {
             var col = new OLVColumn("Value", null)
             {
                 Width = 150
@@ -176,8 +181,9 @@ namespace MemoScope.Core.Helpers
 
             col.AspectGetter = o =>
             {
+                ClrType type = typeGetter(o);
                 ulong address = addressGetter(o);
-                object result = dump.Eval( 
+                object result = dump.Eval(
                     () => {
                         if (type.IsPrimitive || type.IsString)
                             return type.GetValue(address);
