@@ -263,6 +263,26 @@ namespace MemoScope.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap candlestickchart {
+            get {
+                object obj = ResourceManager.GetObject("candlestickchart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap candlestickchart_small {
+            get {
+                object obj = ResourceManager.GetObject("candlestickchart_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clock_go {
             get {
                 object obj = ResourceManager.GetObject("clock_go", resourceCulture);

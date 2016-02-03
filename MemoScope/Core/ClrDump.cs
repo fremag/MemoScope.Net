@@ -9,6 +9,7 @@ using MemoScope.Core.Cache;
 using MemoScope.Core.Data;
 using MemoScope.Core.Bookmark;
 using System.Threading;
+using MemoScope.Modules.ThreadPool;
 
 namespace MemoScope.Core
 {
@@ -33,6 +34,8 @@ namespace MemoScope.Core
         public IEnumerable<ClrRoot> ClrRoots => Runtime.GetHeap().EnumerateRoots();
         public List<BlockingObject> BlockingObjects => Runtime.GetHeap().EnumerateBlockingObjects().ToList();
         public IList<ClrThread> Threads => Runtime.Threads;
+        public ClrThreadPool ThreadPool => Runtime.GetThreadPool();
+
 
         public Dictionary<int, ThreadProperty> ThreadProperties
         {

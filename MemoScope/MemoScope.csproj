@@ -215,6 +215,16 @@
     <Compile Include="Modules\Stack\StackModule.Designer.cs">
       <DependentUpon>StackModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ThreadPool\ManagedWorkItemInformation.cs" />
+    <Compile Include="Modules\ThreadPool\NativeWorkItemInformation.cs" />
+    <Compile Include="Modules\ThreadPool\ThreadPoolCommand.cs" />
+    <Compile Include="Modules\ThreadPool\ThreadPoolInformation.cs" />
+    <Compile Include="Modules\ThreadPool\ThreadPoolModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ThreadPool\ThreadPoolModule.Designer.cs">
+      <DependentUpon>ThreadPoolModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Threads\ThreadsCommand.cs" />
     <Compile Include="Modules\Threads\ThreadsInformation.cs" />
     <Compile Include="Modules\Threads\ThreadsModule.cs">
@@ -434,6 +444,9 @@
     <EmbeddedResource Include="Modules\Stack\StackModule.resx">
       <DependentUpon>StackModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ThreadPool\ThreadPoolModule.resx">
+      <DependentUpon>ThreadPoolModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Threads\ThreadsModule.resx">
       <DependentUpon>ThreadsModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -521,6 +534,7 @@
     <Content Include="Icons\Large\blueprint.png" />
     <Content Include="Icons\Large\bow.png" />
     <Content Include="Icons\Large\broom.png" />
+    <Content Include="Icons\Large\candlestickchart.png" />
     <Content Include="Icons\Large\class_module.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
     <Content Include="Icons\Large\elements.png" />
@@ -610,6 +624,7 @@
     <Content Include="Icons\Small\borders_accent.png" />
     <Content Include="Icons\Small\broom.png" />
     <Content Include="Icons\Small\cancel.png" />
+    <Content Include="Icons\Small\candlestickchart.png" />
     <Content Include="Icons\Small\class_module.png" />
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
