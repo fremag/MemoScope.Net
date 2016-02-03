@@ -89,6 +89,8 @@
   <ItemGroup>
     <Compile Include="AbstractMemoScript.cs" />
     <Compile Include="ComplexObject.cs" />
+    <Compile Include="DeadLockedThreadScript.cs" />
+    <Compile Include="LockedThreadScript.cs" />
     <Compile Include="MemoDummyForm.cs">
       <SubType>Form</SubType>
     </Compile>

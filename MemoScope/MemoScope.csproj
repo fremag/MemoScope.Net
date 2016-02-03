@@ -169,6 +169,17 @@
     <Compile Include="Core\Data\TypeInstancesAddressList.cs" />
     <Compile Include="Core\Data\ITypeNameData.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
+    <Compile Include="Modules\BlockingObjects\BlockingObjectsCommand.cs" />
+    <Compile Include="Modules\BlockingObjects\BlockingObjectInformation.cs" />
+    <Compile Include="Modules\BlockingObjects\BlockingObjectsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\BlockingObjects\BlockingObjectsModule.Designer.cs">
+      <DependentUpon>BlockingObjectsModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BlockingObjects\ThreadColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modules\ClrRoots\ClrRootsCommand.cs" />
     <Compile Include="Modules\ClrRoots\ClrRootInformation.cs" />
     <Compile Include="Modules\ClrRoots\ClrRootsModule.cs">
@@ -402,6 +413,9 @@
     <EmbeddedResource Include="Modules\About\AboutModule.resx">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\BlockingObjects\BlockingObjectsModule.resx">
+      <DependentUpon>BlockingObjectsModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Bookmarks\BookmarkModule.resx">
       <DependentUpon>BookmarkModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -515,6 +529,7 @@
     <Content Include="Icons\Large\formatting_dublicate_value.png" />
     <Content Include="Icons\Large\geolocation_sight.png" />
     <Content Include="Icons\Large\help.png" />
+    <Content Include="Icons\Large\lock.png" />
     <Content Include="Icons\Large\module.png" />
     <Content Include="Icons\Large\new_data.png" />
     <None Include="Icons\Large\outline_wight_gallery.png" />
@@ -613,7 +628,9 @@
     <Content Include="Icons\Small\folders_explorer.png" />
     <Content Include="Icons\Small\folder_explore.png" />
     <Content Include="Icons\Small\formatting_dublicate_value.png" />
+    <Content Include="Icons\Small\hourglass.png" />
     <Content Include="Icons\Small\legend.png" />
+    <Content Include="Icons\Small\lock.png" />
     <Content Include="Icons\Small\module.png" />
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\outline_wight_gallery.png" />

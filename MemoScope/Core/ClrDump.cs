@@ -31,7 +31,7 @@ namespace MemoScope.Core
         public List<ulong> FinalizerQueueObjectAddresses => Runtime.EnumerateFinalizerQueueObjectAddresses().ToList();
         public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy( address => GetObjectType(address));
         public IEnumerable<ClrRoot> ClrRoots => Runtime.GetHeap().EnumerateRoots();
-
+        public List<BlockingObject> BlockingObjects => Runtime.GetHeap().EnumerateBlockingObjects().ToList();
         public IList<ClrThread> Threads => Runtime.Threads;
 
         public Dictionary<int, ThreadProperty> ThreadProperties
@@ -238,6 +238,7 @@ namespace MemoScope.Core
             var nameField = threadType.GetFieldByName("m_Name");
             var priorityField = threadType.GetFieldByName("m_Priority");
             var idField = threadType.GetFieldByName("m_ManagedThreadId");
+
             threadProperties = new Dictionary<int, ThreadProperty>();
             foreach (ulong threadAddress in threadsInstances)
             {
