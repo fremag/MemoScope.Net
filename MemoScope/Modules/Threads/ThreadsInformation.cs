@@ -1,4 +1,5 @@
-﻿using MemoScope.Core;
+﻿using System.Linq;
+using MemoScope.Core;
 using Microsoft.Diagnostics.Runtime;
 using BrightIdeasSoftware;
 using System.Windows.Forms;
@@ -45,6 +46,8 @@ namespace MemoScope.Modules.Threads
                IsUnstarted = thread.IsUnstarted;
                IsUserSuspended = thread.IsUserSuspended;
                LockCount = thread.LockCount;
+               var gcThreads = clrDump.Runtime.EnumerateGCThreads().ToList();
+               IsGCThread = gcThreads.Any(gcThreadId => gcThreadId == OSThreadId);
            });
         }
 
@@ -55,6 +58,7 @@ namespace MemoScope.Modules.Threads
         public uint OSThreadId { get;  private set;}
         [OLVColumn(Title="Thread Id", TextAlign = HorizontalAlignment.Right, Width = 50)]
         public int ManagedThreadId { get;  private set;}
+
         [OLVColumn(TextAlign = HorizontalAlignment.Center, Width=50, IsEditable =false)]
         public bool IsAlive { get; private set; }
         [OLVColumn]
@@ -68,6 +72,8 @@ namespace MemoScope.Modules.Threads
 
         [OLVColumn]
         public GcMode GcMode { get;  private set;}
+        [OLVColumn(TextAlign = HorizontalAlignment.Center, Width = 50, IsEditable = false)]
+        public bool IsGCThread { get; private set; }
         [OLVColumn(TextAlign = HorizontalAlignment.Center, Width = 50, IsEditable = false)]
         public bool IsAborted { get;  private set;}
         [OLVColumn(TextAlign = HorizontalAlignment.Center, Width = 50, IsEditable = false)]
