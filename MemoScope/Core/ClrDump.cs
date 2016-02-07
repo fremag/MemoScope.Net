@@ -118,6 +118,12 @@ namespace MemoScope.Core
             return GetInstances(typeId);
         }
 
+        public IEnumerable<ulong> EnumerateInstances(ClrType type)
+        {
+            int typeId = cache.GetTypeId(type.Name);
+            return cache.EnumerateInstances(typeId);
+        }
+
         public List<ulong> GetInstances(int typeId)
         {
             var instances = cache.LoadInstances(typeId);

@@ -207,17 +207,29 @@ namespace MemoScope.Core.Cache
         public List<ulong> LoadInstances(int typeId, int max = 2 * 1000 * 1000)
         {
             var list = new List<ulong>();
+            int n = max;
+            foreach(ulong address in EnumerateInstances(typeId))
+            {
+                list.Add(address);
+                if(n--==0)
+                {
+                    break;
+                }
+            }
+            return list;
+        }
+
+        public IEnumerable<ulong> EnumerateInstances(int typeId)
+        {
             SQLiteCommand cmd = new SQLiteCommand();
             cmd.Connection = cxion;
             cmd.CommandText = "SELECT Address FROM Instances WHERE TypeId=" + typeId;
             SQLiteDataReader dr = cmd.ExecuteReader();
-            int n = max;
-            while (dr.Read() && n-- != 0)
+            while (dr.Read() )
             {
                 var address = (ulong)dr.GetInt64(0);
-                list.Add(address);
+                yield return address;
             }
-            return list;
         }
 
         #endregion
