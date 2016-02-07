@@ -191,6 +191,7 @@
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\ThreadException\ClrExceptionInformation.cs" />
     <Compile Include="Modules\ThreadException\ThreadExceptionCommand.cs" />
     <Compile Include="Modules\ThreadException\ThreadExceptionModule.cs">
       <SubType>UserControl</SubType>
