@@ -3,7 +3,6 @@ using MemoScope.Core.Data;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using WinFwk.UICommands;
-using System;
 using MemoScope.Core.Helpers;
 
 namespace MemoScope.Modules.Strings
