@@ -1,6 +1,5 @@
 ﻿using BrightIdeasSoftware;
 using System.Windows.Forms;
-using System;
 
 namespace WinFwk.UITools
 {
@@ -21,6 +20,12 @@ namespace WinFwk.UITools
         public void InitColumns<T>()
         {
             Generator.GenerateColumns(this, typeof(T), false);
+        }
+
+        public void Sort(string colName, SortOrder sortOrder= SortOrder.Ascending)
+        {
+            var col = AllColumns.Find(c => c.Name == colName);
+            Sort(col, SortOrder.Descending);
         }
     }
 }

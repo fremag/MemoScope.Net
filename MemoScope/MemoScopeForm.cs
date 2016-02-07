@@ -27,6 +27,7 @@ namespace MemoScope
             AddToolBar("Memory", 2, Properties.Resources.ddr_memory_small);
             AddToolBar("Bookmarks",3, Properties.Resources.award_star_gold_blue);
             AddToolBar("Threads", 4, Properties.Resources.processor_small);
+            AddToolBar("Analysis", 5, Properties.Resources.perfomance_analysis);
             InitToolBars();
             var workContent = InitWorkplace(new MemoScopeWorkplace(), DockState.DockLeft);
             InitLog();

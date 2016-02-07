@@ -191,6 +191,15 @@
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\Strings\StringAnalysis.cs" />
+    <Compile Include="Modules\Strings\StringInformation.cs" />
+    <Compile Include="Modules\Strings\StringsCommand.cs" />
+    <Compile Include="Modules\Strings\StringsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Strings\StringsModule.Designer.cs">
+      <DependentUpon>StringsModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ThreadException\ClrExceptionInformation.cs" />
     <Compile Include="Modules\ThreadException\ThreadExceptionCommand.cs" />
     <Compile Include="Modules\ThreadException\ThreadExceptionModule.cs">
@@ -436,6 +445,9 @@
     <EmbeddedResource Include="Modules\ClrRoots\ClrRootsModule.resx">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Strings\StringsModule.resx">
+      <DependentUpon>StringsModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\ThreadException\ThreadExceptionModule.resx">
       <DependentUpon>ThreadExceptionModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -548,12 +560,14 @@
     <Content Include="Icons\Large\module.png" />
     <Content Include="Icons\Large\new_data.png" />
     <None Include="Icons\Large\outline_wight_gallery.png" />
+    <Content Include="Icons\Large\perfomance_analysis.png" />
     <Content Include="Icons\Large\plugin_link.png" />
     <Content Include="Icons\Large\processor.png" />
     <Content Include="Icons\Large\red_line.png" />
     <Content Include="Icons\Large\save_data.png" />
     <Content Include="Icons\Large\scroll_pane_list.png" />
     <Content Include="Icons\Large\subtotal.png" />
+    <Content Include="Icons\Large\text_rotate.png" />
     <Content Include="Icons\Logos\memoscope.svg" />
     <Content Include="Icons\Logos\memoscope_logo.ico" />
     <Content Include="Icons\Logos\memoscope_logo.png" />
@@ -657,6 +671,7 @@
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />
     <Content Include="Icons\Small\subtotal.png" />
+    <Content Include="Icons\Small\text_rotate.png" />
     <Content Include="Icons\Small\text_uppercase.png" />
     <Content Include="libs\x86\dbghelp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
