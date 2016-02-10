@@ -693,6 +693,26 @@ namespace MemoScope.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap recommended_summart_table {
+            get {
+                object obj = ResourceManager.GetObject("recommended_summart_table", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap recommended_summart_table_small {
+            get {
+                object obj = ResourceManager.GetObject("recommended_summart_table_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap red_line {
             get {
                 object obj = ResourceManager.GetObject("red_line", resourceCulture);

@@ -191,6 +191,15 @@
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\Arrays\ArraysAnalysis.cs" />
+    <Compile Include="Modules\Arrays\ArraysInformation.cs" />
+    <Compile Include="Modules\Arrays\ArraysCommand.cs" />
+    <Compile Include="Modules\Arrays\ArraysModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Arrays\ArraysModule.Designer.cs">
+      <DependentUpon>ArraysModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Strings\StringAnalysis.cs" />
     <Compile Include="Modules\Strings\StringInformation.cs" />
     <Compile Include="Modules\Strings\StringsCommand.cs" />
@@ -445,6 +454,9 @@
     <EmbeddedResource Include="Modules\ClrRoots\ClrRootsModule.resx">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Arrays\ArraysModule.resx">
+      <DependentUpon>ArraysModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Strings\StringsModule.resx">
       <DependentUpon>StringsModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -563,6 +575,7 @@
     <Content Include="Icons\Large\perfomance_analysis.png" />
     <Content Include="Icons\Large\plugin_link.png" />
     <Content Include="Icons\Large\processor.png" />
+    <Content Include="Icons\Large\recommended_summart_table.png" />
     <Content Include="Icons\Large\red_line.png" />
     <Content Include="Icons\Large\save_data.png" />
     <Content Include="Icons\Large\scroll_pane_list.png" />
@@ -667,6 +680,7 @@
     <Content Include="Icons\Small\page_delete.png" />
     <Content Include="Icons\Small\plugin_link.png" />
     <Content Include="Icons\Small\processor.png" />
+    <Content Include="Icons\Small\recommended_summart_table.png" />
     <Content Include="Icons\Small\red_line.png" />
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />

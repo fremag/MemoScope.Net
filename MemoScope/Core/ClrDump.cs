@@ -9,7 +9,6 @@ using MemoScope.Core.Cache;
 using MemoScope.Core.Data;
 using MemoScope.Core.Bookmark;
 using System.Threading;
-using MemoScope.Modules.ThreadPool;
 
 namespace MemoScope.Core
 {
@@ -35,7 +34,7 @@ namespace MemoScope.Core
         public List<BlockingObject> BlockingObjects => Runtime.GetHeap().EnumerateBlockingObjects().ToList();
         public IList<ClrThread> Threads => Runtime.Threads;
         public ClrThreadPool ThreadPool => Runtime.GetThreadPool();
-
+        public List<ClrType> AllTypes => Heap.EnumerateTypes().ToList();
 
         public Dictionary<int, ThreadProperty> ThreadProperties
         {
@@ -48,6 +47,7 @@ namespace MemoScope.Core
                 return threadProperties;
             }
         }
+
 
         Dictionary<int, ThreadProperty> threadProperties;
         private readonly SingleThreadWorker worker;
@@ -84,7 +84,7 @@ namespace MemoScope.Core
 
         public List<ClrType> GetTypes()
         {
-            List<ClrType> t = worker.Eval( () => t = Heap.EnumerateTypes().ToList());
+            List<ClrType> t = worker.Eval( () => t = AllTypes);
             return t;
         }
 
