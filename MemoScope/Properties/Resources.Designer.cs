@@ -483,6 +483,26 @@ namespace MemoScope.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap formatting_bottom_percent {
+            get {
+                object obj = ResourceManager.GetObject("formatting_bottom_percent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap formatting_bottom_percent_small {
+            get {
+                object obj = ResourceManager.GetObject("formatting_bottom_percent_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap formatting_dublicate_value {
             get {
                 object obj = ResourceManager.GetObject("formatting_dublicate_value", resourceCulture);
@@ -496,6 +516,46 @@ namespace MemoScope.Properties {
         internal static System.Drawing.Bitmap formatting_dublicate_value_small {
             get {
                 object obj = ResourceManager.GetObject("formatting_dublicate_value_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap formatting_equal_to {
+            get {
+                object obj = ResourceManager.GetObject("formatting_equal_to", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap formatting_equal_to_small {
+            get {
+                object obj = ResourceManager.GetObject("formatting_equal_to_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap formatting_highlight_between {
+            get {
+                object obj = ResourceManager.GetObject("formatting_highlight_between", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap formatting_highlight_between_small {
+            get {
+                object obj = ResourceManager.GetObject("formatting_highlight_between_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

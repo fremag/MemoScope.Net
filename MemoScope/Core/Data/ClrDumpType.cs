@@ -7,6 +7,8 @@ namespace MemoScope.Core.Data
     {
         public ClrDump ClrDump {get;}
         public ClrType ClrType { get; }
+        public List<ulong> Instances => ClrDump.GetInstances(ClrType);
+
         public bool IsAbstract => ClrDump.Eval(() => ClrType.IsAbstract);
         public bool IsPrimitive => ClrDump.Eval(() => ClrType.IsPrimitive);
         public bool IsString => ClrDump.Eval(() => ClrType.IsString);

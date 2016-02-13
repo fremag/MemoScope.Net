@@ -169,6 +169,16 @@
     <Compile Include="Core\Data\TypeInstancesAddressList.cs" />
     <Compile Include="Core\Data\ITypeNameData.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
+    <Compile Include="Modules\ArrayInstances\ArrayInstanceAnalysis.cs" />
+    <Compile Include="Modules\ArrayInstances\ArrayInstancesCommand.cs" />
+    <Compile Include="Modules\ArrayInstances\ArrayInstancesInformation.cs" />
+    <Compile Include="Modules\ArrayInstances\ArrayInstancesModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\ArrayInstances\ArrayInstancesModule.Designer.cs">
+      <DependentUpon>ArrayInstancesModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Arrays\ArraysAddressList.cs" />
     <Compile Include="Modules\BlockingObjects\BlockingObjectsCommand.cs" />
     <Compile Include="Modules\BlockingObjects\BlockingObjectInformation.cs" />
     <Compile Include="Modules\BlockingObjects\BlockingObjectsModule.cs">
@@ -442,6 +452,9 @@
     <EmbeddedResource Include="Modules\About\AboutModule.resx">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\ArrayInstances\ArrayInstancesModule.resx">
+      <DependentUpon>ArrayInstancesModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\BlockingObjects\BlockingObjectsModule.resx">
       <DependentUpon>BlockingObjectsModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -565,7 +578,10 @@
     <Content Include="Icons\Large\elements.png" />
     <Content Include="Icons\Large\exclamation.png" />
     <Content Include="Icons\Large\folders_explorer.png" />
+    <Content Include="Icons\Large\formatting_bottom_percent.png" />
     <Content Include="Icons\Large\formatting_dublicate_value.png" />
+    <Content Include="Icons\Large\formatting_equal_to.png" />
+    <Content Include="Icons\Large\formatting_highlight_between.png" />
     <Content Include="Icons\Large\geolocation_sight.png" />
     <Content Include="Icons\Large\help.png" />
     <Content Include="Icons\Large\lock.png" />
@@ -670,7 +686,10 @@
     <Content Include="Icons\Small\folder.png" />
     <Content Include="Icons\Small\folders_explorer.png" />
     <Content Include="Icons\Small\folder_explore.png" />
+    <Content Include="Icons\Small\formatting_bottom_percent.png" />
     <Content Include="Icons\Small\formatting_dublicate_value.png" />
+    <Content Include="Icons\Small\formatting_equal_to.png" />
+    <Content Include="Icons\Small\formatting_highlight_between.png" />
     <Content Include="Icons\Small\hourglass.png" />
     <Content Include="Icons\Small\legend.png" />
     <Content Include="Icons\Small\lock.png" />

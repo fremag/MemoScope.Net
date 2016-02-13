@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="AbstractMemoScript.cs" />
     <Compile Include="ComplexObject.cs" />
+    <Compile Include="ArraysGeneratorScript.cs" />
     <Compile Include="DeadLockedThreadScript.cs" />
     <Compile Include="ThreadPoolScript.cs" />
     <Compile Include="LockedThreadScript.cs" />

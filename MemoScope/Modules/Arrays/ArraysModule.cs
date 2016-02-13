@@ -1,13 +1,13 @@
 ﻿using MemoScope.Core;
-using MemoScope.Core.Data;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
+using BrightIdeasSoftware;
 
 namespace MemoScope.Modules.Arrays
 {
-    public partial class ArraysModule : UIClrDumpModule, UIDataProvider<AddressList>
+    public partial class ArraysModule : UIClrDumpModule, UIDataProvider<ArraysAddressList>
     {
         private List<ArraysInformation> Arrays { get; set; }
 
@@ -25,6 +25,15 @@ namespace MemoScope.Modules.Arrays
             dlvArrays.InitColumns<ArraysInformation>();
             dlvArrays.SetUpTypeColumn<ArraysInformation>();
             dlvArrays.RegisterDataProvider(() => Data, this);
+            dlvArrays.CellClick += OnCellClick;
+        }
+
+        private void OnCellClick(object sender, CellClickEventArgs e)
+        {
+            if( e.ClickCount == 2 && e.Model != null)
+            {
+                // TODO
+            }
         }
 
         public override void Init()
@@ -41,7 +50,7 @@ namespace MemoScope.Modules.Arrays
             dlvArrays.Sort(nameof(ArraysInformation.TotalLength), SortOrder.Descending);
         }
 
-        public AddressList Data
+        public ArraysAddressList Data
         {
             get
             {
@@ -50,7 +59,7 @@ namespace MemoScope.Modules.Arrays
                 {
                     return null;
                 }
-                return new TypeInstancesAddressList(arraysInfo.ClrDumpType);
+                return new ArraysAddressList(arraysInfo.ClrDumpType);
             }
         }
     }
