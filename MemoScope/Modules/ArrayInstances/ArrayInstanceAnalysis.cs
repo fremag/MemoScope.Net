@@ -21,6 +21,8 @@ namespace MemoScope.Modules.ArrayInstances
             {
                 var tmp = new List<ArrayInstanceInformation>();
                 var count = arrayAddressList.Addresses.Count;
+                HashSet<object> addresses = new HashSet<object>();
+
                 for (int i=0; i < count; i++) {
                     if (token.IsCancellationRequested)
                     {
@@ -33,10 +35,12 @@ namespace MemoScope.Modules.ArrayInstances
                         msgBus.Status($"Analyzing instance: {i} / {count}");
                     }
                     float nullRatio = 0;
+                    float uniqueRatio = 0;
                     if ( clrType.ElementType == ClrElementType.Object || clrType.ElementType == ClrElementType.String || clrType.ElementType == ClrElementType.SZArray)
                     {
                         int nbNull = 0;
-                        for(int j=0; j < length; j++)
+                        addresses.Clear();
+                        for (int j=0; j < length; j++)
                         {
                             object elemAddress = clrType.GetArrayElementValue(address, j);
                             if( elemAddress is ulong && (ulong)elemAddress == 0)
@@ -47,15 +51,20 @@ namespace MemoScope.Modules.ArrayInstances
                             {
                                 nbNull++;
                             }
+                            else
+                            {
+                                addresses.Add(elemAddress);
+                            }
                             if (j % 256 == 0)
                             {
                                 msgBus.Status($"Analyzing instance: {i} / {count}, element {j} / {length}");
                             }
                         }
                         nullRatio = ((float)nbNull) / length;
+                        uniqueRatio = ((float)addresses.Count+nbNull) / length;
                     }
 
-                    ArrayInstanceInformation info = new ArrayInstanceInformation(clrDump, clrType, address, length, nullRatio);
+                    ArrayInstanceInformation info = new ArrayInstanceInformation(clrDump, clrType, address, length, nullRatio, uniqueRatio);
                     tmp.Add(info);
                 }
                 return tmp;

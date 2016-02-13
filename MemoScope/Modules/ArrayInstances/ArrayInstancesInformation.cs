@@ -8,11 +8,12 @@ namespace MemoScope.Modules.ArrayInstances
 {
     public class ArrayInstanceInformation : IAddressData
     {
-        public ArrayInstanceInformation(ClrDump clrDump, ClrType clrType, ulong address, int length, float nullRatio)
+        public ArrayInstanceInformation(ClrDump clrDump, ClrType clrType, ulong address, int length, float nullRatio, float uniqueRatio)
         {
             Address = address;
             Length = length;
             NullRatio = nullRatio;
+            UniqueRatio = uniqueRatio;
         }
 
         [OLVColumn]
@@ -21,5 +22,7 @@ namespace MemoScope.Modules.ArrayInstances
         public int Length { get; }
         [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:p2}")]
         public float NullRatio { get; }
+        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:p2}")]
+        public float UniqueRatio { get; }
     }
 }

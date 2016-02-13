@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractMemoScript.cs" />
+    <Compile Include="DuplicateElementsScript.cs" />
     <Compile Include="ComplexObject.cs" />
     <Compile Include="ArraysGeneratorScript.cs" />
     <Compile Include="DeadLockedThreadScript.cs" />
