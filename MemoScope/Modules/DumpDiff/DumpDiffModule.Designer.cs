@@ -1,4 +1,6 @@
-﻿namespace MemoScope.Modules.DumpDiff
+﻿using BrightIdeasSoftware;
+
+namespace MemoScope.Modules.DumpDiff
 {
     partial class DumpDiffModule
     {
@@ -28,8 +30,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dlvDumpDiff = new WinFwk.UITools.DefaultListView();
+            this.dlvDumpDiff = new BrightIdeasSoftware.ObjectListView();
             this.colType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lblSortMode = new System.Windows.Forms.Label();
+            this.cbSortMode = new System.Windows.Forms.ComboBox();
             this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvDumpDiff)).BeginInit();
             this.SuspendLayout();
@@ -52,37 +56,61 @@
             this.dlvDumpDiff.Name = "dlvDumpDiff";
             this.dlvDumpDiff.ShowGroups = false;
             this.dlvDumpDiff.ShowImagesOnSubItems = true;
-            this.dlvDumpDiff.Size = new System.Drawing.Size(859, 553);
+            this.dlvDumpDiff.Size = new System.Drawing.Size(798, 587);
             this.dlvDumpDiff.TabIndex = 1;
             this.dlvDumpDiff.UseCompatibleStateImageBehavior = false;
             this.dlvDumpDiff.View = System.Windows.Forms.View.Details;
-            this.dlvDumpDiff.VirtualMode = true;
             // 
-            // regexFilterControl1
+            // lblSortMode
+            // 
+            this.lblSortMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSortMode.AutoSize = true;
+            this.lblSortMode.Location = new System.Drawing.Point(617, 7);
+            this.lblSortMode.Name = "lblSortMode";
+            this.lblSortMode.Size = new System.Drawing.Size(81, 17);
+            this.lblSortMode.TabIndex = 3;
+            this.lblSortMode.Text = "Sort Mode :";
+            // 
+            // cbSortMode
+            // 
+            this.cbSortMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSortMode.FormattingEnabled = true;
+            this.cbSortMode.Location = new System.Drawing.Point(704, 3);
+            this.cbSortMode.Name = "cbSortMode";
+            this.cbSortMode.Size = new System.Drawing.Size(86, 24);
+            this.cbSortMode.TabIndex = 4;
+            this.cbSortMode.SelectedIndexChanged += new System.EventHandler(this.cbSortMode_SelectedIndexChanged);
+            // 
+            // regexFilterControl
             // 
             this.regexFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.regexFilterControl.Location = new System.Drawing.Point(3, 3);
-            this.regexFilterControl.Name = "regexFilterControl1";
-            this.regexFilterControl.Size = new System.Drawing.Size(853, 24);
+            this.regexFilterControl.Name = "regexFilterControl";
+            this.regexFilterControl.Size = new System.Drawing.Size(604, 24);
             this.regexFilterControl.TabIndex = 2;
             // 
             // DumpDiffModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbSortMode);
+            this.Controls.Add(this.lblSortMode);
             this.Controls.Add(this.regexFilterControl);
             this.Controls.Add(this.dlvDumpDiff);
             this.Name = "DumpDiffModule";
-            this.Size = new System.Drawing.Size(859, 584);
+            this.Size = new System.Drawing.Size(798, 618);
             ((System.ComponentModel.ISupportInitialize)(this.dlvDumpDiff)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private WinFwk.UITools.DefaultListView dlvDumpDiff;
+        private ObjectListView dlvDumpDiff;
         private BrightIdeasSoftware.OLVColumn colType;
         private Tools.RegexFilter.RegexFilterControl regexFilterControl;
+        private System.Windows.Forms.Label lblSortMode;
+        private System.Windows.Forms.ComboBox cbSortMode;
     }
 }

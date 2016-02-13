@@ -6,17 +6,25 @@ using BrightIdeasSoftware;
 using System.Drawing;
 using MemoScope.Core.Data;
 using MemoScope.Modules.Instances;
+using System.Windows.Forms;
+using System.Collections;
+using System;
 
 namespace MemoScope.Modules.DumpDiff
 {
+    
     public partial class DumpDiffModule : UIModule
     {
+        public enum SortMode { Value, AbsValue }
         private List<ClrDump> ClrDumps { get; set; }
         HashSet<string> typeNames = new HashSet<string>();
 
         public DumpDiffModule()
         {
             InitializeComponent();
+            cbSortMode.Items.Add(SortMode.Value);
+            cbSortMode.Items.Add(SortMode.AbsValue);
+            cbSortMode.SelectedItem = SortMode.AbsValue;
         }
 
         public void Setup(List<ClrDump> clrDumps)
@@ -41,6 +49,7 @@ namespace MemoScope.Modules.DumpDiff
             dlvDumpDiff.UseCellFormatEvents = true;
             dlvDumpDiff.FormatCell += OnFormatCell;
             dlvDumpDiff.CellClick += OnCellClick;
+            dlvDumpDiff.CustomSorter = DumpDiffSort;
 
             regexFilterControl.RegexApplied += (regex) => {
                 dlvDumpDiff.ModelFilter = new ModelFilter((o) =>
@@ -56,7 +65,11 @@ namespace MemoScope.Modules.DumpDiff
                 dlvDumpDiff.UseFiltering = true;
             };
             regexFilterControl.RegexCancelled += () => dlvDumpDiff.UseFiltering = false;
+        }
 
+        private void DumpDiffSort(OLVColumn column, SortOrder sortOrder)
+        {
+            dlvDumpDiff.ListViewItemSorter = new DumpDiffComparer(column, sortOrder, (SortMode)cbSortMode.SelectedItem);
         }
 
         private void OnCellClick(object sender, CellClickEventArgs e)
@@ -120,8 +133,61 @@ namespace MemoScope.Modules.DumpDiff
             base.PostInit();
             Summary = $"{ClrDumps.Count} dumps, {typeNames.Count} types";
 
-            dlvDumpDiff.Objects = typeNames;
-            dlvDumpDiff.Sort(colType);
+            dlvDumpDiff.Objects= typeNames;
+            dlvDumpDiff.Sort(dlvDumpDiff.AllColumns[2], SortOrder.Descending);
+        }
+
+        private void cbSortMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dlvDumpDiff.Sort();
+        }
+    }
+
+    public class DumpDiffComparer : IComparer
+    {
+        OLVColumn column;
+        SortOrder sortOrder;
+        DumpDiffModule.SortMode sortMode;
+        public DumpDiffComparer(OLVColumn column, SortOrder sortOrder, DumpDiffModule.SortMode sortMode)
+        {
+            this.column = column;
+            this.sortOrder = sortOrder;
+            this.sortMode = sortMode;
+        }
+
+        public int Compare(object x, object y)
+        {
+            if( sortOrder == SortOrder.None)
+            {
+                return 0;
+            }
+
+            OLVListItem itemX = x as OLVListItem;
+            OLVListItem itemY = y as OLVListItem;
+            var objValueX = itemX.GetSubItem(column.Index).ModelValue;
+            var objValueY = itemY.GetSubItem(column.Index).ModelValue;
+
+            long res = 0;
+            if (objValueX is string || objValueY is string)
+            {
+                res = string.Compare((string)objValueX, (string)objValueY);
+            }
+            if (objValueX is long || objValueY is long)
+            {
+                long valueX = objValueX != null ? (long)objValueX : 0;
+                long valueY = objValueY != null ? (long)objValueY : 0;
+                
+                if(sortMode == DumpDiffModule.SortMode.AbsValue)
+                {
+                    res = Math.Abs(valueX) - Math.Abs(valueY);
+                }
+                else
+                {
+                    res = valueX - valueY;
+                }
+            }
+
+            return sortOrder== SortOrder.Ascending ? (int)res : -(int)res;
         }
     }
 }
