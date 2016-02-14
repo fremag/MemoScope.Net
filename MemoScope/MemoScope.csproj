@@ -166,6 +166,7 @@
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
     <Compile Include="Core\Data\ClrDumpThread.cs" />
+    <Compile Include="Core\Data\SelectedClrDumpObjectMessage.cs" />
     <Compile Include="Core\Data\TypeInstancesAddressList.cs" />
     <Compile Include="Core\Data\ITypeNameData.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
@@ -209,6 +210,10 @@
     </Compile>
     <Compile Include="Modules\Arrays\ArraysModule.Designer.cs">
       <DependentUpon>ArraysModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Inspector\InspectorCommand.cs" />
+    <Compile Include="Modules\Inspector\InspectorModule.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\Strings\StringAnalysis.cs" />
     <Compile Include="Modules\Strings\StringInformation.cs" />

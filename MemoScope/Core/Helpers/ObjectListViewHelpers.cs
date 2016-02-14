@@ -162,6 +162,22 @@ namespace MemoScope.Core.Helpers
             };
             listView.UseCellFormatEvents = true;
             listView.AddMenuSeparator();
+            listView.SelectedIndexChanged += (sender, evt) =>
+            {
+                var cellItem = listView.SelectedItem?.GetSubItem(col.Index);
+                if (cellItem == null)
+                {
+                    return;
+                }
+                var addressObj = cellItem.ModelValue;
+                if (addressObj is ulong)
+                {
+                    var address = (ulong)addressObj;
+                    var type = dumpModule.ClrDump.GetObjectType(address);
+                    var clrDumpObject = new ClrDumpObject(dumpModule.ClrDump, type, address);
+                    dumpModule.MessageBus.SendMessage(new SelectedClrDumpObjectMessage(clrDumpObject));
+                }
+            };
         }
 
         public static void AddSimpleValueColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
