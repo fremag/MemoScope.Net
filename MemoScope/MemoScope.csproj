@@ -98,19 +98,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ExpressionEvaluator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=90d9f15d622e2348, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExpressionEvaluator.2.0.3.0\lib\net40\ExpressionEvaluator.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ListViewPrinter, Version=2.5.0.21564, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ObjectListView.2.7.1\lib\ListViewPrinter.dll</HintPath>
+    <Reference Include="ExpressionEvaluator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=90d9f15d622e2348, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExpressionEvaluator.2.0.4.0\lib\net40\ExpressionEvaluator.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Diagnostics.Runtime, Version=0.8.31.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -123,10 +119,6 @@
     </Reference>
     <Reference Include="ParallelExtensionsExtras, Version=1.2.3.0, Culture=neutral, PublicKeyToken=665f4d61f853b5a9, processorArchitecture=MSIL">
       <HintPath>..\packages\ParallelExtensionsExtras.1.2.0.0\lib\net40\ParallelExtensionsExtras.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SparkleLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ObjectListView.2.7.1\lib\SparkleLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -719,7 +711,6 @@
     <Content Include="libs\x86\symsrv.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="LICENSE.txt" />
     <Content Include="memoscope_logo.ico" />
     <None Include="Resources\Memoscope.png.ico" />
     <None Include="Resources\Memoscope.png" />
