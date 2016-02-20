@@ -12,3 +12,4 @@
 * [DockPanelSuite](http://dockpanelsuite.com/) contributors for their docking library
 * Rupert Avery for [C# Expression Evaluator](https://csharpeval.codeplex.com/)
 * Jeff Cyr for [ClrMd.Extensions](https://github.com/JeffCyr/ClrMD.Extensions), even if I don't use it, I learnt a lot reading the source code (and I copy/pasted the ClrObject class !)
+* Jacob Slusser for its [ScintillaNet](https://github.com/jacobslusser/ScintillaNET) conmponent 
