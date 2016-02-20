@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dlvTriggers = new WinFwk.UITools.DefaultListView();
+            this.tbCode = new ScintillaNET.Scintilla();
             this.lblCode = new System.Windows.Forms.Label();
-            this.tbCode = new System.Windows.Forms.TextBox();
             this.tbGroup = new System.Windows.Forms.TextBox();
             this.lblGroup = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
@@ -70,8 +70,8 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.lblCode);
             this.splitContainer1.Panel2.Controls.Add(this.tbCode);
+            this.splitContainer1.Panel2.Controls.Add(this.lblCode);
             this.splitContainer1.Panel2.Controls.Add(this.tbGroup);
             this.splitContainer1.Panel2.Controls.Add(this.lblGroup);
             this.splitContainer1.Panel2.Controls.Add(this.tbName);
@@ -88,6 +88,8 @@
             this.dlvTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvTriggers.FullRowSelect = true;
             this.dlvTriggers.HideSelection = false;
+            this.dlvTriggers.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.dlvTriggers.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dlvTriggers.Location = new System.Drawing.Point(0, 0);
             this.dlvTriggers.Name = "dlvTriggers";
             this.dlvTriggers.ShowGroups = false;
@@ -99,6 +101,21 @@
             this.dlvTriggers.VirtualMode = true;
             this.dlvTriggers.SelectedIndexChanged += new System.EventHandler(this.dlvTriggers_SelectedIndexChanged);
             // 
+            // tbCode
+            // 
+            this.tbCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbCode.Location = new System.Drawing.Point(12, 125);
+            this.tbCode.Name = "tbCode";
+            this.tbCode.Size = new System.Drawing.Size(383, 284);
+            this.tbCode.TabIndex = 7;
+            this.tbCode.Text = "tbCode";
+            this.tbCode.UseTabs = false;
+            this.tbCode.TextChanged += new System.EventHandler(this.tbCode_TextChanged);
+            this.tbCode.DragDrop += new System.Windows.Forms.DragEventHandler(this.tbCode_DragDrop);
+            this.tbCode.DragEnter += new System.Windows.Forms.DragEventHandler(this.tbCode_DragEnter);
+            // 
             // lblCode
             // 
             this.lblCode.AutoSize = true;
@@ -107,21 +124,6 @@
             this.lblCode.Size = new System.Drawing.Size(49, 17);
             this.lblCode.TabIndex = 6;
             this.lblCode.Text = "Code :";
-            // 
-            // tbCode
-            // 
-            this.tbCode.AllowDrop = true;
-            this.tbCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCode.Location = new System.Drawing.Point(12, 113);
-            this.tbCode.Multiline = true;
-            this.tbCode.Name = "tbCode";
-            this.tbCode.Size = new System.Drawing.Size(383, 282);
-            this.tbCode.TabIndex = 5;
-            this.tbCode.TextChanged += new System.EventHandler(this.tbCode_TextChanged);
-            this.tbCode.DragDrop += new System.Windows.Forms.DragEventHandler(this.tbCode_DragDrop);
-            this.tbCode.DragEnter += new System.Windows.Forms.DragEventHandler(this.tbCode_DragEnter);
             // 
             // tbGroup
             // 
@@ -244,12 +246,12 @@
             this.tsbDeleteTrigger.ToolTipText = "Delete Trigger";
             this.tsbDeleteTrigger.Click += new System.EventHandler(this.tsbDeleteTrigger_Click);
             // 
-            // ProcessTriggersControl
+            // CodeTriggersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.toolStripContainer1);
-            this.Name = "ProcessTriggersControl";
+            this.Name = "CodeTriggersControl";
             this.Size = new System.Drawing.Size(846, 442);
             this.Load += new System.EventHandler(this.ProcessTriggers_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -280,12 +282,12 @@
         private System.Windows.Forms.ToolStripButton tsbCloneTrigger;
         private System.Windows.Forms.ToolStripButton tsbDeleteTrigger;
         private System.Windows.Forms.Label lblCode;
-        private System.Windows.Forms.TextBox tbCode;
         private System.Windows.Forms.TextBox tbGroup;
         private System.Windows.Forms.Label lblGroup;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.CheckBox cbActive;
         private System.Windows.Forms.Timer timer;
+        private ScintillaNET.Scintilla tbCode;
     }
 }

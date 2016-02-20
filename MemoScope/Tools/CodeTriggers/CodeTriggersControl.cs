@@ -5,6 +5,8 @@ using BrightIdeasSoftware;
 using WinFwk.UIMessages;
 using WinFwk.UITools.Log;
 using System;
+using ScintillaNET;
+using System.Drawing;
 
 namespace MemoScope.Tools.CodeTriggers
 {
@@ -30,6 +32,35 @@ namespace MemoScope.Tools.CodeTriggers
             };
             dlvTriggers.CheckStateGetter = rowObject => ((CodeTrigger) rowObject).Active ? CheckState.Checked : CheckState.Unchecked;
             dlvTriggers.InitColumns<CodeTrigger>();
+            InitCodeSyntax();
+        }
+
+        // Code copy/pasted from
+        // https://github.com/jacobslusser/ScintillaNET/wiki/Automatic-Syntax-Highlighting
+        private void InitCodeSyntax()
+        {
+            tbCode.Lexer = Lexer.Cpp;
+            // Configuring the default style with properties
+            // we have common to every lexer style saves time.
+            tbCode.StyleResetDefault();
+            tbCode.Styles[Style.Default].Font = "Consolas";
+            tbCode.Styles[Style.Default].Size = 10;
+            tbCode.StyleClearAll();
+
+            // Configure the CPP (C#) lexer styles
+            tbCode.Styles[Style.Cpp.Default].ForeColor = Color.Silver;
+            tbCode.Styles[Style.Cpp.Comment].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            tbCode.Styles[Style.Cpp.CommentLine].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            tbCode.Styles[Style.Cpp.CommentLineDoc].ForeColor = Color.FromArgb(128, 128, 128); // Gray
+            tbCode.Styles[Style.Cpp.Number].ForeColor = Color.Olive;
+            tbCode.Styles[Style.Cpp.Word].ForeColor = Color.Blue;
+            tbCode.Styles[Style.Cpp.Word2].ForeColor = Color.Blue;
+            tbCode.Styles[Style.Cpp.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            tbCode.Styles[Style.Cpp.Character].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            tbCode.Styles[Style.Cpp.Verbatim].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            tbCode.Styles[Style.Cpp.StringEol].BackColor = Color.Pink;
+            tbCode.Styles[Style.Cpp.Operator].ForeColor = Color.Purple;
+            tbCode.Styles[Style.Cpp.Preprocessor].ForeColor = Color.Maroon;
         }
 
         private void tsbNetTrigger_Click(object sender, System.EventArgs e)
