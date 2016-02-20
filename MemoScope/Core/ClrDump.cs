@@ -124,9 +124,9 @@ namespace MemoScope.Core
             return cache.EnumerateInstances(typeId);
         }
 
-        public List<ulong> GetInstances(int typeId)
+        public List<ulong> GetInstances(int typeId, int max=int.MaxValue)
         {
-            var instances = cache.LoadInstances(typeId);
+            var instances = cache.LoadInstances(typeId, max);
             return instances;
         }
 

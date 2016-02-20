@@ -61,6 +61,11 @@ namespace WinFwk.UIModules
             MessageBus.BeginTask(text, null);
         }
 
+        protected void EndTask(string text)
+        {
+            MessageBus.EndTask(text);
+        }
+
         protected void Log(string text, LogLevelType logLevel = LogLevelType.Info)
         {
             MessageBus.SendMessage(new LogMessage(this, text, logLevel));

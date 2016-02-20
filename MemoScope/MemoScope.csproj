@@ -211,6 +211,7 @@
     <Compile Include="Modules\Inspector\InspectorModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Modules\Instances\InstanceVirtualSource.cs" />
     <Compile Include="Modules\Strings\StringAnalysis.cs" />
     <Compile Include="Modules\Strings\StringInformation.cs" />
     <Compile Include="Modules\Strings\StringsCommand.cs" />

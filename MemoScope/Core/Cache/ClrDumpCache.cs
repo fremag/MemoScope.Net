@@ -308,7 +308,6 @@ private void CreateIndices()
         #region SQL 
         private void Open(string dbPath)
         {
-//            string cxionString = $"Data Source={dbPath};Version=3;Cache Size=2000000;Page Size=8192;journal_mode=OFF;synchronous=OFF;count_changes=OFF;temp_store=MEMORY";
             string cxionString = $"Data Source={dbPath};Version=3;Page Size=65536;journal_mode=OFF;synchronous=OFF;count_changes=OFF;temp_store=MEMORY";
             cxion = new SQLiteConnection(cxionString);
             cxion.Open();

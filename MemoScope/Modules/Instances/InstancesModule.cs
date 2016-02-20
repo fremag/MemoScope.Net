@@ -23,6 +23,7 @@ namespace MemoScope.Modules.Instances
         private AddressList AddressList { get; set; }
         private List<Func<bool>> filters;
         private FieldAccessor myFieldAccessor;
+        HashSet<ulong> filteredAddresses = new HashSet<ulong>();
 
         public static void Create(AddressList addresses, UIModule parent, Action<InstancesModule> postInit )
         {
@@ -51,7 +52,7 @@ namespace MemoScope.Modules.Instances
             {
                 var fieldNode = o as FieldNode;
                 string prefix = FieldAccessor.GetFuncName(fieldNode.ClrType.ElementType);
-                string code = $" x._{prefix}(\"{fieldNode.FullName}\") ";
+                string code = $" x.{prefix}(\"{fieldNode.FullName}\") ";
                 return code;
             };
 
@@ -186,7 +187,7 @@ namespace MemoScope.Modules.Instances
         {
             var fieldNodes = fields.Select(field => new FieldNode(field, AddressList.ClrDump));
             dtlvFields.Roots = fieldNodes;
-            dlvAdresses.SetObjects(AddressList.Addresses);
+            dlvAdresses.VirtualListDataSource = new InstanceVirtualSource(dlvAdresses, AddressList, filteredAddresses);
             Summary = $"{AddressList.Addresses.Count:###,###,###,##0} instances";
             RefreshInstanceCounter();
         }
@@ -243,17 +244,17 @@ namespace MemoScope.Modules.Instances
                 .ContinueWith(task => {
                     if (token.IsCancellationRequested)
                     {
-                        Status("Instances NOT filtered.", StatusType.EndTask);
+                        EndTask("Instances NOT filtered.");
                     }
-                    else {
+                    else
+                    {
                         dlvAdresses.UseFiltering = true;
-                        Status("Instances filtered.", StatusType.EndTask);
+                        EndTask("Instances filtered.");
                     }
                     dlvAdresses.EndUpdate();
                     RefreshInstanceCounter();
                 }, TaskScheduler.FromCurrentSynchronizationContext());
         }
-
 
         private void RefreshInstanceCounter()
         {
@@ -295,7 +296,6 @@ namespace MemoScope.Modules.Instances
             }
         }
 
-        HashSet<ulong> filteredAddresses = new HashSet<ulong>();
         public bool Filter(object modelObject)
         {
             ulong address = (ulong)modelObject;
@@ -319,9 +319,9 @@ namespace MemoScope.Modules.Instances
 
         private void tsbClearFilter_Click(object sender, EventArgs e)
         {
-            dlvAdresses.UseFiltering = false;
             filteredAddresses.Clear();
             RefreshInstanceCounter();
+            dlvAdresses.UseFiltering = false;
             Status("Filter removed.");
         }
     }

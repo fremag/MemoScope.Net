@@ -103,6 +103,7 @@
             // 
             // tbCode
             // 
+            this.tbCode.AllowDrop = true;
             this.tbCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -110,7 +111,6 @@
             this.tbCode.Name = "tbCode";
             this.tbCode.Size = new System.Drawing.Size(383, 284);
             this.tbCode.TabIndex = 7;
-            this.tbCode.Text = "tbCode";
             this.tbCode.UseTabs = false;
             this.tbCode.TextChanged += new System.EventHandler(this.tbCode_TextChanged);
             this.tbCode.DragDrop += new System.Windows.Forms.DragEventHandler(this.tbCode_DragDrop);
