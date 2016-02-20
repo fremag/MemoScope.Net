@@ -6,7 +6,6 @@ using MemoScope.Modules.Explorer;
 using Microsoft.Diagnostics.Runtime;
 using WinFwk.UIMessages;
 using WinFwk.UIServices;
-using WinFwk.UIModules;
 using System.Threading;
 
 namespace MemoScope.Services
