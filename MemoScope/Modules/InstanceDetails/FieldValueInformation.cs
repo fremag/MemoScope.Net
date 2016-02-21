@@ -4,6 +4,7 @@ using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 using WinFwk.UITools;
+using System;
 
 namespace MemoScope.Modules.InstanceDetails
 {
@@ -61,7 +62,7 @@ namespace MemoScope.Modules.InstanceDetails
             {
                 var clrObject = new ClrObject(clrDumpObject.Address, clrDumpObject.ClrType, clrDumpObject.IsInterior);
                 var l = new List<FieldValueInformation>();
-                var n = clrDumpObject.ClrType.GetArrayLength(clrDumpObject.Address);
+                var n = Math.Max(clrDumpObject.ClrType.GetArrayLength(clrDumpObject.Address), 1024);
                 for (int i=0; i < n; i++)
                 {
                     var fieldValue = clrObject[i];

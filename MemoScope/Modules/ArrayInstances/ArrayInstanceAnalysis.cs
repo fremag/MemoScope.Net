@@ -32,7 +32,7 @@ namespace MemoScope.Modules.ArrayInstances
                     int length = clrType.GetArrayLength(address);
                     if (i % 128 == 0)
                     {
-                        msgBus.Status($"Analyzing instance: {i} / {count}");
+                        msgBus.Status($"Analyzing instance: {i:###,###,###,##0} / {count:###,###,###,##0}");
                     }
                     float nullRatio = 0;
                     float uniqueRatio = 0;
@@ -57,7 +57,7 @@ namespace MemoScope.Modules.ArrayInstances
                             }
                             if (j % 256 == 0)
                             {
-                                msgBus.Status($"Analyzing instance: {i} / {count}, element {j} / {length}");
+                                msgBus.Status($"Analyzing instance: {i:###,###,###,##0} / {count:###,###,###,##0}, element {j:###,###,###,##0} / {length:###,###,###,##0}");
                             }
                         }
                         nullRatio = ((float)nbNull) / length;

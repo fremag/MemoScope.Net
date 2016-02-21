@@ -274,11 +274,22 @@ namespace MemoScope.Core.Helpers
             return (listView.SelectedObject) as T;
         }
 
-        public static void AddMenuSeparator(this ObjectListView listView) {
+        public static void AddMenuSeparator(this ObjectListView listView)
+        {
             if( listView.ContextMenuStrip != null)
             {
                 listView.ContextMenuStrip.Items.Add("-");
             }
-       }
+        }
+
+        public static void AddRowNumberColumn(this ObjectListView listView)
+        {
+            var col = new OLVColumn("#", null);
+            col.TextAlign = HorizontalAlignment.Right;
+            listView.AllColumns.Add(col);
+            listView.FormatRow += delegate (object sender, FormatRowEventArgs args) {
+                args.Item.Text = args.RowIndex.ToString("###,###,###,###,##0");
+            };
+        }
     }
 }

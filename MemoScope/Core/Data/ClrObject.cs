@@ -59,24 +59,24 @@ namespace MemoScope.Core.Data
             return "<" + propertyName + ">" + "k__BackingField";
         }
 
-        private ClrObject GetInnerObject(ulong pointer, ClrType type)
+        public static ClrObject GetInnerObject(ulong pointer, ClrType type)
         {
             ulong fieldAddress;
             ClrType actualType = type;
 
             if (type.IsObjectReference)
             {
-                Heap.ReadPointer(pointer, out fieldAddress);
+                type.Heap.ReadPointer(pointer, out fieldAddress);
 
                 if (!type.IsSealed && fieldAddress != 0)
-                    actualType = Heap.GetObjectType(fieldAddress);
+                    actualType = type.Heap.GetObjectType(fieldAddress);
             }
             else if (type.IsPrimitive)
             {
                 // Unfortunately, ClrType.GetValue for primitives assumes that the value is boxed,
                 // we decrement PointerSize because it will be added when calling ClrType.GetValue.
                 // ClrMD should be updated in a future version to include ClrType.GetValue(int interior).
-                fieldAddress = pointer - (ulong)Heap.PointerSize;
+                fieldAddress = pointer - (ulong)type.Heap.PointerSize;
             }
             else if (type.IsValueClass)
             {
@@ -89,6 +89,5 @@ namespace MemoScope.Core.Data
 
             return new ClrObject(fieldAddress, actualType, !type.IsObjectReference);
         }
-       
     }
 }
