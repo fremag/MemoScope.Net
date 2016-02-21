@@ -55,7 +55,7 @@ namespace MemoScope.Modules.ArrayInstances
                             {
                                 addresses.Add(elemAddress);
                             }
-                            if (j % 256 == 0)
+                            if (j % 1024 == 0 && j !=0)
                             {
                                 msgBus.Status($"Analyzing instance: {i:###,###,###,##0} / {count:###,###,###,##0}, element {j:###,###,###,##0} / {length:###,###,###,##0}");
                             }
