@@ -8,17 +8,20 @@ namespace MemoScope.Core.Bookmark
 {
     public class Bookmark : IAddressData, ITypeNameData
     {
-        [OLVColumn]
+        [OLVColumn(IsEditable = false)]
         public ulong Address { get; set; }
 
-        [OLVColumn(IsVisible=false)]
+        [OLVColumn(IsVisible=false, IsEditable = false)]
         public string TypeName { get; set; }
 
+        [OLVColumn(IsEditable =true)]
+        public string Comment  { get; set; }
+
         [XmlIgnore]
-        [OLVColumn(Width=75)] 
+        [OLVColumn(Width=75, IsEditable = false)] 
         public Color Color { get; set; }
 
-        [OLVColumn(Title = "Color Pick", TextAlign = HorizontalAlignment.Center, Width = 50)]
+        [OLVColumn(Title = "Color Pick", TextAlign = HorizontalAlignment.Center, Width = 50, IsEditable = false)]
         [XmlIgnore]
         public string ColorPick => "...";
 

@@ -1,14 +1,12 @@
 ﻿using BrightIdeasSoftware;
 using MemoScope.Core.Data;
 using MemoScope.Modules.InstanceDetails;
-using MemoScope.Modules.TypeDetails;
 using MemoScope.Tools.RegexFilter;
 using Microsoft.Diagnostics.Runtime;
 using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.Docking;
 using WinFwk;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
@@ -162,6 +160,28 @@ namespace MemoScope.Core.Helpers
                 {
                     e.SubItem.BackColor = bookmark.Color;
                 }
+            };
+            var tooltipGetter = listView.CellToolTipGetter;
+            listView.CellToolTipGetter = (column, modelObject) =>
+            {
+                if( column == col )
+                {
+                    if (modelObject == null || ! ( modelObject is ulong))
+                    {
+                        return null;
+                    }
+                    var address = (ulong)modelObject;
+                    var bookmark = dumpModule.ClrDump.BookmarkMgr.Get(address);
+                    if (bookmark != null)
+                    {
+                        return bookmark.Comment;
+                    }
+                }
+                if(tooltipGetter != null)
+                {
+                    return tooltipGetter(column, modelObject);
+                }
+                return null;
             };
             listView.UseCellFormatEvents = true;
             listView.AddMenuSeparator();
