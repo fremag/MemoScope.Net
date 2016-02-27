@@ -1,8 +1,8 @@
 ﻿using Microsoft.Diagnostics.Runtime;
 using BrightIdeasSoftware;
 using MemoScope.Core.Helpers;
-using System.Windows.Forms;
 using MemoScope.Core.Data;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.TypeDetails
 {
@@ -23,7 +23,7 @@ namespace MemoScope.Modules.TypeDetails
         [OLVColumn(Title = "Type", Width = 150)]
         public string TypeName => clrField.Type.Name;
 
-        [OLVColumn(Title = "Size", Width = 50, TextAlign = HorizontalAlignment.Right)]
+        [IntColumn(Title = "Size", Width = 50)]
         public int Size => clrField.Size;
 
         [OLVColumn(Title = "Elem. Type", Width = 50)]

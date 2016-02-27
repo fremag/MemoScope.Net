@@ -3,7 +3,7 @@ using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using MemoScope.Core.Data;
 using BrightIdeasSoftware;
-using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Finalizer
 {
@@ -19,7 +19,7 @@ namespace MemoScope.Modules.Finalizer
         [OLVColumn]
         public string TypeName => AddressList.ClrType.Name;
 
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat ="{0:###,###,###,##0}")]
+        [IntColumn]
         public int Count => AddressList.Addresses.Count;
     }
 }

@@ -3,6 +3,7 @@ using MemoScope.Core;
 using MemoScope.Core.Data;
 using Microsoft.Diagnostics.Runtime;
 using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Handles
 {
@@ -21,11 +22,11 @@ namespace MemoScope.Modules.Handles
         public string TypeName => clrHandle.Type.Name;
         [OLVColumn]
         public HandleType HandleType => clrHandle.HandleType;
-        [OLVColumn(Width = 50, TextAlign = HorizontalAlignment.Center)]
+        [BoolColumn(Width = 50)]
         public bool IsPinned => clrHandle.IsPinned;
-        [OLVColumn(Width = 50, TextAlign = HorizontalAlignment.Center)]
+        [BoolColumn(Width = 50)]
         public bool IsStrong => clrHandle.IsStrong;
-        [OLVColumn(Width = 50, TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}")]
+        [IntColumn(Width = 50)]
         public uint RefCount => clrHandle.RefCount;
     }
 }

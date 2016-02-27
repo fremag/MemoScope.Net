@@ -1,8 +1,8 @@
-using System.Windows.Forms;
 using BrightIdeasSoftware;
 using Microsoft.Diagnostics.Runtime;
 using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
+using WinFwk.UITools;
 
 namespace MemoScope.Core
 {
@@ -15,10 +15,10 @@ namespace MemoScope.Core
         [OLVColumn(Title = "Type Name", Width = 500)]
         public string TypeName => TypeHelpers.ManageAlias(Type);
 
-        [OLVColumn(Title = "Nb", AspectToStringFormat = "{0:###,###,###,##0}", TextAlign = HorizontalAlignment.Right)]
+        [IntColumn(Title = "Nb")]
         public long NbInstances { get; private set; }
 
-        [OLVColumn(Title = "Total Size", AspectToStringFormat = "{0:###,###,###,##0}", TextAlign = HorizontalAlignment.Right)]
+        [IntColumn(Title = "Total Size")]
         public ulong TotalSize { get; private set; }
 
         public ClrTypeStats(int id, ClrType type)
@@ -40,4 +40,5 @@ namespace MemoScope.Core
             NbInstances++;
         }
     }
+
 }

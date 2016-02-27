@@ -25,7 +25,7 @@ namespace MemoScope.Modules.InstanceDetails
         [OLVColumn(Title = "Value")]
         public object Value => clrDumpObject.Value;
 
-        [OLVColumn(Title = "Address", AspectToStringFormat = "{0:X}")]
+        [OLVColumn(Title = "Address")]
         public ulong Address => clrDumpObject.Address;
 
         [OLVColumn(Title = "Type")]

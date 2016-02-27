@@ -1,6 +1,7 @@
 ﻿using BrightIdeasSoftware;
 using Microsoft.Diagnostics.Runtime;
 using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Segments
 {
@@ -13,21 +14,21 @@ namespace MemoScope.Modules.Segments
             this.segment = segment;
         }
 
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:X}")]
+        [IntColumn(AspectToStringFormat = "{0:X}")]
         public ulong Start => segment.Start;
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}")]
+        [IntColumn]
         public ulong Length => segment.Length;
-        [OLVColumn(TextAlign = HorizontalAlignment.Center)]
+        [BoolColumn]
         public bool IsLarge => segment.IsLarge;
         [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:X}")]
         public ulong End => segment.End;
-        [OLVColumn(Title = "Gen 0 Length", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}")]
+        [IntColumn(Title = "Gen 0 Length")]
         public ulong Gen0Length => segment.Gen0Length;
-        [OLVColumn(Title = "Gen 1 Length", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}")]
+        [IntColumn(Title = "Gen 1 Length")]
         public ulong Gen1Length => segment.Gen1Length;
-        [OLVColumn(Title="Gen 2 Length", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}")]
+        [IntColumn(Title="Gen 2 Length")]
         public ulong Gen2Length => segment.Gen2Length;
-        [OLVColumn(TextAlign = HorizontalAlignment.Center)]
+        [BoolColumn]
         public bool IsEphemeral => segment.IsEphemeral;
     }
 }

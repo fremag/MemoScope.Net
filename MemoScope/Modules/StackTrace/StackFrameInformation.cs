@@ -2,7 +2,7 @@
 using BrightIdeasSoftware;
 using MemoScope.Core;
 using Microsoft.Diagnostics.Runtime;
-using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.StackTrace
 {
@@ -44,7 +44,7 @@ namespace MemoScope.Modules.StackTrace
         [OLVColumn]
         public string DisplayString { get; }
 
-        [OLVColumn(AspectToStringFormat ="{0:X}", TextAlign = HorizontalAlignment.Right)]
+        [IntColumn(AspectToStringFormat ="{0:X}")]
         public ulong StackPointer => frame.StackPointer;
 
 #if LINE_AND_FILE

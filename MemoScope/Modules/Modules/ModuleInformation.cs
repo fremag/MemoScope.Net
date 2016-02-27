@@ -4,6 +4,7 @@ using Microsoft.Diagnostics.Runtime;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Modules
 {
@@ -27,16 +28,16 @@ namespace MemoScope.Modules.Modules
 
         [OLVColumn]
         public string Name => Path.GetFileName(module.AssemblyName);
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat ="{0:###,###,###,##0}")]
+        [IntColumn]
         public ulong Size => module.Size;
         [OLVColumn]
         public DebuggableAttribute.DebuggingModes DebuggingMode { get; }
         [OLVColumn]
         public string FileName => module.FileName;
 
-        [OLVColumn(TextAlign = HorizontalAlignment.Center)]
+        [BoolColumn]
         public bool IsDynamic => module.IsDynamic;
-        [OLVColumn(TextAlign = HorizontalAlignment.Center)]
+        [BoolColumn]
         public bool IsFile => module.IsFile;
         [OLVColumn]
         public string Pdb { get; }

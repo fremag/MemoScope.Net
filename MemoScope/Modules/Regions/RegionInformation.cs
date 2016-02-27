@@ -1,6 +1,6 @@
 ﻿using BrightIdeasSoftware;
 using Microsoft.Diagnostics.Runtime;
-using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Regions
 {
@@ -13,13 +13,13 @@ namespace MemoScope.Modules.Regions
             this.region = region;
         }
 
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:X}")]
+        [IntColumn(AspectToStringFormat = "{0:X}")]
         public ulong Start => region.Address;
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}")]
+        [IntColumn]
         public ulong Size => region.Size;
         [OLVColumn]
         public ClrMemoryRegionType Type => region.Type;
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}")]
+        [IntColumn]
         public int HeapNumber => region.HeapNumber;
         [OLVColumn]
         public string Module => region.Module;

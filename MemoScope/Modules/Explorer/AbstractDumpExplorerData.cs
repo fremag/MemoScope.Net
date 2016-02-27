@@ -12,14 +12,14 @@ namespace MemoScope.Modules.Explorer
     {
         [OLVColumn(Width = 350, ImageAspectName = nameof(Icon))]
         public string Name { get; protected set; }
-        [OLVColumn(Title = "Size (Mo)", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}", Width = 50)]
+        [IntColumn(Title = "Size (Mo)", Width = 50)]
         public abstract long Size { get; }
         public Image Icon { get; protected set; }
 
         [OLVColumn(Title = "Date", Width = 100, TextAlign = HorizontalAlignment.Center, AspectToStringFormat = "{0:yyyy/MM/dd}")]
         public DateTime? Date => FileInfo?.LastWriteTime;
 
-        [OLVColumn(Title = "Cache Size (Mo)", TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:###,###,###,##0}", Width = 50)]
+        [IntColumn(Title = "Cache Size (Mo)", Width = 50)]
         public long? CacheSize
         {
             get

@@ -3,6 +3,7 @@ using MemoScope.Core.Data;
 using Microsoft.Diagnostics.Runtime;
 using BrightIdeasSoftware;
 using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.ArrayInstances
 {
@@ -18,7 +19,7 @@ namespace MemoScope.Modules.ArrayInstances
 
         [OLVColumn]
         public ulong Address { get; }
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat ="{0:###,###,###,##0}")]
+        [IntColumn]
         public int Length { get; }
         [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:p2}")]
         public float NullRatio { get; }

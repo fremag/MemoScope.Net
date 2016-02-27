@@ -5,6 +5,7 @@ using MemoScope.Core.Data;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.BlockingObjects
 {
@@ -45,10 +46,10 @@ namespace MemoScope.Modules.BlockingObjects
         [OLVColumn]
         public string TypeName => ClrDump.GetObjectTypeName(BlockingObject.Object);
 
-        [OLVColumn(Width=50, TextAlign=HorizontalAlignment.Right) ]
+        [IntColumn(Width=50)]
         public int Owners => BlockingObject.HasSingleOwner ? 1 : BlockingObject.Owners.Count;
 
-        [OLVColumn(Width=50, TextAlign = HorizontalAlignment.Center)]
+        [BoolColumn(Width=50)]
         public bool Taken => BlockingObject.Taken;
 
         [OLVColumn]

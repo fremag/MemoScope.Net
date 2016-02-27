@@ -1,6 +1,7 @@
 ﻿using MemoScope.Core.Data;
 using BrightIdeasSoftware;
 using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Arrays
 {
@@ -23,13 +24,13 @@ namespace MemoScope.Modules.Arrays
 
         [OLVColumn]
         public string TypeName { get; }
-        [OLVColumn(AspectToStringFormat ="{0:###,###,###,##0}", Width = 150, TextAlign = HorizontalAlignment.Right )]
+        [IntColumn]
         public ulong NbInstances { get; }
-        [OLVColumn(AspectToStringFormat = "{0:###,###,###,##0}", Width = 150, TextAlign = HorizontalAlignment.Right)]
+        [IntColumn]
         public ulong TotalLength { get; }
-        [OLVColumn(AspectToStringFormat = "{0:###,###,###,##0}", Width = 150, TextAlign = HorizontalAlignment.Right)]
+        [IntColumn]
         public ulong MaxLength { get; }
-        [OLVColumn(AspectToStringFormat = "{0:###,###,###,##0}", Width = 150, TextAlign = HorizontalAlignment.Right)]
+        [IntColumn]
         public ulong TotalSize { get; }
     }
 }
