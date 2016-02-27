@@ -129,7 +129,7 @@ namespace MemoScope.Modules.Instances
             {
                 return;
             }
-
+            bool hasSimpleValue = fieldNode.ClrType.HasSimpleValue;
             var col = new OLVColumn(fieldNode.FullName, null);
             col.Width = 120;
             switch (fieldNode.Field.ElementType)
@@ -154,16 +154,18 @@ namespace MemoScope.Modules.Instances
                     col.CheckBoxes = true;
                     break;
                 case ClrElementType.Object:
-                case ClrElementType.Struct:
                 case ClrElementType.Array:
                 case ClrElementType.SZArray:
                     col.AspectGetter = o => o;
                     dlvAdresses.SetUpAddressColumn(col, this);
                     break;
+                case ClrElementType.Struct:
+                    break;
             }
             dlvAdresses.AllColumns.Add(col);
 
             List<ClrInstanceField> fields = new List<ClrInstanceField>();
+
             ClrInstanceField field = fieldNode.Field;
             do
             {
@@ -177,7 +179,8 @@ namespace MemoScope.Modules.Instances
             {
                 ulong address = (ulong)o;
                 var type = AddressList.ClrType;
-                return AddressList.ClrDump.GetFieldValue(address, type, fields);
+                var val = AddressList.ClrDump.GetFieldValue(address, type, fields);
+                return val;
             };
         }
 
