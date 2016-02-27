@@ -27,6 +27,7 @@ namespace MemoScope.Modules.Arrays
             dlvArrays.SetUpTypeColumn<ArraysInformation>();
             dlvArrays.RegisterDataProvider(() => Data, this);
             dlvArrays.CellClick += OnCellClick;
+            dlvArrays.SetTypeNameFilter<ArraysInformation>(regexFilterControl);
         }
 
         private void OnCellClick(object sender, CellClickEventArgs e)

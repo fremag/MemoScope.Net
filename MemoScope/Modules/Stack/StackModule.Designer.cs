@@ -29,33 +29,46 @@
         private void InitializeComponent()
         {
             this.dlvStack = new WinFwk.UITools.DefaultListView();
+            this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvStack)).BeginInit();
             this.SuspendLayout();
             // 
-            // defaultListView1
+            // dlvStack
             // 
+            this.dlvStack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dlvStack.CellEditUseWholeCell = false;
-            this.dlvStack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvStack.FullRowSelect = true;
             this.dlvStack.HideSelection = false;
             this.dlvStack.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvStack.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvStack.Location = new System.Drawing.Point(0, 0);
-            this.dlvStack.Name = "defaultListView1";
+            this.dlvStack.Location = new System.Drawing.Point(0, 33);
+            this.dlvStack.Name = "dlvStack";
             this.dlvStack.ShowGroups = false;
             this.dlvStack.ShowImagesOnSubItems = true;
-            this.dlvStack.Size = new System.Drawing.Size(762, 483);
+            this.dlvStack.Size = new System.Drawing.Size(762, 450);
             this.dlvStack.TabIndex = 0;
             this.dlvStack.UseCompatibleStateImageBehavior = false;
             this.dlvStack.View = System.Windows.Forms.View.Details;
             this.dlvStack.VirtualMode = true;
             // 
-            // ModulesModule
+            // regexFilterControl
+            // 
+            this.regexFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.regexFilterControl.Location = new System.Drawing.Point(3, 3);
+            this.regexFilterControl.Name = "regexFilterControl";
+            this.regexFilterControl.Size = new System.Drawing.Size(756, 24);
+            this.regexFilterControl.TabIndex = 1;
+            // 
+            // StackModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.regexFilterControl);
             this.Controls.Add(this.dlvStack);
-            this.Name = "ModulesModule";
+            this.Name = "StackModule";
             this.Size = new System.Drawing.Size(762, 483);
             ((System.ComponentModel.ISupportInitialize)(this.dlvStack)).EndInit();
             this.ResumeLayout(false);
@@ -65,5 +78,6 @@
         #endregion
 
         private WinFwk.UITools.DefaultListView dlvStack;
+        private Tools.RegexFilter.RegexFilterControl regexFilterControl;
     }
 }

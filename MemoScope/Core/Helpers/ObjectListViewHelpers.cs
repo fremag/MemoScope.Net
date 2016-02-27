@@ -2,6 +2,7 @@
 using MemoScope.Core.Data;
 using MemoScope.Modules.InstanceDetails;
 using MemoScope.Modules.TypeDetails;
+using MemoScope.Tools.RegexFilter;
 using Microsoft.Diagnostics.Runtime;
 using System;
 using System.Drawing;
@@ -296,6 +297,29 @@ namespace MemoScope.Core.Helpers
             listView.FormatRow += delegate (object sender, FormatRowEventArgs args) {
                 args.Item.Text = args.RowIndex.ToString("###,###,###,###,##0");
             };
+        }
+
+        public static void SetTypeNameFilter<T>(this ObjectListView listView, RegexFilterControl regexFilterControl) where T : ITypeNameData
+        {
+            SetTypeNameFilter(listView, regexFilterControl, o => ((T)o).TypeName);
+        }
+
+        public static void SetTypeNameFilter(this ObjectListView listView, RegexFilterControl regexFilterControl, Func<object, string> typeNameGetter)
+        {
+            regexFilterControl.RegexApplied += (regex) => {
+                listView.ModelFilter = new ModelFilter((o) =>
+                {
+                    if (o == null)
+                    {
+                        return true;
+                    }
+                    var typeName = typeNameGetter(o);
+                    var b = regex.IsMatch(typeName);
+                    return b;
+                });
+                listView.UseFiltering = true;
+            };
+            regexFilterControl.RegexCancelled += () => listView.UseFiltering = false;
         }
     }
 }

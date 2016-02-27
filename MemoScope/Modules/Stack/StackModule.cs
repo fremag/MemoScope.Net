@@ -28,6 +28,7 @@ namespace MemoScope.Modules.Stack
             dlvStack.SetUpTypeColumn<StackInstanceInformation>(parentModule ?? this);
             dlvStack.AddSimpleValueColumn(o => ((StackInstanceInformation)o).Address, ClrDump, o => ((StackInstanceInformation)o).Type);
             dlvStack.RebuildColumns();
+            dlvStack.SetTypeNameFilter<StackInstanceInformation>(regexFilterControl);
         }
 
         public override void PostInit()

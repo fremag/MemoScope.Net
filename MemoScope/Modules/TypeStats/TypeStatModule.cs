@@ -39,22 +39,8 @@ namespace MemoScope.Modules.TypeStats
             dlvTypeStats.SetUpTypeColumn<ClrTypeStats>(this);
             dlvTypeStats.SetObjects(typeStats);
             dlvTypeStats.Sort(nameof(ClrTypeStats.NbInstances), SortOrder.Descending);
-            dlvTypeStats.UseFilterIndicator = true;
 
-            regexFilterControl.RegexApplied += (regex) => {
-                dlvTypeStats.ModelFilter = new ModelFilter((o) =>
-                {
-                    var stat = o as ClrTypeStats;
-                    if( o == null)
-                    {
-                        return true;
-                    }
-                    var b = regex.IsMatch(stat.TypeName);
-                    return b;
-                });
-                dlvTypeStats.UseFiltering = true;
-            };
-            regexFilterControl.RegexCancelled += () => dlvTypeStats.UseFiltering = false;
+            dlvTypeStats.SetTypeNameFilter<ClrTypeStats>(regexFilterControl);
         }
 
         ClrDumpType UIDataProvider<ClrDumpType>.Data

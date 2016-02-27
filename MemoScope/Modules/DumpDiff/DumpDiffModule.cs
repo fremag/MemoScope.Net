@@ -51,20 +51,7 @@ namespace MemoScope.Modules.DumpDiff
             dlvDumpDiff.CellClick += OnCellClick;
             dlvDumpDiff.CustomSorter = DumpDiffSort;
 
-            regexFilterControl.RegexApplied += (regex) => {
-                dlvDumpDiff.ModelFilter = new ModelFilter((o) =>
-                {
-                    var typeName = o as string;
-                    if (o == null)
-                    {
-                        return true;
-                    }
-                    var b = regex.IsMatch(typeName);
-                    return b;
-                });
-                dlvDumpDiff.UseFiltering = true;
-            };
-            regexFilterControl.RegexCancelled += () => dlvDumpDiff.UseFiltering = false;
+            dlvDumpDiff.SetTypeNameFilter(regexFilterControl, o => (string)o);
         }
 
         private void DumpDiffSort(OLVColumn column, SortOrder sortOrder)
