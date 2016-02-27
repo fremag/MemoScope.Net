@@ -1,6 +1,7 @@
 ﻿using BrightIdeasSoftware;
 using MemoScope.Core.Data;
 using MemoScope.Modules.InstanceDetails;
+using MemoScope.Modules.TypeDetails;
 using Microsoft.Diagnostics.Runtime;
 using System;
 using System.Drawing;
@@ -120,12 +121,13 @@ namespace MemoScope.Core.Helpers
                     if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
+                        if(address == 0)
+                        {
+                            return;
+                        }
                         var type = dumpModule.ClrDump.GetObjectType(address);
                         var clrDumpObject = new ClrDumpObject(dumpModule.ClrDump, type, address);
-                        UIModuleFactory.CreateModule<InstanceDetailsModule>(
-                            mod => { mod.UIModuleParent = dumpModule; mod.Setup(clrDumpObject); },
-                            mod => mod.RequestDockModule(DockState.DockRight)
-                         );
+                        InstanceDetailsCommand.Display(dumpModule, clrDumpObject);
                     }
                 }
             };
@@ -228,6 +230,10 @@ namespace MemoScope.Core.Helpers
                 }
 
                 ulong address = addressGetter(o);
+                if(address ==0)
+                {
+                    return 0;
+                }
                 object result = dump.Eval(
                     () => {
                         return type.GetSize(address);

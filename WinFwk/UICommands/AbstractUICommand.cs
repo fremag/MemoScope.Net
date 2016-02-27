@@ -34,8 +34,12 @@ namespace WinFwk.UICommands
             MessageBus = msgBus;
             MessageBus.Subscribe(this);
         }
-
         protected void DockModule(UIModule uiModule, DockState dockState = DockState.Document)
+        {
+            DockModule(MessageBus, uiModule, dockState);
+        }
+
+        protected static void DockModule(MessageBus MessageBus, UIModule uiModule, DockState dockState = DockState.Document)
         {
             MessageBus.SendMessage(new DockRequest(uiModule, dockState) );
         }

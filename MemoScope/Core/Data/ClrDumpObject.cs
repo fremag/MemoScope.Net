@@ -7,6 +7,7 @@ namespace MemoScope.Core.Data
         public ulong Address { get; }
         public object Value => ClrDump.Eval(GetValue);
         public bool IsInterior { get; private set; }
+        public int ArrayLength => ClrDump.Eval( () => ClrType.GetArrayLength(Address));
 
         private object GetValue()
         {

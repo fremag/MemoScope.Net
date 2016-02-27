@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
 using BrightIdeasSoftware;
+using MemoScope.Modules.ArrayInstances;
 
 namespace MemoScope.Modules.Arrays
 {
@@ -19,7 +20,7 @@ namespace MemoScope.Modules.Arrays
         public void Setup(ClrDump clrDump)
         {
             ClrDump = clrDump;
-            Icon = Properties.Resources.text_rotate_small;
+            Icon = Properties.Resources.recommended_summart_table_small;
             Name = $"#{clrDump.Id} - Arrays";
 
             dlvArrays.InitColumns<ArraysInformation>();
@@ -32,7 +33,7 @@ namespace MemoScope.Modules.Arrays
         {
             if( e.ClickCount == 2 && e.Model != null)
             {
-                // TODO
+                ArrayInstancesCommand.Display(Data, this);
             }
         }
 

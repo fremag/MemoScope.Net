@@ -22,7 +22,7 @@ namespace MemoScope.Modules.ArrayInstances
             ArrayAddressList = arrayAddressList;
             ClrDump = arrayAddressList.ClrDump;
             Icon = Properties.Resources.formatting_equal_to_small;
-            Name = $"#{ArrayAddressList.ClrDump.Id} - {ArrayAddressList.ClrType.Name}";
+            Name = $"#{ArrayAddressList.ClrDump.Id} - Arrays: {ArrayAddressList.ClrType.Name}";
 
             dlvArrays.InitColumns<ArrayInstanceInformation>();
             dlvArrays.SetUpAddressColumn<ArrayInstanceInformation>(this);

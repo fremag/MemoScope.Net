@@ -25,7 +25,7 @@ namespace MemoScope.Modules.Instances
         private FieldAccessor myFieldAccessor;
         HashSet<ulong> filteredAddresses = new HashSet<ulong>();
 
-        public static void Create(AddressList addresses, UIModule parent, Action<InstancesModule> postInit )
+        public static void Create(AddressList addresses, UIModule parent, Action<InstancesModule> postInit, string name=null )
         {
             if( addresses == null)
             {
@@ -33,7 +33,13 @@ namespace MemoScope.Modules.Instances
                 return;
             }
             UIModuleFactory.CreateModule<InstancesModule>(
-                mod => { mod.UIModuleParent = parent; mod.Setup(addresses); },
+                mod => {
+                    mod.UIModuleParent = parent; mod.Setup(addresses);
+                    if( name != null)
+                    {
+                        mod.Name = name;
+                    }
+                },
                 mod => postInit(mod)
                 );
         }
@@ -273,7 +279,7 @@ namespace MemoScope.Modules.Instances
         {
             var addresses = AddressList.Addresses;
             int c = addresses.Count;
-            const int batchSize = 16 * 1024;
+            const int batchSize = 1024;
             for (int i = 0; i < c && ! token.IsCancellationRequested; i += batchSize)
             {
                 Status($"Filtering: {i:###,###,###,##0} / {c:###,###,###,##0}");

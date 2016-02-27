@@ -14,12 +14,17 @@ namespace MemoScope.Modules.ArrayInstances
 
         protected override void HandleData(ArraysAddressList arrayAddressList)
         {
-            if(arrayAddressList == null)
+            Display(arrayAddressList, selectedModule);
+        }
+
+        public static void Display(ArraysAddressList arrayAddressList, UIModule parentModule)
+        {
+            if (arrayAddressList == null)
             {
                 MessageBox.Show("Please, select an array type !");
                 return;
             }
-            UIModuleFactory.CreateModule<ArrayInstancesModule>(module => { module.UIModuleParent = selectedModule; module.Setup(arrayAddressList); }, module => DockModule(module));
+            UIModuleFactory.CreateModule<ArrayInstancesModule>(module => { module.UIModuleParent = parentModule; module.Setup(arrayAddressList); }, module => parentModule.RequestDockModule(module));
         }
     }
 }

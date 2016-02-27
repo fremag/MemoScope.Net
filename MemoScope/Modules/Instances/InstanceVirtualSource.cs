@@ -32,7 +32,8 @@ namespace MemoScope.Modules.Instances
             {
                 return filtered[n];
             }
-            return addressList.Addresses[n];
+            var address = addressList.ClrDump.Eval(() => addressList.Addresses[n]);
+            return address;
         }
 
         public override int GetObjectCount()
