@@ -63,6 +63,7 @@ namespace MemoScope.Core
             worker.Run(InitRuntime);
 
             BookmarkMgr = new BookmarkMgr(dumpPath);
+            BookmarkMgr.GetBookmarks();
         }
 
         public void InitCache(CancellationToken token)

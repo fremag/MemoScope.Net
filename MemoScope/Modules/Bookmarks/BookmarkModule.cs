@@ -22,9 +22,12 @@ namespace MemoScope.Modules.Bookmarks
             dlvBookmarks.InitColumns<Bookmark>();
             dlvBookmarks.SetUpAddressColumn<Bookmark>(this);
             dlvBookmarks.SetUpTypeColumn<Bookmark>(this);
-            var col = dlvBookmarks.AllColumns.First(c => c.Name == nameof(Bookmark.Comment));
+            var col = dlvBookmarks[nameof(Bookmark.Comment)];
             col.CellEditUseWholeCell = true;
             dlvBookmarks.CellEditActivation = ObjectListView.CellEditActivateMode.DoubleClick;
+            dlvBookmarks.CellEditFinished += (o, e) => {
+                ClrDump.BookmarkMgr.SaveBookmarks();
+            };
 
             var colColor = dlvBookmarks.AllColumns.FirstOrDefault(c => c.Name == nameof(Bookmark.Color));
             dlvBookmarks.FormatCell += (o, e) =>
@@ -41,7 +44,7 @@ namespace MemoScope.Modules.Bookmarks
                     e.SubItem.Text = bookmark.Color != Color.Empty ? null : "Select Color...";
                 }
             };
-            var colPick = dlvBookmarks.AllColumns.FirstOrDefault(c => c.Name == nameof(Bookmark.ColorPick));
+            var colPick = dlvBookmarks[nameof(Bookmark.ColorPick)];
             colPick.IsButton = true;
             colPick.ButtonSizing = OLVColumn.ButtonSizingMode.CellBounds;
 

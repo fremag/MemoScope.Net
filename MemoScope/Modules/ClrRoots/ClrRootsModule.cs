@@ -40,7 +40,7 @@ namespace MemoScope.Modules.ClrRoots
             base.PostInit();
             Summary = $"{ClrRootsQueue.Count} ClrRoots";
             dlvClrRoots.Objects = ClrRootsQueue;
-            var colGroup = dlvClrRoots.AllColumns.FirstOrDefault(col => col.Name == nameof(ClrRootsInformation.Kind));
+            var colGroup = dlvClrRoots[nameof(ClrRootsInformation.Kind)];
             dlvClrRoots.BuildGroups(colGroup, SortOrder.Ascending);
             dlvClrRoots.ShowGroups = true;
         }
