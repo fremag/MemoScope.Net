@@ -84,9 +84,9 @@ namespace MemoScope.Core.Cache
 
         internal void Dispose()
         {
-            cmdInsertInstance.Dispose();
-            cmdInsertReference.Dispose();
-            cmdInsertType.Dispose();
+            cmdInsertInstance?.Dispose();
+            cmdInsertReference?.Dispose();
+            cmdInsertType?.Dispose();
             cxion.Dispose();
         }
 
