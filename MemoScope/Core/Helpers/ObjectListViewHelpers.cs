@@ -17,7 +17,7 @@ namespace MemoScope.Core.Helpers
     {
         public static void SetUpTypeColumn<T>(this ObjectListView listView, UIClrDumpModule dumpModule=null) where T : ITypeNameData
         {
-            OLVColumn col = listView.GetColumn(nameof(ITypeNameData.TypeName));
+            OLVColumn col = listView.AllColumns.First(c => c.Name == nameof(ITypeNameData.TypeName));
             SetUpTypeColumn(listView, col, dumpModule);
         }
 

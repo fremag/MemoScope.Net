@@ -22,7 +22,7 @@ namespace MemoScope.Modules.Bookmarks
             dlvBookmarks.InitColumns<Bookmark>();
             dlvBookmarks.SetUpAddressColumn<Bookmark>(this);
             dlvBookmarks.SetUpTypeColumn<Bookmark>(this);
-            var col = dlvBookmarks.GetColumn(nameof(Bookmark.Comment));
+            var col = dlvBookmarks[nameof(Bookmark.Comment)];
             col.CellEditUseWholeCell = true;
             dlvBookmarks.CellEditActivation = ObjectListView.CellEditActivateMode.DoubleClick;
             dlvBookmarks.CellEditFinished += (o, e) => {

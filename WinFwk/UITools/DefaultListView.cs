@@ -1,4 +1,5 @@
 ﻿using BrightIdeasSoftware;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace WinFwk.UITools
@@ -12,7 +13,7 @@ namespace WinFwk.UITools
 
         public void BuildGroups(string colName, SortOrder order, bool colIsVisible=false)
         {
-            var col = GetColumn(colName);
+            var col = this[colName];
             col.IsVisible = colIsVisible;
             BuildGroups(col, order);
         }
@@ -24,8 +25,10 @@ namespace WinFwk.UITools
 
         public void Sort(string colName, SortOrder sortOrder= SortOrder.Ascending)
         {
-            var col = GetColumn(colName);
+            var col = this[colName];
             Sort(col, SortOrder.Descending);
         }
+
+        public OLVColumn this[string columnName] => this.AllColumns.FirstOrDefault(col => col.Name == columnName);
     }
 }
