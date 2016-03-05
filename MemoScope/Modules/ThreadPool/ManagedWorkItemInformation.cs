@@ -1,9 +1,10 @@
 ﻿using BrightIdeasSoftware;
+using MemoScope.Core.Data;
 using Microsoft.Diagnostics.Runtime;
 
 namespace MemoScope.Modules.ThreadPool
 {
-    public class ManagedWorkItemInformation
+    public class ManagedWorkItemInformation : ITypeNameData
     {
         private ManagedWorkItem workItem;
 
@@ -14,7 +15,7 @@ namespace MemoScope.Modules.ThreadPool
 
         [OLVColumn]
         public ulong Object => workItem.Object;
-        [OLVColumn]
-        public string Type => workItem.Type.Name;
+        [OLVColumn(Title="Type")]
+        public string TypeName => workItem.Type.Name;
     }
 }
