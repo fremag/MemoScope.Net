@@ -22,7 +22,7 @@ namespace MemoScope.Modules.Bookmarks
             dlvBookmarks.InitColumns<Bookmark>();
             dlvBookmarks.SetUpAddressColumn<Bookmark>(this);
             dlvBookmarks.SetUpTypeColumn<Bookmark>(this);
-            var col = dlvBookmarks[nameof(Bookmark.Comment)];
+            var col = dlvBookmarks.GetColumn(nameof(Bookmark.Comment));
             col.CellEditUseWholeCell = true;
             dlvBookmarks.CellEditActivation = ObjectListView.CellEditActivateMode.DoubleClick;
             dlvBookmarks.CellEditFinished += (o, e) => {
@@ -44,7 +44,7 @@ namespace MemoScope.Modules.Bookmarks
                     e.SubItem.Text = bookmark.Color != Color.Empty ? null : "Select Color...";
                 }
             };
-            var colPick = dlvBookmarks[nameof(Bookmark.ColorPick)];
+            var colPick = dlvBookmarks.GetColumn(nameof(Bookmark.ColorPick));
             colPick.IsButton = true;
             colPick.ButtonSizing = OLVColumn.ButtonSizingMode.CellBounds;
 

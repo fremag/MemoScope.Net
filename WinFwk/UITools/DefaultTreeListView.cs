@@ -18,7 +18,5 @@ namespace WinFwk.UITools
             CanExpandGetter = o => ((T)o).CanExpand;
             ChildrenGetter = o => ((T)o).Children;
         }
-
-        public OLVColumn this[string columnName] => this.AllColumns.FirstOrDefault(col => col.Name == columnName);
     }
 }

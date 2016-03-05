@@ -25,7 +25,7 @@ namespace MemoScope.Modules.Explorer
                 tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
             }
             dtlvExplorer.InitData<AbstractDumpExplorerData>();
-            var col = dtlvExplorer[nameof(AbstractDumpExplorerData.DeleteCache)];
+            var col = dtlvExplorer.GetColumn(nameof(AbstractDumpExplorerData.DeleteCache));
             col.IsButton = true;
             col.ButtonSizing = OLVColumn.ButtonSizingMode.CellBounds;
 
