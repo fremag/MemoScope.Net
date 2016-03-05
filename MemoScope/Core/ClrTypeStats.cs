@@ -1,6 +1,5 @@
 using BrightIdeasSoftware;
 using Microsoft.Diagnostics.Runtime;
-using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
 using WinFwk.UITools;
 
@@ -13,7 +12,7 @@ namespace MemoScope.Core
         public ulong MethodTable { get; }
 
         [OLVColumn(Title = "Type Name", Width = 500)]
-        public string TypeName => TypeHelpers.ManageAlias(Type);
+        public string TypeName { get; }
 
         [IntColumn(Title = "Nb")]
         public long NbInstances { get; private set; }
@@ -32,6 +31,7 @@ namespace MemoScope.Core
         {
             NbInstances = nbInstances;
             TotalSize= totalSize;
+            TypeName = Type.Name;
         }
 
         public void Inc(ulong size)

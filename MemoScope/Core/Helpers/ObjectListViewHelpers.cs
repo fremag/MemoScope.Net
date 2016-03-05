@@ -50,7 +50,12 @@ namespace MemoScope.Core.Helpers
                 listView.RegisterDataProvider(() =>
                 {
                     var cellItem = listView.SelectedItem.SubItems[col.Index];
-                    string typeName = cellItem.Text;
+                    var subItem = cellItem as OLVListSubItem;
+                    if (subItem == null)
+                    {
+                        return null;
+                    }
+                    string typeName = subItem.ModelValue as string;
                     ClrType type = dumpModule.ClrDump.GetClrType(typeName);
                     if (type != null)
                     {
@@ -61,7 +66,12 @@ namespace MemoScope.Core.Helpers
                 listView.RegisterDataProvider(() =>
                 {
                     var cellItem = listView.SelectedItem.SubItems[col.Index];
-                    string typeName = cellItem.Text;
+                    var subItem = cellItem as OLVListSubItem;
+                    if( subItem == null)
+                    {
+                        return null;
+                    }
+                    string typeName = subItem.ModelValue as string;
 
                     ClrType type = dumpModule.ClrDump.GetClrType(typeName);
                     if (type != null)
