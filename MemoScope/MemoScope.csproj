@@ -12,6 +12,9 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publier\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,11 +27,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -197,6 +197,15 @@
     <Compile Include="Modules\ClrRoots\ClrRootsModule.Designer.cs">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Delegates\DelegateInformation.cs" />
+    <Compile Include="Modules\Delegates\DelegateModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Delegates\DelegateModule.Designer.cs">
+      <DependentUpon>DelegateModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Delegates\DelegatesAnalysis.cs" />
+    <Compile Include="Modules\Delegates\DelegatesCommand.cs" />
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -465,6 +474,9 @@
     <EmbeddedResource Include="Modules\Bookmarks\BookmarkModule.resx">
       <DependentUpon>BookmarkModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Delegates\DelegateModule.resx">
+      <DependentUpon>DelegateModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -588,7 +600,9 @@
     <Content Include="Icons\Large\formatting_highlight_between.png" />
     <Content Include="Icons\Large\geolocation_sight.png" />
     <Content Include="Icons\Large\help.png" />
+    <Content Include="Icons\Large\lightning.png" />
     <Content Include="Icons\Large\lock.png" />
+    <Content Include="Icons\Large\macro_show_all_actions.png" />
     <Content Include="Icons\Large\microscope.png" />
     <Content Include="Icons\Large\module.png" />
     <Content Include="Icons\Large\new_data.png" />
@@ -697,7 +711,9 @@
     <Content Include="Icons\Small\formatting_highlight_between.png" />
     <Content Include="Icons\Small\hourglass.png" />
     <Content Include="Icons\Small\legend.png" />
+    <Content Include="Icons\Small\lightning.png" />
     <Content Include="Icons\Small\lock.png" />
+    <Content Include="Icons\Small\macro_show_all_actions.png" />
     <Content Include="Icons\Small\microscope.png" />
     <Content Include="Icons\Small\module.png" />
     <Content Include="Icons\Small\new_data.png" />
