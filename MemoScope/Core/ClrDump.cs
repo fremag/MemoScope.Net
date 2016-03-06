@@ -131,6 +131,12 @@ namespace MemoScope.Core
             return instances;
         }
 
+        public int CountInstances(ClrType type)
+        {
+            int typeId = cache.GetTypeId(type.Name);
+            return cache.CountInstances(typeId);
+        }
+
         public ClrType GetType(ulong methodTable)
         {
             var type = Eval(() => Heap.GetTypeByMethodTable(methodTable));
