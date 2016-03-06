@@ -46,6 +46,11 @@ namespace MemoScope.Modules.InstanceDetails
 
         public override void Init( )
         {
+            if( ClrDumpObject == null)
+            {
+                return;
+            }
+
             mainFieldValues = FieldValueInformation.GetChildren(ClrDumpObject);
             SimpleValue = ClrDump.Eval(() =>
             {
@@ -69,10 +74,13 @@ namespace MemoScope.Modules.InstanceDetails
             dtlvReferences.ClearObjects();
 
             dtlvFieldsValues.Roots = mainFieldValues;
-            dtlvReferences.Roots = new[] { new ReferenceInformation(ClrDumpObject.ClrDump, ClrDumpObject.Address) };
             tbSimpleValue.Text = SimpleValue?.ToString();
-            Name = "#" + ClrDumpObject.ClrDump.Id + " - " + ClrDumpObject.Address.ToString("X");
-            Summary = ClrDumpObject.ClrType == null ? "Unkown" : ClrDumpObject.ClrType.Name;
+            if (ClrDumpObject != null)
+            {
+                dtlvReferences.Roots = new[] { new ReferenceInformation(ClrDumpObject.ClrDump, ClrDumpObject.Address) };
+                Name = "#" + ClrDumpObject.ClrDump.Id + " - " + ClrDumpObject.Address.ToString("X");
+                Summary = ClrDumpObject.ClrType == null ? "Unkown" : ClrDumpObject.ClrType.Name;
+            }
         }
     }
 }

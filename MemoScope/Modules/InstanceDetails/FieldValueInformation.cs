@@ -62,7 +62,8 @@ namespace MemoScope.Modules.InstanceDetails
             {
                 var clrObject = new ClrObject(clrDumpObject.Address, clrDumpObject.ClrType, clrDumpObject.IsInterior);
                 var l = new List<FieldValueInformation>();
-                var n = Math.Max(clrDumpObject.ClrType.GetArrayLength(clrDumpObject.Address), 1024);
+                int length = clrDumpObject.ClrType.GetArrayLength(clrDumpObject.Address);
+                var n = Math.Min(length, 1024);
                 for (int i=0; i < n; i++)
                 {
                     var fieldValue = clrObject[i];
