@@ -232,6 +232,20 @@ namespace MemoScope.Core.Cache
             }
         }
 
+        public int CountInstances(int typeId)
+        {
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = cxion;
+            cmd.CommandText = "SELECT count(*) FROM Instances WHERE TypeId=" + typeId;
+            SQLiteDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                var count = (int)dr.GetInt64(0);
+                return count;
+            }
+            return 0;
+        }
+
         #endregion
 
         #region References
