@@ -97,6 +97,7 @@ namespace MemoScope.Modules.Instances
 
         private void CreateDefaultColumns()
         {
+            dlvAdresses.ContextMenuStrip?.Items.Clear();
             dlvAdresses.AllColumns.Clear();
             dlvAdresses.AddRowNumberColumn();
             dlvAdresses.AddAddressColumn(o => o, this);

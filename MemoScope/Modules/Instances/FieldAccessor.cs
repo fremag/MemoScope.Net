@@ -81,8 +81,12 @@ namespace MemoScope.Modules.Instances
                     return nameof(_uint);
                 case ClrElementType.UInt64:
                     return nameof(_ulong);
+                case ClrElementType.Pointer:
+                case ClrElementType.NativeInt:
+                case ClrElementType.NativeUInt:
+                    return nameof(_ptr);
                 default:
-                    return "Unknown";
+                    return nameof(_obj);
             }
         }
 
@@ -148,6 +152,16 @@ namespace MemoScope.Modules.Instances
         public decimal _decimal(string arg)
         {
             return (decimal)Eval(arg);
+        }
+        public object _obj(string arg)
+        {
+            return Eval(arg);
+        }
+        public long _ptr (string arg)
+        {
+            var ptr = Eval(arg);
+            var val = (long)ptr;
+            return val;
         }
         public override string ToString()
         {
