@@ -3,10 +3,13 @@ using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using MemoScope.Core.Data;
 
-namespace MemoScope.Modules.Delegates
+namespace MemoScope.Modules.DelegateTypes
 {
     public static class DelegatesAnalysis
     {
+        const string TargetFieldName = "_target";
+        const string InvocationCountFieldName = "_invocationCount";
+
         public static List<ClrType> GetDelegateTypes(ClrDump clrDump)
         {
             List<ClrType> delegates = new List<ClrType>();
@@ -26,8 +29,8 @@ namespace MemoScope.Modules.Delegates
         public static long CountTargets(ClrDump clrDump, ClrType clrType)
         {
             long count = 0;
-            var targetField = clrType.GetFieldByName("_target");
-            var invocCountField = clrType.GetFieldByName("_invocationCount");
+            var targetField = clrType.GetFieldByName(TargetFieldName);
+            var invocCountField = clrType.GetFieldByName(InvocationCountFieldName);
 
             foreach (ulong address in clrDump.EnumerateInstances(clrType))
             {

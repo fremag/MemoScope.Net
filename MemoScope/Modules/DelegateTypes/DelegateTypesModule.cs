@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace MemoScope.Modules.Delegates
+namespace MemoScope.Modules.DelegateTypes
 {
-    public partial class DelegateModule : UIClrDumpModule, UIDataProvider<ClrDumpType>
+    public partial class DelegateTypesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>
     {
         List<DelegateInformation> delegateInformations;
 
-        public DelegateModule()
+        public DelegateTypesModule()
         {
             InitializeComponent();
         }
@@ -23,9 +23,9 @@ namespace MemoScope.Modules.Delegates
             Icon = Properties.Resources.macro_show_all_actions_small;
             Name = $"#{clrDump.Id} - Delegates";
 
-            dlvDelegates.InitColumns<DelegateInformation>();
-            dlvDelegates.SetUpTypeColumn<DelegateInformation>(this);
-            dlvDelegates.SetTypeNameFilter<DelegateInformation>(regexFilterControl);
+            dlvDelegateTypes.InitColumns<DelegateInformation>();
+            dlvDelegateTypes.SetUpTypeColumn<DelegateInformation>(this);
+            dlvDelegateTypes.SetTypeNameFilter<DelegateInformation>(regexFilterControl);
 
         }
 
@@ -39,16 +39,16 @@ namespace MemoScope.Modules.Delegates
         public override void PostInit()
         {
             base.PostInit();
-            Summary = $"Delegates";
-            dlvDelegates.Objects = delegateInformations;
-            dlvDelegates.Sort(nameof(DelegateInformation.Count), SortOrder.Descending);
+            Summary = $"Delegates Types";
+            dlvDelegateTypes.Objects = delegateInformations;
+            dlvDelegateTypes.Sort(nameof(DelegateInformation.Count), SortOrder.Descending);
         }
 
         ClrDumpType UIDataProvider<ClrDumpType>.Data
         {
             get
             {
-                var delegateInformation = dlvDelegates.SelectedObject<DelegateInformation>();
+                var delegateInformation = dlvDelegateTypes.SelectedObject<DelegateInformation>();
                 if (delegateInformation != null)
                 {
                     return new ClrDumpType(ClrDump, delegateInformation.ClrType);

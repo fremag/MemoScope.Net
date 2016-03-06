@@ -1,6 +1,6 @@
-﻿namespace MemoScope.Modules.Delegates
+﻿namespace MemoScope.Modules.DelegateTypes
 {
-    partial class DelegateModule
+    partial class DelegateTypesModule
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dlvDelegates = new WinFwk.UITools.DefaultListView();
+            this.dlvDelegateTypes = new WinFwk.UITools.DefaultListView();
             this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
-            ((System.ComponentModel.ISupportInitialize)(this.dlvDelegates)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvDelegateTypes)).BeginInit();
             this.SuspendLayout();
             // 
             // dlvDelegates
             // 
-            this.dlvDelegates.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dlvDelegateTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dlvDelegates.CellEditUseWholeCell = false;
-            this.dlvDelegates.FullRowSelect = true;
-            this.dlvDelegates.HideSelection = false;
-            this.dlvDelegates.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.dlvDelegates.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvDelegates.Location = new System.Drawing.Point(0, 33);
-            this.dlvDelegates.Name = "dlvDelegates";
-            this.dlvDelegates.ShowGroups = false;
-            this.dlvDelegates.ShowImagesOnSubItems = true;
-            this.dlvDelegates.Size = new System.Drawing.Size(762, 450);
-            this.dlvDelegates.TabIndex = 0;
-            this.dlvDelegates.UseCompatibleStateImageBehavior = false;
-            this.dlvDelegates.View = System.Windows.Forms.View.Details;
-            this.dlvDelegates.VirtualMode = true;
-            this.dlvDelegates.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.dlvDelegates_CellClick);
+            this.dlvDelegateTypes.CellEditUseWholeCell = false;
+            this.dlvDelegateTypes.FullRowSelect = true;
+            this.dlvDelegateTypes.HideSelection = false;
+            this.dlvDelegateTypes.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.dlvDelegateTypes.HighlightForegroundColor = System.Drawing.Color.Empty;
+            this.dlvDelegateTypes.Location = new System.Drawing.Point(0, 33);
+            this.dlvDelegateTypes.Name = "dlvDelegates";
+            this.dlvDelegateTypes.ShowGroups = false;
+            this.dlvDelegateTypes.ShowImagesOnSubItems = true;
+            this.dlvDelegateTypes.Size = new System.Drawing.Size(762, 450);
+            this.dlvDelegateTypes.TabIndex = 0;
+            this.dlvDelegateTypes.UseCompatibleStateImageBehavior = false;
+            this.dlvDelegateTypes.View = System.Windows.Forms.View.Details;
+            this.dlvDelegateTypes.VirtualMode = true;
+            this.dlvDelegateTypes.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.dlvDelegates_CellClick);
             // 
             // regexFilterControl
             // 
@@ -68,17 +68,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.regexFilterControl);
-            this.Controls.Add(this.dlvDelegates);
+            this.Controls.Add(this.dlvDelegateTypes);
             this.Name = "DelegateModule";
             this.Size = new System.Drawing.Size(762, 483);
-            ((System.ComponentModel.ISupportInitialize)(this.dlvDelegates)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvDelegateTypes)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private WinFwk.UITools.DefaultListView dlvDelegates;
+        private WinFwk.UITools.DefaultListView dlvDelegateTypes;
         private Tools.RegexFilter.RegexFilterControl regexFilterControl;
     }
 }

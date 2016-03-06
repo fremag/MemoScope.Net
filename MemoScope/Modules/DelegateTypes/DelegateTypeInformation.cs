@@ -4,7 +4,7 @@ using MemoScope.Core.Data;
 using BrightIdeasSoftware;
 using WinFwk.UITools;
 
-namespace MemoScope.Modules.Delegates
+namespace MemoScope.Modules.DelegateTypes
 {
     public class DelegateInformation : ITypeNameData
     {

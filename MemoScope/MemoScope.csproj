@@ -197,15 +197,15 @@
     <Compile Include="Modules\ClrRoots\ClrRootsModule.Designer.cs">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Delegates\DelegateInformation.cs" />
-    <Compile Include="Modules\Delegates\DelegateModule.cs">
+    <Compile Include="Modules\DelegateTypes\DelegateTypeInformation.cs" />
+    <Compile Include="Modules\DelegateTypes\DelegateTypesModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Delegates\DelegateModule.Designer.cs">
-      <DependentUpon>DelegateModule.cs</DependentUpon>
+    <Compile Include="Modules\DelegateTypes\DelegateTypesModule.Designer.cs">
+      <DependentUpon>DelegateTypesModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Delegates\DelegatesAnalysis.cs" />
-    <Compile Include="Modules\Delegates\DelegatesCommand.cs" />
+    <Compile Include="Modules\DelegateTypes\DelegatesAnalysis.cs" />
+    <Compile Include="Modules\DelegateTypes\DelegateTypesCommand.cs" />
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -474,8 +474,8 @@
     <EmbeddedResource Include="Modules\Bookmarks\BookmarkModule.resx">
       <DependentUpon>BookmarkModule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Delegates\DelegateModule.resx">
-      <DependentUpon>DelegateModule.cs</DependentUpon>
+    <EmbeddedResource Include="Modules\DelegateTypes\DelegateTypesModule.resx">
+      <DependentUpon>DelegateTypesModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
