@@ -270,6 +270,26 @@ namespace MemoScope.Core
                 };
             }
         }
+
+        public ulong ReadHeapPointer(ulong address)
+        {
+            ulong value;
+            Heap.ReadPointer(address, out value);
+            return value;
+        }
+
+        public ulong ReadRuntimePointer(ulong address)
+        {
+            ulong value;
+            Runtime.ReadPointer(address, out value);
+            return value;
+        }
+
+        public ClrMethod GetMethodByHandle(ulong methodDescriptorPtr)
+        {
+            var meth = Runtime.GetMethodByHandle(methodDescriptorPtr);
+            return meth;
+        }
     }
 
     public class ThreadProperty

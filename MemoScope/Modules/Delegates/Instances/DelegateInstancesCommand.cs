@@ -1,5 +1,4 @@
 ﻿using MemoScope.Core.Data;
-using MemoScope.Modules.Delegates.Types;
 using System.Windows.Forms;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
@@ -8,7 +7,7 @@ namespace MemoScope.Modules.Delegates.Instances
 {
     public class DelegateInstancesCommand : AbstractTypedUICommand<ClrDumpType>
     {
-        public DelegateInstancesCommand() : base("Delegate Instances", "Display Delegate Instances", "Analysis", Properties.Resources.attributes_display, Keys.Control | Keys.Shift | Keys.D)
+        public DelegateInstancesCommand() : base("Delegate Instances", "Display Delegate Instances", "Analysis", Properties.Resources.attributes_display, Keys.Control | Keys.Shift | Keys.I)
         {
 
         }

@@ -18,10 +18,10 @@ namespace MemoScope.Modules.Delegates
         [OLVColumn]
         public ulong Address { get; }
 
-        [OLVColumn(Title="Type")]
-        public string TypeName => ClrDumpType.TypeName;
-
         [IntColumn]
         public long Targets { get; }
+
+        [OLVColumn(Title="Type")]
+        public string TypeName => ClrDumpType.TypeName;
     }
 }

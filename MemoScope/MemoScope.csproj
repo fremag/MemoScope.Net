@@ -197,6 +197,7 @@
     <Compile Include="Modules\ClrRoots\ClrRootsModule.Designer.cs">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Delegates\DelegateTargetInformation.cs" />
     <Compile Include="Modules\Delegates\DelegateInstanceInformation.cs" />
     <Compile Include="Modules\Delegates\Instances\DelegateInstancesCommand.cs" />
     <Compile Include="Modules\Delegates\Instances\DelegateInstancesModule.cs">
@@ -206,6 +207,13 @@
       <DependentUpon>DelegateInstancesModule.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Delegates\DelegateTypeInformation.cs" />
+    <Compile Include="Modules\Delegates\Targets\DelegateTargetsCommand.cs" />
+    <Compile Include="Modules\Delegates\Targets\DelegateTargetsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Delegates\Targets\DelegateTargetsModule.Designer.cs">
+      <DependentUpon>DelegateTargetsModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Delegates\Types\DelegateTypesModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -484,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Delegates\Instances\DelegateInstancesModule.resx">
       <DependentUpon>DelegateInstancesModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Delegates\Targets\DelegateTargetsModule.resx">
+      <DependentUpon>DelegateTargetsModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Delegates\Types\DelegateTypesModule.resx">
       <DependentUpon>DelegateTypesModule.cs</DependentUpon>
