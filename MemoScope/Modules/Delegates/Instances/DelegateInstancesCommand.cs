@@ -1,10 +1,10 @@
 ﻿using MemoScope.Core.Data;
-using MemoScope.Modules.DelegateTypes;
+using MemoScope.Modules.Delegates.Types;
 using System.Windows.Forms;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
-namespace MemoScope.Modules.DelegateInstances
+namespace MemoScope.Modules.Delegates.Instances
 {
     public class DelegateInstancesCommand : AbstractTypedUICommand<ClrDumpType>
     {

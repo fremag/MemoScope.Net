@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MemoScope.Core.Data;
 using System;
 
-namespace MemoScope.Modules.DelegateTypes
+namespace MemoScope.Modules.Delegates
 {
     public static class DelegatesAnalysis
     {

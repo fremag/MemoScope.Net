@@ -1,4 +1,4 @@
-﻿namespace MemoScope.Modules.DelegateTypes
+﻿namespace MemoScope.Modules.Delegates.Types
 {
     partial class DelegateTypesModule
     {

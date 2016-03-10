@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
-namespace MemoScope.Modules.DelegateTypes
+namespace MemoScope.Modules.Delegates.Types
 {
     public class DelegatesCommand : AbstractTypedUICommand<ClrDump>
     {

@@ -4,9 +4,9 @@ using WinFwk.UICommands;
 using MemoScope.Core.Data;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MemoScope.Modules.DelegateInstances;
+using MemoScope.Modules.Delegates.Instances;
 
-namespace MemoScope.Modules.DelegateTypes
+namespace MemoScope.Modules.Delegates.Types
 {
     public partial class DelegateTypesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>
     {

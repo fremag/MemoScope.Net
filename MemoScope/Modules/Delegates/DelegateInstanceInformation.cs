@@ -1,7 +1,8 @@
 ﻿using BrightIdeasSoftware;
+using MemoScope.Core.Data;
 using WinFwk.UITools;
 
-namespace MemoScope.Core.Data
+namespace MemoScope.Modules.Delegates
 {
     public class DelegateInstanceInformation : IAddressData, ITypeNameData
     {

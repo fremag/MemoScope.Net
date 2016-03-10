@@ -2,9 +2,9 @@
 using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
 using System.Collections.Generic;
-using MemoScope.Modules.DelegateTypes;
+using MemoScope.Modules.Delegates.Types;
 
-namespace MemoScope.Modules.DelegateInstances
+namespace MemoScope.Modules.Delegates.Instances
 {
     public partial class DelegateInstancesModule : UIClrDumpModule
     {

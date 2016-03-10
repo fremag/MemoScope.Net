@@ -197,23 +197,23 @@
     <Compile Include="Modules\ClrRoots\ClrRootsModule.Designer.cs">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Data\DelegateInstanceInformation.cs" />
-    <Compile Include="Modules\DelegateInstances\DelegateInstancesCommand.cs" />
-    <Compile Include="Modules\DelegateInstances\DelegateInstancesModule.cs">
+    <Compile Include="Modules\Delegates\DelegateInstanceInformation.cs" />
+    <Compile Include="Modules\Delegates\Instances\DelegateInstancesCommand.cs" />
+    <Compile Include="Modules\Delegates\Instances\DelegateInstancesModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\DelegateInstances\DelegateInstancesModule.Designer.cs">
+    <Compile Include="Modules\Delegates\Instances\DelegateInstancesModule.Designer.cs">
       <DependentUpon>DelegateInstancesModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Data\DelegateTypeInformation.cs" />
-    <Compile Include="Modules\DelegateTypes\DelegateTypesModule.cs">
+    <Compile Include="Modules\Delegates\DelegateTypeInformation.cs" />
+    <Compile Include="Modules\Delegates\Types\DelegateTypesModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\DelegateTypes\DelegateTypesModule.Designer.cs">
+    <Compile Include="Modules\Delegates\Types\DelegateTypesModule.Designer.cs">
       <DependentUpon>DelegateTypesModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DelegateTypes\DelegatesAnalysis.cs" />
-    <Compile Include="Modules\DelegateTypes\DelegateTypesCommand.cs" />
+    <Compile Include="Modules\Delegates\DelegatesAnalysis.cs" />
+    <Compile Include="Modules\Delegates\Types\DelegateTypesCommand.cs" />
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -482,10 +482,10 @@
     <EmbeddedResource Include="Modules\Bookmarks\BookmarkModule.resx">
       <DependentUpon>BookmarkModule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DelegateInstances\DelegateInstancesModule.resx">
+    <EmbeddedResource Include="Modules\Delegates\Instances\DelegateInstancesModule.resx">
       <DependentUpon>DelegateInstancesModule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DelegateTypes\DelegateTypesModule.resx">
+    <EmbeddedResource Include="Modules\Delegates\Types\DelegateTypesModule.resx">
       <DependentUpon>DelegateTypesModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">

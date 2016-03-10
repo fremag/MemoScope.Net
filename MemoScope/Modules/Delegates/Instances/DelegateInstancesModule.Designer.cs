@@ -1,4 +1,4 @@
-﻿namespace MemoScope.Modules.DelegateInstances
+﻿namespace MemoScope.Modules.Delegates.Instances
 {
     partial class DelegateInstancesModule
     {

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Diagnostics.Runtime;
 using BrightIdeasSoftware;
 using WinFwk.UITools;
+using MemoScope.Core.Data;
+using MemoScope.Core;
 
-namespace MemoScope.Core.Data
+namespace MemoScope.Modules.Delegates
 {
     public class DelegateTypeInformation : ITypeNameData
     {
