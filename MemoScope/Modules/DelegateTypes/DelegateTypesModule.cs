@@ -3,14 +3,14 @@ using MemoScope.Core.Helpers;
 using WinFwk.UICommands;
 using MemoScope.Core.Data;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+using MemoScope.Modules.DelegateInstances;
 
 namespace MemoScope.Modules.DelegateTypes
 {
     public partial class DelegateTypesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>
     {
-        List<DelegateInformation> delegateInformations;
+        List<DelegateTypeInformation> delegateInformations;
 
         public DelegateTypesModule()
         {
@@ -21,34 +21,30 @@ namespace MemoScope.Modules.DelegateTypes
         {
             ClrDump = clrDump;
             Icon = Properties.Resources.macro_show_all_actions_small;
-            Name = $"#{clrDump.Id} - Delegates";
+            Name = $"#{clrDump.Id} - Delegate Types";
 
-            dlvDelegateTypes.InitColumns<DelegateInformation>();
-            dlvDelegateTypes.SetUpTypeColumn<DelegateInformation>(this);
-            dlvDelegateTypes.SetTypeNameFilter<DelegateInformation>(regexFilterControl);
-
+            dlvDelegateTypes.InitColumns<DelegateTypeInformation>();
+            dlvDelegateTypes.SetUpTypeColumn<DelegateTypeInformation>(this);
+            dlvDelegateTypes.SetTypeNameFilter<DelegateTypeInformation>(regexFilterControl);
         }
 
         public override void Init()
         {
-            base.Init();
-            var types = DelegatesAnalysis.GetDelegateTypes(ClrDump);
-            delegateInformations = types.Select(t => new DelegateInformation(ClrDump, t)).ToList();
+            delegateInformations = DelegatesAnalysis.GetDelegateTypeInformations(ClrDump);
         }
 
         public override void PostInit()
         {
-            base.PostInit();
-            Summary = $"Delegates Types";
+            Summary = $"{delegateInformations.Count:###,###,###,##0} Delegates Types";
             dlvDelegateTypes.Objects = delegateInformations;
-            dlvDelegateTypes.Sort(nameof(DelegateInformation.Count), SortOrder.Descending);
+            dlvDelegateTypes.Sort(nameof(DelegateTypeInformation.Count), SortOrder.Descending);
         }
 
-        ClrDumpType UIDataProvider<ClrDumpType>.Data
+        public ClrDumpType Data
         {
             get
             {
-                var delegateInformation = dlvDelegateTypes.SelectedObject<DelegateInformation>();
+                var delegateInformation = dlvDelegateTypes.SelectedObject<DelegateTypeInformation>();
                 if (delegateInformation != null)
                 {
                     return new ClrDumpType(ClrDump, delegateInformation.ClrType);
@@ -63,7 +59,14 @@ namespace MemoScope.Modules.DelegateTypes
             {
                 return;
             }
-// TODO
+
+            var selectedDelegateType = Data;
+            if(selectedDelegateType == null)
+            {
+                return;
+            }
+
+            DelegateInstancesCommand.Display(this, selectedDelegateType);
         }
     }
 }

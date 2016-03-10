@@ -1,22 +1,20 @@
-﻿using MemoScope.Core;
-using Microsoft.Diagnostics.Runtime;
-using MemoScope.Core.Data;
+﻿using Microsoft.Diagnostics.Runtime;
 using BrightIdeasSoftware;
 using WinFwk.UITools;
 
-namespace MemoScope.Modules.DelegateTypes
+namespace MemoScope.Core.Data
 {
-    public class DelegateInformation : ITypeNameData
+    public class DelegateTypeInformation : ITypeNameData
     {
         ClrDump ClrDump { get; }
         public ClrType ClrType { get; }
 
-        public DelegateInformation(ClrDump clrDump, ClrType clrType)
+        public DelegateTypeInformation(ClrDump clrDump, ClrType clrType, int count, long targetCount)
         {
             ClrDump = clrDump;
             ClrType  = clrType;
-            Count = ClrDump.CountInstances(ClrType);
-            Targets = DelegatesAnalysis.CountTargets(ClrDump, ClrType);
+            Count = count;
+            Targets = targetCount;
         }
 
         [OLVColumn(Title="Type")]

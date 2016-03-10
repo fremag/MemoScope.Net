@@ -1,5 +1,6 @@
 ﻿using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
+using System;
 
 namespace MemoScope.Core.Data
 {
@@ -35,6 +36,11 @@ namespace MemoScope.Core.Data
         }
         public ClrDumpType(ClrDump clrDump, string typeName) : this(clrDump, clrDump.GetClrType(typeName))
         {
+        }
+
+        internal IEnumerable<ulong> EnumerateInstances()
+        {
+            return ClrDump.EnumerateInstances(ClrType);
         }
     }
 }

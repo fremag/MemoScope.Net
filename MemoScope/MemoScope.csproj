@@ -197,7 +197,15 @@
     <Compile Include="Modules\ClrRoots\ClrRootsModule.Designer.cs">
       <DependentUpon>ClrRootsModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DelegateTypes\DelegateTypeInformation.cs" />
+    <Compile Include="Core\Data\DelegateInstanceInformation.cs" />
+    <Compile Include="Modules\DelegateInstances\DelegateInstancesCommand.cs" />
+    <Compile Include="Modules\DelegateInstances\DelegateInstancesModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\DelegateInstances\DelegateInstancesModule.Designer.cs">
+      <DependentUpon>DelegateInstancesModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Data\DelegateTypeInformation.cs" />
     <Compile Include="Modules\DelegateTypes\DelegateTypesModule.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -474,6 +482,9 @@
     <EmbeddedResource Include="Modules\Bookmarks\BookmarkModule.resx">
       <DependentUpon>BookmarkModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\DelegateInstances\DelegateInstancesModule.resx">
+      <DependentUpon>DelegateInstancesModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\DelegateTypes\DelegateTypesModule.resx">
       <DependentUpon>DelegateTypesModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -582,6 +593,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\Large\action_log.png" />
+    <Content Include="Icons\Large\attributes_display.png" />
     <Content Include="Icons\Large\award_star_add.png" />
     <Content Include="Icons\Large\award_star_delete.png" />
     <Content Include="Icons\Large\award_star_gold_blue.png" />
@@ -683,6 +695,7 @@
     <Content Include="Icons\Large\clock_go.png" />
     <Content Include="Icons\Large\clock_stop.png" />
     <Content Include="Icons\Small\application_view_list.png" />
+    <Content Include="Icons\Small\attributes_display.png" />
     <Content Include="Icons\Small\blueprint.png" />
     <Content Include="Icons\Small\borders_accent.png" />
     <Content Include="Icons\Small\broom.png" />
