@@ -627,6 +627,7 @@
     <Content Include="Icons\Large\save_data.png" />
     <Content Include="Icons\Large\scroll_pane_list.png" />
     <Content Include="Icons\Large\subtotal.png" />
+    <Content Include="Icons\Large\table_lightning.png" />
     <Content Include="Icons\Large\text_rotate.png" />
     <Content Include="Icons\Logos\memoscope.svg" />
     <Content Include="Icons\Logos\memoscope_logo.ico" />
@@ -739,6 +740,7 @@
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />
     <Content Include="Icons\Small\subtotal.png" />
+    <Content Include="Icons\Small\table_lightning.png" />
     <Content Include="Icons\Small\text_rotate.png" />
     <Content Include="Icons\Small\text_uppercase.png" />
     <Content Include="libs\x86\dbghelp.dll">
