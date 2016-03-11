@@ -4,10 +4,14 @@ namespace MemoScope.Core.Data
 {
     public class ClrDumpObject : ClrDumpType
     {
+        private ulong address;
+
         public ulong Address { get; }
         public object Value => ClrDump.Eval(GetValue);
         public bool IsInterior { get; private set; }
         public int ArrayLength => ClrDump.Eval( () => ClrType.GetArrayLength(Address));
+
+        public ClrObject ClrObject => new ClrObject(Address, ClrType, IsInterior);
 
         private object GetValue()
         {
@@ -26,6 +30,10 @@ namespace MemoScope.Core.Data
         {
             Address = address;
             IsInterior = isInterior;
+        }
+
+        public ClrDumpObject(ClrDumpType clrDumpType, ulong address) : this(clrDumpType.ClrDump, clrDumpType.ClrType, address)
+        {
         }
     }
 }
