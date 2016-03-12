@@ -4,8 +4,6 @@ namespace MemoScope.Core.Data
 {
     public class ClrDumpObject : ClrDumpType
     {
-        private ulong address;
-
         public ulong Address { get; }
         public object Value => ClrDump.Eval(GetValue);
         public bool IsInterior { get; private set; }

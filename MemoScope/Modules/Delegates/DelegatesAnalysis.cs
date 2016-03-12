@@ -3,6 +3,7 @@ using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
 using MemoScope.Core.Data;
 using System;
+using System.Linq;
 
 namespace MemoScope.Modules.Delegates
 {
@@ -36,45 +37,56 @@ namespace MemoScope.Modules.Delegates
                 }
             }
 
-            return delegates;
+            return delegates.GroupBy(t => t.Name).Select(g => g.First()).ToList();
+        }
+
+        internal static IEnumerable<ClrObject> EnumerateHandlers(ClrObject clrObject)
+        {
+            ClrObject target = clrObject[TargetFieldName];
+            ulong targetAddress = target.Address;
+
+            if (targetAddress != clrObject.Address)
+            {
+                yield return clrObject;
+            }
+            else
+            {
+                var invocCount = clrObject[InvocationCountFieldName];
+                var v = invocCount.SimpleValue;
+                var invocCountValue = (long)v;
+                var invocList = clrObject[InvocationListFieldName];
+                for (int i = 0; i < invocCountValue; i++)
+                {
+                    var targetObject = invocList[i];
+                    yield return targetObject;
+                }
+            }
         }
 
         internal static List<DelegateTargetInformation> GetDelegateTargetInformations(ClrDumpObject clrDumpObject)
         {
             var targetInformations = new List<DelegateTargetInformation>();
             ClrObject clrObject = clrDumpObject.ClrObject;
-            ClrObject target = clrObject[TargetFieldName];
-            ulong targetAddress = target.Address;
-
-            if (targetAddress != clrObject.Address)
+            ClrDump clrDump = clrDumpObject.ClrDump;
+            foreach (var handlerObject in EnumerateHandlers(clrObject))
             {
-                var targetType = clrDumpObject.ClrDump.GetObjectType(targetAddress);
-                var methPtrObj = clrObject[MethodPtrFieldName];
-                var methPtrLong = (long)methPtrObj.SimpleValue;
-                var methPtr = (ulong)methPtrLong;
-                var methInfo = GetDelegateMethod(methPtr, clrDumpObject.ClrDump);
-                targetInformations.Add(new DelegateTargetInformation(targetAddress, new ClrDumpType( clrDumpObject.ClrDump, targetType), methInfo));
-                return targetInformations;
+                var target = handlerObject[TargetFieldName];
+                var methInfo = GetDelegateMethod(clrDump, handlerObject, target);
+                var targetInfo = new DelegateTargetInformation(target.Address, new ClrDumpType(clrDump, target.Type), methInfo);
+                targetInformations.Add(targetInfo);
             } 
 
-            var invocCount = clrObject[InvocationCountFieldName];
-            var v = invocCount.SimpleValue;
-            var invocCountValue = (long)v;
-            var invocList = clrObject[InvocationListFieldName];
-            for(int i=0; i < invocCountValue ; i++)
-            {
-                var targetObject = invocList[i];
-                target = targetObject[TargetFieldName];
-                targetAddress = target.Address;
-                var targetType = clrDumpObject.ClrDump.GetObjectType(targetAddress);
-                var methPtrObj = targetObject[MethodPtrFieldName];
-                var methPtrLong = (long)methPtrObj.SimpleValue;
-                var methPtr = (ulong)methPtrLong;
-                var methInfo = GetDelegateMethod(methPtr, clrDumpObject.ClrDump);
-                targetInformations.Add(new DelegateTargetInformation(targetAddress, new ClrDumpType(clrDumpObject.ClrDump, targetType), methInfo));
-            }
-
             return targetInformations;
+        }
+
+        private static ClrMethod GetDelegateMethod(ClrDump clrDump, ClrObject handler, ClrObject target)
+        {
+            var targetType = target.Type;
+            var methPtrObj = handler[MethodPtrFieldName];
+            var methPtrLong = (long)methPtrObj.SimpleValue;
+            var methPtr = (ulong)methPtrLong;
+            var methInfo = GetDelegateMethod(methPtr, clrDump);
+            return methInfo;
         }
 
         // Thanks to Lee Culver and Jeff Cyr
@@ -153,6 +165,81 @@ namespace MemoScope.Modules.Delegates
             var invocCount = clrObject[invocCountField];
             var value = invocCount.SimpleValue;
             return (long)value;
+        }
+
+        public static List<LoneTargetInformation> GetLoneTargetInformations(ClrDump clrDump)
+        {
+            Dictionary<ClrObject, ClrObject> loneTargetAddresses = new Dictionary<ClrObject, ClrObject>();
+            // For each instance of every delegate types 
+            // let's find all the target objects
+            // and select those with only referenced once
+            var types = GetDelegateTypes(clrDump);
+            foreach(var type in types)
+            {
+                foreach (var address in clrDump.EnumerateInstances(type)) {
+                    var handlerObject = new ClrObject(address, type);
+                    foreach(var subHandlerObject in EnumerateHandlers(handlerObject))
+                    {
+                        var target = subHandlerObject[TargetFieldName];
+                        int count = clrDump.CountReferences(target.Address);
+                        if( count == 1)
+                        {
+                            loneTargetAddresses[target] = subHandlerObject;
+                        }
+                    }
+                }
+            }
+
+            List<LoneTargetInformation> loneTargets = new List<LoneTargetInformation>();
+
+            // foreach lone target, in its reference tree, we try to find the first 
+            // object that is not a delegate type or an array of object (ie invocationList)
+            var delegateType = clrDump.GetClrType(typeof(MulticastDelegate).FullName);
+            var arrayObjType = clrDump.GetClrType(typeof(object[]).FullName);
+            HashSet<ulong> visited = new HashSet<ulong>();
+            foreach (var kvp in loneTargetAddresses)
+            {
+                var loneTarget = kvp.Key;
+                var handler = kvp.Value;
+                var methInfo = GetDelegateMethod(clrDump, handler, loneTarget);
+                visited.Clear();
+                ulong ownerAddress = FindOwner(handler.Address, clrDump, delegateType, arrayObjType, visited);
+                ClrObject owner = new ClrObject(ownerAddress, clrDump.GetObjectType(ownerAddress));
+                var loneTargetInformation = new LoneTargetInformation(clrDump, loneTarget, methInfo, owner);
+                loneTargets.Add(loneTargetInformation);
+            }
+            return loneTargets;
+        }
+
+        public static ulong FindOwner(ulong address, ClrDump clrDump, ClrType delegateType, ClrType arrayObjType, HashSet<ulong> visited)
+        {
+            if( visited.Contains(address))
+            {
+                return 0;
+            }
+
+            var type = clrDump.GetObjectType(address);
+            if (type == null) {
+                return 0;
+            }
+            if( type != arrayObjType && (type.BaseType == null || type.BaseType != delegateType ) )
+            {
+                return address;
+            }
+
+            visited.Add(address);
+            var refs = clrDump.GetReferences(address);
+
+            foreach(var newAddress in refs)
+            {
+                var owner = FindOwner(newAddress, clrDump, delegateType, arrayObjType, visited);
+                if( owner != 0)
+                {
+                    return owner;
+                }
+            }
+
+            return 0;
         }
     }
 }

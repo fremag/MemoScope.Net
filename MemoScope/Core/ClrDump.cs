@@ -158,10 +158,12 @@ namespace MemoScope.Core
         {
             return worker.Eval(func);
         }
+
         public void Run(Action action)
         {
             worker.Run(action);
         }
+
         public object GetSimpleValue(ulong address, ClrType type)
         {
             var obj = Eval(() => GetSimpleValueImpl(address, type));
@@ -227,8 +229,14 @@ namespace MemoScope.Core
 
         public bool HasReferences(ulong address)
         {
-            var hasReferences = cache.HasReferences(address);
+            var hasReferences = cache.CountReferences(address) > 0;
             return hasReferences;
+        }
+
+        public int CountReferences(ulong address)
+        {
+            var count = cache.CountReferences(address) ;
+            return count;
         }
 
         public string GetObjectTypeName(ulong address)

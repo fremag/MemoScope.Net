@@ -34,6 +34,8 @@ namespace MemoScope.Core.Cache
         private SQLiteCommand cmdInsertReference;
         private SQLiteParameter paramRefByAddress_InsertReference;
         private SQLiteParameter paramInstanceAddress_InsertReference;
+        private SQLiteCommand cmdCountReferences;
+        private SQLiteParameter paramInstanceAddress_CountReferences;
 
         public ClrDumpCache(ClrDump clrDump)
         {
@@ -271,22 +273,22 @@ namespace MemoScope.Core.Cache
             return list;
         }
 
-        public bool HasReferences(ulong instanceAddress)
+        public int CountReferences(ulong instanceAddress)
         {
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = cxion;
-            cmd.CommandText = "SELECT count(*) FROM InstanceReferences WHERE InstanceAddress=" + instanceAddress;
-            SQLiteDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            paramInstanceAddress_CountReferences.Value = instanceAddress;
+            using (SQLiteDataReader dr = cmdCountReferences.ExecuteReader())
             {
-                var count = dr.GetInt32(0);
-                return count > 0;
+                while (dr.Read())
+                {
+                    var count = dr.GetInt32(0);
+                    return count;
+                }
             }
-            return false;
+            return 0;
         }
-#endregion
+        #endregion
 
-private void CreateIndices()
+        private void CreateIndices()
         {
             RunCommand("CREATE UNIQUE INDEX IdxTypes ON Types (Id)");
             RunCommand("CREATE INDEX IdxInstances ON Instances (TypeId)");
@@ -317,7 +319,7 @@ private void CreateIndices()
             cmdInsertReference = cxion.PrepareCommand("INSERT INTO InstanceReferences(InstanceAddress, RefByAddress ) VALUES (@InstanceAddress, @RefByAddress)");
             paramInstanceAddress_InsertReference = cmdInsertReference.CreateParameter("InstanceAddress");
             paramRefByAddress_InsertReference = cmdInsertReference.CreateParameter("RefByAddress");
-        }
+    }
 
         #region SQL 
         private void Open(string dbPath)
@@ -325,6 +327,9 @@ private void CreateIndices()
             string cxionString = $"Data Source={dbPath};Version=3;Page Size=65536;journal_mode=OFF;synchronous=OFF;count_changes=OFF;temp_store=MEMORY";
             cxion = new SQLiteConnection(cxionString);
             cxion.Open();
+
+            cmdCountReferences = cxion.PrepareCommand("SELECT count(*) FROM InstanceReferences WHERE InstanceAddress= @instanceAddress");
+            paramInstanceAddress_CountReferences = cmdCountReferences.CreateParameter("@instanceAddress");
         }
 
         private void RunCommand(string sql)

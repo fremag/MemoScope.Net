@@ -89,5 +89,19 @@ namespace MemoScope.Core.Data
 
             return new ClrObject(fieldAddress, actualType, !type.IsObjectReference);
         }
+
+        public override int GetHashCode()
+        {
+            return Address.GetHashCode();
+        }
+
+        public override bool Equals(object o)
+        {
+            if( o is ClrObject)
+            {
+                return Address == ((ClrObject)o).Address;
+            }
+            return false;
+        }
     }
 }
