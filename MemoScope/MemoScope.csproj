@@ -767,6 +767,12 @@
     <Content Include="Icons\Small\table_lightning.png" />
     <Content Include="Icons\Small\text_rotate.png" />
     <Content Include="Icons\Small\text_uppercase.png" />
+    <Content Include="libs\x64\dbghelp.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x64\symsrv.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="libs\x86\dbghelp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
