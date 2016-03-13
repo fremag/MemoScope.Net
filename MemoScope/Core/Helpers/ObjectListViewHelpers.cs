@@ -17,13 +17,17 @@ namespace MemoScope.Core.Helpers
     {
         public static void SetUpTypeColumn<T>(this ObjectListView listView, UIClrDumpModule dumpModule=null) where T : ITypeNameData
         {
-            OLVColumn col = listView.AllColumns.First(c => c.Name == nameof(ITypeNameData.TypeName));
-            SetUpTypeColumn(listView, col, dumpModule);
+            SetUpTypeColumn(listView, nameof(ITypeNameData.TypeName), dumpModule);
         }
 
-        public static void SetUpTypeColumn(this ObjectListView listView, OLVColumn col, UIClrDumpModule dumpModule=null)
+        public static void SetUpTypeColumn(this ObjectListView listView, string colType, UIClrDumpModule dumpModule = null, string suffix=null) 
         {
-            
+            OLVColumn col = listView.AllColumns.First(c => c.Name == colType);
+            SetUpTypeColumn(listView, col, dumpModule, suffix);
+        }
+
+        public static void SetUpTypeColumn(this ObjectListView listView, OLVColumn col, UIClrDumpModule dumpModule=null, string suffix = null)
+        {
             listView.FormatCell += (sender, e) =>
             {
                 if (e.Column == col)
@@ -62,7 +66,7 @@ namespace MemoScope.Core.Helpers
                         return new TypeInstancesAddressList(dumpModule.ClrDump, type);
                     }
                     return null;
-                }, dumpModule, "All");
+                }, dumpModule, suffix != null ? "All" : "All - "+suffix);
                 listView.RegisterDataProvider(() =>
                 {
                     var cellItem = listView.SelectedItem.SubItems[col.Index];
@@ -79,7 +83,8 @@ namespace MemoScope.Core.Helpers
                         return new ClrDumpType(dumpModule.ClrDump, type);
                     }
                     return null;
-                }, dumpModule);
+                }, dumpModule, suffix);
+                listView.AddMenuSeparator();
             }
             listView.UseCellFormatEvents = true;
         }
@@ -91,18 +96,18 @@ namespace MemoScope.Core.Helpers
             SetUpAddressColumn(listView, col, dumpModule);
             listView.AllColumns.Add(col);
         }
-        public static void SetUpAddressColumn<T>(this ObjectListView listView, UIClrDumpModule dumpModule) where T : IAddressData
+        public static void SetUpAddressColumn<T>(this ObjectListView listView, UIClrDumpModule dumpModule, string suffix = null) where T : IAddressData
         {
-            SetUpAddressColumn(listView, nameof(IAddressData.Address), dumpModule);
+            SetUpAddressColumn(listView, nameof(IAddressData.Address), dumpModule, suffix);
         }
 
-        public static void SetUpAddressColumn(this ObjectListView listView, string colName, UIClrDumpModule dumpModule)
+        public static void SetUpAddressColumn(this ObjectListView listView, string colName, UIClrDumpModule dumpModule, string suffix = null)
         {
             var col = listView.AllColumns.First(c => c.Name == colName);
-            SetUpAddressColumn(listView, col, dumpModule);
+            SetUpAddressColumn(listView, col, dumpModule, suffix);
         }
 
-        public static void SetUpAddressColumn(this ObjectListView listView, OLVColumn col, UIClrDumpModule dumpModule)
+        public static void SetUpAddressColumn(this ObjectListView listView, OLVColumn col, UIClrDumpModule dumpModule, string suffix = null)
         {
             col.AspectToStringFormat = "{0:X}";
             col.TextAlign = HorizontalAlignment.Right;
@@ -151,7 +156,7 @@ namespace MemoScope.Core.Helpers
                         return clrDumpObject;
                     }
                     return null;
-                }, dumpModule
+                }, dumpModule, suffix
             );
             listView.FormatCell += (o, e) =>
             {
