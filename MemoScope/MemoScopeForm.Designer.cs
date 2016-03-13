@@ -31,15 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemoScopeForm));
             this.SuspendLayout();
             // 
-            // MemoScope
+            // MemoScopeForm
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 744);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MemoScope";
+            this.Name = "MemoScopeForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MemoScope_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MemoScopeForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MemoScopeForm_DragEnter);
             this.ResumeLayout(false);
 
         }

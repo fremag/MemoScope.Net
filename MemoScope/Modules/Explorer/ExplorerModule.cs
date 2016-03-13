@@ -102,6 +102,12 @@ namespace MemoScope.Modules.Explorer
             MessageBus.SendMessage(new OpenDumpRequest(fileInfos));
         }
 
+        internal void SetUp(string directory)
+        {
+            tbRootDir.Text = directory;
+            RefreshRootDir();
+        }
+
         private void btnLoad_Click(object sender, System.EventArgs e)
         {
             var fileInfos = dtlvExplorer.CheckedObjects.OfType<AbstractDumpExplorerData>().Where(data => data.FileInfo != null).Select(data => data.FileInfo).ToList();
