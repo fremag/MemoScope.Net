@@ -3,6 +3,31 @@
 ![Memoscope.Net Logo](https://raw.githubusercontent.com/fremag/MemoScope.Net/master/MemoScope/Icons/Logos/memoscope_logo.png) | Dump and analyze .Net applications memory
 ---------------------|----------------------
 
+# Features
+## Dump process memory
+![Dump Process Memory](Screenshots/memoscope_process_dump.png "Dump your process when conditions are satisified")
+
+## Heap statistics
+![](Screenshots/memoscope_typestats.png "")
+
+## Query instances
+![](Screenshots/memoscope_instances_filter.png "")
+
+## Instances content and references
+![](Screenshots/memoscope_instance_details.png "")
+
+## Compare dumps
+![](Screenshots/memoscope_dumpdiff.png "")
+
+## Threads, Stacks
+![](Screenshots/memoscope_threads.png "")
+
+## Deadlocks
+![](Screenshots/memoscope_deadlocks.png "")
+
+## Delegates
+![](Screenshots/memoscope_delegates.png "")
+
 
 # Thanks to...
 
