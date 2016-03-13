@@ -4,7 +4,7 @@
 ---------------------|----------------------
 
 # Features
-
+ 
 ## Heap statistics
 ![](Screenshots/memoscope_typestats.png "")
 
@@ -28,6 +28,14 @@
 
 ## Dump process memory
 ![Dump Process Memory](Screenshots/memoscope_process_dump.png "Dump your process when conditions are satisified")
+
+## Memoscope API
+Request a dump in your application code:
+```C#
+var client = new MemoScopeClient();
+client.Open();
+client.DumpMe(Process.GetCurrentProcess().Id);
+```
 
 # Thanks to...
 
