@@ -242,6 +242,7 @@
     <Compile Include="Modules\Arrays\ArraysModule.Designer.cs">
       <DependentUpon>ArraysModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Explorer\ExplorerCommand.cs" />
     <Compile Include="Modules\Inspector\InspectorCommand.cs" />
     <Compile Include="Modules\Inspector\InspectorModule.cs">
       <SubType>UserControl</SubType>
