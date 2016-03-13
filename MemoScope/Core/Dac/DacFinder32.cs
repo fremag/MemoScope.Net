@@ -6,7 +6,7 @@ namespace MemoScope.Core.Dac
 {
     public class DacFinder32 : AbstractDacFinder
     {
-        private const string libDbghelpDll = "libs\\x86\\dbghelp.dll";
+        private const string libDbghelpDll = "libs\\_x86\\dbghelp.dll";
 
         public DacFinder32(string searchPath) : base(searchPath)
         {

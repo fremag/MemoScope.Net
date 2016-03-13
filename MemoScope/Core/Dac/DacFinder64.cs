@@ -6,7 +6,7 @@ namespace MemoScope.Core.Dac
 {
     public class DacFinder64 : AbstractDacFinder
     {
-        private const string libDbghelpDll = "libs\\x64\\dbghelp.dll";
+        private const string libDbghelpDll = "libs\\_x64\\dbghelp.dll";
 
         [DllImport(libDbghelpDll, EntryPoint = "SymInitialize", SetLastError = true)]
         private static extern bool SymInitialize64(IntPtr hProcess, string symPath, bool fInvadeProcess);
