@@ -124,10 +124,10 @@
   <data name="bow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\large\bow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clock_go" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="clock_go_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\clock_go.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clock_stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="clock_stop_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\clock_stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ddr_memory" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -226,7 +226,7 @@
   <data name="color_management" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\color_management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="compile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="compile_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\compile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="filter_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -390,5 +390,14 @@
   </data>
   <data name="table_lightning_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\table_lightning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="compile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\large\compile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clock_go" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\large\clock_go.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clock_stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\large\clock_stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -74,7 +74,7 @@ namespace MemoScope.Modules.Process
             this.cbProcess.FormattingEnabled = true;
             this.cbProcess.Location = new System.Drawing.Point(147, 12);
             this.cbProcess.Name = "cbProcess";
-            this.cbProcess.Size = new System.Drawing.Size(764, 24);
+            this.cbProcess.Size = new System.Drawing.Size(752, 24);
             this.cbProcess.TabIndex = 1;
             this.cbProcess.DropDown += new System.EventHandler(this.cbProcess_DropDown);
             this.cbProcess.SelectedValueChanged += new System.EventHandler(this.cbProcess_SelectedValueChanged);
@@ -95,15 +95,17 @@ namespace MemoScope.Modules.Process
             this.tbRootDir.Location = new System.Drawing.Point(147, 39);
             this.tbRootDir.Name = "tbRootDir";
             this.tbRootDir.ReadOnly = true;
-            this.tbRootDir.Size = new System.Drawing.Size(764, 22);
+            this.tbRootDir.Size = new System.Drawing.Size(752, 22);
             this.tbRootDir.TabIndex = 6;
             // 
             // btnDump
             // 
+            this.btnDump.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDump.AutoSize = true;
             this.btnDump.Image = global::MemoScope.Properties.Resources.compile;
-            this.btnDump.Location = new System.Drawing.Point(184, 17);
+            this.btnDump.Location = new System.Drawing.Point(194, 12);
             this.btnDump.Name = "btnDump";
-            this.btnDump.Size = new System.Drawing.Size(37, 23);
+            this.btnDump.Size = new System.Drawing.Size(38, 38);
             this.btnDump.TabIndex = 7;
             this.toolTip1.SetToolTip(this.btnDump, "Dump Process Now !");
             this.btnDump.UseVisualStyleBackColor = true;
@@ -111,12 +113,13 @@ namespace MemoScope.Modules.Process
             // 
             // cbClock
             // 
+            this.cbClock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbClock.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbClock.AutoSize = true;
             this.cbClock.Image = global::MemoScope.Properties.Resources.clock_go;
-            this.cbClock.Location = new System.Drawing.Point(159, 17);
+            this.cbClock.Location = new System.Drawing.Point(150, 12);
             this.cbClock.Name = "cbClock";
-            this.cbClock.Size = new System.Drawing.Size(22, 22);
+            this.cbClock.Size = new System.Drawing.Size(38, 38);
             this.cbClock.TabIndex = 10;
             this.toolTip1.SetToolTip(this.cbClock, "Start timer");
             this.cbClock.UseVisualStyleBackColor = true;
@@ -139,7 +142,7 @@ namespace MemoScope.Modules.Process
             this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer2.Location = new System.Drawing.Point(3, 67);
+            this.splitContainer2.Location = new System.Drawing.Point(3, 85);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -150,8 +153,8 @@ namespace MemoScope.Modules.Process
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.gbTriggers);
-            this.splitContainer2.Size = new System.Drawing.Size(1143, 739);
-            this.splitContainer2.SplitterDistance = 369;
+            this.splitContainer2.Size = new System.Drawing.Size(1143, 721);
+            this.splitContainer2.SplitterDistance = 360;
             this.splitContainer2.TabIndex = 9;
             // 
             // gbProcess
@@ -160,7 +163,7 @@ namespace MemoScope.Modules.Process
             this.gbProcess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbProcess.Location = new System.Drawing.Point(0, 0);
             this.gbProcess.Name = "gbProcess";
-            this.gbProcess.Size = new System.Drawing.Size(1143, 369);
+            this.gbProcess.Size = new System.Drawing.Size(1143, 360);
             this.gbProcess.TabIndex = 1;
             this.gbProcess.TabStop = false;
             this.gbProcess.Text = "Process";
@@ -170,7 +173,7 @@ namespace MemoScope.Modules.Process
             this.processInfoViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.processInfoViewer.Location = new System.Drawing.Point(3, 18);
             this.processInfoViewer.Name = "processInfoViewer";
-            this.processInfoViewer.Size = new System.Drawing.Size(1137, 348);
+            this.processInfoViewer.Size = new System.Drawing.Size(1137, 339);
             this.processInfoViewer.TabIndex = 0;
             // 
             // gbTriggers
@@ -179,7 +182,7 @@ namespace MemoScope.Modules.Process
             this.gbTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbTriggers.Location = new System.Drawing.Point(0, 0);
             this.gbTriggers.Name = "gbTriggers";
-            this.gbTriggers.Size = new System.Drawing.Size(1143, 366);
+            this.gbTriggers.Size = new System.Drawing.Size(1143, 357);
             this.gbTriggers.TabIndex = 0;
             this.gbTriggers.TabStop = false;
             this.gbTriggers.Text = "Triggers";
@@ -190,7 +193,7 @@ namespace MemoScope.Modules.Process
             this.processTriggersControl.Location = new System.Drawing.Point(3, 18);
             this.processTriggersControl.MessageBus = null;
             this.processTriggersControl.Name = "processTriggersControl";
-            this.processTriggersControl.Size = new System.Drawing.Size(1137, 345);
+            this.processTriggersControl.Size = new System.Drawing.Size(1137, 336);
             this.processTriggersControl.TabIndex = 0;
             // 
             // gbDumpCommands
@@ -201,18 +204,20 @@ namespace MemoScope.Modules.Process
             this.gbDumpCommands.Controls.Add(this.cbPeriod);
             this.gbDumpCommands.Controls.Add(this.lblPeriod);
             this.gbDumpCommands.Controls.Add(this.btnDump);
-            this.gbDumpCommands.Location = new System.Drawing.Point(917, 8);
+            this.gbDumpCommands.Location = new System.Drawing.Point(905, 3);
             this.gbDumpCommands.Name = "gbDumpCommands";
-            this.gbDumpCommands.Size = new System.Drawing.Size(226, 60);
+            this.gbDumpCommands.Size = new System.Drawing.Size(238, 76);
             this.gbDumpCommands.TabIndex = 10;
             this.gbDumpCommands.TabStop = false;
             this.gbDumpCommands.Text = "Dump";
             // 
             // lblNextTick
             // 
-            this.lblNextTick.Location = new System.Drawing.Point(6, 44);
+            this.lblNextTick.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNextTick.Location = new System.Drawing.Point(6, 54);
             this.lblNextTick.Name = "lblNextTick";
-            this.lblNextTick.Size = new System.Drawing.Size(214, 15);
+            this.lblNextTick.Size = new System.Drawing.Size(226, 15);
             this.lblNextTick.TabIndex = 11;
             this.lblNextTick.Visible = false;
             // 
@@ -231,7 +236,7 @@ namespace MemoScope.Modules.Process
             "01:00:00"});
             this.cbPeriod.Location = new System.Drawing.Point(69, 17);
             this.cbPeriod.Name = "cbPeriod";
-            this.cbPeriod.Size = new System.Drawing.Size(84, 24);
+            this.cbPeriod.Size = new System.Drawing.Size(73, 24);
             this.cbPeriod.TabIndex = 9;
             this.cbPeriod.Text = "00:00:01";
             // 

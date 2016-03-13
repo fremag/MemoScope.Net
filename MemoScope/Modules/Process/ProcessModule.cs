@@ -267,10 +267,14 @@ namespace MemoScope.Modules.Process
                     Log("Can't parse timespan: '" + timespanStr + "'", LogLevelType.Error);
                     cbClock.Checked = false;
                 }
+                cbClock.Image = Properties.Resources.clock_stop;
+                toolTip1.SetToolTip(cbClock, "Stop timer");
             }
             else
             {
                 timer.Enabled = false;
+                cbClock.Image = Properties.Resources.clock_go;
+                toolTip1.SetToolTip(cbClock, "Start timer");
             }
             RefreshNextTick();
         }
