@@ -4,8 +4,6 @@
 ---------------------|----------------------
 
 # Features
-## Dump process memory
-![Dump Process Memory](Screenshots/memoscope_process_dump.png "Dump your process when conditions are satisified")
 
 ## Heap statistics
 ![](Screenshots/memoscope_typestats.png "")
@@ -28,6 +26,8 @@
 ## Delegates
 ![](Screenshots/memoscope_delegates.png "")
 
+## Dump process memory
+![Dump Process Memory](Screenshots/memoscope_process_dump.png "Dump your process when conditions are satisified")
 
 # Thanks to...
 
