@@ -26,12 +26,12 @@ namespace MemoScope.Modules.Delegates
         public string TypeName => target.Type.Name;
 
         [OLVColumn]
-        public string Method => methInfo.GetFullSignature();
+        public string Method => methInfo?.GetFullSignature();
 
         [OLVColumn]
         public ulong OwnerAddress => owner.Address;
 
         [OLVColumn]
-        public string OwnerType => owner.Type.Name;
+        public string OwnerType => owner.Type?.Name;
     }
 }

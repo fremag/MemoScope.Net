@@ -25,9 +25,9 @@ namespace MemoScope.Modules.Delegates
         public ulong Address { get; }
 
         [OLVColumn(Title="Type")]
-        public string TypeName => ClrDumpType.TypeName;
+        public string TypeName => ClrDumpType?.TypeName;
 
         [OLVColumn(Width=500)]
-        public string Method => methInfo.GetFullSignature();
+        public string Method => methInfo?.GetFullSignature();
     }
 }
