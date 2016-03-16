@@ -16,7 +16,7 @@ namespace MemoDummy
         {
             var client = new MemoScopeClient();
             client.Open();
-            client.DumpMe(Process.GetCurrentProcess().Id);
+            client.DumpMe();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 
@@ -11,9 +12,14 @@ namespace MemoScopeApi
         {
         }
 
-        public void DumpMe(int processId)
+        public void DumpProcess(int processId)
         {
             Channel.DumpMe(processId);
+        }
+
+        public void DumpMe()
+        {
+            DumpProcess(Process.GetCurrentProcess().Id);
         }
     }
 }
