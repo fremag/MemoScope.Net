@@ -34,7 +34,7 @@ Request a dump in your application code:
 ```C#
 var client = new MemoScopeClient();
 client.Open();
-client.DumpMe(Process.GetCurrentProcess().Id);
+client.DumpMe();
 ```
 
 # Thanks to...
