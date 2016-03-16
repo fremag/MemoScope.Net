@@ -33,6 +33,9 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.stackTraceModule = new MemoScope.Modules.StackTrace.StackTraceModule();
             this.stackModule = new MemoScope.Modules.Stack.StackModule();
+            this.gbThreads = new System.Windows.Forms.GroupBox();
+            this.gbCallStack = new System.Windows.Forms.GroupBox();
+            this.gbStack = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dlvThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -42,6 +45,9 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.gbThreads.SuspendLayout();
+            this.gbCallStack.SuspendLayout();
+            this.gbStack.SuspendLayout();
             this.SuspendLayout();
             // 
             // dlvThreads
@@ -52,11 +58,11 @@
             this.dlvThreads.HideSelection = false;
             this.dlvThreads.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvThreads.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvThreads.Location = new System.Drawing.Point(0, 0);
+            this.dlvThreads.Location = new System.Drawing.Point(3, 18);
             this.dlvThreads.Name = "dlvThreads";
             this.dlvThreads.ShowGroups = false;
             this.dlvThreads.ShowImagesOnSubItems = true;
-            this.dlvThreads.Size = new System.Drawing.Size(762, 254);
+            this.dlvThreads.Size = new System.Drawing.Size(756, 233);
             this.dlvThreads.TabIndex = 0;
             this.dlvThreads.UseCompatibleStateImageBehavior = false;
             this.dlvThreads.View = System.Windows.Forms.View.Details;
@@ -71,7 +77,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dlvThreads);
+            this.splitContainer1.Panel1.Controls.Add(this.gbThreads);
             // 
             // splitContainer1.Panel2
             // 
@@ -88,11 +94,11 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.stackTraceModule);
+            this.splitContainer2.Panel1.Controls.Add(this.gbCallStack);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.stackModule);
+            this.splitContainer2.Panel2.Controls.Add(this.gbStack);
             this.splitContainer2.Size = new System.Drawing.Size(762, 225);
             this.splitContainer2.SplitterDistance = 254;
             this.splitContainer2.TabIndex = 0;
@@ -100,20 +106,53 @@
             // stackTraceModule
             // 
             this.stackTraceModule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stackTraceModule.Location = new System.Drawing.Point(0, 0);
+            this.stackTraceModule.Location = new System.Drawing.Point(3, 18);
             this.stackTraceModule.Name = "stackTraceModule";
-            this.stackTraceModule.Size = new System.Drawing.Size(254, 225);
+            this.stackTraceModule.Size = new System.Drawing.Size(248, 204);
             this.stackTraceModule.TabIndex = 0;
             this.stackTraceModule.UIModuleParent = this.stackTraceModule;
             // 
             // stackModule
             // 
             this.stackModule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stackModule.Location = new System.Drawing.Point(0, 0);
+            this.stackModule.Location = new System.Drawing.Point(3, 18);
             this.stackModule.Name = "stackModule";
-            this.stackModule.Size = new System.Drawing.Size(504, 225);
+            this.stackModule.Size = new System.Drawing.Size(498, 204);
             this.stackModule.TabIndex = 0;
             this.stackModule.UIModuleParent = this.stackModule;
+            // 
+            // gbThreads
+            // 
+            this.gbThreads.Controls.Add(this.dlvThreads);
+            this.gbThreads.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbThreads.Location = new System.Drawing.Point(0, 0);
+            this.gbThreads.Name = "gbThreads";
+            this.gbThreads.Size = new System.Drawing.Size(762, 254);
+            this.gbThreads.TabIndex = 1;
+            this.gbThreads.TabStop = false;
+            this.gbThreads.Text = "Threads";
+            // 
+            // gbCallStack
+            // 
+            this.gbCallStack.Controls.Add(this.stackTraceModule);
+            this.gbCallStack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbCallStack.Location = new System.Drawing.Point(0, 0);
+            this.gbCallStack.Name = "gbCallStack";
+            this.gbCallStack.Size = new System.Drawing.Size(254, 225);
+            this.gbCallStack.TabIndex = 2;
+            this.gbCallStack.TabStop = false;
+            this.gbCallStack.Text = "Call Stack";
+            // 
+            // gbStack
+            // 
+            this.gbStack.Controls.Add(this.stackModule);
+            this.gbStack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbStack.Location = new System.Drawing.Point(0, 0);
+            this.gbStack.Name = "gbStack";
+            this.gbStack.Size = new System.Drawing.Size(504, 225);
+            this.gbStack.TabIndex = 2;
+            this.gbStack.TabStop = false;
+            this.gbStack.Text = "Stack";
             // 
             // ThreadsModule
             // 
@@ -131,6 +170,9 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.gbThreads.ResumeLayout(false);
+            this.gbCallStack.ResumeLayout(false);
+            this.gbStack.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -142,5 +184,8 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private StackTrace.StackTraceModule stackTraceModule;
         private Stack.StackModule stackModule;
+        private System.Windows.Forms.GroupBox gbThreads;
+        private System.Windows.Forms.GroupBox gbCallStack;
+        private System.Windows.Forms.GroupBox gbStack;
     }
 }
