@@ -230,6 +230,15 @@
     </Compile>
     <Compile Include="Modules\Delegates\DelegatesAnalysis.cs" />
     <Compile Include="Modules\Delegates\Types\DelegateTypesCommand.cs" />
+    <Compile Include="Modules\Disposables\DisposableAnalysis.cs" />
+    <Compile Include="Modules\Disposables\DisposableTypeInformation.cs" />
+    <Compile Include="Modules\Disposables\DisposableTypesCommand.cs" />
+    <Compile Include="Modules\Disposables\DisposableTypesModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Disposables\DisposableTypesModule.Designer.cs">
+      <DependentUpon>DisposableTypesModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -516,6 +525,9 @@
     <EmbeddedResource Include="Modules\Delegates\Types\DelegateTypesModule.resx">
       <DependentUpon>DelegateTypesModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Disposables\DisposableTypesModule.resx">
+      <DependentUpon>DisposableTypesModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -647,6 +659,7 @@
     <Content Include="Icons\Large\plugin_link.png" />
     <Content Include="Icons\Large\processor.png" />
     <Content Include="Icons\Large\recommended_summart_table.png" />
+    <Content Include="Icons\Large\recycle_bag.png" />
     <Content Include="Icons\Large\red_line.png" />
     <Content Include="Icons\Large\save_data.png" />
     <Content Include="Icons\Large\scroll_pane_list.png" />
@@ -760,6 +773,7 @@
     <Content Include="Icons\Small\plugin_link.png" />
     <Content Include="Icons\Small\processor.png" />
     <Content Include="Icons\Small\recommended_summart_table.png" />
+    <Content Include="Icons\Small\recycle_bag.png" />
     <Content Include="Icons\Small\red_line.png" />
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />

@@ -17,7 +17,7 @@ namespace UnitTestProject
 
             MemoScopeClient client = new MemoScopeClient();
             Debug.WriteLine(server.State);
-            client.DumpMe(processId);
+            client.DumpProcess(processId);
 
             Assert.That(myService.DumpMeReceived, Is.EqualTo(1));
         }
