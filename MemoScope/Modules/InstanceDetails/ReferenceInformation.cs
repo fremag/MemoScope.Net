@@ -26,7 +26,7 @@ namespace MemoScope.Modules.InstanceDetails
         public ReferenceInformation(ClrDump clrDump, ulong address, ulong refAddress) : this(clrDump, address)
         {
             FieldName = ClrDump.GetFieldNameReference(refAddress, address);
-        }
+       }
 
         public ReferenceInformation(ClrDump clrDump, ulong address)
         {
