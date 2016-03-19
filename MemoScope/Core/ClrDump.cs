@@ -29,7 +29,7 @@ namespace MemoScope.Core
 
         public List<ClrHandle> Handles => Runtime.EnumerateHandles().ToList();
         public List<ulong> FinalizerQueueObjectAddresses => Runtime.EnumerateFinalizerQueueObjectAddresses().ToList();
-        public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy( address => GetObjectType(address));
+        public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy(address => GetObjectType(address));
         public IEnumerable<ClrRoot> ClrRoots => Runtime.GetHeap().EnumerateRoots();
         public List<BlockingObject> BlockingObjects => Runtime.GetHeap().EnumerateBlockingObjects().ToList();
         public IList<ClrThread> Threads => Runtime.Threads;
@@ -52,7 +52,7 @@ namespace MemoScope.Core
         Dictionary<int, ThreadProperty> threadProperties;
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;
-        
+
         public ClrDump(DataTarget target, string dumpPath, MessageBus msgBus)
         {
             Id = n++;
@@ -85,7 +85,7 @@ namespace MemoScope.Core
 
         public List<ClrType> GetTypes()
         {
-            List<ClrType> t = worker.Eval( () => t = AllTypes);
+            List<ClrType> t = worker.Eval(() => t = AllTypes);
             return t;
         }
 
@@ -98,7 +98,7 @@ namespace MemoScope.Core
         internal void Dispose()
         {
             cache.Dispose();
-            Run( () => Runtime.DataTarget.Dispose());
+            Run(() => Runtime.DataTarget.Dispose());
         }
 
         public ClrType GetClrType(string typeName)
@@ -125,7 +125,7 @@ namespace MemoScope.Core
             return cache.EnumerateInstances(typeId);
         }
 
-        public List<ulong> GetInstances(int typeId, int max=int.MaxValue)
+        public List<ulong> GetInstances(int typeId, int max = int.MaxValue)
         {
             var instances = cache.LoadInstances(typeId, max);
             return instances;
@@ -177,7 +177,7 @@ namespace MemoScope.Core
                 var value = SimpleValueHelper.GetSimpleValue(address, type, false);
                 return value;
             }
-            
+
             return address;
         }
 
@@ -200,7 +200,7 @@ namespace MemoScope.Core
             {
                 var field = fields[i];
                 obj = obj[field];
-                if( obj.IsNull )
+                if (obj.IsNull)
                 {
                     return null;
                 }
@@ -235,7 +235,7 @@ namespace MemoScope.Core
 
         public int CountReferences(ulong address)
         {
-            var count = cache.CountReferences(address) ;
+            var count = cache.CountReferences(address);
             return count;
         }
 
@@ -251,7 +251,13 @@ namespace MemoScope.Core
 
         public ClrType GetObjectType(ulong address)
         {
-            var clrType = worker.Eval(() => Heap.GetObjectType(address));
+            var clrType = worker.Eval(() => GetObjectTypeImpl(address));
+            return clrType;
+        }
+
+        public ClrType GetObjectTypeImpl(ulong address)
+        {
+            var clrType = Heap.GetObjectType(address);
             return clrType;
         }
 
@@ -298,6 +304,53 @@ namespace MemoScope.Core
             var meth = Runtime.GetMethodByHandle(methodDescriptorPtr);
             return meth;
         }
+
+        // Find the field in instance at address that references refAddress
+        public string GetFieldNameReference(ulong refAddress, ulong address)
+        {
+            return Eval(() => GetFieldNameReferenceImpl(refAddress, address));
+        }
+        public string GetFieldNameReferenceImpl(ulong refAddress, ulong address)
+        {
+            ClrType type = GetObjectTypeImpl(address);
+            if (type == null)
+            {
+                return "Unknown";
+            }
+            ClrObject obj = new ClrObject(address, type);
+            if (type.IsArray)
+            {
+                var length = type.GetArrayLength(address);
+                for (int i = 0; i < length; i++)
+                {
+                    if (obj[i].Address == refAddress)
+                    {
+                        return $"[ {i} ]";
+                    }
+                }
+                return "[ ? ]";
+            }
+            foreach (var field in type.Fields)
+            {
+                switch (field.ElementType)
+                {
+                    case ClrElementType.Struct:
+                    case ClrElementType.String:
+                    case ClrElementType.Array:
+                    case ClrElementType.SZArray:
+                    case ClrElementType.Object:
+                        var fieldValue = obj[field];
+                        if (fieldValue.Address == refAddress)
+                        {
+                            return field.Name;
+                        }
+                        break;
+                }
+            }
+            return "???";
+        }
+
+
     }
 
     public class ThreadProperty
