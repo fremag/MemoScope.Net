@@ -15,18 +15,26 @@ namespace MemoScope.Modules.InstanceDetails
         [OLVColumn(Title = "Address")]
         public ulong Address { get; }
 
+        [OLVColumn]
+        public string FieldName { get; }
+
         [OLVColumn(Title = "Type")]
         public string TypeName => ClrDump.GetObjectTypeName(Address);
 
         public ClrType ClrType => ClrDump.GetObjectType(Address);
 
-        public ReferenceInformation(ClrDump dump, ulong address)
+        public ReferenceInformation(ClrDump clrDump, ulong address, ulong refAddress) : this(clrDump, address)
         {
-            ClrDump = dump;
-            Address = address;
+            FieldName = ClrDump.GetFieldNameReference(refAddress, address);
        }
 
+        public ReferenceInformation(ClrDump clrDump, ulong address)
+        {
+            ClrDump = clrDump;
+            Address = address;
+        }
+
         public bool CanExpand => ClrDump.HasReferences(Address);
-        public List<ReferenceInformation> Children => ClrDump.GetReferences(Address).Select(address => new ReferenceInformation(ClrDump, address)).ToList();
+        public List<ReferenceInformation> Children => ClrDump.GetReferences(Address).Select(address => new ReferenceInformation(ClrDump, address, Address)).ToList();
     }
 }

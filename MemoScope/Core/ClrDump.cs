@@ -251,7 +251,13 @@ namespace MemoScope.Core
 
         public ClrType GetObjectType(ulong address)
         {
-            var clrType = worker.Eval(() => Heap.GetObjectType(address));
+            var clrType = worker.Eval(() => GetObjectTypeImpl(address));
+            return clrType;
+        }
+
+        public ClrType GetObjectTypeImpl(ulong address)
+        {
+            var clrType = Heap.GetObjectType(address);
             return clrType;
         }
 
@@ -298,6 +304,53 @@ namespace MemoScope.Core
             var meth = Runtime.GetMethodByHandle(methodDescriptorPtr);
             return meth;
         }
+
+        // Find the field in instance at address that references refAddress
+        public string GetFieldNameReference(ulong refAddress, ulong address)
+        {
+            return Eval(() => GetFieldNameReferenceImpl(refAddress, address));
+        }
+        public string GetFieldNameReferenceImpl(ulong refAddress, ulong address)
+        { 
+            ClrType type = GetObjectTypeImpl(address);
+            if( type == null)
+            {
+                return "Unknown";
+            }
+            ClrObject obj = new ClrObject(address, type);
+            if( type.IsArray)
+            {
+                var length = type.GetArrayLength(address);
+                for (int i=0; i < length; i++ )
+                {
+                    if( obj[i].Address == refAddress)
+                    {
+                        return $"[ {i} ]";
+                    }
+                }
+                return "[ ? ]";
+            } 
+            foreach (var field in type.Fields)
+            {
+                switch (field.ElementType)
+                {
+                    case ClrElementType.Struct:
+                    case ClrElementType.String:
+                    case ClrElementType.Array:
+                    case ClrElementType.SZArray:
+                    case ClrElementType.Object:
+                        var fieldValue = obj[field];
+                        if ( fieldValue.Address == refAddress)
+                        {
+                            return field.Name;
+                        }
+                        break;
+                }
+            }
+            return "Toto";
+        }
+
+
     }
 
     public class ThreadProperty
