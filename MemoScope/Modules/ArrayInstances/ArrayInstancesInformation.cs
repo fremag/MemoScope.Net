@@ -21,9 +21,9 @@ namespace MemoScope.Modules.ArrayInstances
         public ulong Address { get; }
         [IntColumn]
         public int Length { get; }
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:p2}")]
+        [PercentColumn]
         public float NullRatio { get; }
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:p2}")]
+        [PercentColumn]
         public float UniqueRatio { get; }
     }
 }

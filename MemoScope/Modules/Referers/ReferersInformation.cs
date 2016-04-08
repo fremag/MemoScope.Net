@@ -19,6 +19,9 @@ namespace MemoScope.Modules.Referers
         [IntColumn(Title = "# References")]
         public int ReferencesCount => References.Count;
 
+        [PercentColumn(Title = "References %")]
+        public double ReferencesPercent => References.Count != 0 ? (double)References.Count / parentCount : 0;
+
         [OLVColumn]
         public string FieldName { get; }
 
@@ -30,8 +33,9 @@ namespace MemoScope.Modules.Referers
         MessageBus MessageBus { get; }
 
         private bool canExpand;
+        private int parentCount;
 
-        public ReferersInformation(ClrDump clrDump, ClrType clrType, string fieldName, MessageBus messageBus)
+        public ReferersInformation(ClrDump clrDump, ClrType clrType, string fieldName, MessageBus messageBus, int parentCount)
         {
             ClrDump = clrDump;
             ClrType = clrType;
@@ -39,9 +43,10 @@ namespace MemoScope.Modules.Referers
             MessageBus = messageBus;
             Instances = new HashSet<ulong>();
             References = new HashSet<ulong>();
+            this.parentCount = parentCount;
         }
 
-        public ReferersInformation(ClrDump clrDump, ClrType clrType, MessageBus messageBus, IAddressContainer addresses) : this(clrDump, clrType, null, messageBus)
+        public ReferersInformation(ClrDump clrDump, ClrType clrType, MessageBus messageBus, IAddressContainer addresses) : this(clrDump, clrType, null, messageBus, 0)
         {
             for (int i = 0; i < addresses.Count; i++)
             {

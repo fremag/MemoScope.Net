@@ -26,7 +26,7 @@ namespace MemoScope.Modules.Referers
         public static List<ReferersInformation> AnalyzeReferers(MessageBus msgBus, ClrDump clrDump, HashSet<ulong> addresses)
         {
             var referers = new List<ReferersInformation>();
-            var dico = new Dictionary<ClrType, Dictionary<string, ReferersInformation>>();
+            var dicoByRefererType = new Dictionary<ClrType, Dictionary<string, ReferersInformation>>();
             CancellationTokenSource token = new CancellationTokenSource();
             msgBus.BeginTask("Analyzing referers...", token);
             Application.DoEvents(); // todo: avoid this call to Application.DoEvents()
@@ -51,24 +51,24 @@ namespace MemoScope.Modules.Referers
                     string field;
                     if (type.IsArray)
                     {
-                        field = "[ * ]";
+                        field = "[ x ]";
                     }
                     else
                     {
                         field = clrDump.GetFieldNameReference(address, refererAddress);
                     }
-                    Dictionary<string, ReferersInformation> toto;
-                    if( ! dico.TryGetValue(type, out toto))
+                    Dictionary<string, ReferersInformation> dicoRefInfoByFieldName;
+                    if( ! dicoByRefererType.TryGetValue(type, out dicoRefInfoByFieldName))
                     {
-                        toto = new Dictionary<string, ReferersInformation>();
-                        dico[type] = toto;
+                        dicoRefInfoByFieldName = new Dictionary<string, ReferersInformation>();
+                        dicoByRefererType[type] = dicoRefInfoByFieldName;
                     }
 
                     ReferersInformation referersInformation;
-                    if ( ! toto.TryGetValue(field, out referersInformation))
+                    if ( ! dicoRefInfoByFieldName.TryGetValue(field, out referersInformation))
                     {
-                        referersInformation = new ReferersInformation(clrDump, type, field, msgBus);
-                        toto[field] = referersInformation;
+                        referersInformation = new ReferersInformation(clrDump, type, field, msgBus, count);
+                        dicoRefInfoByFieldName[field] = referersInformation;
                     }
 
                     referersInformation.References.Add(address);
@@ -76,7 +76,7 @@ namespace MemoScope.Modules.Referers
                 }
             }
 
-            foreach(var kvpType in dico)
+            foreach(var kvpType in dicoByRefererType)
             {
                 var type = kvpType.Key;
                 foreach(var kvpField in kvpType.Value)

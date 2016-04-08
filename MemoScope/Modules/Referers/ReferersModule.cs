@@ -4,6 +4,7 @@ using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using WinFwk.UICommands;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace MemoScope.Modules.Referers
 {
@@ -37,6 +38,7 @@ namespace MemoScope.Modules.Referers
         {
             Summary = $"{Referers.Instances.Count:###,###,###,##0} instances";
             dtlvDistribution.Roots = new object[] { Referers };
+            dtlvDistribution.Sort(dtlvDistribution[nameof(ReferersInformation.ReferencesCount)], SortOrder.Descending);
         }
 
         public AddressList Data

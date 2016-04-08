@@ -1,6 +1,7 @@
 ﻿using BrightIdeasSoftware;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.Strings
 {
@@ -14,7 +15,7 @@ namespace MemoScope.Modules.Strings
             Addresses = addresses;
         }
 
-        [OLVColumn(Width = 200, AspectToStringFormat = "{0:###,###,###,##0}", TextAlign = HorizontalAlignment.Right)]
+        [IntColumn(Width = 200)]
         public int Count => Addresses.Count;
 
         [OLVColumn(Width =500)]

@@ -13,7 +13,7 @@ namespace MemoScope.Modules.Regions
             this.region = region;
         }
 
-        [IntColumn(AspectToStringFormat = "{0:X}")]
+        [AddressColumn]
         public ulong Start => region.Address;
         [IntColumn]
         public ulong Size => region.Size;

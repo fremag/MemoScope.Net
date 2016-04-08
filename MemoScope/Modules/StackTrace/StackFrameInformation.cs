@@ -44,7 +44,7 @@ namespace MemoScope.Modules.StackTrace
         [OLVColumn]
         public string DisplayString { get; }
 
-        [IntColumn(AspectToStringFormat ="{0:X}")]
+        [AddressColumn]
         public ulong StackPointer => frame.StackPointer;
 
 #if LINE_AND_FILE

@@ -14,13 +14,13 @@ namespace MemoScope.Modules.Segments
             this.segment = segment;
         }
 
-        [IntColumn(AspectToStringFormat = "{0:X}")]
+        [AddressColumn]
         public ulong Start => segment.Start;
         [IntColumn]
         public ulong Length => segment.Length;
         [BoolColumn]
         public bool IsLarge => segment.IsLarge;
-        [OLVColumn(TextAlign = HorizontalAlignment.Right, AspectToStringFormat = "{0:X}")]
+        [AddressColumn]
         public ulong End => segment.End;
         [IntColumn(Title = "Gen 0 Length")]
         public ulong Gen0Length => segment.Gen0Length;
