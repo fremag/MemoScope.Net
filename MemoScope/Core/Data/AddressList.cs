@@ -23,11 +23,9 @@ namespace MemoScope.Core.Data
         }
     }
 
-    public interface IAddressContainer
+    public interface IAddressContainer 
     {
         int Count { get; }
         ulong this[int index] { get; }
     }
-
-
 }

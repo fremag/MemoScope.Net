@@ -239,6 +239,15 @@
     <Compile Include="Modules\Disposables\DisposableTypesModule.Designer.cs">
       <DependentUpon>DisposableTypesModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Referers\ReferersAnalysis.cs" />
+    <Compile Include="Modules\Referers\ReferersCommand.cs" />
+    <Compile Include="Modules\Referers\ReferersInformation.cs" />
+    <Compile Include="Modules\Referers\ReferersModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Referers\ReferersModule.Designer.cs">
+      <DependentUpon>ReferersModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\DumpDiff\DiffColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -528,6 +537,9 @@
     <EmbeddedResource Include="Modules\Disposables\DisposableTypesModule.resx">
       <DependentUpon>DisposableTypesModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Referers\ReferersModule.resx">
+      <DependentUpon>ReferersModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Explorer\ExplorerModule.resx">
       <DependentUpon>ExplorerModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -636,9 +648,11 @@
     <Content Include="Icons\Large\bow.png" />
     <Content Include="Icons\Large\broom.png" />
     <Content Include="Icons\Large\candlestickchart.png" />
+    <Content Include="Icons\Large\chart_organisation.png" />
     <Content Include="Icons\Large\class_module.png" />
     <Content Include="Icons\Large\compile.png" />
     <Content Include="Icons\Large\ddr_memory.png" />
+    <Content Include="Icons\Large\diagnostic_chart.png" />
     <Content Include="Icons\Large\elements.png" />
     <Content Include="Icons\Large\exclamation.png" />
     <Content Include="Icons\Large\folders_explorer.png" />
@@ -739,6 +753,7 @@
     <Content Include="Icons\Small\broom.png" />
     <Content Include="Icons\Small\cancel.png" />
     <Content Include="Icons\Small\candlestickchart.png" />
+    <Content Include="Icons\Small\chart_organisation.png" />
     <Content Include="Icons\Small\class_module.png" />
     <Content Include="Icons\Small\clock_go.png" />
     <Content Include="Icons\Small\clock_stop.png" />
@@ -748,6 +763,7 @@
     <Content Include="Icons\Small\database_green.png" />
     <Content Include="Icons\Small\database_yellow.png" />
     <Content Include="Icons\Small\ddr_memory.png" />
+    <Content Include="Icons\Small\diagnostic_chart.png" />
     <Content Include="Icons\Small\elements.png" />
     <Content Include="Icons\Small\exclamation.png" />
     <Content Include="Icons\Small\file_extension_bin.png" />

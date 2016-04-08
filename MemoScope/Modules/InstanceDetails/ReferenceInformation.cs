@@ -34,7 +34,7 @@ namespace MemoScope.Modules.InstanceDetails
             Address = address;
         }
 
-        public bool CanExpand => ClrDump.HasReferences(Address);
-        public List<ReferenceInformation> Children => ClrDump.GetReferences(Address).Select(address => new ReferenceInformation(ClrDump, address, Address)).ToList();
+        public bool CanExpand => ClrDump.HasReferers(Address);
+        public List<ReferenceInformation> Children => ClrDump.GetReferers(Address).Select(address => new ReferenceInformation(ClrDump, address, Address)).ToList();
     }
 }

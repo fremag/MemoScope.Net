@@ -10,7 +10,7 @@ using System;
 
 namespace MemoScope.Modules.TypeStats
 {
-    public partial class TypeStatModule : UIClrDumpModule, UIDataProvider<ClrDumpType>
+    public partial class TypeStatModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>
     {
         private List<ClrTypeStats> typeStats;
         public TypeStatModule()
@@ -59,6 +59,20 @@ namespace MemoScope.Modules.TypeStats
                     return new ClrDumpType(ClrDump, obj.Type);
                 }
                 return null;
+            }
+        }
+
+        AddressList UIDataProvider<AddressList>.Data
+        {
+            get
+            {
+                var dumpType = ((UIDataProvider<ClrDumpType>)this).Data;
+                if( dumpType == null)
+                {
+                    return null;
+                }
+                AddressList list = new TypeInstancesAddressList(dumpType);
+                return list;
             }
         }
 

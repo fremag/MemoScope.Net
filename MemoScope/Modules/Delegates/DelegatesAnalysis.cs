@@ -181,7 +181,7 @@ namespace MemoScope.Modules.Delegates
                     foreach(var subHandlerObject in EnumerateHandlers(handlerObject))
                     {
                         var target = subHandlerObject[TargetFieldName];
-                        int count = clrDump.CountReferences(target.Address);
+                        int count = clrDump.CountReferers(target.Address);
                         if( count == 1)
                         {
                             loneTargetAddresses[target] = subHandlerObject;
@@ -228,7 +228,7 @@ namespace MemoScope.Modules.Delegates
             }
 
             visited.Add(address);
-            var refs = clrDump.GetReferences(address);
+            var refs = clrDump.GetReferers(address);
 
             foreach(var newAddress in refs)
             {

@@ -258,22 +258,28 @@ namespace MemoScope.Core.Cache
             cmdInsertReference.ExecuteNonQuery();
         }
 
-        public List<ulong> LoadReferences(ulong instanceAddress)
+        public IEnumerable<ulong> EnumerateReferers(ulong instanceAddress)
         {
-            var list = new List<ulong>();
-            SQLiteCommand cmd = new SQLiteCommand();
-            cmd.Connection = cxion;
-            cmd.CommandText = "SELECT RefByAddress FROM InstanceReferences WHERE InstanceAddress=" + instanceAddress;
-            SQLiteDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            using (SQLiteCommand cmd = new SQLiteCommand())
             {
-                var address = (ulong)dr.GetInt64(0);
-                list.Add(address);
+                cmd.Connection = cxion;
+                cmd.CommandText = "SELECT RefByAddress FROM InstanceReferences WHERE InstanceAddress=" + instanceAddress;
+                SQLiteDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    var address = (ulong)dr.GetInt64(0);
+                    yield return address;
+                }
             }
+        }
+
+        public List<ulong> LoadReferers(ulong instanceAddress)
+        {
+            var list = new List<ulong>(EnumerateReferers(instanceAddress));
             return list;
         }
 
-        public int CountReferences(ulong instanceAddress)
+        public int CountReferers(ulong instanceAddress)
         {
             paramInstanceAddress_CountReferences.Value = instanceAddress;
             using (SQLiteDataReader dr = cmdCountReferences.ExecuteReader())

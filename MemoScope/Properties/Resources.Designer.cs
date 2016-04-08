@@ -303,6 +303,26 @@ namespace MemoScope.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chart_organisation {
+            get {
+                object obj = ResourceManager.GetObject("chart_organisation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chart_organisation_small {
+            get {
+                object obj = ResourceManager.GetObject("chart_organisation_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clock_go {
             get {
                 object obj = ResourceManager.GetObject("clock_go", resourceCulture);
@@ -416,6 +436,26 @@ namespace MemoScope.Properties {
         internal static System.Drawing.Bitmap ddr_memory_small {
             get {
                 object obj = ResourceManager.GetObject("ddr_memory_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap diagnostic_chart {
+            get {
+                object obj = ResourceManager.GetObject("diagnostic_chart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap diagnostic_chart_small {
+            get {
+                object obj = ResourceManager.GetObject("diagnostic_chart_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -16,7 +16,7 @@ namespace MemoScope.Modules.Handles
         public void Setup(ClrDump clrDump)
         {
             ClrDump = clrDump;
-            Icon = Properties.Resources.plugin_link;
+            Icon = Properties.Resources.plugin_link_small;
             Name = $"#{clrDump.Id} - Handles";
 
             dlvHandles.InitColumns<HandleInformation>();

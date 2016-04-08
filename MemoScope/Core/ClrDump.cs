@@ -221,21 +221,26 @@ namespace MemoScope.Core
             return fieldValue.HasSimpleValue ? fieldValue.SimpleValue : fieldValue.Address;
         }
 
-        public List<ulong> GetReferences(ulong address)
+        public IEnumerable<ulong> EnumerateReferers(ulong address)
         {
-            var references = cache.LoadReferences(address);
-            return references;
+            return cache.EnumerateReferers(address);
         }
 
-        public bool HasReferences(ulong address)
+        public List<ulong> GetReferers(ulong address)
         {
-            var hasReferences = cache.CountReferences(address) > 0;
-            return hasReferences;
+            var referers = cache.LoadReferers(address);
+            return referers;
         }
 
-        public int CountReferences(ulong address)
+        public bool HasReferers(ulong address)
         {
-            var count = cache.CountReferences(address) ;
+            var hasReferers = cache.CountReferers(address) > 0;
+            return hasReferers;
+        }
+
+        public int CountReferers(ulong address)
+        {
+            var count = cache.CountReferers(address) ;
             return count;
         }
 
