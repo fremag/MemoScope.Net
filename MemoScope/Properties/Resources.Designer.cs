@@ -813,6 +813,26 @@ namespace MemoScope.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap molecule {
+            get {
+                object obj = ResourceManager.GetObject("molecule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap molecule_small {
+            get {
+                object obj = ResourceManager.GetObject("molecule_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap new_data {
             get {
                 object obj = ResourceManager.GetObject("new_data", resourceCulture);

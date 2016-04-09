@@ -239,6 +239,15 @@
     <Compile Include="Modules\Disposables\DisposableTypesModule.Designer.cs">
       <DependentUpon>DisposableTypesModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\RootPath\RootPathAnalysis.cs" />
+    <Compile Include="Modules\RootPath\RootPathCommand.cs" />
+    <Compile Include="Modules\RootPath\RootPathInformation.cs" />
+    <Compile Include="Modules\RootPath\RootPathModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\RootPath\RootPathModule.Designer.cs">
+      <DependentUpon>RootPathModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Referers\ReferersAnalysis.cs" />
     <Compile Include="Modules\Referers\ReferersCommand.cs" />
     <Compile Include="Modules\Referers\ReferersInformation.cs" />
@@ -537,6 +546,9 @@
     <EmbeddedResource Include="Modules\Disposables\DisposableTypesModule.resx">
       <DependentUpon>DisposableTypesModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\RootPath\RootPathModule.resx">
+      <DependentUpon>RootPathModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Referers\ReferersModule.resx">
       <DependentUpon>ReferersModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -667,6 +679,7 @@
     <Content Include="Icons\Large\macro_show_all_actions.png" />
     <Content Include="Icons\Large\microscope.png" />
     <Content Include="Icons\Large\module.png" />
+    <Content Include="Icons\Large\molecule.png" />
     <Content Include="Icons\Large\new_data.png" />
     <None Include="Icons\Large\outline_wight_gallery.png" />
     <Content Include="Icons\Large\perfomance_analysis.png" />
@@ -783,6 +796,7 @@
     <Content Include="Icons\Small\macro_show_all_actions.png" />
     <Content Include="Icons\Small\microscope.png" />
     <Content Include="Icons\Small\module.png" />
+    <Content Include="Icons\Small\molecule.png" />
     <Content Include="Icons\Small\new_data.png" />
     <Content Include="Icons\Small\outline_wight_gallery.png" />
     <Content Include="Icons\Small\page_delete.png" />
