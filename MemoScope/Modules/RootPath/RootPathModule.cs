@@ -16,9 +16,11 @@ namespace MemoScope.Modules.RootPath
 
         public override void Init()
         {
-            dtlvDistribution.InitColumns<RootPathInformation>();
-            dtlvDistribution.SetUpTypeColumn<RootPathInformation>(this);
-            dtlvDistribution.SetUpAddressColumn<RootPathInformation>(this);
+            RootPath = RootPathAnalysis.AnalyzeRootPath(MessageBus, ClrDumpObject);
+
+            dlvRootPath.InitColumns<RootPathInformation>();
+            dlvRootPath.SetUpTypeColumn<RootPathInformation>(this);
+            dlvRootPath.SetUpAddressColumn<RootPathInformation>(this);
         }
 
         internal void Setup(ClrDumpObject clrDumpObject)
@@ -26,12 +28,12 @@ namespace MemoScope.Modules.RootPath
             ClrDump = clrDumpObject.ClrDump;
             Icon = Properties.Resources.molecule_small;
             ClrDumpObject = clrDumpObject;
-
             Name = $"#{ClrDump.Id} - RootPath- {ClrDumpObject.Address:X}";
         }
 
         public override void PostInit()
         {
+            dlvRootPath.Objects = RootPath;
             Summary = $"";
         }
     }

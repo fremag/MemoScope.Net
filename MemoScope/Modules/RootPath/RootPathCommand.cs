@@ -14,6 +14,11 @@ namespace MemoScope.Modules.RootPath
 
         protected override void HandleData(ClrDumpObject clrDumpObject)
         {
+            if( clrDumpObject == null)
+            {
+                MessageBox.Show("No object selected !");
+                return;
+            }
             UIModuleFactory.CreateModule<RootPathModule>(module => { module.UIModuleParent = selectedModule; module.Setup(clrDumpObject); }, module => DockModule(module));
         }
     }

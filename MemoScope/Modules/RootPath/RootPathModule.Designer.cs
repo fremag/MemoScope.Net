@@ -28,42 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtlvDistribution = new WinFwk.UITools.DefaultListView();
-            ((System.ComponentModel.ISupportInitialize)(this.dtlvDistribution)).BeginInit();
+            this.dlvRootPath = new WinFwk.UITools.DefaultListView();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvRootPath)).BeginInit();
             this.SuspendLayout();
             // 
             // defaultListView1
             // 
-            this.dtlvDistribution.CellEditUseWholeCell = false;
-            this.dtlvDistribution.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtlvDistribution.FullRowSelect = true;
-            this.dtlvDistribution.HideSelection = false;
-            this.dtlvDistribution.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.dtlvDistribution.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dtlvDistribution.Location = new System.Drawing.Point(0, 0);
-            this.dtlvDistribution.Name = "defaultListView1";
-            this.dtlvDistribution.ShowGroups = false;
-            this.dtlvDistribution.ShowImagesOnSubItems = true;
-            this.dtlvDistribution.Size = new System.Drawing.Size(762, 483);
-            this.dtlvDistribution.TabIndex = 0;
-            this.dtlvDistribution.UseCompatibleStateImageBehavior = false;
-            this.dtlvDistribution.View = System.Windows.Forms.View.Details;
-            this.dtlvDistribution.VirtualMode = true;
+            this.dlvRootPath.CellEditUseWholeCell = false;
+            this.dlvRootPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlvRootPath.FullRowSelect = true;
+            this.dlvRootPath.HideSelection = false;
+            this.dlvRootPath.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.dlvRootPath.HighlightForegroundColor = System.Drawing.Color.Empty;
+            this.dlvRootPath.Location = new System.Drawing.Point(0, 0);
+            this.dlvRootPath.Name = "defaultListView1";
+            this.dlvRootPath.ShowGroups = false;
+            this.dlvRootPath.ShowImagesOnSubItems = true;
+            this.dlvRootPath.Size = new System.Drawing.Size(762, 483);
+            this.dlvRootPath.TabIndex = 0;
+            this.dlvRootPath.UseCompatibleStateImageBehavior = false;
+            this.dlvRootPath.View = System.Windows.Forms.View.Details;
+            this.dlvRootPath.VirtualMode = true;
             // 
             // ModulesModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dtlvDistribution);
+            this.Controls.Add(this.dlvRootPath);
             this.Name = "ModulesModule";
             this.Size = new System.Drawing.Size(762, 483);
-            ((System.ComponentModel.ISupportInitialize)(this.dtlvDistribution)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dlvRootPath)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private WinFwk.UITools.DefaultListView dtlvDistribution;
+        private WinFwk.UITools.DefaultListView dlvRootPath;
     }
 }
