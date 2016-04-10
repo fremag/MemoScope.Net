@@ -38,7 +38,7 @@ namespace MemoScope.Modules.ClrRoots
         public override void PostInit()
         {
             base.PostInit();
-            Summary = $"{ClrRootsQueue.Count} ClrRoots";
+            Summary = $"{ClrRootsQueue.Count:###,###,###,##0} ClrRoots";
             dlvClrRoots.Objects = ClrRootsQueue;
             var colGroup = dlvClrRoots[nameof(ClrRootsInformation.Kind)];
             dlvClrRoots.BuildGroups(colGroup, SortOrder.Ascending);
