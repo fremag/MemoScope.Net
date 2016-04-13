@@ -29,7 +29,7 @@ namespace MemoScope.Modules.Bookmarks
                 ClrDump.BookmarkMgr.SaveBookmarks();
             };
 
-            var colColor = dlvBookmarks.AllColumns.FirstOrDefault(c => c.Name == nameof(Bookmark.Color));
+            var colColor = dlvBookmarks[nameof(Bookmark.Color)];
             dlvBookmarks.FormatCell += (o, e) =>
             {
                 if ( e.Column != colColor)
@@ -44,7 +44,7 @@ namespace MemoScope.Modules.Bookmarks
                     e.SubItem.Text = bookmark.Color != Color.Empty ? null : "Select Color...";
                 }
             };
-            var colPick = dlvBookmarks.GetColumn(nameof(Bookmark.ColorPick));
+            var colPick = dlvBookmarks[nameof(Bookmark.ColorPick)];
             colPick.IsButton = true;
             colPick.ButtonSizing = OLVColumn.ButtonSizingMode.CellBounds;
 
