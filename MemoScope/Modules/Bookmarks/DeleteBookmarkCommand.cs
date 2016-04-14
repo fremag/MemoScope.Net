@@ -1,4 +1,5 @@
 ﻿using MemoScope.Core.Data;
+using System.Windows.Forms;
 using WinFwk.UICommands;
 
 namespace MemoScope.Modules.Bookmarks
