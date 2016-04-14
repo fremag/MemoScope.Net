@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace MemoScope.Core
 {
-    public class ClrDump
+    public class ClrDump : IClrDump
     {
         private static int n = 0;
         public int Id { get; }

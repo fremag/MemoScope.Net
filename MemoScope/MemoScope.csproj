@@ -168,6 +168,7 @@
     <Compile Include="Core\Data\TypeInstancesAddressList.cs" />
     <Compile Include="Core\Data\ITypeNameData.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
+    <Compile Include="Core\IClrDump.cs" />
     <Compile Include="Modules\ArrayInstances\ArrayInstanceAnalysis.cs" />
     <Compile Include="Modules\ArrayInstances\ArrayInstancesCommand.cs" />
     <Compile Include="Modules\ArrayInstances\ArrayInstancesInformation.cs" />

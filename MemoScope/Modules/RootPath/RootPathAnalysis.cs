@@ -52,7 +52,7 @@ namespace MemoScope.Modules.RootPath
             return path;
         }
 
-        private static bool FindShortestPath(List<ulong> currentPath, ref List<ulong> bestPath, HashSet<ulong> roots, HashSet<ulong> visitedInstances, ClrDump clrDump)
+        private static bool FindShortestPath(List<ulong> currentPath, ref List<ulong> bestPath, HashSet<ulong> roots, HashSet<ulong> visitedInstances, IClrDump clrDump)
         {
             if( bestPath != null && currentPath.Count >= bestPath.Count)
             {
