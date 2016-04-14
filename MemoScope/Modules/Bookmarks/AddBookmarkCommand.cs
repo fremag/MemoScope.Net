@@ -1,4 +1,5 @@
 ﻿using MemoScope.Core.Data;
+using System.Windows.Forms;
 using WinFwk.UICommands;
 
 namespace MemoScope.Modules.Bookmarks
@@ -11,6 +12,11 @@ namespace MemoScope.Modules.Bookmarks
         }
         protected override void HandleData(ClrDumpObject data)
         {
+            if( data == null)
+            {
+                MessageBox.Show("No instance selected !");
+                return;
+            }
             MessageBus.SendMessage(new BookmarkMessage(BookmarkAction.Add, data));
         }
     }
