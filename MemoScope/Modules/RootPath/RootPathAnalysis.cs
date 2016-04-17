@@ -1,16 +1,19 @@
 ﻿using MemoScope.Core;
 using MemoScope.Core.Data;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
-using System;
 
 namespace MemoScope.Modules.RootPath
 {
     public static class RootPathAnalysis
     {
+        static Logger logger = LogManager.GetLogger(typeof(RootPathAnalysis).FullName);
+
         public static List<RootPathInformation> AnalyzeRootPath(MessageBus msgBus, ClrDumpObject clrDumpObject)
         {
             ClrDump clrDump = clrDumpObject.ClrDump;
@@ -25,12 +28,11 @@ namespace MemoScope.Modules.RootPath
 
             msgBus.Status("Analysing Root Path: collecting root instances...");
             var roots = new HashSet<ulong>(clrDump.ClrRoots.Select(clrRoot => clrRoot.Object));
-            var visitedInstances = new HashSet<ulong>();
+            logger.Debug("Roots: " + Str(roots));
             List<ulong> bestPath = null;
             var currentPath = new List<ulong>();
             currentPath.Add(address);
-            visitedInstances.Add(address);
-            bool result = FindShortestPath(currentPath, ref bestPath, roots, visitedInstances, clrDump);
+            bool result = FindShortestPath(currentPath, ref bestPath, clrDump);
 
             List<RootPathInformation> path = new List<RootPathInformation>();
             ulong prevAddress = address;
@@ -39,7 +41,7 @@ namespace MemoScope.Modules.RootPath
                 foreach (var refAddress in bestPath)
                 {
                     var refClrDumpObject = new ClrDumpObject(clrDump, clrDump.GetObjectType(refAddress), refAddress);
-                    var fieldName = clrDump.GetFieldNameReference(prevAddress, refAddress);
+                    var fieldName = refAddress == address ? " - " : clrDump.GetFieldNameReference(prevAddress, refAddress);
                     path.Add(new RootPathInformation(refClrDumpObject, fieldName));
                     prevAddress = refAddress;
                 }
@@ -52,40 +54,49 @@ namespace MemoScope.Modules.RootPath
             return path;
         }
 
-        private static bool FindShortestPath(List<ulong> currentPath, ref List<ulong> bestPath, HashSet<ulong> roots, HashSet<ulong> visitedInstances, IClrDump clrDump)
+        public static bool FindShortestPath(List<ulong> currentPath, ref List<ulong> bestPath, IClrDump clrDump)
         {
+            logger.Debug("FindShortestPath: currentPath: " + Str(currentPath)+", best: "+Str(bestPath));
             if( bestPath != null && currentPath.Count >= bestPath.Count)
             {
                 return false;
             }
-            foreach(var refAddress in clrDump.EnumerateReferers(currentPath[currentPath.Count-1]))
+            bool res = false;
+            foreach (var refAddress in clrDump.EnumerateReferers(currentPath[currentPath.Count-1]))
             {
-                if(visitedInstances.Contains(refAddress))
+                if(currentPath.Contains(refAddress))
                 {
                     continue;
                 }
-                visitedInstances.Add(refAddress);
+                logger.Debug($"Visiting: {refAddress:X}");
                 currentPath.Add(refAddress);
-                if ( roots.Contains(refAddress))
+                if (! clrDump.HasReferers(refAddress))
                 {
                     bestPath = new List<ulong>(currentPath);
-                    return true;
-                }
-
-                bool res = FindShortestPath(currentPath, ref bestPath, roots, visitedInstances, clrDump);
-                if( res)
-                {
-                    bestPath = new List<ulong>(currentPath);
-                    return true;
-                }
-                else
-                {
+                    logger.Debug("Root found !, best path: "+Str(bestPath));
                     currentPath.RemoveAt(currentPath.Count - 1);
+                    return true;
                 }
 
+                res |= FindShortestPath(currentPath, ref bestPath, clrDump);
+                currentPath.RemoveAt(currentPath.Count - 1);
             }
 
-            return false;
+            return res;
+        }
+
+        private static string Str(IEnumerable<ulong> ulongEnum)
+        {
+            if ( ulongEnum == null || ! ulongEnum.Any()) 
+            {
+                return "[]";
+            }
+            var s = "[";
+            foreach(var u in ulongEnum)
+            {
+                s += u.ToString("X") + ", ";
+            }
+            return s.Substring(0, s.Length-2)+"]";
         }
     }
 }

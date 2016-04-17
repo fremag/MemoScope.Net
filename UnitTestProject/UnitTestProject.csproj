@@ -39,8 +39,8 @@
       <HintPath>..\packages\Microsoft.Diagnostics.Runtime.0.8.31-beta\lib\net40\Microsoft.Diagnostics.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="MemoScopeApiTests.cs" />
     <Compile Include="MessageBusTests.cs" />
+    <Compile Include="RootPathAnalysisTests.cs" />
     <Compile Include="SingleThreadWorkerTests.cs" />
     <Compile Include="TypeHelpersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
