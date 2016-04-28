@@ -27,7 +27,7 @@ No. Some features are missings (scripts for instance) but is easier to use: no f
 
 ### JetBrains' dotMemory 
 No. I wish I could write something comparable to JetBrains products...
-But MemoScope.Net is free and you have the source code so you can extend it ;)
+But MemoScope.Net is **free** and you have the source code so you can extend it ;)
 
 # Licence
 Public Domain. Do what you want with this software and source code.
@@ -68,9 +68,21 @@ var client = new MemoScopeClient();
 client.Open();
 client.DumpMe();
 ```
+# FAQ
+## How can I help you ?
+Send some issues: bug reports, missing features, feedback etc
+
+## Why is your english so bad ?
+Because I'm French. Please help me to correct any spelling, grammar errors etc you could notice.
+
+## Why Winforms and not WPF or UWP ?
+Because it's good enough and I like  [ObjectListView](http://objectlistview.sourceforge.net/cs/index.html) and  [DockPanelSuite](http://dockpanelsuite.com/).
+
+Ok the real reason: I don't know WPF, never had to use at work or had time to learn it.
+
+
 
 # Thanks to...
-
 * [Lee Culver](https://github.com/leculver) for his [ClrMd](https://github.com/Microsoft/clrmd) library, without it, MemoScope.Net would not exist.
 * FatCow for their free [icons](http://www.fatcow.com/free-icons)
 * Phillip Piper for [ObjectListView](http://objectlistview.sourceforge.net/cs/index.html). With it, it's so easy  to display tables and trees.
