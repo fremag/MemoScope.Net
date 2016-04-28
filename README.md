@@ -15,15 +15,15 @@ In a dump file, this information is not present.
 
 Yes: MemoScope.Net has many features present in memory profiler: heap statistics, display object content and references, find duplicated strings etc
 
-#Is it a debugger ?
+##Is it a debugger ?
 No: you can **NOT** run the process step by step or add any breakpoint.
 The dump file is static,nothing is dynamic.
 
 Yes: you can see object contents and call stacks so you can find why your process is locked or in an infinite loop for instance.
 
-## Is it better than...
+## Is it "better" than...
 ### WinDbg
-No. Some features are missings (scripts for instance) but is easier to use: no funky commands, nice GUI etc
+No. Some features are missings (scripts for instance) but is easier to use: no funky commands, has a nice dockable GUI, complex analysis (find event targets for instance)
 
 ### JetBrains' dotMemory 
 No. I wish I could write something comparable to JetBrains products...
@@ -32,8 +32,8 @@ But MemoScope.Net is **free** and you have the source code so you can extend it 
 # Licence
 Public Domain. Do what you want with this software and source code.
 The only important thing to know is that I can't be responsible for anything that could happen with it.
-If your life partner leaves you, your computer explodes, your car is smashed by a meteor or even if Asmodeus appears in your room.
-**It can't be my fault**
+If your life partner leaves you, your computer explodes, your car is smashed by a meteor or even if Asmodeus appears in your room etc : 
+**it can't be my fault**
 
 # Features
  
