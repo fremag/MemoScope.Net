@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using WinFwk.UIModules;
+﻿using WinFwk.UIModules;
 
 namespace WinFwk.UITools.Log
 {

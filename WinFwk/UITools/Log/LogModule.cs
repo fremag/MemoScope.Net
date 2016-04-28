@@ -68,24 +68,30 @@ namespace WinFwk.UITools.Log
                     throw new ArgumentOutOfRangeException();
             }
             model.Add(message);
+            Summary = message.Text;
             dlvLogMessages.SetObjects(model);
         }
 
         private void OnCellClick(object sender, CellClickEventArgs e)
         {
-            if (e.ClickCount != 2)
-            {
-                return;
-            }
-
             var logMessage = model.GetObject(e.Item.RowObject);
             if (logMessage == null)
             {
                 return;
             }
-            LogMessageViewerModule viewerModule = new LogMessageViewerModule {UIModuleParent = this};
-            viewerModule.Init(logMessage);
-            RequestDockModule(viewerModule);
+
+            switch(e.ClickCount)
+            {
+                case 1:
+                    Summary = logMessage.Text;
+                    break;
+                case 2:
+                    LogMessageViewerModule viewerModule = new LogMessageViewerModule {UIModuleParent = this};
+                    viewerModule.Init(logMessage);
+                    RequestDockModule(viewerModule);
+                    break;
+            }
+
         }
 
         private void fdlvLogMessages_FormatCell(object sender, FormatCellEventArgs e)
