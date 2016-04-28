@@ -80,7 +80,8 @@ Because it's good enough and I like  [ObjectListView](http://objectlistview.sour
 
 Ok the real reason: I don't know WPF, never had to use at work or had time to learn it.
 
-
+## Is there a wiki ?
+Not yet but I will write one when milestone 0.9.9 is released.
 
 # Thanks to...
 * [Lee Culver](https://github.com/leculver) for his [ClrMd](https://github.com/Microsoft/clrmd) library, without it, MemoScope.Net would not exist.
