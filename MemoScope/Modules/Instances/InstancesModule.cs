@@ -103,6 +103,10 @@ namespace MemoScope.Modules.Instances
             dlvAdresses.AddAddressColumn(o => o, this);
             dlvAdresses.AddSimpleValueColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
             dlvAdresses.AddSizeColumn(o => (ulong)o, AddressList.ClrDump, AddressList.ClrType);
+            dlvAdresses.AddRefInColumn(o => (ulong)o, AddressList.ClrDump);
+            // Do not sort ! Too slow...
+            dlvAdresses.ShowSortIndicators = false;
+            dlvAdresses.BeforeSorting += (sender, e) => e.Canceled = true;
         }
 
         private CheckState OnCheckStateChanged(object rowObject, CheckState newValue)

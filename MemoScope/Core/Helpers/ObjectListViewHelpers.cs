@@ -276,6 +276,33 @@ namespace MemoScope.Core.Helpers
             listView.AllColumns.Add(col);
         }
 
+        public static void AddRefInColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump)
+        {
+            var col = new OLVColumn("RefIn", null)
+            {
+                Width = 60,
+                TextAlign = HorizontalAlignment.Right
+            };
+
+            col.AspectGetter = o =>
+            {
+                if (o == null)
+                {
+                    return null;
+                }
+
+                ulong address = addressGetter(o);
+                if (address == 0)
+                {
+                    return 0;
+                }
+                object result = dump.CountReferers(address );
+                return result;
+            };
+            col.AspectToStringFormat = "{0:###,###,###,##0}";
+            listView.AllColumns.Add(col);
+        }
+
         public static void RegisterDataProvider<T>(this ObjectListView listView, Func<T> dataProvider, UIModule parentModule, string suffix = null)
         {
             if (listView.ContextMenuStrip == null)
