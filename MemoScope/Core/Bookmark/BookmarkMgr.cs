@@ -11,11 +11,13 @@ namespace MemoScope.Core.Bookmark
         private string bookmarkPath;
         private XmlSerializer xml;
         private XmlSerializer XML { get {
-                if (xml == null) {
+                if (xml == null)
+                {
                     xml = new XmlSerializer(typeof(List<Bookmark>));
                 }
                 return xml;
-            } }
+            }
+        }
 
         private Dictionary<ulong, Bookmark> bookmarks = new Dictionary<ulong, Bookmark>();
 

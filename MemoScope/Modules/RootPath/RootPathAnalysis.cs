@@ -1,7 +1,6 @@
 ﻿using MemoScope.Core;
 using MemoScope.Core.Data;
 using NLog;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

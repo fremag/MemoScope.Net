@@ -30,13 +30,24 @@ namespace MemoScope
             AddToolBar("Threads", 4, Properties.Resources.processor_small);
             AddToolBar("Analysis", 5, Properties.Resources.perfomance_analysis);
             InitToolBars();
-            var workContent = InitWorkplace(new MemoScopeWorkplace(), DockState.DockLeft);
+
+            var workContent = InitWorkplace(new MemoScopeWorkplace(), DockState.DockLeft );
             InitLog();
             UIServiceHelper.InitServices(msgBus);
             InitModuleFactory();
-            DockModule(new ExplorerModule(), workContent, DockAlignment.Bottom);
-            WindowState = FormWindowState.Maximized;
+            var mod = DockModule(new ExplorerModule(), workContent, DockAlignment.Bottom);
+            DockState dockState;
+            if( MemoScopeSettings.Instance.InitialPosition == DockPanelPosition.Left)
+            {
+                dockState = MemoScopeSettings.Instance.Visible ? DockState.DockLeft: DockState.DockLeftAutoHide;
+            }
+            else
+            {
+                dockState = MemoScopeSettings.Instance.Visible ? DockState.DockRight:DockState.DockRightAutoHide;
+            }
+            workContent.DockState = mod.DockState = dockState;
 
+            WindowState = FormWindowState.Maximized;
             if( AutoLoadFiles != null)
             {
                 msgBus.SendMessage(new OpenDumpRequest(AutoLoadFiles));
