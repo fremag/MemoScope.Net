@@ -8,7 +8,7 @@ namespace MemoScope.Modules.Explorer
 {
     public class ExplorerCommand : AbstractVoidUICommand
     {
-        public ExplorerCommand() : base("Explorer", "Display explorer", UIToolBarSettings.File.Name, Properties.Resources.folders_explorer, Keys.Control|Keys.Shift|Keys.E)
+        public ExplorerCommand() : base("Explorer", "Display explorer", UIToolBarSettings.Main.Name, Properties.Resources.folders_explorer, Keys.Control|Keys.Shift|Keys.E)
         {
         }
 

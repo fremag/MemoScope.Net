@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 using WinFwk.UIModules;
-using WinFwk.UITools.ToolBar;
 
 namespace MemoScope.Modules.About
 {
@@ -9,8 +8,9 @@ namespace MemoScope.Modules.About
         public AboutModule()
         {
             InitializeComponent();
-            Icon = UIToolBarSettings.Help.Icon;
-            Summary = "About the application";
+            Icon = Properties.Resources.help;
+
+        Summary = "About the application";
             tbVersion.Text = string.Format("v {0}", Application.ProductVersion);
         }
 

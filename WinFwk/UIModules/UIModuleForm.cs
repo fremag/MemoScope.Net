@@ -37,7 +37,7 @@ namespace WinFwk.UIModules
             mainPanel.ContentAdded += OnContentAdded;
             mainPanel.ContentRemoved += OnContentRemoved;
 
-            toolbarSettings.Add(UIToolBarSettings.File);
+            toolbarSettings.Add(UIToolBarSettings.Main);
             toolbarSettings.Add(UIToolBarSettings.Help);
         }
 

@@ -24,7 +24,7 @@ namespace MemoScope
         private void MemoScope_Load(object sender, System.EventArgs e)
         {
             InitModuleFactory();
-            AddToolBar("Dump", 1, Properties.Resources.database_green, DockState.DockTop, true);
+            AddToolBar("Dump", 1, Properties.Resources.database_green);
             AddToolBar("Memory", 2, Properties.Resources.ddr_memory_small);
             AddToolBar("Bookmarks",3, Properties.Resources.award_star_gold_blue);
             AddToolBar("Threads", 4, Properties.Resources.processor_small);

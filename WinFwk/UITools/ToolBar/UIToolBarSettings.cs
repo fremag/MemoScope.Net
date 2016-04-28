@@ -5,8 +5,8 @@ namespace WinFwk.UITools.ToolBar
 {
     public class UIToolBarSettings
     {
-        public static readonly UIToolBarSettings File = new UIToolBarSettings("File", int.MaxValue, Properties.Resources.small_folder_vertical_open);
-        public static readonly UIToolBarSettings Help = new UIToolBarSettings("Help", int.MinValue, Properties.Resources.small_help);
+        public static readonly UIToolBarSettings Main = new UIToolBarSettings("Main", int.MinValue, Properties.Resources.small_folder_vertical_open, DockState.DockTop, true);
+        public static readonly UIToolBarSettings Help = new UIToolBarSettings("Help", int.MaxValue, Properties.Resources.small_help, DockState.DockTop);
 
         public string Name { get; }
         public int Priority { get; }
