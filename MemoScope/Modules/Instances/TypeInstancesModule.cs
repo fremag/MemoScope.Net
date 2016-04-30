@@ -20,14 +20,22 @@ namespace MemoScope.Modules.Instances
                 );
         }
 
+        TypeInstancesAddressList addressList;
         public TypeInstancesModule()
         {
             Icon = Properties.Resources.scroll_pane_list_small;
         }
+
         internal void Setup(ClrDumpType clrDumpType)
         {
-            TypeInstancesAddressList addressList = new TypeInstancesAddressList(clrDumpType);
+            addressList = new TypeInstancesAddressList(clrDumpType);
             Setup(addressList);
+        }
+
+        public override void Init()
+        {
+            addressList.Init();
+            base.Init();
         }
     }
 }

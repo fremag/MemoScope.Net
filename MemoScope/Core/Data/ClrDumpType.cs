@@ -1,6 +1,5 @@
 ﻿using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
-using System;
 
 namespace MemoScope.Core.Data
 {

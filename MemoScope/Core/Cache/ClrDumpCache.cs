@@ -196,6 +196,20 @@ namespace MemoScope.Core.Cache
             return -1;
         }
 
+        public string GetTypeName(int id)
+        {
+            SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = cxion;
+            cmd.CommandText = $"SELECT Name FROM Types WHERE id='{id}'";
+            SQLiteDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                string name = dr.GetString(0);
+                return name;
+            }
+            return null;
+        }
+
         #endregion
 
         #region Instances
@@ -206,18 +220,38 @@ namespace MemoScope.Core.Cache
             cmdInsertInstance.ExecuteNonQuery();
         }
 
-        public List<ulong> LoadInstances(int typeId, int max = 2 * 1000 * 1000)
+        public List<ulong> LoadInstances(int typeId)
         {
+            int nb = 0;
+            string name = null;
+            CancellationTokenSource token = null;
+
+            name = GetTypeName(typeId);
+            token = new CancellationTokenSource();
+            ClrDump.MessageBus.BeginTask($"Loading instances: {name}", token);
+            nb = CountInstances(typeId);
+
+            int max = 10 * 1000 * 1000;
             var list = new List<ulong>();
-            int n = max;
             foreach(ulong address in EnumerateInstances(typeId))
             {
                 list.Add(address);
-                if(n--==0)
+                n++;
+                if(n==max)
                 {
                     break;
                 }
+                if( n % 1024 == 0)
+                {
+                    ClrDump.MessageBus.Status($"Loading instances: {name}: {n:###,###,###,###} / {nb:###,###,###,###}...");
+                    if( token.IsCancellationRequested)
+                    {
+                        ClrDump.MessageBus.EndTask($"Loading instances: {name}: Cancelled !");
+                        return list;
+                    }
+                }
             }
+            ClrDump.MessageBus.EndTask($"Instances loaded: {name} = {n:###,###,###,###}");
             return list;
         }
 

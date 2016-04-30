@@ -9,11 +9,34 @@ namespace MemoScope.Core.Data
 
         }
 
-        public TypeInstancesAddressList(ClrDump clrDump, ClrType clrType) : base(clrDump, clrType, clrDump.GetInstances(clrType))
+        public TypeInstancesAddressList(ClrDump clrDump, ClrType clrType) : base(clrDump, clrType)
         {
         }
         public TypeInstancesAddressList(ClrDump clrDump, string typeName) : this(clrDump, clrDump.GetClrType(typeName))
         {
         }
+
+        public void Init()
+        {
+            Init(new TypeAddressContainer(ClrDump, ClrType));
+        }
+    }
+
+    public class TypeAddressContainer : IAddressContainer
+    {
+        private ClrDump clrDump;
+        private ClrType clrType;
+
+        AddressContainerList addressList;
+
+        public TypeAddressContainer(ClrDump clrDump, ClrType clrType)
+        {
+            this.clrDump = clrDump;
+            this.clrType = clrType;
+            addressList = new AddressContainerList(clrDump.GetInstances(clrType));
+        }
+
+        public ulong this[int index] => addressList[index] ;
+        public int Count => addressList.Count;
     }
 }
