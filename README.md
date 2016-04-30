@@ -7,30 +7,38 @@
 It's a tool to analyze .Net process memory: it can dump an application's memory in a file and read it later.
 The dump file contains all data (objects) and threads (state, stack, call stack)
 
-It's very useful to find **memory leaks** and **deadlocks**
+MemoScope.Net will analyze the data and help you to find **memory leaks** and **deadlocks**
 
 ##Is it a memory profiler ?
-No: a memory profiler will record allocations to detect where an object has been created.
+**No**: a memory profiler will record allocations to detect where an object has been created.
 In a dump file, this information is not present.
 
-Yes: MemoScope.Net has many features present in memory profiler: heap statistics, display object content and references, find duplicated strings etc
+**Yes**: MemoScope.Net shares many features with memory profilers: heap statistics, display object content and references, find duplicated strings etc
 
 ##Is it a debugger ?
-No: you can **NOT** run the process step by step or add any breakpoint.
+**No**: you can **NOT** run the process step by step or add any breakpoint.
 The dump file is static,nothing is dynamic.
 
-Yes: you can see object contents and call stacks so you can find why your process is locked or in an infinite loop for instance.
+**Yes**: you can see object contents and call stacks so you can find why your process is locked or in an infinite loop for instance.
 
 ## Is it "better" than...
 ### WinDbg
-No. Some features are missings (scripts for instance) but is easier to use: no funky commands, has a nice dockable GUI, complex analysis (find event targets for instance)
+**No*: some features are missing (scripts for instance) 
+
+**But** it's way easier to use thanks to its: 
+- nice dockable GUI
+- no complex command line, all can be done with the mouse
+- complex analysis (find event targets for instance)
 
 ### JetBrains' dotMemory 
-No. I wish I could write something comparable to JetBrains products...
-But MemoScope.Net is **free** and you have the source code so you can extend it ;)
+**No**. I wish I could write something comparable to JetBrains products...
+**But** MemoScope.Net is __**free**__ and you have the source code so you can extend it
 
 # Licence
-Public Domain. Do what you want with this software and source code.
+**Public Domain**
+
+Do what you want with this software and source code.
+
 The only important thing to know is that I can't be responsible for anything that could happen with it.
 If your life partner leaves you, your computer explodes, your car is smashed by a meteor or even if Asmodeus appears in your room etc : 
 **it can't be my fault**
@@ -73,12 +81,12 @@ client.DumpMe();
 Send some issues: bug reports, missing features, feedback etc
 
 ## Why is your english so bad ?
-Because I'm French. Please help me to correct any spelling, grammar errors etc you could notice.
+Because I'm French. Please, help me to correct any spelling, grammar errors etc you could notice.
 
 ## Why Winforms and not WPF or UWP ?
 Because it's good enough and I like  [ObjectListView](http://objectlistview.sourceforge.net/cs/index.html) and  [DockPanelSuite](http://dockpanelsuite.com/).
 
-Ok the real reason: I don't know WPF, never had to use at work or had time to learn it.
+Ok the real reason: I don't know WPF and never had to use at work or had time to learn it.
 
 ## Is there a wiki ?
 Not yet but I will write one when milestone 0.9.9 is released.
