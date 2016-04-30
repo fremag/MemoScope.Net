@@ -13,17 +13,17 @@ MemoScope.Net will analyze the data and help you to find **memory leaks** and **
 **No**: a memory profiler will record allocations to detect where an object has been created.
 In a dump file, this information is not present.
 
-**Yes**: MemoScope.Net shares many features with memory profilers: heap statistics, display object content and references, find duplicated strings etc
+**But**: MemoScope.Net shares many features with memory profilers: heap statistics, display object content and references, find duplicated strings etc
 
 ##Is it a debugger ?
 **No**: you can **NOT** run the process step by step or add any breakpoint.
 The dump file is static,nothing is dynamic.
 
-**Yes**: you can see object contents and call stacks so you can find why your process is locked or in an infinite loop for instance.
+**But**: you can see object contents and call stacks so you can find why your process is locked or in an infinite loop for instance.
 
 ## Is it "better" than...
 ### WinDbg
-**No*: some features are missing (scripts for instance) 
+**No**: some features are missing (scripts for instance) 
 
 **But** it's way easier to use thanks to its: 
 - nice dockable GUI
@@ -32,6 +32,7 @@ The dump file is static,nothing is dynamic.
 
 ### JetBrains' dotMemory 
 **No**. I wish I could write something comparable to JetBrains products...
+
 **But** MemoScope.Net is __**free**__ and you have the source code so you can extend it
 
 # Licence
