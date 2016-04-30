@@ -16,12 +16,10 @@ namespace MemoScope
         public string RootDir { get; set; }
 
         [Category("Explorer")]
-        [DefaultValue(DockPanelPosition.Left)]
-        public DockPanelPosition InitialPosition { get; set; }
+        public DockPanelPosition InitialPosition { get; set; } = DockPanelPosition.Left;
 
         [Category("Explorer")]
-        [DefaultValue(true)]
-        public bool Visible { get; set; }
+        public bool Visible { get; set; } = true;
 
         [Category("Display")]
         public List<TypeAlias> TypeAliases { get; set; } = new List<TypeAlias>();
