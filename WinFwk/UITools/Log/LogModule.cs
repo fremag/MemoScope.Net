@@ -130,6 +130,7 @@ namespace WinFwk.UITools.Log
                 var logEventInfo = new LogEventInfo { TimeStamp = DateTime.Now };
                 string fileName = fileTarget.FileName.Render(logEventInfo);
                 Process.Start(fileName);
+                return;
             }
         }
     }
