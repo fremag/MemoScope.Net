@@ -6,7 +6,6 @@ using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
 using MemoScope.Modules.Instances;
-using System;
 
 namespace MemoScope.Modules.TypeStats
 {
@@ -17,9 +16,9 @@ namespace MemoScope.Modules.TypeStats
         {
             InitializeComponent();
             Icon = Properties.Resources.application_view_list;
-            Disposed += OnDispose;
         }
-        public void OnDispose(object sender, EventArgs args)
+
+        public override void Close()
         {
             ClrDump?.Dispose();
         }

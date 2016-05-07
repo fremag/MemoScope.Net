@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using WinFwk.UIMessages;
 using WinFwk.UIModules;
 
@@ -10,6 +12,7 @@ namespace WinFwk.UITools.Workplace
         IMessageListener<SummaryChangedMessage>,
         IMessageListener<ModuleEventMessage>
     {
+        static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
         private readonly WorkplaceModel model = new WorkplaceModel();
         protected List<object> SelectedModules => tlvModules.CheckedObjects.OfType<object>().ToList();
 
@@ -30,14 +33,16 @@ namespace WinFwk.UITools.Workplace
 
         public void HandleMessage(ModuleEventMessage message)
         {
+            logger.Debug($"ModuleEventMessage: {message.ModuleEvent}, {message.Module.Name} / {message.Module.Summary}");
             switch (message.ModuleEvent)
             {
                 case ModuleEventType.Added:
                     model.Add(message.Module);
                     break;
                 case ModuleEventType.Removed:
+                    RequestCloseModule(message.Module);
                     model.Remove(message.Module);
-                    if( message.Module.UIModuleParent != null)
+                    if ( message.Module.UIModuleParent != null)
                     {
                         MessageBus.SendMessage(new ActivationRequest(message.Module.UIModuleParent));
                     }
@@ -50,6 +55,23 @@ namespace WinFwk.UITools.Workplace
             }
             tlvModules.Roots = model.rootModules;
             tlvModules.ExpandAll();
+        }
+
+        private void RequestCloseModule(UIModule module)
+        {
+            logger.Debug($"RequestCloseModule: {module.Name} / {module.Summary}");
+
+            var children = model.GetChildren(module);
+            logger.Debug($"RequestCloseModule: {module.Name}, children: {children?.Count}");
+            if (children == null || ! children.Any())
+            {
+                return;
+            }
+            foreach(var child in children)
+            {
+                logger.Debug($"RequestCloseModule: {child.Name} / {child.Summary}");
+                MessageBus.SendMessage(new CloseRequest(child));
+            }
         }
 
         public void HandleMessage(SummaryChangedMessage message)

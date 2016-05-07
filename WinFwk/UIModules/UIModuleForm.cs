@@ -1,7 +1,9 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +20,9 @@ namespace WinFwk.UIModules
         , IMessageListener<StatusMessage>
         , IMessageListener<ActivationRequest>
         , IMessageListener<UISettingsChangedMessage>
+        , IMessageListener<CloseRequest>
     {
+        static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
         protected readonly MessageBus msgBus = new MessageBus();
         private readonly List<UIToolBarSettings> toolbarSettings = new List<UIToolBarSettings>();
@@ -105,9 +109,9 @@ namespace WinFwk.UIModules
                 return;
             }
 
+            logger.Debug($"OnContentRemoved: {dockContent.TabText}");
             SendModuleEventMessage(dockContent, ModuleEventType.Removed);
             dicoModules.Remove(dockContent);
-
         }
 
         private void OnContentAdded(object sender, DockContentEventArgs e)
@@ -260,6 +264,21 @@ namespace WinFwk.UIModules
         protected void AddToolBar(string name, int priority, Bitmap icon, DockState dockState = DockState.DockTop, bool mainToolbar=false)
         {
             toolbarSettings.Add(new UIToolBarSettings(name, priority, icon, dockState, mainToolbar));
+        }
+
+        [UIScheduler]
+        void IMessageListener<CloseRequest>.HandleMessage(CloseRequest message)
+        {
+            logger.Info($"CloseRequest: {message.Module.Name} / {message.Module.Summary}");
+            foreach (var kvp in dicoModules)
+            {
+                if (kvp.Value == message.Module)
+                {
+                    logger.Info($"Close: {kvp.Value.Name} / {kvp.Value.Summary}");
+                    kvp.Key.Close();
+                    break;
+                }
+            }
         }
     }
 }

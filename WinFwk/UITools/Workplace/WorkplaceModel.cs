@@ -1,10 +1,13 @@
+using NLog;
 using System.Collections.Generic;
+using System.Reflection;
 using WinFwk.UIModules;
 
 namespace WinFwk.UITools.Workplace
 {
     public class WorkplaceModel
     {
+        static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
         internal Dictionary<UIModule, List<UIModule>> childModules = new Dictionary<UIModule, List<UIModule>>();
         internal List<UIModule> rootModules = new List<UIModule>();
 
@@ -58,20 +61,22 @@ namespace WinFwk.UITools.Workplace
             }
             List<UIModule> children;
             childModules.TryGetValue(uiModule, out children);
+            logger.Debug($"{nameof(GetChildren)}: parent: {uiModule.Name}, children: {children?.Count}");
             return children;
         }
 
         public void Remove(UIModule module)
         {
+            logger.Debug($"{nameof(Remove)}: {module.Name}");
             rootModules.Remove(module);
             var children = GetChildren(module.UIModuleParent);
             children?.Remove(module);
-            RemoveModuleChildren(module);
         }
 
         private void RemoveModuleChildren(UIModule module)
         {
             var children = GetChildren(module);
+            logger.Debug($"{nameof(RemoveModuleChildren)}: parent: {module.Name}, children: {children?.Count}");
             if (children == null)
             {
                 return;
@@ -83,6 +88,5 @@ namespace WinFwk.UITools.Workplace
                 RemoveModuleChildren(child);
             }
         }
-
     }
 }

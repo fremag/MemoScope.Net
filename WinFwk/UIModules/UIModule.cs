@@ -39,6 +39,10 @@ namespace WinFwk.UIModules
         {
 
         }
+        public virtual void Close()
+        {
+
+        }
 
         public void InitBus(MessageBus bus)
         {
