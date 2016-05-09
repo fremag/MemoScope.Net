@@ -7,7 +7,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.InstanceDetails
 {
-    public class InstanceDetailsCommand :  AbstractTypedUICommand<ClrDumpObject>
+    public class InstanceDetailsCommand :  AbstractDataUICommand<ClrDumpObject>
     {
         public InstanceDetailsCommand() : base("Instance", "Display instance details", "Dump", Properties.Resources.elements)
         {

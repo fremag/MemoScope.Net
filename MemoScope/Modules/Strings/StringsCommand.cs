@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Strings
 {
-    public class StringsCommand : AbstractTypedUICommand<ClrDump>
+    public class StringsCommand : AbstractDataUICommand<ClrDump>
     {
         public StringsCommand() : base("Strings", "Display Strings", "Analysis", Properties.Resources.text_rotate)
         {

@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.RootPath
 {
-    public class RootPathCommand : AbstractTypedUICommand<ClrDumpObject>
+    public class RootPathCommand : AbstractDataUICommand<ClrDumpObject>
     {
         public RootPathCommand() : base("RootPath", "Display Shortest Path to a root object", "Analysis", Properties.Resources.molecule, Keys.ControlKey | Keys.Alt | Keys.P)
         {

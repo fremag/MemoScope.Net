@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Handles
 {
-    public class HandlesCommand : AbstractTypedUICommand<ClrDump>
+    public class HandlesCommand : AbstractDataUICommand<ClrDump>
     {
         public HandlesCommand() : base("Handles", "Display Handles", "Memory", Properties.Resources.plugin_link)
         {

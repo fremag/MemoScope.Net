@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Threads
 {
-    public class ThreadsCommand : AbstractTypedUICommand<ClrDump>
+    public class ThreadsCommand : AbstractDataUICommand<ClrDump>
     {
         public ThreadsCommand() : base("Threads", "Display Threads", "Threads", Properties.Resources.processor, Keys.Control|Keys.T)
         {

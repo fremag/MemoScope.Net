@@ -6,7 +6,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Inspector
 {
-    public class InspectorCommand :  AbstractTypedUICommand<ClrDump>
+    public class InspectorCommand :  AbstractDataUICommand<ClrDump>
     {
         public InspectorCommand() : base("Inspector", "Display Inspector module", "Dump", Properties.Resources.microscope, Keys.Control|Keys.Shift|Keys.I)
         {

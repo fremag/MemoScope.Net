@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Stack
 {
-    public class StackCommand : AbstractTypedUICommand<ClrDumpThread>
+    public class StackCommand : AbstractDataUICommand<ClrDumpThread>
     {
         public StackCommand() : base("Stack", "Display Thread's Stack", "Threads", Properties.Resources.formatting_dublicate_value)
         {

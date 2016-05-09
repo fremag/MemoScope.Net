@@ -3,7 +3,7 @@ using WinFwk.UICommands;
 
 namespace MemoScope.Modules.Instances
 {
-    public class InstancesCommand :  AbstractTypedUICommand<AddressList>
+    public class InstancesCommand :  AbstractDataUICommand<AddressList>
     {
         public InstancesCommand() : base("Instances", "Display instances", "Dump", Properties.Resources.legend)
         {

@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Finalizer
 {
-    public class FinalizerCommand : AbstractTypedUICommand<ClrDump>
+    public class FinalizerCommand : AbstractDataUICommand<ClrDump>
     {
         public FinalizerCommand() : base("Finalizer", "Display Finalizer Queue", "Memory", Properties.Resources.broom)
         {

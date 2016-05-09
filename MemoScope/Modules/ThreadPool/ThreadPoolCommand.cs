@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.ThreadPool
 {
-    public class ThreadPoolCommand : AbstractTypedUICommand<ClrDump>
+    public class ThreadPoolCommand : AbstractDataUICommand<ClrDump>
     {
         public ThreadPoolCommand() : base("Thread Pool", "Display Thread Pool Information", "Threads", Properties.Resources.candlestickchart)
         {

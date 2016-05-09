@@ -309,10 +309,10 @@ namespace MemoScope.Core.Helpers
             {
                 listView.ContextMenuStrip = new ContextMenuStrip();
             }
-            var types = WinFwkHelper.GetDerivedTypes(typeof(AbstractTypedUICommand<T>));
+            var types = WinFwkHelper.GetDerivedTypes(typeof(AbstractDataUICommand<T>));
             foreach (var type in types)
             {
-                var command = Activator.CreateInstance(type, null) as AbstractTypedUICommand<T>;
+                var command = Activator.CreateInstance(type, null) as AbstractDataUICommand<T>;
                 command.InitBus(parentModule.MessageBus);
                 command.SetSelectedModule(parentModule);
                 command.InitDataProvider(new UIDataProviderAdapter<T>(dataProvider));
@@ -328,7 +328,7 @@ namespace MemoScope.Core.Helpers
             }
         }
 
-        private static void OnMenuItemClick<T>(AbstractTypedUICommand<T> command, Func<T> dataProvider)
+        private static void OnMenuItemClick<T>(AbstractDataUICommand<T> command, Func<T> dataProvider)
         {
             command.Run();
         }

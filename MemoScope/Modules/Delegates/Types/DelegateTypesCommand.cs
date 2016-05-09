@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Delegates.Types
 {
-    public class DelegatesCommand : AbstractTypedUICommand<ClrDump>
+    public class DelegatesCommand : AbstractDataUICommand<ClrDump>
     {
         public DelegatesCommand() : base("Delegate Types", "Display Delegate Types (inherinting MultiCastDelegate tpe)", "Analysis", Properties.Resources.macro_show_all_actions, Keys.Control | Keys.Shift | Keys.D)
         {

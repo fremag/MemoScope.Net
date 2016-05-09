@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.TypeDetails
 {
-    public class TypeDetailsCommand :  AbstractTypedUICommand<ClrDumpType>
+    public class TypeDetailsCommand :  AbstractDataUICommand<ClrDumpType>
     {
         public TypeDetailsCommand() : base("Type", "Display type details", "Dump", Properties.Resources.blueprint_large)
         {

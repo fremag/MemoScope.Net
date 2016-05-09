@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.ClrRoots
 {
-    public class ClrRootsCommand : AbstractTypedUICommand<ClrDump>
+    public class ClrRootsCommand : AbstractDataUICommand<ClrDump>
     {
         public ClrRootsCommand() : base("ClrRoots", "Display ClrRoots Queue", "Memory", Properties.Resources.anchor)
         {

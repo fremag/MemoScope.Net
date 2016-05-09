@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Bookmarks
 {
-    public class BookmarkCommand : AbstractTypedUICommand<ClrDump>
+    public class BookmarkCommand : AbstractDataUICommand<ClrDump>
     {
         public BookmarkCommand() : base("Bookmarks", "Open bookmark module", "Bookmarks", Properties.Resources.award_star_gold_blue)  
         {

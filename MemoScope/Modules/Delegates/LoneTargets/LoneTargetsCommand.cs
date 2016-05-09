@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Delegates.LoneHandlers
 {
-    public class LoneTargetsCommand : AbstractTypedUICommand<ClrDump>
+    public class LoneTargetsCommand : AbstractDataUICommand<ClrDump>
     {
         public LoneTargetsCommand() : base("Lone Targets", "Display Instances Referenced Only By A Delegate", "Analysis", Properties.Resources.lightning, Keys.Control | Keys.Shift | Keys.L)
         {

@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Delegates.Instances
 {
-    public class DelegateInstancesCommand : AbstractTypedUICommand<ClrDumpType>
+    public class DelegateInstancesCommand : AbstractDataUICommand<ClrDumpType>
     {
         public DelegateInstancesCommand() : base("Delegate Instances", "Display Delegate Instances", "Analysis", Properties.Resources.attributes_display, Keys.Control | Keys.Shift | Keys.I)
         {

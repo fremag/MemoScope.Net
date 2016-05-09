@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MemoScope.Modules.ArrayInstances
 {
-    public class ArrayInstancesCommand : AbstractTypedUICommand<ArraysAddressList>
+    public class ArrayInstancesCommand : AbstractDataUICommand<ArraysAddressList>
     {
         public ArrayInstancesCommand() : base("Array Instances", "Display Array Instances", "Analysis", Properties.Resources.formatting_equal_to)
         {

@@ -4,12 +4,12 @@ using WinFwk.UIModules;
 
 namespace WinFwk.UICommands
 {
-    public abstract class AbstractTypedUICommand<T> : AbstractUICommand
+    public abstract class AbstractDataUICommand<T> : AbstractUICommand
     {
         protected UIDataProvider<T> dataProvider;
         protected UIModule selectedModule;
 
-        protected AbstractTypedUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, group, icon, shortcut)
+        protected AbstractDataUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, group, icon, shortcut)
         {
             Enabled = false;
         }

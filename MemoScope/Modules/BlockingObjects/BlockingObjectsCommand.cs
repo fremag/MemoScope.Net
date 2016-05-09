@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.BlockingObjects
 {
-    public class BlockingObjectsCommand : AbstractTypedUICommand<ClrDump>
+    public class BlockingObjectsCommand : AbstractDataUICommand<ClrDump>
     {
         public BlockingObjectsCommand() : base("Blocking Objects", "Display BlockingObjects", "Threads", Properties.Resources._lock, Keys.Control|Keys.B)
         {

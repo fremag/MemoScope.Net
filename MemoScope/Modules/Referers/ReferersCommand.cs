@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Referers
 {
-    public class ReferersCommand : AbstractTypedUICommand<AddressList>
+    public class ReferersCommand : AbstractDataUICommand<AddressList>
     {
         public ReferersCommand() : base("Referers", "Display Referers", "Analysis", Properties.Resources.chart_organisation, Keys.ControlKey | Keys.Alt | Keys.R)
         {

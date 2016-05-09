@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Arrays
 {
-    public class ArraysCommand : AbstractTypedUICommand<ClrDump>
+    public class ArraysCommand : AbstractDataUICommand<ClrDump>
     {
         public ArraysCommand() : base("Arrays", "Display Arrays", "Analysis", Properties.Resources.recommended_summart_table)
         {

@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Delegates.Targets
 {
-    public class DelegateTargetsCommand : AbstractTypedUICommand<ClrDumpObject>
+    public class DelegateTargetsCommand : AbstractDataUICommand<ClrDumpObject>
     {
         public DelegateTargetsCommand() : base("Delegate Target", "Display Delegate Targets / Invocation list", "Analysis", Properties.Resources.table_lightning, Keys.Control | Keys.Shift | Keys.T)
         {

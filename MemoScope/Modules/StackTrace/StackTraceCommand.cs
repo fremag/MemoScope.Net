@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.StackTrace
 {
-    public class StackTraceCommand : AbstractTypedUICommand<ClrDumpThread>
+    public class StackTraceCommand : AbstractDataUICommand<ClrDumpThread>
     {
         public StackTraceCommand() : base("Stack Trace", "Display Thread's Stack Trace", "Threads", Properties.Resources.red_line)
         {

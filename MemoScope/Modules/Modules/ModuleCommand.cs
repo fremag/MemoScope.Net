@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Modules
 {
-    public class ModulesCommand : AbstractTypedUICommand<ClrDump>
+    public class ModulesCommand : AbstractDataUICommand<ClrDump>
     {
         public ModulesCommand() : base("Modules", "Display memory Modules", "Memory", Properties.Resources.module)
         {

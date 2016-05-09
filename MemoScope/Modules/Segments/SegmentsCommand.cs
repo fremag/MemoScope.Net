@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Segments
 {
-    public class SegmentsCommand : AbstractTypedUICommand<ClrDump>
+    public class SegmentsCommand : AbstractDataUICommand<ClrDump>
     {
         public SegmentsCommand() : base("Segments", "Display memory segments", "Memory", Properties.Resources.outline_wight_gallery)
         {

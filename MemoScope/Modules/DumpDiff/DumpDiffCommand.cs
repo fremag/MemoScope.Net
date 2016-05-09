@@ -6,7 +6,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.DumpDiff
 {
-    public class DumpDiffCommand : AbstractTypedUICommand<List<ClrDump>>
+    public class DumpDiffCommand : AbstractDataUICommand<List<ClrDump>>
     {
         public DumpDiffCommand() : base("Diff", "Compare dumps", "Dump", Properties.Resources.subtotal)
         {

@@ -5,7 +5,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.ThreadException
 {
-    public class ThreadExceptionCommand : AbstractTypedUICommand<ClrDumpThread>
+    public class ThreadExceptionCommand : AbstractDataUICommand<ClrDumpThread>
     {
         public ThreadExceptionCommand() : base("Exception", "Display Thread's Exception", "Threads", Properties.Resources.exclamation)
         {

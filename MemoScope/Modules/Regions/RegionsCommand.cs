@@ -4,7 +4,7 @@ using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Regions
 {
-    public class RegionsCommand : AbstractTypedUICommand<ClrDump>
+    public class RegionsCommand : AbstractDataUICommand<ClrDump>
     {
         public RegionsCommand() : base("Regions", "Display memory regions", "Memory", Properties.Resources.borders_accent)
         {
