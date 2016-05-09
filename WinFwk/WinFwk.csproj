@@ -97,6 +97,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UICommands\AbstractTypedUICommand.cs" />
+    <Compile Include="UICommands\AbstractDataUICommand.cs" />
     <Compile Include="UICommands\AbstractVoidUICommand.cs" />
     <Compile Include="UICommands\AbstractUICommand.cs" />
     <Compile Include="UICommands\UIDataProviderAdapter.cs" />
@@ -125,6 +126,9 @@
     <Compile Include="UIServices\AbstractUIService.cs" />
     <Compile Include="UITools\BoolColumnAttribute.cs" />
     <Compile Include="UITools\AddressColumnAttribute.cs" />
+    <Compile Include="UITools\Commands\BasicCopyData.cs" />
+    <Compile Include="UITools\Commands\CopyCommand.cs" />
+    <Compile Include="UITools\Commands\ICopyData.cs" />
     <Compile Include="UITools\PercentColumnAttribute.cs" />
     <Compile Include="UITools\DoubleColumnAttribute.cs" />
     <Compile Include="UITools\IntColumnAttribute.cs" />
@@ -216,6 +220,7 @@
     <Content Include="Icons\globe_place.png" />
     <Content Include="Icons\help.png" />
     <Content Include="Icons\open_folder.png" />
+    <Content Include="Icons\page_copy.png" />
     <Content Include="Icons\Small\cancel.png" />
     <Content Include="Icons\Small\small_help.png" />
     <Content Include="Icons\Small\small_folder_vertical_open.png" />

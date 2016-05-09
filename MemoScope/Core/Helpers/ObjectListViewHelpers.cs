@@ -378,5 +378,11 @@ namespace MemoScope.Core.Helpers
             };
             regexFilterControl.RegexCancelled += () => listView.UseFiltering = false;
         }
+
+        public static string ToTsv(this ObjectListView listView)
+        {
+            OLVExporter exporter = new OLVExporter(listView);
+            return exporter.ExportTo(OLVExporter.ExportFormat.TSV);
+        }
     }
 }

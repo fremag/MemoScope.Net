@@ -4,39 +4,35 @@ using WinFwk.UIModules;
 
 namespace WinFwk.UICommands
 {
-    public abstract class AbstractDataUICommand<T> : AbstractUICommand
+    public abstract class AbstractTypedUICommand<T> : AbstractUICommand where T : class
     {
-        protected UIDataProvider<T> dataProvider;
         protected UIModule selectedModule;
 
-        protected AbstractDataUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, group, icon, shortcut)
+        public T TypedModule { get; private set; }
+
+        protected AbstractTypedUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, group, icon, shortcut)
         {
             Enabled = false;
         }
 
         // Abstract
-        protected abstract void HandleData(T data);
+        public abstract void HandleAction(T typedModule);
 
         public override void SetSelectedModule(UIModule module)
         {
             selectedModule = module;
-            InitDataProvider(module as UIDataProvider<T>);
+            TypedModule = module as T;
+            Enabled = TypedModule != null;
         }
 
-        public void InitDataProvider(UIDataProvider<T> uiDataProvider)
-        {
-            dataProvider = uiDataProvider;
-            Enabled = (dataProvider != null);
-        }
         public override void Run()
         {
-            if (dataProvider == null)
+            if (TypedModule == null)
             {
                 return;
             }
 
-            var data = dataProvider.Data;
-            HandleData(data);
+            HandleAction(TypedModule);
         }
     }
 }

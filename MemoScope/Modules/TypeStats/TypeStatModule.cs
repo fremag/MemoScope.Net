@@ -6,10 +6,14 @@ using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
 using MemoScope.Modules.Instances;
+using WinFwk.UITools.Commands;
 
 namespace MemoScope.Modules.TypeStats
 {
-    public partial class TypeStatModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<AddressList>
+    public partial class TypeStatModule : UIClrDumpModule, 
+        UIDataProvider<ClrDumpType>, 
+        UIDataProvider<AddressList>, 
+        UIDataProvider<ICopyData>
     {
         private List<ClrTypeStats> typeStats;
         public TypeStatModule()
@@ -74,6 +78,8 @@ namespace MemoScope.Modules.TypeStats
                 return list;
             }
         }
+
+        public ICopyData Data => new BasicCopyData(dlvTypeStats.ToTsv());
 
         private void dlvTypeStats_CellClick(object sender, CellClickEventArgs e)
         {
