@@ -339,5 +339,8 @@ namespace MemoScope.Modules.Instances
             dlvAdresses.UseFiltering = false;
             Status("Filter removed.");
         }
+
+        public override IEnumerable<ObjectListView> ListViews => new ObjectListView[] { dlvAdresses };
+
     }
 }

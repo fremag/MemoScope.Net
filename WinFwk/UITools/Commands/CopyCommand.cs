@@ -13,6 +13,11 @@ namespace WinFwk.UITools.Commands
 
         protected override void HandleData(ICopyData data)
         {
+            if( data == null)
+            {
+                MessageBox.Show("No data selected !");
+                return;
+            }
             Clipboard.SetText(data.Data);
         }
     }

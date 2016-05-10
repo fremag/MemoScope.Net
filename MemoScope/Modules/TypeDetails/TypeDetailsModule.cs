@@ -47,5 +47,7 @@ namespace MemoScope.Modules.TypeDetails
             Name = $"#{ClrDump.Id} - {type.Name}";
             Summary = type.Name;
         }
+
+        public override IEnumerable<ObjectListView> ListViews => new ObjectListView[] { dlvFields, dlvMethods, dtlvParentClasses, };
     }
 }
