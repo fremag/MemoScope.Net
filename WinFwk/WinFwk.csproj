@@ -96,6 +96,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StringHelpers.cs" />
     <Compile Include="UICommands\AbstractTypedUICommand.cs" />
     <Compile Include="UICommands\AbstractDataUICommand.cs" />
     <Compile Include="UICommands\AbstractVoidUICommand.cs" />
@@ -126,9 +127,8 @@
     <Compile Include="UIServices\AbstractUIService.cs" />
     <Compile Include="UITools\BoolColumnAttribute.cs" />
     <Compile Include="UITools\AddressColumnAttribute.cs" />
-    <Compile Include="UITools\Commands\BasicCopyData.cs" />
     <Compile Include="UITools\Commands\CopyCommand.cs" />
-    <Compile Include="UITools\Commands\ICopyData.cs" />
+    <Compile Include="UITools\Commands\IDataExportable.cs" />
     <Compile Include="UITools\PercentColumnAttribute.cs" />
     <Compile Include="UITools\DoubleColumnAttribute.cs" />
     <Compile Include="UITools\IntColumnAttribute.cs" />

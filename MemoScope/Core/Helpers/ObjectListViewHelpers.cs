@@ -4,6 +4,7 @@ using MemoScope.Modules.InstanceDetails;
 using MemoScope.Tools.RegexFilter;
 using Microsoft.Diagnostics.Runtime;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -379,10 +380,31 @@ namespace MemoScope.Core.Helpers
             regexFilterControl.RegexCancelled += () => listView.UseFiltering = false;
         }
 
-        public static string ToTsv(this ObjectListView listView)
+        public static IEnumerable<string> ToTsv(this ObjectListView listView)
         {
-            OLVExporter exporter = new OLVExporter(listView);
-            return exporter.ExportTo(OLVExporter.ExportFormat.TSV);
-        }
+            string s = "";
+            var columns = listView.ColumnsInDisplayOrder;
+            int nbCol = columns.Count;
+            string[] values = new string[nbCol];
+            for (int j = 0; j < nbCol; j++)
+            {
+                var col = columns[j];
+                values[j] = col.Text;
+            }
+            yield return string.Join("\t", values);
+
+            for (int i=0; i < listView.GetItemCount(); i++)
+            {
+                var modelObject = listView.GetModelObject(i);
+                for(int j=0; j < nbCol; j++)
+                {
+                    var col = columns[j];
+                    string val = col.GetStringValue(modelObject);
+                    string escapeVal = StringHelpers.Escape(val);
+                    values[j] = escapeVal;
+                }
+                yield return string.Join("\t", values);
+             }
+         }
     }
 }

@@ -11,7 +11,7 @@ namespace MemoScope.Core
 {
     public partial class UIClrDumpModule : UIModule, 
         UIDataProvider<ClrDump>,
-        UIDataProvider<ICopyData>
+        IDataExportable
     {
         public  ClrDump ClrDump { get; protected set; }
 
@@ -23,20 +23,19 @@ namespace MemoScope.Core
         ClrDump UIDataProvider<ClrDump>.Data => ClrDump;
 
         public virtual IEnumerable<ObjectListView> ListViews => Controls.OfType<ObjectListView>();
-        public virtual ICopyData Data
+
+        IEnumerable<string> IDataExportable.ExportableData()
         {
-            get
+            if (this.ListViews.Any())
             {
-                if( this.ListViews.Any())
+                foreach (var listView in ListViews)
                 {
-                    string data = "";
-                    foreach(var listView in ListViews)
+                    foreach (var data in listView.ToTsv())
                     {
-                        data += listView.ToTsv() + Environment.NewLine;
+                        yield return data;
                     }
-                    return new BasicCopyData(data);
+                    yield return "";
                 }
-                return null;
             }
         }
     }

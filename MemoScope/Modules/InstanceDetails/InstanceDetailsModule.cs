@@ -1,4 +1,5 @@
-﻿using MemoScope.Core;
+﻿using BrightIdeasSoftware;
+using MemoScope.Core;
 using MemoScope.Core.Data;
 using MemoScope.Core.Helpers;
 using System.Collections.Generic;
@@ -82,5 +83,6 @@ namespace MemoScope.Modules.InstanceDetails
                 Summary = ClrDumpObject.ClrType == null ? "Unkown" : ClrDumpObject.ClrType.Name;
             }
         }
+        public override IEnumerable<ObjectListView> ListViews => new ObjectListView[] { dtlvFieldsValues, dtlvReferences};
     }
 }
