@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -46,9 +47,45 @@ namespace WinFwk.UITools.ToolBar
                 var meth = type.GetMethod(nameof(AbstractUICommand.Run));
                 var cmd = command;
                 Button button = new Button { Text = command.Name, FlatStyle = FlatStyle.Popup };
-                toolTip1.SetToolTip(button, command.ToolTip);
-                button.Click += (sender, args) => {
-                    meth.Invoke(cmd, null);
+                string tooltip = command.ToolTip;
+                if( command.Shortcut != Keys.None)
+                { // Todo : improve this
+                    tooltip += " (";
+                    if(command.Shortcut.HasFlag(Keys.Control))
+                    {
+                        tooltip += "Ctrl+";
+                    }
+                    if (command.Shortcut.HasFlag(Keys.Alt))
+                    {
+                        tooltip += "Alt+";
+                    }
+                    if (command.Shortcut.HasFlag(Keys.Shift))
+                    {
+                        tooltip += "Shift+";
+                    }
+
+                    tooltip += command.Shortcut.ToString().Split(',')[0];
+                    tooltip += ")";
+                }
+                toolTip1.SetToolTip(button, tooltip);
+                button.Click += (sender, args) => 
+                {
+                    try
+                    {
+                        meth.Invoke(cmd, null);
+                    }
+                    catch(Exception e)
+                    {
+                        var msgIcon = MessageBoxIcon.Error;
+                        var ex = e;
+                        if( e.InnerException?.GetType() == typeof(InvalidOperationException))
+                        {
+                            msgIcon = MessageBoxIcon.Warning;
+                            ex = e.InnerException;
+                        }
+                        var msg = $"{ex.Message}{Environment.NewLine}({ex.GetType().FullName})";
+                        MessageBox.Show(msg, "MemoScope: " + command.Name, MessageBoxButtons.OK, msgIcon);
+                    }
                 };
                 button.Enabled = command.Enabled;
                 if (command.Icon != null)

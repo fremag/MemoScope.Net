@@ -1,6 +1,6 @@
 ﻿using MemoScope.Core;
+using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
@@ -17,8 +17,7 @@ namespace MemoScope.Modules.DumpDiff
         {
             if( clrDumps == null || clrDumps.Count < 2)
             {
-                MessageBox.Show("Please, select two or more dumps in the workplace module !");
-                return;
+                throw new InvalidOperationException("Please, select two or more dumps in the workplace module !");
             }
             UIModuleFactory.CreateModule<DumpDiffModule>(module => { module.Setup(clrDumps); }, module => DockModule(module));
         }

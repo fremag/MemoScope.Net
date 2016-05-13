@@ -1,5 +1,5 @@
 ﻿using MemoScope.Core.Data;
-using System.Windows.Forms;
+using System;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
@@ -16,15 +16,15 @@ namespace MemoScope.Modules.ThreadException
         {
             if( clrDumpThread == null)
             {
-                MessageBox.Show("Please, select a thread !");
-                return;
+                throw new InvalidOperationException("No thread selected !");
             }
+
             var ex = clrDumpThread.ClrDump.Eval(() => clrDumpThread.ClrThread.CurrentException);
             if( ex == null)
             {
-                MessageBox.Show("No exception for this thread !");
-                return;
+                throw new InvalidOperationException("No exception for this thread !");
             }
+
             UIModuleFactory.CreateModule<ThreadExceptionModule>(module => {
                 module.UIModuleParent = selectedModule;
                 module.Setup(clrDumpThread.ClrDump, clrDumpThread.ClrThread);

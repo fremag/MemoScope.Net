@@ -1,5 +1,5 @@
 ﻿using MemoScope.Core.Data;
-using System.Windows.Forms;
+using System;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
@@ -16,9 +16,9 @@ namespace MemoScope.Modules.Stack
         {
             if( clrDumpThread == null)
             {
-                MessageBox.Show("Please, select a thread !");
-                return;
+                throw new InvalidOperationException("No thread selected !");
             }
+
             UIModuleFactory.CreateModule<StackModule>(module => {
                 module.UIModuleParent = selectedModule;
                 module.Setup(clrDumpThread.ClrDump, clrDumpThread.ClrThread);

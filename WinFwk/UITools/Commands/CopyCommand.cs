@@ -11,7 +11,7 @@ namespace WinFwk.UITools.Commands
 {
     public class CopyCommand : AbstractTypedUICommand<IDataExportable>
     {
-        public CopyCommand() : base("Copy", "Copy to clipboard", UIToolBarSettings.Main.Name, Properties.Resources.page_copy, Keys.ControlKey | Keys.Shift | Keys.C)
+        public CopyCommand() : base("Copy", "Copy to clipboard", UIToolBarSettings.Main.Name, Properties.Resources.page_copy, Keys.Control | Keys.Shift | Keys.C)
         {
 
         }

@@ -1,4 +1,5 @@
 ﻿using MemoScope.Core;
+using System;
 using System.Windows.Forms;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
@@ -16,8 +17,7 @@ namespace MemoScope.Modules.Delegates.LoneHandlers
         {
             if( clrDump == null )
             {
-                MessageBox.Show("No dump selected !");
-                return;
+                throw new InvalidOperationException("No dump selected !");
             }
 
             Display(selectedModule, clrDump);

@@ -1,5 +1,5 @@
 ﻿using MemoScope.Core.Data;
-using System.Windows.Forms;
+using System;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 
@@ -16,8 +16,7 @@ namespace MemoScope.Modules.TypeDetails
         {
             if( data == null)
             {
-                MessageBox.Show("Type Details: no type selected !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                throw new InvalidOperationException("No type selected !");
             }
 
             UIModuleFactory.CreateModule<TypeDetailsModule>(

@@ -1,4 +1,5 @@
 ﻿using MemoScope.Core;
+using System;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UICommands;
@@ -17,8 +18,7 @@ namespace MemoScope.Modules.Inspector
         {
             if( data == null)
             {
-                MessageBox.Show("Can't show inspector module, no dump selected !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                throw new InvalidOperationException("Can't show inspector module, no dump selected !");
             }
 
             UIModuleFactory.CreateModule<InspectorModule>(

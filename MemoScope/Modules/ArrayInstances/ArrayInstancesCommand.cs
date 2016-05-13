@@ -1,7 +1,7 @@
 ﻿using WinFwk.UICommands;
 using WinFwk.UIModules;
 using MemoScope.Modules.Arrays;
-using System.Windows.Forms;
+using System;
 
 namespace MemoScope.Modules.ArrayInstances
 {
@@ -21,9 +21,9 @@ namespace MemoScope.Modules.ArrayInstances
         {
             if (arrayAddressList == null)
             {
-                MessageBox.Show("Please, select an array type !");
-                return;
+                throw new InvalidOperationException("No array selected !");
             }
+
             UIModuleFactory.CreateModule<ArrayInstancesModule>(module => { module.UIModuleParent = parentModule; module.Setup(arrayAddressList); }, module => parentModule.RequestDockModule(module));
         }
     }

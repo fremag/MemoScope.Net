@@ -1,5 +1,5 @@
 ﻿using MemoScope.Core.Data;
-using System.Windows.Forms;
+using System;
 using WinFwk.UICommands;
 
 namespace MemoScope.Modules.Bookmarks
@@ -15,8 +15,7 @@ namespace MemoScope.Modules.Bookmarks
         {
             if (data == null)
             {
-                MessageBox.Show("No instance selected !");
-                return;
+                throw new InvalidOperationException("No instance selected !");
             }
 
             MessageBus.SendMessage(new BookmarkMessage(BookmarkAction.Remove, data));

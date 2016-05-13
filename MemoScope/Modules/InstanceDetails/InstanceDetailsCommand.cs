@@ -1,6 +1,6 @@
 ﻿using MemoScope.Core.Data;
 using MemoScope.Modules.Instances;
-using System.Windows.Forms;
+using System;
 using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
@@ -18,8 +18,7 @@ namespace MemoScope.Modules.InstanceDetails
         {
             if( data == null)
             {
-                MessageBox.Show("Can't show instance details: nothing selected !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                throw new InvalidOperationException("Can't show instance details: nothing selected !");
             }
             Display(selectedModule, data);
         }
