@@ -127,6 +127,7 @@
     <Compile Include="UIServices\AbstractUIService.cs" />
     <Compile Include="UITools\BoolColumnAttribute.cs" />
     <Compile Include="UITools\AddressColumnAttribute.cs" />
+    <Compile Include="UITools\Commands\ExportCommand.cs" />
     <Compile Include="UITools\Commands\CopyCommand.cs" />
     <Compile Include="UITools\Commands\IDataExportable.cs" />
     <Compile Include="UITools\PercentColumnAttribute.cs" />
@@ -226,6 +227,7 @@
     <Content Include="Icons\Small\small_folder_vertical_open.png" />
     <Content Include="Icons\Small\small_gear_in.png" />
     <Content Include="Icons\Small\small_file_extension_log.png" />
+    <Content Include="Icons\text_exports.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
