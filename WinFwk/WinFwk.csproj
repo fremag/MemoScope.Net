@@ -127,6 +127,7 @@
     <Compile Include="UIServices\AbstractUIService.cs" />
     <Compile Include="UITools\BoolColumnAttribute.cs" />
     <Compile Include="UITools\AddressColumnAttribute.cs" />
+    <Compile Include="UITools\Commands\CloseCommand.cs" />
     <Compile Include="UITools\Commands\ExportCommand.cs" />
     <Compile Include="UITools\Commands\CopyCommand.cs" />
     <Compile Include="UITools\Commands\IDataExportable.cs" />
@@ -215,6 +216,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Icons\cross.png" />
     <Content Include="Icons\disk.png" />
     <Content Include="Icons\file_extension_log.png" />
     <Content Include="Icons\gear_in.png" />
