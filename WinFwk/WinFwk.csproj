@@ -131,6 +131,13 @@
     <Compile Include="UITools\BoolColumnAttribute.cs" />
     <Compile Include="UITools\AddressColumnAttribute.cs" />
     <Compile Include="UITools\Commands\CloseCommand.cs" />
+    <Compile Include="UITools\Commands\CommandMgrModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UITools\Commands\CommandMgrModule.Designer.cs">
+      <DependentUpon>CommandMgrModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITools\Commands\CommandMgrCommand.cs" />
     <Compile Include="UITools\Commands\ExportCommand.cs" />
     <Compile Include="UITools\Commands\CopyCommand.cs" />
     <Compile Include="UITools\Commands\IDataExportable.cs" />
@@ -201,6 +208,9 @@
     <EmbeddedResource Include="UIModules\UIModuleForm.resx">
       <DependentUpon>UIModuleForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UITools\Commands\CommandMgrModule.resx">
+      <DependentUpon>CommandMgrModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UITools\Log\LogMessageViewerModule.resx">
       <DependentUpon>LogMessageViewerModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,7 +242,9 @@
     <Content Include="Icons\Small\small_folder_vertical_open.png" />
     <Content Include="Icons\Small\small_gear_in.png" />
     <Content Include="Icons\Small\small_file_extension_log.png" />
+    <Content Include="Icons\Small\update_contact_info.png" />
     <Content Include="Icons\text_exports.png" />
+    <Content Include="Icons\update_contact_info.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
