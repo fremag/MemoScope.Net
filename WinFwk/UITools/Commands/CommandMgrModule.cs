@@ -4,6 +4,7 @@ using WinFwk.UICommands;
 using BrightIdeasSoftware;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace WinFwk.UITools.Commands
 {
@@ -16,6 +17,9 @@ namespace WinFwk.UITools.Commands
         {
             InitializeComponent();
             dlvCommands.InitColumns<CommandInfo>();
+            dlvCommands[nameof(CommandInfo.Name)].ImageAspectName= nameof(CommandInfo.Icon);
+            dlvCommands.RowHeight = 32;
+
         }
 
         public override void Init()
@@ -49,11 +53,15 @@ namespace WinFwk.UITools.Commands
             Command = command;
         }
 
-        [OLVColumn]
+        public Image Icon => Command.Icon;
+
+        [OLVColumn(Width = 250)]
         public string Name => Command.Name;
         [OLVColumn]
         public string Group => Command.Group;
         [OLVColumn]
         public Keys ShortCut => Command.Shortcut;
+        [OLVColumn(Width =500)]
+        public string ToolTip=> Command.ToolTip;
     }
 }
