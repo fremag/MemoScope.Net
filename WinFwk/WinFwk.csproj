@@ -101,6 +101,9 @@
     <Compile Include="UICommands\AbstractDataUICommand.cs" />
     <Compile Include="UICommands\AbstractVoidUICommand.cs" />
     <Compile Include="UICommands\AbstractUICommand.cs" />
+    <Compile Include="UICommands\IUICommandRequestor.cs" />
+    <Compile Include="UICommands\UICommandRequest.cs" />
+    <Compile Include="UICommands\UICommandService.cs" />
     <Compile Include="UICommands\UIDataProviderAdapter.cs" />
     <Compile Include="UIMessages\IMessageListener.cs" />
     <Compile Include="UIMessages\MessageBus.cs" />

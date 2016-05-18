@@ -21,6 +21,7 @@ namespace WinFwk.UIModules
         , IMessageListener<ActivationRequest>
         , IMessageListener<UISettingsChangedMessage>
         , IMessageListener<CloseRequest>
+        , IUICommandRequestor
     {
         static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
         private readonly Dictionary<DockContent, UIModule> dicoModules = new Dictionary<DockContent, UIModule>();
@@ -29,6 +30,7 @@ namespace WinFwk.UIModules
         private readonly Dictionary<Keys, AbstractUICommand> dicoKeys = new Dictionary<Keys, AbstractUICommand>();
         private CancellationTokenSource cancellationTokenSource;
         private int nbTasks;
+        IEnumerable<AbstractUICommand> commands;
 
         public StatusStrip StatusBar => statusStrip;
 
@@ -173,22 +175,13 @@ namespace WinFwk.UIModules
         protected void InitToolBars()
         {
             mainPanel.DockTopPortion = 120;
-
-            // Get all the commands and instanciate them
-            List<AbstractUICommand> commands = new List<AbstractUICommand>();
-            var types = WinFwkHelper.GetDerivedTypes(typeof(AbstractUICommand));
-            foreach (var type in types)
+            this.msgBus.SendMessage(new UICommandRequest(this));
+            // Link keyboard shortcuts to commands
+            foreach (var command in commands)
             {
-                var constructor = type.GetConstructor(Type.EmptyTypes);
-                var command = constructor?.Invoke(null) as AbstractUICommand;
-                if (command != null)
+                if (command.Shortcut != Keys.None)
                 {
-                    command.InitBus(msgBus);
-                    if (command.Shortcut != Keys.None)
-                    {
-                        dicoKeys[command.Shortcut] = command;
-                    }
-                    commands.Add(command);
+                    dicoKeys[command.Shortcut] = command;
                 }
             }
 
@@ -279,6 +272,11 @@ namespace WinFwk.UIModules
                     break;
                 }
             }
+        }
+
+        public void Accept(IEnumerable<AbstractUICommand> commands)
+        {
+            this.commands = commands;
         }
     }
 }
