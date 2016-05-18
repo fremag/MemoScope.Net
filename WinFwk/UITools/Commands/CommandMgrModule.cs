@@ -59,9 +59,17 @@ namespace WinFwk.UITools.Commands
         public string Name => Command.Name;
         [OLVColumn]
         public string Group => Command.Group;
-        [OLVColumn]
-        public Keys ShortCut => Command.Shortcut;
+        [OLVColumn(Width = 50)]
+        public string Ctrl=> Command.Shortcut.HasFlag(Keys.Control) ? "Ctrl" : string.Empty;
+        [OLVColumn(Width = 50)]
+        public string Alt => Command.Shortcut.HasFlag(Keys.Alt) ? "Alt" : string.Empty;
+        [OLVColumn(Width = 50)]
+        public string Shift => Command.Shortcut.HasFlag(Keys.Shift) ? "Shift" : string.Empty;
+        [OLVColumn(Width = 50)]
+        public string Key => Command.Shortcut.ToString().Split(',')[0];
+
         [OLVColumn(Width =500)]
         public string ToolTip=> Command.ToolTip;
+
     }
 }
