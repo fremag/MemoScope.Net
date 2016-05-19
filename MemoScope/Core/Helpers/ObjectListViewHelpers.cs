@@ -118,12 +118,12 @@ namespace MemoScope.Core.Helpers
             {
                 if (e.ClickCount == 2 && e.Column == col)
                 {
-                    if( e.Model == null)
+                    if (e.Model == null)
                     {
                         return;
                     }
                     var cellItem = listView.SelectedItem?.GetSubItem(col.Index);
-                    if( cellItem == null)
+                    if (cellItem == null)
                     {
                         return;
                     }
@@ -131,7 +131,7 @@ namespace MemoScope.Core.Helpers
                     if (addressObj is ulong)
                     {
                         var address = (ulong)addressObj;
-                        if(address == 0)
+                        if (address == 0)
                         {
                             return;
                         }
@@ -141,27 +141,27 @@ namespace MemoScope.Core.Helpers
                     }
                 }
             };
-            listView.RegisterDataProvider( () =>
-                {
-                    var cellItem = listView.SelectedItem?.GetSubItem(col.Index);
-                    if (cellItem == null)
-                    {
-                        return null;
-                    }
-                    var addressObj = cellItem.ModelValue;
-                    if (addressObj is ulong)
-                    {
-                        var address = (ulong)addressObj;
-                        var type = dumpModule.ClrDump.GetObjectType(address);
-                        var clrDumpObject = new ClrDumpObject(dumpModule.ClrDump, type, address);
-                        return clrDumpObject;
-                    }
-                    return null;
-                }, dumpModule, suffix
+            listView.RegisterDataProvider(() =>
+               {
+                   var cellItem = listView.SelectedItem?.GetSubItem(col.Index);
+                   if (cellItem == null)
+                   {
+                       return null;
+                   }
+                   var addressObj = cellItem.ModelValue;
+                   if (addressObj is ulong)
+                   {
+                       var address = (ulong)addressObj;
+                       var type = dumpModule.ClrDump.GetObjectType(address);
+                       var clrDumpObject = new ClrDumpObject(dumpModule.ClrDump, type, address);
+                       return clrDumpObject;
+                   }
+                   return null;
+               }, dumpModule, suffix
             );
             listView.FormatCell += (o, e) =>
             {
-                if( e.Column != col || e.SubItem.ModelValue == null)
+                if (e.Column != col || e.SubItem.ModelValue == null)
                 {
                     return;
                 }
@@ -175,9 +175,9 @@ namespace MemoScope.Core.Helpers
             var tooltipGetter = listView.CellToolTipGetter;
             listView.CellToolTipGetter = (column, modelObject) =>
             {
-                if( column == col )
+                if (column == col)
                 {
-                    if (modelObject == null || ! ( modelObject is ulong))
+                    if (modelObject == null || !(modelObject is ulong))
                     {
                         return null;
                     }
@@ -188,7 +188,7 @@ namespace MemoScope.Core.Helpers
                         return bookmark.Comment;
                     }
                 }
-                if(tooltipGetter != null)
+                if (tooltipGetter != null)
                 {
                     return tooltipGetter(column, modelObject);
                 }
@@ -210,6 +210,23 @@ namespace MemoScope.Core.Helpers
                     var type = dumpModule.ClrDump.GetObjectType(address);
                     var clrDumpObject = new ClrDumpObject(dumpModule.ClrDump, type, address);
                     dumpModule.MessageBus.SendMessage(new SelectedClrDumpObjectMessage(clrDumpObject));
+                }
+            };
+            var menuItem = new ToolStripMenuItem("Copy Address");
+            //            menuItem.Image = command.Icon;
+            listView.ContextMenuStrip.Items.Add(menuItem);
+            menuItem.Click += (o, e) =>
+            {
+                var cellItem = listView.SelectedItem?.GetSubItem(col.Index);
+                if (cellItem == null)
+                {
+                    return;
+                }
+                var addressObj = cellItem.ModelValue;
+                if (addressObj is ulong)
+                {
+                    var address = (ulong)addressObj;
+                    Clipboard.SetText(address.ToString("X"));
                 }
             };
         }
