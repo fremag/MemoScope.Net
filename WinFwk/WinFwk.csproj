@@ -141,6 +141,7 @@
     <Compile Include="UITools\Commands\ExportCommand.cs" />
     <Compile Include="UITools\Commands\CopyCommand.cs" />
     <Compile Include="UITools\Commands\IDataExportable.cs" />
+    <Compile Include="UITools\ListViewHelpers.cs" />
     <Compile Include="UITools\PercentColumnAttribute.cs" />
     <Compile Include="UITools\DoubleColumnAttribute.cs" />
     <Compile Include="UITools\IntColumnAttribute.cs" />

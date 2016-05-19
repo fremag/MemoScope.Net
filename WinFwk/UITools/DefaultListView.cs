@@ -1,4 +1,5 @@
 ﻿using BrightIdeasSoftware;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,6 +10,15 @@ namespace WinFwk.UITools
         public DefaultListView()
         {
             this.Init();
+
+            this.ContextMenuStrip = new ContextMenuStrip();
+            var menuItem = new ToolStripMenuItem("Copy Selected rows");
+            ContextMenuStrip.Items.Add(menuItem);
+            menuItem.Click += (o, e) =>
+            {
+                string text = string.Join(Environment.NewLine, this.SelectedToTsv());
+                Clipboard.SetText(text);
+            };
         }
 
         public void BuildGroups(string colName, SortOrder order, bool colIsVisible=false)

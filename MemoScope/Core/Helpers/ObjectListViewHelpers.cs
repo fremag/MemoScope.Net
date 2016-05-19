@@ -262,6 +262,28 @@ namespace MemoScope.Core.Helpers
             };
             col.AspectToStringFormat = "{0:X}";
             listView.AllColumns.Add(col);
+            var menuItem = new ToolStripMenuItem("Copy Value");
+            listView.ContextMenuStrip.Items.Add(menuItem);
+            menuItem.Click += (o, e) =>
+            {
+                if(listView.SelectedItem==null)
+                {
+                    return;
+                }
+
+                int index = listView.SelectedItem.Index;
+                var modelObject = listView.GetModelObject(index);
+                string val = col.GetStringValue(modelObject);
+                string escapeVal = StringHelpers.Escape(val);
+                if( string.IsNullOrEmpty(escapeVal))
+                {
+                    Clipboard.SetText("null");
+                }
+                else
+                {
+                    Clipboard.SetText(escapeVal);
+                }
+            };
         }
 
         public static void AddSizeColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
@@ -396,32 +418,5 @@ namespace MemoScope.Core.Helpers
             };
             regexFilterControl.RegexCancelled += () => listView.UseFiltering = false;
         }
-
-        public static IEnumerable<string> ToTsv(this ObjectListView listView)
-        {
-            string s = "";
-            var columns = listView.ColumnsInDisplayOrder;
-            int nbCol = columns.Count;
-            string[] values = new string[nbCol];
-            for (int j = 0; j < nbCol; j++)
-            {
-                var col = columns[j];
-                values[j] = col.Text;
-            }
-            yield return string.Join("\t", values);
-
-            for (int i=0; i < listView.GetItemCount(); i++)
-            {
-                var modelObject = listView.GetModelObject(i);
-                for(int j=0; j < nbCol; j++)
-                {
-                    var col = columns[j];
-                    string val = col.GetStringValue(modelObject);
-                    string escapeVal = StringHelpers.Escape(val);
-                    values[j] = escapeVal;
-                }
-                yield return string.Join("\t", values);
-             }
-         }
     }
 }
