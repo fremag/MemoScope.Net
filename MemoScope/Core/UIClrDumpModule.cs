@@ -3,9 +3,7 @@ using BrightIdeasSoftware;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
 using WinFwk.UITools.Commands;
-using MemoScope.Core.Helpers;
 using System.Collections.Generic;
-using System;
 using WinFwk.UITools;
 
 namespace MemoScope.Core

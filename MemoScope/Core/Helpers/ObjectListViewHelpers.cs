@@ -4,13 +4,13 @@ using MemoScope.Modules.InstanceDetails;
 using MemoScope.Tools.RegexFilter;
 using Microsoft.Diagnostics.Runtime;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using WinFwk;
 using WinFwk.UICommands;
 using WinFwk.UIModules;
+using WinFwk.UITools.Log;
 
 namespace MemoScope.Core.Helpers
 {
@@ -136,6 +136,11 @@ namespace MemoScope.Core.Helpers
                             return;
                         }
                         var type = dumpModule.ClrDump.GetObjectType(address);
+                        if( type == null)
+                        {
+                            dumpModule.Log($"Can't find type for instance: {address:X}", LogLevelType.Error);
+                            return;
+                        }
                         var clrDumpObject = new ClrDumpObject(dumpModule.ClrDump, type, address);
                         InstanceDetailsCommand.Display(dumpModule, clrDumpObject);
                     }

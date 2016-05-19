@@ -70,12 +70,12 @@ namespace WinFwk.UIModules
             MessageBus.EndTask(text);
         }
 
-        protected void Log(string text, LogLevelType logLevel = LogLevelType.Info)
+        public void Log(string text, LogLevelType logLevel = LogLevelType.Info)
         {
             MessageBus.SendMessage(new LogMessage(this, text, logLevel));
         }
 
-        protected void Log(string text, Exception exception)
+        public void Log(string text, Exception exception)
         {
             MessageBus.SendMessage(new LogMessage(this, text, exception));
         }
