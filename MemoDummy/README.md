@@ -1,0 +1,3 @@
+﻿#MemoDummy
+Run some classic memory leaks, dead locks, memory peaks, exceptions...
+Designed to be dumped by MemoScope.Net for training purpose
