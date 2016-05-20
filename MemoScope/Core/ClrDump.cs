@@ -311,51 +311,59 @@ namespace MemoScope.Core
         }
 
         // Find the field in instance at address that references refAddress
-        public string GetFieldNameReference(ulong refAddress, ulong address)
+        public string GetFieldNameReference(ulong refAddress, ulong address, bool prefixWithType=false)
         {
-            return Eval(() => GetFieldNameReferenceImpl(refAddress, address));
+            return Eval(() => GetFieldNameReferenceImpl(refAddress, address, prefixWithType));
         }
-        public string GetFieldNameReferenceImpl(ulong refAddress, ulong address)
+
+        public string GetFieldNameReferenceImpl(ulong refAddress, ulong address, bool prefixWithType)
         { 
             ClrType type = GetObjectTypeImpl(address);
             if( type == null)
             {
                 return "Unknown";
             }
+            string fieldName = "???";
             ClrObject obj = new ClrObject(address, type);
-            if( type.IsArray)
+            if (type.IsArray)
             {
+                fieldName = "[ ? ]";
                 var length = type.GetArrayLength(address);
-                for (int i=0; i < length; i++ )
+                for (int i = 0; i < length; i++)
                 {
-                    if( obj[i].Address == refAddress)
+                    if (obj[i].Address == refAddress)
                     {
-                        return $"[ {i} ]";
+                        fieldName = $"[ {i} ]";
                     }
                 }
-                return "[ ? ]";
-            } 
-            foreach (var field in type.Fields)
+            }
+            else
             {
-                switch (field.ElementType)
+                foreach (var field in type.Fields)
                 {
-                    case ClrElementType.Struct:
-                    case ClrElementType.String:
-                    case ClrElementType.Array:
-                    case ClrElementType.SZArray:
-                    case ClrElementType.Object:
-                        var fieldValue = obj[field];
-                        if ( fieldValue.Address == refAddress)
-                        {
-                            return field.Name;
-                        }
-                        break;
+                    switch (field.ElementType)
+                    {
+                        case ClrElementType.Struct:
+                        case ClrElementType.String:
+                        case ClrElementType.Array:
+                        case ClrElementType.SZArray:
+                        case ClrElementType.Object:
+                            var fieldValue = obj[field];
+                            if (fieldValue.Address == refAddress)
+                            {
+                                fieldName = field.Name;
+                            }
+                            break;
+                    }
                 }
             }
-            return "???";
+            if (prefixWithType)
+            {
+                fieldName = $"{fieldName}@{type.Name}";
+            }
+
+            return fieldName;
         }
-
-
     }
 
     public class ThreadProperty
