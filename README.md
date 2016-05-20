@@ -1,6 +1,6 @@
 # MemoScope.Net
 
-![Memoscope.Net Logo](https://raw.githubusercontent.com/fremag/MemoScope.Net/master/MemoScope/Icons/Logos/memoscope_logo.png) | Dump and analyze .Net applications memory |![Build](https://ci.appveyor.com/api/projects/status/rri98ga4qy0v4384?svg=true)
+![Memoscope.Net Logo](https://raw.githubusercontent.com/fremag/MemoScope.Net/master/MemoScope/Icons/Logos/memoscope_logo.png) | Dump and analyze .Net applications memory |[![Build](https://ci.appveyor.com/api/projects/status/rri98ga4qy0v4384?svg=true)](https://ci.appveyor.com/project/fremag/memoscope-net)
 ---------------------|-------------------------------------------|----------------------
 # Getting started
 ## What it MemoScope.Net ?
