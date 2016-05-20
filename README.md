@@ -53,6 +53,10 @@ The dump file is static, nothing is dynamic.
 ### Visual Studio ?
 **Yes**. Visual Studio can open dump file and compare them but it's missing a lot of features that MemoScope.Net has. (See the list below)
 
+# Install
+Clone the repository from GitHub and run the solution with Visual Studio 2015 (with .Net 4.6)
+There is no binary release yet.
+
 # Licence
 **Public Domain**
 
