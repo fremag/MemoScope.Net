@@ -1,5 +1,4 @@
 ﻿using BrightIdeasSoftware;
-using MemoScope.Core;
 using MemoScope.Core.Data;
 using WinFwk.UITools;
 
@@ -7,9 +6,6 @@ namespace MemoScope.Modules.RootPath
 {
     public class RootPathInformation : ITypeNameData, IAddressData
     {
-        private ClrDump clrDump;
-        private ulong r;
-
         [AddressColumn]
         public ulong Address => ClrDumpObject.Address;
 
