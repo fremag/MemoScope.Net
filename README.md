@@ -1,7 +1,8 @@
-# MemoScope.Net
+# MemoScope.Net 
+[![Build](https://ci.appveyor.com/api/projects/status/rri98ga4qy0v4384?svg=true)](https://ci.appveyor.com/project/fremag/memoscope-net)
 
-![Memoscope.Net Logo](https://raw.githubusercontent.com/fremag/MemoScope.Net/master/MemoScope/Icons/Logos/memoscope_logo.png) | Dump and analyze .Net applications memory |[![Build](https://ci.appveyor.com/api/projects/status/rri98ga4qy0v4384?svg=true)](https://ci.appveyor.com/project/fremag/memoscope-net)
----------------------|-------------------------------------------|----------------------
+![Memoscope.Net Logo](https://raw.githubusercontent.com/fremag/MemoScope.Net/master/MemoScope/Icons/Logos/memoscope_logo.png) | Dump and analyze .Net applications memory
+---------------------|-------------------------------------------
 # Getting started
 ## What it MemoScope.Net ?
 It's a tool to analyze .Net process memory: it can dump an application's memory in a file and read it later.
