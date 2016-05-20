@@ -35,5 +35,14 @@ namespace MemoDummy
     {
         public event EventHandler FirstEventHandler;
         public event EventHandler SecondEventHandler;
+
+        public void InvokeFirstEventHandler()
+        {
+            if(FirstEventHandler != null) FirstEventHandler(this, EventArgs.Empty );
+        }
+        public void InvokeSecondEventHandler()
+        {
+            if (SecondEventHandler != null) SecondEventHandler(this, EventArgs.Empty);
+        }
     }
 }
