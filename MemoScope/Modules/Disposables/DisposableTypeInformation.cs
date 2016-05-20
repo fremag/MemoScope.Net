@@ -7,9 +7,6 @@ namespace MemoScope.Modules.Disposables
 {
     public class DisposableTypeInformation : ITypeNameData
     {
-        private ClrType type;
-        private long nbInstances;
-
         public DisposableTypeInformation(ClrType type, long nbInstances)
         {
             ClrType = type;
