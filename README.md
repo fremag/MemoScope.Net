@@ -54,8 +54,10 @@ The dump file is static, nothing is dynamic.
 **Yes**. Visual Studio can open dump file and compare them but it's missing a lot of features that MemoScope.Net has. (See the list below)
 
 # Install
-Clone the repository from GitHub and run the solution with Visual Studio 2015 (with .Net 4.6)
-There is no binary release yet.
+- clone the repository from GitHub and run the solution with Visual Studio 2015 (with .Net 4.6)
+- get a version from [AppVeyor](https://ci.appveyor.com/project/fremag/memoscope-net):
+ - [x86](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x86.zip?job=Platform%3A%20x86)
+ - [x64](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x64.zip?job=Platform%3A%20x64)
 
 # Licence
 **Public Domain**
