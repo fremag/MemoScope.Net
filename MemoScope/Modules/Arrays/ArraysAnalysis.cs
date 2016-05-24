@@ -41,9 +41,13 @@ namespace MemoScope.Modules.Arrays
                         maxLength = Math.Max(maxLength, length);
                         totalSize += type.GetSize(address);
                         totalLength += length;
-                        if (nbInstances % 1024 == 0)
+                        if (nbInstances % 512 == 0)
                         {
                             msgBus.Status($"Analyzing array: #{nbInstances:###,###,###,##0} for type: {typeName}");
+                            if (token.IsCancellationRequested)
+                            {
+                                return;
+                            }
                         }
                     }
                     arrays.Add(new ArraysInformation(new ClrDumpType(clrDump, type), nbInstances, totalLength, maxLength, totalSize));
