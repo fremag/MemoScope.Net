@@ -185,6 +185,9 @@ namespace MemoScope.Modules.Delegates
 
         public static List<LoneTargetInformation> GetLoneTargetInformations(ClrDump clrDump)
         {
+            CancellationTokenSource token = new CancellationTokenSource();
+            clrDump.MessageBus.BeginTask("Analyzing lone targets...", token);
+
             Dictionary<ClrObject, ClrObject> loneTargetAddresses = new Dictionary<ClrObject, ClrObject>();
             // For each instance of every delegate types 
             // let's find all the target objects
@@ -192,10 +195,24 @@ namespace MemoScope.Modules.Delegates
             var types = GetDelegateTypes(clrDump);
             foreach(var type in types)
             {
+                clrDump.MessageBus.Status($"Analyzing delegate type: {type.Name}");
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
+                int n = 0;
                 foreach (var address in clrDump.EnumerateInstances(type)) {
+                    if (n++ % 128 == 0)
+                    {
+                        clrDump.MessageBus.Status($"Analyzing delegate type: {type.Name}, instance #{n:###,###,###,##0}");
+                    }
                     var handlerObject = new ClrObject(address, type);
                     foreach(var subHandlerObject in EnumerateHandlers(handlerObject))
                     {
+                        if (token.IsCancellationRequested)
+                        {
+                            break;
+                        }
                         var target = subHandlerObject[TargetFieldName];
                         int count = clrDump.CountReferers(target.Address);
                         if( count == 1)
@@ -224,6 +241,8 @@ namespace MemoScope.Modules.Delegates
                 var loneTargetInformation = new LoneTargetInformation(clrDump, loneTarget, methInfo, owner);
                 loneTargets.Add(loneTargetInformation);
             }
+            string status = token.IsCancellationRequested ? "cancelled" : "done";
+            clrDump.MessageBus.EndTask($"Analyzing lone targets: {status}. Found: {loneTargets.Count}");
             return loneTargets;
         }
 
