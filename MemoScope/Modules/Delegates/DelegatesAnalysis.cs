@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using MemoScope.Core.Data;
 using System;
 using System.Linq;
+using System.Threading;
+using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Delegates
 {
@@ -26,17 +28,31 @@ namespace MemoScope.Modules.Delegates
 
         public static List<ClrType> GetDelegateTypes(ClrDump clrDump)
         {
+            CancellationTokenSource token = new CancellationTokenSource();
+            clrDump.MessageBus.BeginTask("Analyzing delegate types...", token);
             List<ClrType> delegates = new List<ClrType>();
             var delegateType = clrDump.GetClrType(typeof(MulticastDelegate).FullName);
 
             foreach(var type in  clrDump.AllTypes)
             {
-                if( type.BaseType != null && type.BaseType == delegateType && clrDump.CountInstances(type) > 0)
+                clrDump.MessageBus.Status($"Analyzing delegate type: {type.Name}");
+                if (token.IsCancellationRequested)
                 {
-                    delegates.Add(type);
+                    break;
+                }
+
+                if ( type.BaseType != null && type.BaseType == delegateType )
+                {
+                    clrDump.MessageBus.Status($"Analyzing delegate type: counting instances for {type.Name}");
+                    int nb = clrDump.CountInstances(type);
+                    if (nb > 0)
+                    {
+                        delegates.Add(type);
+                    }
                 }
             }
 
+            clrDump.MessageBus.EndTask("Delegate types analyzed.");
             return delegates.GroupBy(t => t.Name).Select(g => g.First()).ToList();
         }
 
