@@ -57,5 +57,15 @@ namespace WinFwk.UITools
             return string.Join("\t", values);
         }
 
+        public static void InitColumnTooltips(this ObjectListView listView)
+        {
+            foreach(OLVColumn col in listView.AllColumns)
+            {
+                if( string.IsNullOrEmpty( col.ToolTipText ))
+                {
+                    col.ToolTipText = col.Text;
+                }
+            }
+        }
     }
 }

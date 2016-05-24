@@ -31,6 +31,7 @@ namespace WinFwk.UITools
         public void InitColumns<T>()
         {
             Generator.GenerateColumns(this, typeof(T), false);
+            this.InitColumnTooltips();
         }
 
         public void Sort(string colName, SortOrder sortOrder= SortOrder.Ascending)

@@ -17,6 +17,7 @@ namespace WinFwk.UITools
             Generator.GenerateColumns(this, typeof(T), false);
             CanExpandGetter = o => ((T)o).CanExpand;
             ChildrenGetter = o => ((T)o).Children;
+            this.InitColumnTooltips();
         }
         public OLVColumn this[string columnName] => this.AllColumns.FirstOrDefault(col => col.Name == columnName);
     }
