@@ -265,7 +265,6 @@ namespace MemoScope.Core.Helpers
                 );
                 return result;
             };
-            col.AspectToStringFormat = "{0:X}";
             listView.AllColumns.Add(col);
             var menuItem = new ToolStripMenuItem("Copy Value");
             listView.ContextMenuStrip.Items.Add(menuItem);
