@@ -27,7 +27,10 @@ namespace MemoScope.Modules.RootPath
 
             msgBus.Status("Analysing Root Path: collecting root instances...");
             var roots = new HashSet<ulong>(clrDump.ClrRoots.Select(clrRoot => clrRoot.Object));
-            logger.Debug("Roots: " + Str(roots));
+            if (logger.IsDebugEnabled)
+            {
+                logger.Debug("Roots: " + Str(roots));
+            }
             List<ulong> bestPath = null;
             var currentPath = new List<ulong>();
             currentPath.Add(address);
@@ -55,7 +58,7 @@ namespace MemoScope.Modules.RootPath
 
         public static bool FindShortestPath(List<ulong> currentPath, ref List<ulong> bestPath, IClrDump clrDump)
         {
-            logger.Debug("FindShortestPath: currentPath: " + Str(currentPath)+", best: "+Str(bestPath));
+            if(logger.IsDebugEnabled) logger.Debug("FindShortestPath: currentPath: " + Str(currentPath)+", best: "+Str(bestPath));
             if( bestPath != null && currentPath.Count >= bestPath.Count)
             {
                 return false;
@@ -67,12 +70,12 @@ namespace MemoScope.Modules.RootPath
                 {
                     continue;
                 }
-                logger.Debug($"Visiting: {refAddress:X}");
+                if (logger.IsDebugEnabled) logger.Debug($"Visiting: {refAddress:X}");
                 currentPath.Add(refAddress);
                 if (! clrDump.HasReferers(refAddress))
                 {
                     bestPath = new List<ulong>(currentPath);
-                    logger.Debug("Root found !, best path: "+Str(bestPath));
+                    if (logger.IsDebugEnabled) logger.Debug("Root found !, best path: "+Str(bestPath));
                     currentPath.RemoveAt(currentPath.Count - 1);
                     return true;
                 }
@@ -91,9 +94,15 @@ namespace MemoScope.Modules.RootPath
                 return "[]";
             }
             var s = "[";
+            int n = 0;
             foreach(var u in ulongEnum)
             {
                 s += u.ToString("X") + ", ";
+                if( ++n % 128 == 0)
+                {
+                    s += "..., ";
+                    break;
+                }
             }
             return s.Substring(0, s.Length-2)+"]";
         }
