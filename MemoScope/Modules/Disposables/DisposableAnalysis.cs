@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MemoScope.Core;
-using System.Linq;
+using System.Threading;
+using WinFwk.UIModules;
 
 namespace MemoScope.Modules.Disposables
 {
@@ -8,23 +9,31 @@ namespace MemoScope.Modules.Disposables
     {
         internal static List<DisposableTypeInformation> GetDisposableTypeInformations(ClrDump clrDump)
         {
+            CancellationTokenSource token = new CancellationTokenSource();
+            clrDump.MessageBus.BeginTask("Analyzing IDisposable types...", token);
+
             List<DisposableTypeInformation> result = new List<DisposableTypeInformation>();
-            var stats = clrDump.GetTypeStats().ToDictionary(stat => stat.TypeName);
 
             foreach (var type in clrDump.AllTypes)
             {
-                foreach(var interf in type.Interfaces)
+                clrDump.MessageBus.Status($"Analyzing type: {type.Name}");
+                if (token.IsCancellationRequested)
+                {
+                    clrDump.MessageBus.EndTask("Analyzing IDisposable types: cancelled.");
+                    return result;
+                }
+
+                foreach (var interf in type.Interfaces)
                 {
                     if( interf.Name == typeof(System.IDisposable).FullName)
                     {
-                        ClrTypeStats stat;
-                        if (stats.TryGetValue(type.Name, out stat))
-                        {
-                            result.Add(new DisposableTypeInformation(stat.Type, stat.NbInstances));
-                        }
+                        clrDump.MessageBus.Status($"Analyzing IDisposable type: counting instances for {type.Name}");
+                        int nb = clrDump.CountInstances(type);
+                        result.Add(new DisposableTypeInformation(type, nb));
                     }
                 }
             }
+            clrDump.MessageBus.EndTask("IDisposable types analyzed.");
             return result;
         }
     }
