@@ -170,11 +170,15 @@ namespace MemoScope.Core.Helpers
                 {
                     return;
                 }
-                var address = (ulong)e.SubItem.ModelValue;
-                var bookmark = dumpModule.ClrDump.BookmarkMgr.Get(address);
-                if (bookmark != null)
+                var addressObj = e.SubItem.ModelValue;
+                if (addressObj is ulong)
                 {
-                    e.SubItem.BackColor = bookmark.Color;
+                    var address = (ulong)addressObj;
+                    var bookmark = dumpModule.ClrDump.BookmarkMgr.Get(address);
+                    if (bookmark != null)
+                    {
+                        e.SubItem.BackColor = bookmark.Color;
+                    }
                 }
             };
             var tooltipGetter = listView.CellToolTipGetter;
@@ -186,11 +190,14 @@ namespace MemoScope.Core.Helpers
                     {
                         return null;
                     }
-                    var address = (ulong)modelObject;
-                    var bookmark = dumpModule.ClrDump.BookmarkMgr.Get(address);
-                    if (bookmark != null)
+                    if (modelObject is ulong)
                     {
-                        return bookmark.Comment;
+                        var address = (ulong)modelObject;
+                        var bookmark = dumpModule.ClrDump.BookmarkMgr.Get(address);
+                        if (bookmark != null)
+                        {
+                            return bookmark.Comment;
+                        }
                     }
                 }
                 if (tooltipGetter != null)
