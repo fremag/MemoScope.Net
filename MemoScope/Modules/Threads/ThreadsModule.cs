@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WinFwk.UICommands;
 using MemoScope.Core.Data;
+using BrightIdeasSoftware;
 
 namespace MemoScope.Modules.Threads
 {
@@ -58,7 +59,7 @@ namespace MemoScope.Modules.Threads
             {
                 var threadInfo = new ThreadInformation(ClrDump, thread);
                 ThreadProperty threadProp;
-                if( ClrDump.ThreadProperties.TryGetValue(thread.ManagedThreadId, out threadProp))
+                if (ClrDump.ThreadProperties.TryGetValue(thread.ManagedThreadId, out threadProp))
                 {
                     threadInfo.Address = threadProp.Address;
                     threadInfo.Name = threadProp.Name;
@@ -72,7 +73,7 @@ namespace MemoScope.Modules.Threads
             get
             {
                 var thread = dlvThreads.SelectedObject<ThreadInformation>();
-                if( thread == null)
+                if (thread == null)
                 {
                     return null;
                 }
@@ -85,6 +86,20 @@ namespace MemoScope.Modules.Threads
             base.PostInit();
             Summary = $"{Threads.Count} Threads";
             dlvThreads.Objects = Threads;
+        }
+
+        public override IEnumerable<ObjectListView> ListViews {
+            get {
+                yield return dlvThreads;
+                foreach (var lv in stackModule.ListViews)
+                {
+                    yield return lv;
+                }
+                foreach (var lv in stackTraceModule.ListViews)
+                {
+                    yield return lv;
+                }
+            }
         }
     }
 }
