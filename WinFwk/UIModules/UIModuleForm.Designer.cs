@@ -94,7 +94,7 @@ namespace WinFwk.UIModules
             this.tsslStatusMessage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsslStatusMessage.Name = "tsslStatusMessage";
             this.tsslStatusMessage.Size = new System.Drawing.Size(910, 20);
-            this.tsslStatusMessage.Spring = true;
+            this.tsslStatusMessage.Spring = false;
             this.tsslStatusMessage.Text = "Ok.";
             this.tsslStatusMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
