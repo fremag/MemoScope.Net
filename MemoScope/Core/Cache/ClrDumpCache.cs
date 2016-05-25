@@ -233,6 +233,7 @@ namespace MemoScope.Core.Cache
 
             int max = 10 * 1000 * 1000;
             var list = new List<ulong>();
+            n = 0;
             foreach(ulong address in EnumerateInstances(typeId))
             {
                 list.Add(address);
