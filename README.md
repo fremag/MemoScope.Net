@@ -120,9 +120,9 @@ Not yet but I will write one when milestone 0.9.9 is released.
 Yes, I use it at work. 
 
 My users/colleagues can run some simulations for days and they can set dozen of parameters with a lot of input data.
-So memory issues happens oftenly. I used to try to fix them with a memory profiler but sometimes I could not: it takes too long to reproduce the issue or I could not get the exact configuration/data they set in the application or they are working in another place I can't connect to. 
+So memory issues happens often. I used to try to fix them with a memory profiler but sometimes I could not: it takes too long to reproduce the issue or I could not get the exact configuration/data they set in the application or they are working in another place I can't connect to. 
 
-I learnt them to dump the memory so now I  can analyze it on my machine and I could find a lof of memory leaks or peaks, bugs etc
+I taught them to dump the memory so now I  can analyze it on my machine and I could find a lof of memory leaks or peaks, bugs etc
 
 # Thanks to...
 * [Lee Culver](https://github.com/leculver) for his [ClrMd](https://github.com/Microsoft/clrmd) library, without it, MemoScope.Net would not exist.
