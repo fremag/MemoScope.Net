@@ -81,7 +81,6 @@ namespace WinFwk.UIModules
                         break;
                 }
             }
-            Application.DoEvents ();
         }
 
         private void SendModuleEventMessage(DockContent content, ModuleEventType moduleEvent)
