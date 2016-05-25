@@ -71,8 +71,7 @@ namespace MemoScope.Modules.DumpDiff
                 return;
             }
             var clrDumpType = SelectedTypeInstancesAddressList(col.ClrDump);
-            var addresses = new TypeInstancesAddressList(clrDumpType);
-            InstancesModule.Create(addresses, this, mod => RequestDockModule(mod));
+            TypeInstancesModule.Create(clrDumpType, this, mod => RequestDockModule(mod));
         }
 
         private ClrDumpType SelectedTypeInstancesAddressList(ClrDump clrDump)

@@ -6,7 +6,6 @@ using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
 using MemoScope.Modules.Instances;
-using WinFwk.UITools.Commands;
 
 namespace MemoScope.Modules.TypeStats
 {
