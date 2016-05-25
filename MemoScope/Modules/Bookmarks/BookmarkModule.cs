@@ -70,6 +70,7 @@ namespace MemoScope.Modules.Bookmarks
         private void LoadBookmarks()
         {
             dlvBookmarks.Objects = ClrDump.BookmarkMgr.GetBookmarks();
+            dlvBookmarks.ShowGroups = true;
             dlvBookmarks.BuildGroups(nameof(Bookmark.TypeName), SortOrder.Ascending);
         }
 

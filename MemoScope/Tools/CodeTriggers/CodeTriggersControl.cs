@@ -71,7 +71,8 @@ namespace MemoScope.Tools.CodeTriggers
 
         public void RefreshTriggers()
         {
-            dlvTriggers.SetObjects(triggers);
+            dlvTriggers.Objects = triggers;
+            dlvTriggers.ShowGroups = true;
             dlvTriggers.BuildGroups(nameof(CodeTrigger.Group), SortOrder.Ascending);
         }
 
