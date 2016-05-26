@@ -36,7 +36,7 @@ namespace MemoScope.Modules.TypeStats
         {
             Log("Computing type statistics...", WinFwk.UITools.Log.LogLevelType.Info);
             typeStats = ClrDump.GetTypeStats();
-            Summary = $"{typeStats.Count} types";
+            Summary = $"{typeStats.Count:###,###,###,##0} types";
             Log("Type statistics computed.", WinFwk.UITools.Log.LogLevelType.Info);
         }
 
