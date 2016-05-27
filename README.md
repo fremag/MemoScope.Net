@@ -28,7 +28,7 @@ Sometimes, users can do weird things with your application and you can't make it
 - clone the repository from GitHub and run the solution with Visual Studio 2015 (with .Net 4.6)
 - get a version from [AppVeyor](https://ci.appveyor.com/project/fremag/memoscope-net):
  - Debug: [x86](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x86_Debug.zip?job=Configuration%3A%20Debug%3B%20Platform%3A%20x86) [x64](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x64_Debug.zip?job=Configuration%3A%20Debug%3B%20Platform%3A%20x64)
-- Release: [x86](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x86_Release.zip?job=Configuration%3A%20Release%3B%20Platform%3A%20x86) [x64](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x64_Release.zip?job=Configuration%3A%20Release%3B%20Platform%3A%20x64)
+ - Release: [x86](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x86_Release.zip?job=Configuration%3A%20Release%3B%20Platform%3A%20x86) [x64](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x64_Release.zip?job=Configuration%3A%20Release%3B%20Platform%3A%20x64)
 
 # Licence
 **Public Domain**
