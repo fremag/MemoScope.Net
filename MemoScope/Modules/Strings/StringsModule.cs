@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
+using BrightIdeasSoftware;
+using MemoScope.Modules.Instances;
 
 namespace MemoScope.Modules.Strings
 {
@@ -51,6 +53,15 @@ namespace MemoScope.Modules.Strings
                     return null;
                 }
                 return new AddressList(ClrDump, stringType, stringInfo.Addresses);
+            }
+        }
+
+        private void OnCellClick(object sender, CellClickEventArgs e)
+        {
+            if (e.ClickCount == 2 && e.Model != null)
+            {
+                var addresses = Data;
+                InstancesModule.Create(addresses, this, mod => RequestDockModule(mod));
             }
         }
     }

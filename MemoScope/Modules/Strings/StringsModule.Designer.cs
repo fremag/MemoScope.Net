@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dlvStrings = new WinFwk.UITools.DefaultListView();
             ((System.ComponentModel.ISupportInitialize)(this.dlvStrings)).BeginInit();
             this.SuspendLayout();
             // 
-            // defaultListView1
+            // dlvStrings
             // 
             this.dlvStrings.CellEditUseWholeCell = false;
             this.dlvStrings.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -41,7 +42,7 @@
             this.dlvStrings.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvStrings.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dlvStrings.Location = new System.Drawing.Point(0, 0);
-            this.dlvStrings.Name = "defaultListView1";
+            this.dlvStrings.Name = "dlvStrings";
             this.dlvStrings.ShowGroups = false;
             this.dlvStrings.ShowImagesOnSubItems = true;
             this.dlvStrings.Size = new System.Drawing.Size(762, 483);
@@ -49,13 +50,14 @@
             this.dlvStrings.UseCompatibleStateImageBehavior = false;
             this.dlvStrings.View = System.Windows.Forms.View.Details;
             this.dlvStrings.VirtualMode = true;
+            this.dlvStrings.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.OnCellClick);
             // 
-            // ModulesModule
+            // StringsModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dlvStrings);
-            this.Name = "ModulesModule";
+            this.Name = "StringsModule";
             this.Size = new System.Drawing.Size(762, 483);
             ((System.ComponentModel.ISupportInitialize)(this.dlvStrings)).EndInit();
             this.ResumeLayout(false);
