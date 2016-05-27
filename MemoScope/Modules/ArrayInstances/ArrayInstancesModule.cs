@@ -4,6 +4,10 @@ using BrightIdeasSoftware;
 using MemoScope.Modules.Arrays;
 using MemoScope.Core.Helpers;
 using System.Windows.Forms;
+using MemoScope.Modules.Instances;
+using MemoScope.Modules.InstanceDetails;
+using WinFwk.UITools.Log;
+using MemoScope.Core.Data;
 
 namespace MemoScope.Modules.ArrayInstances
 {
@@ -38,7 +42,19 @@ namespace MemoScope.Modules.ArrayInstances
         {
             if( e.ClickCount == 2 && e.Model != null)
             {
-                // TODO
+                var arrayInstance = dlvArrays.SelectedObject<ArrayInstanceInformation>();
+                if (arrayInstance != null)
+                {
+                    var address = arrayInstance.Address;
+                    var type = ClrDump.GetObjectType(address);
+                    if (type == null)
+                    {
+                        Log($"Can't find type for instance: {address:X}", LogLevelType.Error);
+                        return;
+                    }
+                    var clrDumpObject = new ClrDumpObject(ClrDump, type, address);
+                    InstanceDetailsCommand.Display(this, clrDumpObject);
+                }
             }
         }
 
