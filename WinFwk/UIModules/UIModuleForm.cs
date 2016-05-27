@@ -265,9 +265,10 @@ namespace WinFwk.UIModules
             logger.Info($"CloseRequest: {message.Module.Name} / {message.Module.Summary}");
             foreach (var kvp in dicoModules)
             {
-                if (kvp.Value == message.Module)
+                UIModule module = kvp.Value;
+                if (module == message.Module && module.Closable())
                 {
-                    logger.Info($"Close: {kvp.Value.Name} / {kvp.Value.Summary}");
+                    logger.Info($"Close: {module.Name} / {module.Summary}");
                     kvp.Key.Close();
                     break;
                 }

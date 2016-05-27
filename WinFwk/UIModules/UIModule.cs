@@ -35,10 +35,17 @@ namespace WinFwk.UIModules
         {
 
         }
+
         public virtual void PostInit()
         {
 
         }
+
+        public virtual bool Closable()
+        {
+            return true;
+        }
+
         public virtual void Close()
         {
 

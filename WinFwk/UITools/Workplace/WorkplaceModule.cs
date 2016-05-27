@@ -87,5 +87,10 @@ namespace WinFwk.UITools.Workplace
                 MessageBus.SendMessage(new ActivationRequest(module));
             }
         }
+
+        public override bool Closable()
+        {
+            return false;
+        }
     }
 }
