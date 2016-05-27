@@ -79,6 +79,7 @@ namespace MemoScope.Core.Helpers
 
             string res = "";
             string buf = "";
+            bool isArray = typeName.EndsWith("[]");
             for (int i = 0; i < typeName.Length; i++)
             {
                 char c = typeName[i];
@@ -109,6 +110,7 @@ namespace MemoScope.Core.Helpers
                 colorCache[res] = colors;
                 colorCache[typeName] = colors;
             }
+            if (isArray) res += "[ ]";
             return res;
         }
 

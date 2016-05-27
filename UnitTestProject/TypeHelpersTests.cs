@@ -36,7 +36,10 @@ namespace UnitTestProject
                 ["aaaaa"] = "aaaaa",
                 ["System.Object"] = "object",
                 ["System.Collections.Generic.List<System.WeakReference>"] = "sys.col.gen.List< System.WeakReference> ",
-                ["System.Collections.Generic.List<Tuple<System.Object,System.Boolean>>"] = "sys.col.gen.List< Tuple< object, bool> > "
+                ["System.Collections.Generic.List<Tuple<System.Object,System.Boolean>>"] = "sys.col.gen.List< Tuple< object, bool> > ",
+                ["System.Collections.Generic.List<double[]>"] = "sys.col.gen.List< double[]> ",
+                ["System.Collections.Generic.List<double>[]"] = "sys.col.gen.List< double> [ ]",
+                ["System.Collections.Generic.Dictionary<System.Object, double[]>[]"] = "sys.col.gen.Dictionary< object, double[]> [ ]"
             };
 
             foreach (var field in fields)
