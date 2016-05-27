@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dlvArrays = new WinFwk.UITools.DefaultListView();
             this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvArrays)).BeginInit();
@@ -43,11 +44,11 @@
             this.dlvArrays.HideSelection = false;
             this.dlvArrays.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvArrays.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvArrays.Location = new System.Drawing.Point(0, 37);
+            this.dlvArrays.Location = new System.Drawing.Point(0, 45);
             this.dlvArrays.Name = "dlvArrays";
             this.dlvArrays.ShowGroups = false;
             this.dlvArrays.ShowImagesOnSubItems = true;
-            this.dlvArrays.Size = new System.Drawing.Size(762, 446);
+            this.dlvArrays.Size = new System.Drawing.Size(762, 438);
             this.dlvArrays.TabIndex = 0;
             this.dlvArrays.UseCompatibleStateImageBehavior = false;
             this.dlvArrays.View = System.Windows.Forms.View.Details;

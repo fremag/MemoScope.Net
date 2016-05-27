@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dlvTypeStats = new WinFwk.UITools.DefaultListView();
             this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             this.lblDumpPath = new System.Windows.Forms.Label();
@@ -40,14 +41,16 @@
             this.dlvTypeStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dlvTypeStats.CellEditUseWholeCell = false;
             this.dlvTypeStats.FullRowSelect = true;
             this.dlvTypeStats.HideSelection = false;
-            this.dlvTypeStats.Location = new System.Drawing.Point(0, 66);
+            this.dlvTypeStats.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.dlvTypeStats.HighlightForegroundColor = System.Drawing.Color.Empty;
+            this.dlvTypeStats.Location = new System.Drawing.Point(0, 77);
             this.dlvTypeStats.Name = "dlvTypeStats";
-            this.dlvTypeStats.OwnerDraw = true;
             this.dlvTypeStats.ShowGroups = false;
             this.dlvTypeStats.ShowImagesOnSubItems = true;
-            this.dlvTypeStats.Size = new System.Drawing.Size(452, 420);
+            this.dlvTypeStats.Size = new System.Drawing.Size(452, 409);
             this.dlvTypeStats.TabIndex = 0;
             this.dlvTypeStats.UseCompatibleStateImageBehavior = false;
             this.dlvTypeStats.View = System.Windows.Forms.View.Details;
@@ -60,13 +63,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.regexFilterControl.Location = new System.Drawing.Point(0, 34);
             this.regexFilterControl.Name = "regexFilterControl";
-            this.regexFilterControl.Size = new System.Drawing.Size(449, 26);
+            this.regexFilterControl.Size = new System.Drawing.Size(449, 37);
             this.regexFilterControl.TabIndex = 1;
             // 
             // lblDumpPath
             // 
             this.lblDumpPath.AutoSize = true;
-            this.lblDumpPath.Location = new System.Drawing.Point(3, 9);
+            this.lblDumpPath.Location = new System.Drawing.Point(10, 9);
             this.lblDumpPath.Name = "lblDumpPath";
             this.lblDumpPath.Size = new System.Drawing.Size(45, 17);
             this.lblDumpPath.TabIndex = 2;
@@ -76,10 +79,10 @@
             // 
             this.tbDumpPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDumpPath.Location = new System.Drawing.Point(54, 6);
+            this.tbDumpPath.Location = new System.Drawing.Point(71, 6);
             this.tbDumpPath.Name = "tbDumpPath";
             this.tbDumpPath.ReadOnly = true;
-            this.tbDumpPath.Size = new System.Drawing.Size(395, 22);
+            this.tbDumpPath.Size = new System.Drawing.Size(378, 22);
             this.tbDumpPath.TabIndex = 3;
             // 
             // TypeStatModule

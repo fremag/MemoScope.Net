@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dlvDelegateTypes = new WinFwk.UITools.DefaultListView();
             this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvDelegateTypes)).BeginInit();
             this.SuspendLayout();
             // 
-            // dlvDelegates
+            // dlvDelegateTypes
             // 
             this.dlvDelegateTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -43,11 +44,11 @@
             this.dlvDelegateTypes.HideSelection = false;
             this.dlvDelegateTypes.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvDelegateTypes.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvDelegateTypes.Location = new System.Drawing.Point(0, 33);
-            this.dlvDelegateTypes.Name = "dlvDelegates";
+            this.dlvDelegateTypes.Location = new System.Drawing.Point(0, 44);
+            this.dlvDelegateTypes.Name = "dlvDelegateTypes";
             this.dlvDelegateTypes.ShowGroups = false;
             this.dlvDelegateTypes.ShowImagesOnSubItems = true;
-            this.dlvDelegateTypes.Size = new System.Drawing.Size(762, 450);
+            this.dlvDelegateTypes.Size = new System.Drawing.Size(762, 439);
             this.dlvDelegateTypes.TabIndex = 0;
             this.dlvDelegateTypes.UseCompatibleStateImageBehavior = false;
             this.dlvDelegateTypes.View = System.Windows.Forms.View.Details;
@@ -60,16 +61,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.regexFilterControl.Location = new System.Drawing.Point(0, 3);
             this.regexFilterControl.Name = "regexFilterControl";
-            this.regexFilterControl.Size = new System.Drawing.Size(759, 24);
+            this.regexFilterControl.Size = new System.Drawing.Size(759, 35);
             this.regexFilterControl.TabIndex = 1;
             // 
-            // DelegateModule
+            // DelegateTypesModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.regexFilterControl);
             this.Controls.Add(this.dlvDelegateTypes);
-            this.Name = "DelegateModule";
+            this.Name = "DelegateTypesModule";
             this.Size = new System.Drawing.Size(762, 483);
             ((System.ComponentModel.ISupportInitialize)(this.dlvDelegateTypes)).EndInit();
             this.ResumeLayout(false);

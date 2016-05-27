@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dlvDisposableTypes = new WinFwk.UITools.DefaultListView();
             this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvDisposableTypes)).BeginInit();
             this.SuspendLayout();
             // 
-            // dlvDelegates
+            // dlvDisposableTypes
             // 
             this.dlvDisposableTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -43,11 +44,11 @@
             this.dlvDisposableTypes.HideSelection = false;
             this.dlvDisposableTypes.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvDisposableTypes.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvDisposableTypes.Location = new System.Drawing.Point(0, 33);
-            this.dlvDisposableTypes.Name = "dlvDelegates";
+            this.dlvDisposableTypes.Location = new System.Drawing.Point(0, 48);
+            this.dlvDisposableTypes.Name = "dlvDisposableTypes";
             this.dlvDisposableTypes.ShowGroups = false;
             this.dlvDisposableTypes.ShowImagesOnSubItems = true;
-            this.dlvDisposableTypes.Size = new System.Drawing.Size(762, 450);
+            this.dlvDisposableTypes.Size = new System.Drawing.Size(762, 435);
             this.dlvDisposableTypes.TabIndex = 0;
             this.dlvDisposableTypes.UseCompatibleStateImageBehavior = false;
             this.dlvDisposableTypes.View = System.Windows.Forms.View.Details;
@@ -60,16 +61,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.regexFilterControl.Location = new System.Drawing.Point(0, 3);
             this.regexFilterControl.Name = "regexFilterControl";
-            this.regexFilterControl.Size = new System.Drawing.Size(759, 24);
+            this.regexFilterControl.Size = new System.Drawing.Size(759, 39);
             this.regexFilterControl.TabIndex = 1;
             // 
-            // DelegateModule
+            // DisposableTypesModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.regexFilterControl);
             this.Controls.Add(this.dlvDisposableTypes);
-            this.Name = "DelegateModule";
+            this.Name = "DisposableTypesModule";
             this.Size = new System.Drawing.Size(762, 483);
             ((System.ComponentModel.ISupportInitialize)(this.dlvDisposableTypes)).EndInit();
             this.ResumeLayout(false);

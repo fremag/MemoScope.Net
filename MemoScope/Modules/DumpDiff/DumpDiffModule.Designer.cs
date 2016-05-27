@@ -52,11 +52,11 @@ namespace MemoScope.Modules.DumpDiff
             this.dlvDumpDiff.HideSelection = false;
             this.dlvDumpDiff.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvDumpDiff.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvDumpDiff.Location = new System.Drawing.Point(0, 31);
+            this.dlvDumpDiff.Location = new System.Drawing.Point(0, 43);
             this.dlvDumpDiff.Name = "dlvDumpDiff";
             this.dlvDumpDiff.ShowGroups = false;
             this.dlvDumpDiff.ShowImagesOnSubItems = true;
-            this.dlvDumpDiff.Size = new System.Drawing.Size(798, 587);
+            this.dlvDumpDiff.Size = new System.Drawing.Size(798, 575);
             this.dlvDumpDiff.TabIndex = 1;
             this.dlvDumpDiff.UseCompatibleStateImageBehavior = false;
             this.dlvDumpDiff.View = System.Windows.Forms.View.Details;
@@ -65,7 +65,7 @@ namespace MemoScope.Modules.DumpDiff
             // 
             this.lblSortMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSortMode.AutoSize = true;
-            this.lblSortMode.Location = new System.Drawing.Point(617, 7);
+            this.lblSortMode.Location = new System.Drawing.Point(617, 12);
             this.lblSortMode.Name = "lblSortMode";
             this.lblSortMode.Size = new System.Drawing.Size(81, 17);
             this.lblSortMode.TabIndex = 3;
@@ -75,7 +75,7 @@ namespace MemoScope.Modules.DumpDiff
             // 
             this.cbSortMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSortMode.FormattingEnabled = true;
-            this.cbSortMode.Location = new System.Drawing.Point(704, 3);
+            this.cbSortMode.Location = new System.Drawing.Point(704, 8);
             this.cbSortMode.Name = "cbSortMode";
             this.cbSortMode.Size = new System.Drawing.Size(86, 24);
             this.cbSortMode.TabIndex = 4;
@@ -87,7 +87,7 @@ namespace MemoScope.Modules.DumpDiff
             | System.Windows.Forms.AnchorStyles.Right)));
             this.regexFilterControl.Location = new System.Drawing.Point(3, 3);
             this.regexFilterControl.Name = "regexFilterControl";
-            this.regexFilterControl.Size = new System.Drawing.Size(604, 24);
+            this.regexFilterControl.Size = new System.Drawing.Size(604, 34);
             this.regexFilterControl.TabIndex = 2;
             // 
             // DumpDiffModule
