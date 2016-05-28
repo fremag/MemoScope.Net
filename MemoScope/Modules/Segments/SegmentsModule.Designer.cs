@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dlvSegments = new WinFwk.UITools.DefaultListView();
             ((System.ComponentModel.ISupportInitialize)(this.dlvSegments)).BeginInit();
             this.SuspendLayout();
             // 
-            // defaultListView1
+            // dlvSegments
             // 
             this.dlvSegments.CellEditUseWholeCell = false;
             this.dlvSegments.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -41,7 +42,7 @@
             this.dlvSegments.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dlvSegments.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dlvSegments.Location = new System.Drawing.Point(0, 0);
-            this.dlvSegments.Name = "defaultListView1";
+            this.dlvSegments.Name = "dlvSegments";
             this.dlvSegments.ShowGroups = false;
             this.dlvSegments.ShowImagesOnSubItems = true;
             this.dlvSegments.Size = new System.Drawing.Size(762, 483);
@@ -49,6 +50,7 @@
             this.dlvSegments.UseCompatibleStateImageBehavior = false;
             this.dlvSegments.View = System.Windows.Forms.View.Details;
             this.dlvSegments.VirtualMode = true;
+            this.dlvSegments.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.dlvSegments_CellClick);
             // 
             // SegmentsModule
             // 

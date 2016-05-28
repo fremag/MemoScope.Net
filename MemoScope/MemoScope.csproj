@@ -244,6 +244,13 @@
     <Compile Include="Modules\Disposables\DisposableTypesModule.Designer.cs">
       <DependentUpon>DisposableTypesModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\InstancesMixed\InstanceInformation.cs" />
+    <Compile Include="Modules\InstancesMixed\InstancesMixedModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\InstancesMixed\InstancesMixedModule.Designer.cs">
+      <DependentUpon>InstancesMixedModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\RootPath\RootPathAnalysis.cs" />
     <Compile Include="Modules\RootPath\RootPathCommand.cs" />
     <Compile Include="Modules\RootPath\RootPathInformation.cs" />
@@ -550,6 +557,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Disposables\DisposableTypesModule.resx">
       <DependentUpon>DisposableTypesModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\InstancesMixed\InstancesMixedModule.resx">
+      <DependentUpon>InstancesMixedModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\RootPath\RootPathModule.resx">
       <DependentUpon>RootPathModule.cs</DependentUpon>

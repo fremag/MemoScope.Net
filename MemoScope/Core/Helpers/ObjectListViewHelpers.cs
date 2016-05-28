@@ -296,8 +296,12 @@ namespace MemoScope.Core.Helpers
                 }
             };
         }
-
         public static void AddSizeColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, ClrType type)
+        {
+            AddSizeColumn(listView, addressGetter, dump, o => type);
+        }
+
+        public static void AddSizeColumn(this ObjectListView listView, Func<object, ulong> addressGetter, ClrDump dump, Func<object, ClrType> clrTypeGetter)
         {
             var col = new OLVColumn("Size", null)
             {
@@ -318,7 +322,12 @@ namespace MemoScope.Core.Helpers
                 }
                 object result = dump.Eval(
                     () => {
-                        return type.GetSize(address);
+                        var type = clrTypeGetter(o);
+                        if (type != null)
+                        {
+                            return type.GetSize(address);
+                        }
+                        return (ulong)0;
                     }
                 );
                 return result;

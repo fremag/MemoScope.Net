@@ -34,7 +34,7 @@ namespace MemoScope.Modules.Stack
         public override void PostInit()
         {
             base.PostInit();
-            Summary = $"{StackInstances.Count} instances" ;
+            Summary = $"{StackInstances.Count:###,###,###,##0} instances" ;
         }
 
         public override void Init()

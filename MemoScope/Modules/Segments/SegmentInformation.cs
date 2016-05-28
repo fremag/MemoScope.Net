@@ -1,6 +1,5 @@
-﻿using BrightIdeasSoftware;
-using Microsoft.Diagnostics.Runtime;
-using System.Windows.Forms;
+﻿using Microsoft.Diagnostics.Runtime;
+using System.Collections.Generic;
 using WinFwk.UITools;
 
 namespace MemoScope.Modules.Segments
@@ -30,5 +29,7 @@ namespace MemoScope.Modules.Segments
         public ulong Gen2Length => segment.Gen2Length;
         [BoolColumn]
         public bool IsEphemeral => segment.IsEphemeral;
+
+        public IEnumerable<ulong> Instances => segment.EnumerateObjectAddresses();
     }
 }

@@ -1,4 +1,7 @@
 ﻿using MemoScope.Core;
+using MemoScope.Core.Data;
+using MemoScope.Core.Helpers;
+using MemoScope.Modules.InstancesMixed;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,6 +35,17 @@ namespace MemoScope.Modules.Segments
             base.PostInit();
             Summary = $"{segments.Count} segments";
             dlvSegments.Objects = segments;
+        }
+
+        private void dlvSegments_CellClick(object sender, BrightIdeasSoftware.CellClickEventArgs e)
+        {
+            var segment = dlvSegments.SelectedObject<SegmentInformation>();
+            if (segment != null)
+            {
+                var addressList = ClrDump.Eval(() => segment.Instances.ToList());
+                var addresses = new AddressContainerList(addressList);
+                InstancesMixedModule.Create(ClrDump, addresses, this, mod => RequestDockModule(mod));
+            }
         }
     }
 }
