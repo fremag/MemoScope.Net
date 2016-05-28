@@ -19,6 +19,7 @@
             }
             base.Dispose(disposing);
         }
+#pragma warning disable CS0618 // Le type ou le membre est obsolète
 
         #region Code généré par le Concepteur de composants
 
@@ -272,6 +273,7 @@
         }
 
         #endregion
+#pragma warning restore CS0618 // Le type ou le membre est obsolète
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private WinFwk.UITools.DefaultListView dlvTriggers;

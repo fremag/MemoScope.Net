@@ -21,6 +21,7 @@ namespace MemoScope.Modules.DumpDiff
             }
             base.Dispose(disposing);
         }
+#pragma warning disable CS0618 // Le type ou le membre est obsolète
 
         #region Code généré par le Concepteur de composants
 
@@ -107,6 +108,8 @@ namespace MemoScope.Modules.DumpDiff
         }
 
         #endregion
+#pragma warning restore CS0618 // Le type ou le membre est obsolète
+
         private ObjectListView dlvDumpDiff;
         private BrightIdeasSoftware.OLVColumn colType;
         private Tools.RegexFilter.RegexFilterControl regexFilterControl;

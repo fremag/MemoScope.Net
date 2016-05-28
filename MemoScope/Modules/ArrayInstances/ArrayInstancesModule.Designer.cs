@@ -26,6 +26,7 @@
         /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas 
         /// le contenu de cette méthode avec l'éditeur de code.
         /// </summary>
+#pragma warning disable CS0618 // Le type ou le membre est obsolète
         private void InitializeComponent()
         {
             this.dlvArrays = new WinFwk.UITools.DefaultListView();
@@ -61,6 +62,7 @@
             this.ResumeLayout(false);
 
         }
+#pragma warning restore CS0618 // Le type ou le membre est obsolète
 
         #endregion
 
