@@ -32,7 +32,7 @@ namespace MemoScope.Modules.ClrRoots
         public override void Init()
         {
             base.Init();
-            ClrRootsQueue = ClrDump.ClrRoots.Select(clrRoot => new ClrRootsInformation(ClrDump, clrRoot)).ToList();
+            ClrRootsQueue = ClrDump.GetClrRoots().Select(clrRoot => new ClrRootsInformation(ClrDump, clrRoot)).ToList();
         }
 
         public override void PostInit()

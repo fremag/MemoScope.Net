@@ -26,7 +26,7 @@ namespace MemoScope.Modules.RootPath
             }
 
             msgBus.Status("Analysing Root Path: collecting root instances...");
-            var roots = new HashSet<ulong>(clrDump.ClrRoots.Select(clrRoot => clrRoot.Object));
+            var roots = new HashSet<ulong>(clrDump.EnumerateClrRoots.Select(clrRoot => clrRoot.Object));
             if (logger.IsDebugEnabled)
             {
                 logger.Debug("Roots: " + Str(roots));

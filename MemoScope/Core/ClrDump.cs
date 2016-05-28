@@ -31,7 +31,6 @@ namespace MemoScope.Core
         public List<ClrHandle> Handles => Runtime.EnumerateHandles().ToList();
         public List<ulong> FinalizerQueueObjectAddresses => Runtime.EnumerateFinalizerQueueObjectAddresses().ToList();
         public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy( address => GetObjectType(address));
-        public IEnumerable<ClrRoot> ClrRoots => Runtime.GetHeap().EnumerateRoots();
         public IList<ClrThread> Threads => Runtime.Threads;
         public ClrThreadPool ThreadPool => Runtime.GetThreadPool();
         public List<ClrType> AllTypes => Heap.EnumerateTypes().ToList();
@@ -48,6 +47,7 @@ namespace MemoScope.Core
             }
         }
 
+        public IEnumerable<ClrRoot> EnumerateClrRoots => Runtime.GetHeap().EnumerateRoots();
 
         Dictionary<int, ThreadProperty> threadProperties;
         private readonly SingleThreadWorker worker;
@@ -395,6 +395,38 @@ namespace MemoScope.Core
                 MessageBus.EndTask($"Blocking objects: {blockingObjects.Count:###,###,###,##0} found.");
             }
             return blockingObjects;
+        }
+
+        public List<ClrRoot> GetClrRoots()
+        {
+            List<ClrRoot> clrRoots = new List<ClrRoot>();
+            CancellationTokenSource source = new CancellationTokenSource();
+            var token = source.Token;
+            MessageBus.BeginTask("Looking for ClrRoots...", source);
+
+            int n = 0;
+            foreach (var obj in Runtime.GetHeap().EnumerateRoots())
+            {
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
+                n++;
+                if (n % 512 == 0)
+                {
+                    MessageBus.Status($"Looking for ClrRoots: {clrRoots.Count:###,###,###,##0}");
+                }
+                clrRoots.Add(obj);
+            }
+            if (token.IsCancellationRequested)
+            {
+                MessageBus.EndTask($"ClrRoots (cancelled): {clrRoots.Count:###,###,###,##0} found.");
+            }
+            else
+            {
+                MessageBus.EndTask($"ClrRoots : {clrRoots.Count:###,###,###,##0} found.");
+            }
+            return clrRoots;
         }
     }
 
