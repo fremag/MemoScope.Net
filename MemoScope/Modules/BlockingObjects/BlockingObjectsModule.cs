@@ -29,7 +29,8 @@ namespace MemoScope.Modules.BlockingObjects
         public override void Init()
         {
             base.Init();
-            BlockingObjects = ClrDump.BlockingObjects.Select( blockingObject => new BlockingObjectInformation(ClrDump, blockingObject)).ToList();
+            var objs = ClrDump.GetBlockingObjects();
+            BlockingObjects = objs.Select( blockingObject => new BlockingObjectInformation(ClrDump, blockingObject)).ToList();
             Threads = ClrDump.ThreadProperties.Values.ToList();
         }
 

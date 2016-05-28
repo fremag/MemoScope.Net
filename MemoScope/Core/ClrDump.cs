@@ -9,6 +9,7 @@ using MemoScope.Core.Cache;
 using MemoScope.Core.Data;
 using MemoScope.Core.Bookmark;
 using System.Threading;
+using WinFwk.UIModules;
 
 namespace MemoScope.Core
 {
@@ -31,7 +32,6 @@ namespace MemoScope.Core
         public List<ulong> FinalizerQueueObjectAddresses => Runtime.EnumerateFinalizerQueueObjectAddresses().ToList();
         public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy( address => GetObjectType(address));
         public IEnumerable<ClrRoot> ClrRoots => Runtime.GetHeap().EnumerateRoots();
-        public List<BlockingObject> BlockingObjects => Runtime.GetHeap().EnumerateBlockingObjects().ToList();
         public IList<ClrThread> Threads => Runtime.Threads;
         public ClrThreadPool ThreadPool => Runtime.GetThreadPool();
         public List<ClrType> AllTypes => Heap.EnumerateTypes().ToList();
@@ -363,6 +363,38 @@ namespace MemoScope.Core
             }
 
             return fieldName;
+        }
+
+        public List<BlockingObject> GetBlockingObjects()
+        {
+            List<BlockingObject> blockingObjects = new List<BlockingObject>();
+            CancellationTokenSource source = new CancellationTokenSource();
+            var token = source.Token;
+            MessageBus.BeginTask("Looking for blocking objects...", source);
+
+            int n = 0;
+            foreach (var obj in Runtime.GetHeap().EnumerateBlockingObjects())
+            {
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
+                n++;
+                if (n % 512 == 0)
+                {
+                    MessageBus.Status($"Looking for blocking objects: {blockingObjects.Count:###,###,###,##0}");
+                }
+                blockingObjects.Add(obj);
+            }
+            if (token.IsCancellationRequested)
+            {
+                MessageBus.EndTask($"Blocking objects (cancelled): {blockingObjects.Count:###,###,###,##0} found.");
+            }
+            else
+            {
+                MessageBus.EndTask($"Blocking objects: {blockingObjects.Count:###,###,###,##0} found.");
+            }
+            return blockingObjects;
         }
     }
 

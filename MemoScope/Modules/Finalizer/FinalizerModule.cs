@@ -37,7 +37,7 @@ namespace MemoScope.Modules.Finalizer
         public override void PostInit()
         {
             base.PostInit();
-            Summary = $"{FinalizerQueue.Count} Finalizer";
+            Summary = $"{FinalizerQueue.Count:###,###,###,##0} Finalizer";
             dlvFinalizer.Objects = FinalizerQueue;
         }
 
