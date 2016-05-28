@@ -99,6 +99,7 @@ namespace MemoScope.Core
         {
             cache.Dispose();
             Run( () => Runtime.DataTarget.Dispose());
+            worker.Dispose();
         }
 
         public ClrType GetClrType(string typeName)
