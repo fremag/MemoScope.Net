@@ -69,8 +69,6 @@ namespace WinFwk.UITools.Workplace
         {
             logger.Debug($"{nameof(Remove)}: {module.Name}");
             rootModules.Remove(module);
-            var children = GetChildren(module.UIModuleParent);
-            children?.Remove(module);
         }
 
         private void RemoveModuleChildren(UIModule module)

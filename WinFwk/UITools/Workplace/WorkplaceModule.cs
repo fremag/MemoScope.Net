@@ -40,6 +40,7 @@ namespace WinFwk.UITools.Workplace
                     model.Add(message.Module);
                     break;
                 case ModuleEventType.Removed:
+                    tlvModules.UncheckObject(message.Module);
                     RequestCloseModule(message.Module);
                     model.Remove(message.Module);
                     if ( message.Module.UIModuleParent != null)

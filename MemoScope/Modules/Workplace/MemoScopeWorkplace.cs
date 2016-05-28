@@ -12,7 +12,8 @@ namespace MemoScope.Modules.Workplace
         {
             get
             {
-                return SelectedModules.OfType<UIClrDumpModule>().Select(mod => mod.ClrDump).ToList();
+                var modules = SelectedModules;
+                return modules.OfType<UIClrDumpModule>().Select(mod => mod.ClrDump).ToList();
             }
         }
     }
