@@ -14,7 +14,8 @@ namespace MemoScope.Modules.Strings
         {
             var stringType = clrDump.GetClrType(typeof(string).FullName);
             var stringInstances = clrDump.EnumerateInstances(stringType);
-            Dictionary<string, List<ulong>> result = new Dictionary<string, List<ulong>>();
+            int nbStrings = clrDump.CountInstances(stringType);
+            Dictionary <string, List<ulong>> result = new Dictionary<string, List<ulong>>();
             CancellationTokenSource token = new CancellationTokenSource();
             msgBus.BeginTask("Analyzing strings...", token);
             int n = 0;
@@ -39,9 +40,10 @@ namespace MemoScope.Modules.Strings
                         result[value] = addresses;
                     }
                     addresses.Add(address);
-                    if( n  % (16*1024) ==0)
+                    if( n  % 1024 == 0)
                     {
-                        msgBus.Status($"Analyzing strings: n: {n:###,###,###,##0}");
+                        float pct = (float)n / nbStrings;
+                        msgBus.Status($"Analyzing strings: {pct:p2}, n= {n:###,###,###,##0} / {nbStrings:###,###,###,##0}");
                     }
                 }
             });
