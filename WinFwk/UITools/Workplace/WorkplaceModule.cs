@@ -61,6 +61,7 @@ namespace WinFwk.UITools.Workplace
         private void RequestCloseModule(UIModule module)
         {
             logger.Debug($"RequestCloseModule: {module.Name} / {module.Summary}");
+            MessageBus.SendMessage(new CloseRequest(module));
 
             var children = model.GetChildren(module);
             logger.Debug($"RequestCloseModule: {module.Name}, children: {children?.Count}");
