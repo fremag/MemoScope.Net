@@ -52,7 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRegex.Location = new System.Drawing.Point(71, 4);
             this.tbRegex.Name = "tbRegex";
-            this.tbRegex.Size = new System.Drawing.Size(516, 22);
+            this.tbRegex.Size = new System.Drawing.Size(316, 22);
             this.tbRegex.TabIndex = 1;
             this.tbRegex.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbRegex_KeyUp);
             // 
