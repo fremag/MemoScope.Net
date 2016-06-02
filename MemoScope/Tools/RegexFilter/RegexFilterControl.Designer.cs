@@ -96,7 +96,7 @@
             // 
             // RegexFilterControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+        //    this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.cbIgnoreCase);
             this.Controls.Add(this.btnCancel);
