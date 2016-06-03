@@ -62,7 +62,7 @@
             this.cbIgnoreCase.Appearance = System.Windows.Forms.Appearance.Button;
             this.cbIgnoreCase.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbIgnoreCase.Image = global::MemoScope.Properties.Resources.text_uppercase;
-            this.cbIgnoreCase.Location = new System.Drawing.Point(662, 4);
+            this.cbIgnoreCase.Location = new System.Drawing.Point(462, 4);
             this.cbIgnoreCase.Name = "cbIgnoreCase";
             this.cbIgnoreCase.Size = new System.Drawing.Size(25, 23);
             this.cbIgnoreCase.TabIndex = 4;
@@ -74,7 +74,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Image = global::MemoScope.Properties.Resources.cancel;
-            this.btnCancel.Location = new System.Drawing.Point(633, 4);
+            this.btnCancel.Location = new System.Drawing.Point(433, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(25, 23);
             this.btnCancel.TabIndex = 3;
@@ -86,7 +86,7 @@
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApply.Image = global::MemoScope.Properties.Resources.accept_button;
-            this.btnApply.Location = new System.Drawing.Point(602, 4);
+            this.btnApply.Location = new System.Drawing.Point(402, 4);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(25, 23);
             this.btnApply.TabIndex = 2;
