@@ -6,6 +6,8 @@ using WinFwk.UICommands;
 using MemoScope.Core.Helpers;
 using MemoScope.Core.Data;
 using MemoScope.Modules.Instances;
+using NLog;
+using System.Reflection;
 
 namespace MemoScope.Modules.TypeStats
 {
@@ -13,6 +15,8 @@ namespace MemoScope.Modules.TypeStats
         UIDataProvider<ClrDumpType>, 
         UIDataProvider<AddressList>
     {
+        static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
+
         private List<ClrTypeStats> typeStats;
         public TypeStatModule()
         {
@@ -22,6 +26,7 @@ namespace MemoScope.Modules.TypeStats
 
         public override void Close()
         {
+            logger.Info($"{nameof(Close)}");
             ClrDump?.Dispose();
         }
 

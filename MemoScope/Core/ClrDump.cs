@@ -10,11 +10,15 @@ using MemoScope.Core.Data;
 using MemoScope.Core.Bookmark;
 using System.Threading;
 using WinFwk.UIModules;
+using NLog;
+using System.Reflection;
 
 namespace MemoScope.Core
 {
     public class ClrDump : IClrDump
     {
+        static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
+
         private static int n = 0;
         public int Id { get; }
         public ClrRuntime Runtime { get; set; }
@@ -97,8 +101,12 @@ namespace MemoScope.Core
 
         internal void Dispose()
         {
+            MessageBus.Log(this, $"{nameof(Dispose)}: " + DumpPath);
+            logger.Debug("Cache dispose");
             cache.Dispose();
+            logger.Debug("Runtime.DataTarget.Dispose");
             Run( () => Runtime.DataTarget.Dispose());
+            logger.Debug("Worker.Dispose");
             worker.Dispose();
         }
 

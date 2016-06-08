@@ -12,8 +12,8 @@ namespace WinFwk.UITools.Workplace
         IMessageListener<SummaryChangedMessage>,
         IMessageListener<ModuleEventMessage>
     {
-        static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
-        private readonly WorkplaceModel model = new WorkplaceModel();
+        private static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
+        private WorkplaceModel model;
         protected List<object> SelectedModules => tlvModules.CheckedObjects.OfType<object>().ToList();
 
         public WorkplaceModule()
@@ -22,13 +22,18 @@ namespace WinFwk.UITools.Workplace
             InitializeComponent();
             Name = "Workplace";
             Icon = Properties.Resources.globe_place;
-
+            model = new WorkplaceModel();
             colName.AspectGetter = model.GetName;
             colName.ImageGetter = model.GetIcon;
             colSummary.AspectGetter = model.GetSummary;
 
             tlvModules.CanExpandGetter = model.HasChild;
             tlvModules.ChildrenGetter = model.GetChildren;
+        }
+
+        public void Init(MessageBus messageBus)
+        {
+            model.Init(messageBus);
         }
 
         public void HandleMessage(ModuleEventMessage message)
@@ -41,8 +46,7 @@ namespace WinFwk.UITools.Workplace
                     break;
                 case ModuleEventType.Removed:
                     tlvModules.UncheckObject(message.Module);
-                    RequestCloseModule(message.Module);
-                    model.Remove(message.Module);
+                    model.CloseModule(message.Module);
                     if ( message.Module.UIModuleParent != null)
                     {
                         MessageBus.SendMessage(new ActivationRequest(message.Module.UIModuleParent));
@@ -56,24 +60,6 @@ namespace WinFwk.UITools.Workplace
             }
             tlvModules.Roots = model.rootModules;
             tlvModules.ExpandAll();
-        }
-
-        private void RequestCloseModule(UIModule module)
-        {
-            logger.Debug($"RequestCloseModule: {module.Name} / {module.Summary}");
-            MessageBus.SendMessage(new CloseRequest(module));
-
-            var children = model.GetChildren(module);
-            logger.Debug($"RequestCloseModule: {module.Name}, children: {children?.Count}");
-            if (children == null || ! children.Any())
-            {
-                return;
-            }
-            foreach(var child in children)
-            {
-                logger.Debug($"RequestCloseModule: {child.Name} / {child.Summary}");
-                MessageBus.SendMessage(new CloseRequest(child));
-            }
         }
 
         public void HandleMessage(SummaryChangedMessage message)

@@ -152,6 +152,7 @@ namespace WinFwk.UIModules
         }
         protected DockContent InitWorkplace(WorkplaceModule workplace, DockState dockState = DockState.DockLeft)
         {
+            workplace.Init(msgBus);
             return DockModule(workplace, dockState, false);
         }
 

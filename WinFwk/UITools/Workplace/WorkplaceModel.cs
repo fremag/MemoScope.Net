@@ -1,15 +1,23 @@
 using NLog;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using WinFwk.UIModules;
+using WinFwk.UIMessages;
 
 namespace WinFwk.UITools.Workplace
 {
     public class WorkplaceModel
     {
         static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
-        internal Dictionary<UIModule, List<UIModule>> childModules = new Dictionary<UIModule, List<UIModule>>();
-        internal List<UIModule> rootModules = new List<UIModule>();
+        internal Dictionary<UIModule, List<UIModule>> modules = new Dictionary<UIModule, List<UIModule>>();
+        public List<UIModule> rootModules { get; } = new List<UIModule>();
+        private MessageBus MessageBus { get; set; }
+
+        public void Init(MessageBus messageBus)
+        {
+            MessageBus = messageBus;
+        }
 
         public void Add(UIModule uiModule)
         {
@@ -24,12 +32,14 @@ namespace WinFwk.UITools.Workplace
             else
             {
                 List<UIModule> children;
-                if (!childModules.TryGetValue(uiModule.UIModuleParent, out children))
+                if (!modules.TryGetValue(uiModule.UIModuleParent, out children))
                 {
                     children = new List<UIModule>();
-                    childModules[uiModule.UIModuleParent] = children;
+                    modules[uiModule.UIModuleParent] = children;
                 }
                 children.Add(uiModule);
+
+                modules[uiModule] = new List<UIModule>();
             }
         }
 
@@ -47,9 +57,10 @@ namespace WinFwk.UITools.Workplace
         {
             return ((UIModule)rowObject).Icon;
         }
+
         public bool HasChild(object o)
         {
-            return childModules.ContainsKey((UIModule) o);
+            return modules.ContainsKey((UIModule) o);
         }
 
         public List<UIModule> GetChildren(object o)
@@ -60,21 +71,60 @@ namespace WinFwk.UITools.Workplace
                 return null;
             }
             List<UIModule> children;
-            childModules.TryGetValue(uiModule, out children);
-            logger.Debug($"{nameof(GetChildren)}: parent: {uiModule.Name}, children: {children?.Count}");
+            modules.TryGetValue(uiModule, out children);
+            var count = children == null ? 0 : children.Count;
+            logger.Debug($"{nameof(GetChildren)}: parent: {uiModule.Name}, children: {count}");
             return children;
         }
 
         public void Remove(UIModule module)
         {
             logger.Debug($"{nameof(Remove)}: {module.Name}");
-            rootModules.Remove(module);
+            if( rootModules.Remove(module) )
+            {
+                logger.Debug($"{nameof(Remove)}: removed root module {module.Name}");
+            }
+
+            if(modules.ContainsKey(module) )
+            {
+                logger.Debug($"{nameof(Remove)}: removed module {module.Name}");
+                modules.Remove(module);
+            }
+
+
+            var parentChildren = GetChildren(module.UIModuleParent);
+            if( parentChildren != null && parentChildren.Any())
+            {
+                parentChildren.Remove(module);
+            }
+        }
+
+        public void CloseModule(UIModule module)
+        {
+            var children = GetChildren(module);
+            var count = children == null ? 0 : children.Count;
+            logger.Debug($"{nameof(CloseModule)}: {module.Name}, children: {count}");
+            if (children != null && children.Any())
+            {
+                foreach (var child in children)
+                {
+                    logger.Debug($"RequestCloseModule: Child={child.Name}");
+                    MessageBus.SendMessage(new CloseRequest(child));
+                }
+            }
+
+            logger.Debug($"{nameof(CloseModule)}: Remove/Close {module.Name}");
+            Remove(module);
+            module.Close();
+            MessageBus.SendMessage(new CloseRequest(module));
         }
 
         private void RemoveModuleChildren(UIModule module)
         {
             var children = GetChildren(module);
-            logger.Debug($"{nameof(RemoveModuleChildren)}: parent: {module.Name}, children: {children?.Count}");
+            var count = children == null ? 0 : children.Count;
+
+            logger.Debug($"{nameof(RemoveModuleChildren)}: parent: {module.Name}, children: {count}");
             if (children == null)
             {
                 return;
