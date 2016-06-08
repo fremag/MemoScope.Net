@@ -118,23 +118,5 @@ namespace WinFwk.UITools.Workplace
             module.Close();
             MessageBus.SendMessage(new CloseRequest(module));
         }
-
-        private void RemoveModuleChildren(UIModule module)
-        {
-            var children = GetChildren(module);
-            var count = children == null ? 0 : children.Count;
-
-            logger.Debug($"{nameof(RemoveModuleChildren)}: parent: {module.Name}, children: {count}");
-            if (children == null)
-            {
-                return;
-            }
-            for (int i = children.Count -1; i >= 0; i--)
-            {
-                var child = children[i];
-                children.RemoveAt(i);
-                RemoveModuleChildren(child);
-            }
-        }
     }
 }
