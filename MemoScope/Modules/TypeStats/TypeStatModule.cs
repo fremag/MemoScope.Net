@@ -77,7 +77,8 @@ namespace MemoScope.Modules.TypeStats
                 {
                     return null;
                 }
-                AddressList list = new TypeInstancesAddressList(dumpType);
+                TypeInstancesAddressList list = new TypeInstancesAddressList(dumpType);
+                list.Init();
                 return list;
             }
         }
