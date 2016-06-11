@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Diagnostics.Runtime;
 using WinFwk.UITools;
 using MemoScope.Core.Data;
+using MemoScope.Core.Helpers;
 
 namespace MemoScope.Modules.InstanceDetails
 {
@@ -26,6 +27,7 @@ namespace MemoScope.Modules.InstanceDetails
         public ReferenceInformation(ClrDump clrDump, ulong address, ulong refAddress) : this(clrDump, address)
         {
             FieldName = ClrDump.GetFieldNameReference(refAddress, address);
+            FieldName = TypeHelpers.RealName(FieldName);
        }
 
         public ReferenceInformation(ClrDump clrDump, ulong address)
