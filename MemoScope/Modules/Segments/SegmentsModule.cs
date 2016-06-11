@@ -39,13 +39,21 @@ namespace MemoScope.Modules.Segments
 
         private void dlvSegments_CellClick(object sender, BrightIdeasSoftware.CellClickEventArgs e)
         {
-            var segment = dlvSegments.SelectedObject<SegmentInformation>();
-            if (segment != null)
+            if( e.ClickCount != 2)
             {
-                var addressList = ClrDump.Eval(() => segment.Instances.ToList());
-                var addresses = new AddressContainerList(addressList);
-                InstancesMixedModule.Create(ClrDump, addresses, this, mod => RequestDockModule(mod));
+                return;
             }
+            var segment = dlvSegments.SelectedObject<SegmentInformation>();
+            if (segment == null)
+            {
+                return;
+            }
+            BeginTask("Looking for instances in segment...");
+            var addressList = ClrDump.Eval(() => segment.Instances.ToList());
+            var addresses = new AddressContainerList(addressList);
+            Status("Displaying instances in segment...");
+            InstancesMixedModule.Create(ClrDump, addresses, this, mod => RequestDockModule(mod), $"{ClrDump.Id} - {segment.Start:X}");
+            EndTask("Segment instances displayed.");
         }
     }
 }
