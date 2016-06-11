@@ -1,5 +1,6 @@
 ﻿using MemoScope.Core;
 using MemoScope.Core.Data;
+using MemoScope.Core.Helpers;
 using NLog;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,7 @@ namespace MemoScope.Modules.RootPath
                 {
                     var refClrDumpObject = new ClrDumpObject(clrDump, clrDump.GetObjectType(refAddress), refAddress);
                     var fieldName = refAddress == address ? " - " : clrDump.GetFieldNameReference(prevAddress, refAddress);
+                    fieldName = TypeHelpers.RealName(fieldName);
                     path.Add(new RootPathInformation(refClrDumpObject, fieldName));
                     prevAddress = refAddress;
                 }

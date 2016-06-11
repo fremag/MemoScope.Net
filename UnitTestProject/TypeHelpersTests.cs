@@ -9,19 +9,34 @@ namespace UnitTestProject
     public class TypeHelpersTests
     {
         [Test]
-        public void RealFieldNameTest()
+        public void RealFieldNameWithSuffixTest()
         {
             Dictionary<string, string> fields = new Dictionary<string, string>() {
                 ["aaaaa"] = "aaaaa",
-                ["<aaaa>k__BackingField"] = "aaaa [*]"
+                ["<aaaa>k__BackingField"] = "aaaa &"
             };
 
             foreach(var field in fields)
             {
+                Assert.That(TypeHelpers.RealName(field.Key, " &"), Is.EqualTo(field.Value));
+            }
+        }
+
+        [Test]
+        public void RealFieldNameTest()
+        {
+            Dictionary<string, string> fields = new Dictionary<string, string>()
+            {
+                ["aaaaa"] = "aaaaa",
+                ["<aaaa>k__BackingField"] = "aaaa [*]"
+            };
+
+            foreach (var field in fields)
+            {
                 Assert.That(TypeHelpers.RealName(field.Key), Is.EqualTo(field.Value));
             }
         }
-        
+
         [Test]
         public void TypeAliasTest()
         {
