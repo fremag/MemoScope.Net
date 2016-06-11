@@ -1,5 +1,6 @@
 ﻿using MemoScope.Core;
 using MemoScope.Core.Data;
+using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,7 @@ namespace MemoScope.Modules.Referers
                     else
                     {
                         field = clrDump.GetFieldNameReference(address, refererAddress);
+                        field = TypeHelpers.RealName(field);
                     }
                     Dictionary<string, ReferersInformation> dicoRefInfoByFieldName;
                     if( ! dicoByRefererType.TryGetValue(type, out dicoRefInfoByFieldName))
