@@ -20,6 +20,7 @@ namespace MemoScope.Core
             WorkerThread.Start();
         }
 
+        public bool Active => !stopRequested && WorkerThread.IsAlive;
         public void Dispose()
         {
             stopRequested = true;

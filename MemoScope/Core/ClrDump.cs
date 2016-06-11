@@ -165,12 +165,26 @@ namespace MemoScope.Core
 
         public T Eval<T>(Func<T> func)
         {
-            return worker.Eval(func);
+            if (worker.Active)
+            {
+                return worker.Eval(func);
+            }
+            else
+            {
+                throw new InvalidOperationException($"{Id}: can't run action because worker is not active !");
+            }
         }
 
         public void Run(Action action)
         {
-            worker.Run(action);
+            if (worker.Active)
+            {
+                worker.Run(action);
+            }
+            else
+            {
+                throw new InvalidOperationException($"{Id}: can't run action because worker is not active !");
+            }
         }
 
         public object GetSimpleValue(ulong address, ClrType type)
