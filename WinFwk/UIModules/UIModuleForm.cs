@@ -113,6 +113,7 @@ namespace WinFwk.UIModules
 
             logger.Debug($"OnContentRemoved: {dockContent.TabText}");
             SendModuleEventMessage(dockContent, ModuleEventType.Removed);
+            dicoModules.Remove(dockContent);
         }
 
         private void OnContentAdded(object sender, DockContentEventArgs e)

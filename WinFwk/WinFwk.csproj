@@ -131,6 +131,7 @@
     <Compile Include="UIServices\AbstractUIService.cs" />
     <Compile Include="UITools\BoolColumnAttribute.cs" />
     <Compile Include="UITools\AddressColumnAttribute.cs" />
+    <Compile Include="UITools\Commands\GCCommand.cs" />
     <Compile Include="UITools\Commands\CloseCommand.cs" />
     <Compile Include="UITools\Commands\CommandMgrModule.cs">
       <SubType>UserControl</SubType>

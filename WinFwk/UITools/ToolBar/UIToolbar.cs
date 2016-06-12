@@ -30,7 +30,14 @@ namespace WinFwk.UITools.ToolBar
             {
                 var command = kvp.Key;
                 var button = kvp.Value;
-                command.SetSelectedModule(eventMessage.Module);
+                if (eventMessage.ModuleEvent == ModuleEventType.Removed)
+                {
+                    command.SetSelectedModule(null);
+                }
+                else
+                {
+                    command.SetSelectedModule(eventMessage.Module);
+                }
                 button.Enabled = command.Enabled;
             }
         }
