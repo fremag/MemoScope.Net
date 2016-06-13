@@ -63,6 +63,7 @@ namespace WinFwk.UITools.Workplace
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            tlvModules.ClearObjects();
             tlvModules.Roots = model.rootModules;
             tlvModules.ExpandAll();
         }
