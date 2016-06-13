@@ -47,6 +47,11 @@ namespace WinFwk.UITools.Workplace
                 case ModuleEventType.Removed:
                     tlvModules.UncheckObject(message.Module);
                     model.CloseModule(message.Module);
+                    var parent= message.Module.UIModuleParent;
+                    if( parent!= null) {
+                        tlvModules.RefreshObject(parent);
+                    }
+                    
                     if ( message.Module.UIModuleParent != null)
                     {
                         MessageBus.SendMessage(new ActivationRequest(message.Module.UIModuleParent));
