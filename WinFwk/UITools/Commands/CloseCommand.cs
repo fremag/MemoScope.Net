@@ -15,12 +15,12 @@ namespace WinFwk.UITools.Commands
 
         public override void Run()
         {
-            if (Module == null)
+            if (selectedModule == null)
             {
                 throw new InvalidOperationException("No module selected !");
             }
 
-            MessageBus.SendMessage(new CloseRequest(Module));
+            MessageBus.SendMessage(new CloseRequest(selectedModule));
         }
     }
 }

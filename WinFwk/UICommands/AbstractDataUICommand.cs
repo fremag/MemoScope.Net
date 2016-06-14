@@ -7,7 +7,6 @@ namespace WinFwk.UICommands
     public abstract class AbstractDataUICommand<T> : AbstractUICommand
     {
         protected UIDataProvider<T> dataProvider;
-        protected UIModule selectedModule;
 
         protected AbstractDataUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, group, icon, shortcut)
         {

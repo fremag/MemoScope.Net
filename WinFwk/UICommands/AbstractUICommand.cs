@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -17,6 +18,8 @@ namespace WinFwk.UICommands
         public MessageBus MessageBus { get; private set; }
         public Keys Shortcut { get; private set; }
 
+        protected UIModule selectedModule;
+
         protected AbstractUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None)
         {
             Name = name;
@@ -28,6 +31,25 @@ namespace WinFwk.UICommands
 
         public abstract void SetSelectedModule(UIModule module);
         public abstract void Run();
+
+        public void SetMasterModule(UIModule module)
+        {
+            SetSelectedModule(module);
+            if( module != null)
+            {
+                module.Disposed += OnDisposedMasterModule;
+            }
+        }
+
+        private void OnDisposedMasterModule(object sender, EventArgs e)
+        {
+            if( selectedModule    != null)
+            {
+                selectedModule.Disposed -= OnDisposedMasterModule;
+            }
+            SetSelectedModule(null);
+            MessageBus.Unsubscribe(this);
+        }
 
         public void InitBus(MessageBus msgBus)
         {

@@ -374,7 +374,7 @@ namespace MemoScope.Core.Helpers
             {
                 var command = Activator.CreateInstance(type, null) as AbstractDataUICommand<T>;
                 command.InitBus(parentModule.MessageBus);
-                command.SetSelectedModule(parentModule);
+                command.SetMasterModule(parentModule);
                 command.InitDataProvider(new UIDataProviderAdapter<T>(dataProvider));
                 string menuItemText = command.ToolTip;
                 if( suffix != null)

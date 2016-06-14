@@ -6,8 +6,6 @@ namespace WinFwk.UICommands
 {
     public abstract class AbstractTypedUICommand<T> : AbstractUICommand where T : class
     {
-        protected UIModule selectedModule;
-
         public T TypedModule { get; private set; }
 
         protected AbstractTypedUICommand(string name, string toolTip, string group, Image icon, Keys shortcut=Keys.None ) : base(name, toolTip, group, icon, shortcut)

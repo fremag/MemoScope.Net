@@ -48,13 +48,20 @@ namespace WinFwk.UIModules
 
         public virtual void Close()
         {
-
+            Log($"Close: {Name}");
         }
 
         public void InitBus(MessageBus bus)
         {
             MessageBus = bus;
             MessageBus.Subscribe(this);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            Log($"Dispose: {Name}");
+            MessageBus.Unsubscribe(this);
         }
 
         protected void Status(string text, StatusType status = StatusType.Text )

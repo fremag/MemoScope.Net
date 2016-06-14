@@ -26,7 +26,7 @@ namespace MemoScope.Modules.TypeStats
 
         public override void Close()
         {
-            logger.Info($"{nameof(Close)}");
+            base.Close();
             ClrDump?.Dispose();
         }
 

@@ -1,5 +1,4 @@
 ﻿using WeifenLuo.WinFormsUI.Docking;
-using WinFwk.UITools;
 using WinFwk.UITools.Log;
 using WinFwk.UITools.Workplace;
 
@@ -23,6 +22,8 @@ namespace WinFwk.UIModules
                 components.Dispose();
             }
             base.Dispose(disposing);
+            
+            msgBus.Unsubscribe(this);
         }
 
         #region Windows Form Designer generated code

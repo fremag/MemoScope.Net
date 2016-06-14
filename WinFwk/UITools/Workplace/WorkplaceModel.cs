@@ -87,8 +87,8 @@ namespace WinFwk.UITools.Workplace
 
             if(modules.ContainsKey(module) )
             {
-                logger.Debug($"{nameof(Remove)}: removed module {module.Name}");
-                modules.Remove(module);
+                var b  = modules.Remove(module);
+                logger.Debug($"{nameof(Remove)}: removed module {module.Name}: {b}");
             }
 
 
