@@ -270,6 +270,7 @@ namespace WinFwk.UIModules
                 {
                     logger.Info($"Close: {module.Name} / {module.Summary}");
                     kvp.Key.Close();
+                    mainPanel.RemoveContent(kvp.Key);
                     break;
                 }
             }
