@@ -269,8 +269,8 @@ namespace WinFwk.UIModules
                 if (module == message.Module && module.Closable())
                 {
                     logger.Info($"Close: {module.Name} / {module.Summary}");
-                    kvp.Key.Close();
-                    mainPanel.RemoveContent(kvp.Key);
+                //    kvp.Key.Close();
+                    kvp.Key.DockHandler.Dispose();
                     break;
                 }
             }
