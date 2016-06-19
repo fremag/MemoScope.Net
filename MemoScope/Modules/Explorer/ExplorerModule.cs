@@ -57,6 +57,7 @@ namespace MemoScope.Modules.Explorer
             if (rootDirOk)
             {
                 dtlvExplorer.Roots= AbstractDumpExplorerData.GetItems(tbRootDir.Text);
+                dtlvExplorer.Refresh();
             }
         }
 
@@ -134,6 +135,11 @@ namespace MemoScope.Modules.Explorer
                     dtlvExplorer.RefreshObject(data);
                 }
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshRootDir();
         }
     }
 }

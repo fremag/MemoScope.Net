@@ -697,6 +697,7 @@
     <Content Include="Icons\Large\module.png" />
     <Content Include="Icons\Large\molecule.png" />
     <Content Include="Icons\Large\new_data.png" />
+    <None Include="Resources\arrow_refresh.png" />
     <None Include="Icons\Large\outline_wight_gallery.png" />
     <Content Include="Icons\Large\perfomance_analysis.png" />
     <Content Include="Icons\Large\plugin_link.png" />

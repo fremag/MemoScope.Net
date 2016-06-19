@@ -35,6 +35,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnRootDir = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtlvExplorer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRootDir.Location = new System.Drawing.Point(88, 13);
             this.tbRootDir.Name = "tbRootDir";
-            this.tbRootDir.Size = new System.Drawing.Size(300, 22);
+            this.tbRootDir.Size = new System.Drawing.Size(259, 22);
             this.tbRootDir.TabIndex = 2;
             this.tbRootDir.TextChanged += new System.EventHandler(this.tbRootDir_TextChanged);
             // 
@@ -62,14 +63,16 @@
             this.dtlvExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtlvExplorer.CellEditUseWholeCell = false;
             this.dtlvExplorer.CheckBoxes = true;
             this.dtlvExplorer.DataSource = null;
             this.dtlvExplorer.FullRowSelect = true;
             this.dtlvExplorer.HideSelection = false;
             this.dtlvExplorer.HierarchicalCheckboxes = true;
+            this.dtlvExplorer.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.dtlvExplorer.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dtlvExplorer.Location = new System.Drawing.Point(3, 46);
             this.dtlvExplorer.Name = "dtlvExplorer";
-            this.dtlvExplorer.OwnerDraw = true;
             this.dtlvExplorer.RootKeyValueString = "";
             this.dtlvExplorer.ShowGroups = false;
             this.dtlvExplorer.ShowImagesOnSubItems = true;
@@ -84,7 +87,7 @@
             // 
             this.btnRootDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRootDir.Image = global::MemoScope.Properties.Resources.folder_explore;
-            this.btnRootDir.Location = new System.Drawing.Point(394, 8);
+            this.btnRootDir.Location = new System.Drawing.Point(353, 8);
             this.btnRootDir.Name = "btnRootDir";
             this.btnRootDir.Size = new System.Drawing.Size(32, 32);
             this.btnRootDir.TabIndex = 1;
@@ -104,10 +107,23 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Image = global::MemoScope.Properties.Resources.arrow_refresh;
+            this.btnRefresh.Location = new System.Drawing.Point(391, 8);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(32, 32);
+            this.btnRefresh.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.btnRefresh, "Refresh Directory...");
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // ExplorerModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.dtlvExplorer);
             this.Controls.Add(this.tbRootDir);
@@ -130,5 +146,6 @@
         private WinFwk.UITools.DefaultTreeListView dtlvExplorer;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
