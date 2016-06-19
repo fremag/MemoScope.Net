@@ -172,7 +172,7 @@
   <data name="memoscope_logo_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\logos\memoscope_logo_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="database_go" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="database_go_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\small\database_go.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="application_view_list" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -426,5 +426,8 @@
   </data>
   <data name="arrow_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="database_go" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\database_go.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
