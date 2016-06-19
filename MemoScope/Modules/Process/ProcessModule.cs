@@ -14,6 +14,7 @@ using Cursor = System.Windows.Forms.Cursor;
 using ExpressionEvaluator;
 using System.Text.RegularExpressions;
 using MemoScope.Tools.CodeTriggers;
+using MemoScope.Modules.Explorer;
 
 namespace MemoScope.Modules.Process
 {
@@ -164,6 +165,11 @@ namespace MemoScope.Modules.Process
                 {
                     Log(string.Format("Process dumped ! {0}{1}{0}Process Id: {2}", Environment.NewLine, dumpPath, proc.Process.Id), LogLevelType.Notify);
                     MessageBus.SendMessage(new ProcessDumpedMessage(dumpPath, proc.Process.Id));
+                    if( cbLoadAfterDump.Checked)
+                    {
+                        IEnumerable<FileInfo> fileInfos = new[] { new FileInfo(dumpPath) };
+                        MessageBus.SendMessage(new OpenDumpRequest(fileInfos));
+                    }
                 }
                 else
                 {
