@@ -8,10 +8,13 @@ using WinFwk.UIModules;
 using System;
 using WinFwk.UIMessages;
 using MemoScope.Services;
+using MemoScope.Modules.Process;
 
 namespace MemoScope.Modules.Explorer
 {
-    public partial class ExplorerModule : UIModule, IMessageListener<ClrDumpLoadedMessage>
+    public partial class ExplorerModule : UIModule, 
+        IMessageListener<ClrDumpLoadedMessage>,
+        IMessageListener<ProcessDumpedMessage>
     {
         public ExplorerModule()
         {
@@ -138,6 +141,11 @@ namespace MemoScope.Modules.Explorer
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshRootDir();
+        }
+
+        public void HandleMessage(ProcessDumpedMessage message)
         {
             RefreshRootDir();
         }

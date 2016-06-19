@@ -163,6 +163,7 @@ namespace MemoScope.Modules.Process
                 if (r == 0)
                 {
                     Log(string.Format("Process dumped ! {0}{1}{0}Process Id: {2}", Environment.NewLine, dumpPath, proc.Process.Id), LogLevelType.Notify);
+                    MessageBus.SendMessage(new ProcessDumpedMessage(dumpPath, proc.Process.Id));
                 }
                 else
                 {

@@ -252,6 +252,7 @@
     <Compile Include="Modules\InstancesMixed\InstancesMixedModule.Designer.cs">
       <DependentUpon>InstancesMixedModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Process\ProcessDumpedMessage.cs" />
     <Compile Include="Modules\RootPath\RootPathAnalysis.cs" />
     <Compile Include="Modules\RootPath\RootPathCommand.cs" />
     <Compile Include="Modules\RootPath\RootPathInformation.cs" />

@@ -49,8 +49,12 @@ namespace MemoScope.Modules.Explorer
 
         public static List<AbstractDumpExplorerData> GetItems(string mainDir)
         {
-            string[] dirs = Directory.GetDirectories(mainDir);
             List<AbstractDumpExplorerData> items = new List<AbstractDumpExplorerData>();
+            if (! Directory.Exists(mainDir))
+            {
+                return items;
+            }
+            string[] dirs = Directory.GetDirectories(mainDir);
             foreach (var dir in dirs)
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(dir);

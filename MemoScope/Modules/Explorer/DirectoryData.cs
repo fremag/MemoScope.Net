@@ -22,8 +22,16 @@ namespace MemoScope.Modules.Explorer
         {
             get
             {
-                var files = DirInfo.GetFiles("*.dmp");
-                return files.Length > 0;
+                DirInfo.Refresh();
+                if (DirInfo.Exists)
+                {
+                    var files = DirInfo.GetFiles("*.dmp");
+                    return files.Length > 0;
+                } 
+                else
+                {
+                    return false;
+                }
             } 
         }
 
