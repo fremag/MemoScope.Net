@@ -54,7 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRootDir.Location = new System.Drawing.Point(88, 13);
             this.tbRootDir.Name = "tbRootDir";
-            this.tbRootDir.Size = new System.Drawing.Size(259, 22);
+            this.tbRootDir.Size = new System.Drawing.Size(241, 22);
             this.tbRootDir.TabIndex = 2;
             this.tbRootDir.TextChanged += new System.EventHandler(this.tbRootDir_TextChanged);
             // 
@@ -71,12 +71,12 @@
             this.dtlvExplorer.HierarchicalCheckboxes = true;
             this.dtlvExplorer.HighlightBackgroundColor = System.Drawing.Color.Empty;
             this.dtlvExplorer.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dtlvExplorer.Location = new System.Drawing.Point(3, 46);
+            this.dtlvExplorer.Location = new System.Drawing.Point(3, 62);
             this.dtlvExplorer.Name = "dtlvExplorer";
             this.dtlvExplorer.RootKeyValueString = "";
             this.dtlvExplorer.ShowGroups = false;
             this.dtlvExplorer.ShowImagesOnSubItems = true;
-            this.dtlvExplorer.Size = new System.Drawing.Size(461, 583);
+            this.dtlvExplorer.Size = new System.Drawing.Size(461, 567);
             this.dtlvExplorer.TabIndex = 3;
             this.dtlvExplorer.UseCompatibleStateImageBehavior = false;
             this.dtlvExplorer.View = System.Windows.Forms.View.Details;
@@ -87,7 +87,7 @@
             // 
             this.btnRootDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRootDir.Image = global::MemoScope.Properties.Resources.folder_explore;
-            this.btnRootDir.Location = new System.Drawing.Point(353, 8);
+            this.btnRootDir.Location = new System.Drawing.Point(337, 8);
             this.btnRootDir.Name = "btnRootDir";
             this.btnRootDir.Size = new System.Drawing.Size(32, 32);
             this.btnRootDir.TabIndex = 1;
@@ -99,9 +99,9 @@
             // 
             this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLoad.Image = global::MemoScope.Properties.Resources.database_go;
-            this.btnLoad.Location = new System.Drawing.Point(432, 8);
+            this.btnLoad.Location = new System.Drawing.Point(413, 8);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(32, 32);
+            this.btnLoad.Size = new System.Drawing.Size(48, 48);
             this.btnLoad.TabIndex = 4;
             this.toolTip1.SetToolTip(this.btnLoad, "Load checked files...");
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.Image = global::MemoScope.Properties.Resources.arrow_refresh;
-            this.btnRefresh.Location = new System.Drawing.Point(391, 8);
+            this.btnRefresh.Location = new System.Drawing.Point(375, 8);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(32, 32);
             this.btnRefresh.TabIndex = 5;

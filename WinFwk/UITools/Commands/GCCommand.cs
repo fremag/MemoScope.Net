@@ -7,7 +7,7 @@ namespace WinFwk.UITools.Commands
 {
     public class GCCommand : AbstractVoidUICommand
     {
-        public GCCommand() : base("GC", "Garbage collect", UIToolBarSettings.Main.Name, Properties.Resources.cross, Keys.Control | Keys.Shift | Keys.G)
+        public GCCommand() : base("GC", "Garbage collect", UIToolBarSettings.Main.Name, Properties.Resources.bin, Keys.Control | Keys.Shift | Keys.V)
         {
 
         }

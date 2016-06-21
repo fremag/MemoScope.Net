@@ -249,6 +249,7 @@
     <Content Include="Icons\Small\update_contact_info.png" />
     <Content Include="Icons\text_exports.png" />
     <Content Include="Icons\update_contact_info.png" />
+    <None Include="Resources\bin.png" />
     <None Include="Resources\arrow_refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
