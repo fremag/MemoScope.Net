@@ -76,7 +76,7 @@ namespace MemoScope.Modules.Bookmarks
 
         public override void PostInit()
         {
-            Icon = Properties.Resources.award_star_gold_blue;
+            Icon = Properties.Resources.award_star_gold_blue_small;
             Name = $"#{ClrDump.Id} - Bookmarks";
         }
 

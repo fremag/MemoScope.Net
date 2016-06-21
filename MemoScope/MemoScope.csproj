@@ -779,6 +779,7 @@
     <Content Include="Icons\Large\clock_stop.png" />
     <Content Include="Icons\Small\application_view_list.png" />
     <Content Include="Icons\Small\attributes_display.png" />
+    <Content Include="Icons\Small\award_star_gold_blue.png" />
     <Content Include="Icons\Small\blueprint.png" />
     <Content Include="Icons\Small\borders_accent.png" />
     <Content Include="Icons\Small\broom.png" />
