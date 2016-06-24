@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using BrightIdeasSoftware;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -123,7 +124,6 @@ namespace WinFwk.UIModules
             {
                 return;
             }
-
             SendModuleEventMessage(dockContent, ModuleEventType.Added);
         }
 
@@ -142,6 +142,8 @@ namespace WinFwk.UIModules
         [UIScheduler]
         protected DockContent DockModule(UIModule uiModule, DockState dockState = DockState.Document, bool allowclose = true)
         {
+            ApplyColors(uiModule, UISettings.Instance);
+
             var content = BuildContent(uiModule, allowclose);
             content.Show(mainPanel, dockState);
             return content;
@@ -150,6 +152,8 @@ namespace WinFwk.UIModules
         [UIScheduler]
         protected DockContent DockModule(UIModule uiModule, DockContent parentContent, DockAlignment dockAlignment = DockAlignment.Top, bool allowclose = true)
         {
+            ApplyColors(uiModule, UISettings.Instance);
+
             var content = BuildContent(uiModule, allowclose);
             content.Show(parentContent.Pane, DockAlignment.Top, 0.5);
             return content;
@@ -222,7 +226,32 @@ namespace WinFwk.UIModules
 
         public virtual void HandleMessage(UISettingsChangedMessage message)
         {
-            // TODO: apply user colors to controls, skin etc
+            ApplyColors(this, message.UiSettings);
+        }
+
+        private static void ApplyColors(Control control, UISettings uiSettings)
+        {
+            var backgroundColor = uiSettings.BackgroundColor;
+            var foregroundColor = uiSettings.ForegroundColor;
+            control.BackColor = backgroundColor;
+            control.ForeColor = foregroundColor;
+
+            var objListView = control as ObjectListView;
+            if (objListView != null)
+            {
+                objListView.UseAlternatingBackColors = uiSettings.UseAlternateRowColor;
+                objListView.AlternateRowBackColor= uiSettings.AlternateRowColor;
+                objListView.HeaderFormatStyle = new HeaderFormatStyle();
+                objListView.HeaderFormatStyle.SetBackColor(uiSettings.HeaderBackColor);
+                objListView.HeaderFormatStyle.SetForeColor(uiSettings.HeaderForeColor);
+            }
+
+            foreach (Control child in control.Controls)
+            {
+                ApplyColors(child, uiSettings);
+            }
+
+            control.Refresh();
         }
 
         private void UIModuleForm_Load(object sender, EventArgs e)

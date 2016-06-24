@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using BrightIdeasSoftware;
+using System.Drawing;
 
 namespace WinFwk
 {
@@ -77,6 +78,24 @@ namespace WinFwk
             listview.HideSelection = false;
             listview.FullRowSelect = true;
             listview.ShowImagesOnSubItems = true;
+        }
+
+        public static string ToString(Color color)
+        {
+            if( color.Name != null)
+            {
+                return "@" + color.Name;
+            }
+            return color.R + ":" + color.G + ":" + color.B;
+        }
+        public static Color FromString(string color)
+        {
+            if( color.StartsWith("@"))
+            {
+                return Color.FromName(color.Substring(1));
+            }
+            var items = color.Split(':');
+            return Color.FromArgb(int.Parse(items[0]), int.Parse(items[1]), int.Parse(items[2]));
         }
     }
 }
