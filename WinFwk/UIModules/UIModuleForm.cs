@@ -239,11 +239,21 @@ namespace WinFwk.UIModules
             var objListView = control as ObjectListView;
             if (objListView != null)
             {
+                // Alternate row
                 objListView.UseAlternatingBackColors = uiSettings.UseAlternateRowColor;
                 objListView.AlternateRowBackColor= uiSettings.AlternateRowColor;
+
+                // Header
                 objListView.HeaderFormatStyle = new HeaderFormatStyle();
                 objListView.HeaderFormatStyle.SetBackColor(uiSettings.HeaderBackColor);
                 objListView.HeaderFormatStyle.SetForeColor(uiSettings.HeaderForeColor);
+
+                //selected row
+                objListView.SelectedBackColor = uiSettings.SelectedRowBackgroundColor;
+                objListView.UnfocusedSelectedBackColor= uiSettings.SelectedRowBackgroundColor;
+                objListView.SelectedForeColor = uiSettings.SelectedRowForegroundColor;
+                objListView.UnfocusedSelectedForeColor = uiSettings.SelectedRowForegroundColor;
+                objListView.OwnerDraw = true;
             }
 
             foreach (Control child in control.Controls)

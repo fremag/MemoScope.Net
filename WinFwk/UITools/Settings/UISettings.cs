@@ -93,6 +93,35 @@ namespace WinFwk.UITools.Settings
                 HeaderForeColor = WinFwkHelper.FromString(value);
             }
         }
-
+        [XmlIgnore]
+        [Category("GUI - Tables")]
+        public Color SelectedRowBackgroundColor { get; set; }
+        [Browsable(false)]
+        public string SelectedRowBackgroundColorStr
+        {
+            get
+            {
+                return WinFwkHelper.ToString(SelectedRowBackgroundColor);
+            }
+            set
+            {
+                SelectedRowBackgroundColor = WinFwkHelper.FromString(value);
+            }
+        }
+        [XmlIgnore]
+        [Category("GUI - Tables")]
+        public Color SelectedRowForegroundColor { get; set; }
+        [Browsable(false)]
+        public string SelectedRowForeColorStr
+        {
+            get
+            {
+                return WinFwkHelper.ToString(SelectedRowForegroundColor);
+            }
+            set
+            {
+                SelectedRowForegroundColor = WinFwkHelper.FromString(value);
+            }
+        }
     }
 }
