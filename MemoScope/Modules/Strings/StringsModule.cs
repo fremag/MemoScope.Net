@@ -37,7 +37,7 @@ namespace MemoScope.Modules.Strings
         public override void PostInit()
         {
             base.PostInit();
-            Summary = $"{Strings.Count} Strings";
+            Summary = $"{Strings.Count:###,###,###,##0} Strings";
             dlvStrings.Objects = Strings;
             dlvStrings.Sort(nameof(StringInformation.Count), SortOrder.Descending);
         }
