@@ -22,7 +22,7 @@ namespace MemoScope.Modules.Strings
         {
             ClrDump = clrDump;
             Icon = Properties.Resources.text_rotate_small;
-            Name = $"#{clrDump.Id} - Strings";
+            Name = $"#{clrDump.Id:###,###,###,##0} - Strings";
 
             dlvStrings.InitColumns<StringInformation>();
             dlvStrings.RegisterDataProvider(() => Data, this);
