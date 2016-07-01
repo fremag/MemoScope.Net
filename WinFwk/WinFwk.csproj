@@ -149,6 +149,7 @@
     <Compile Include="UITools\IntColumnAttribute.cs" />
     <Compile Include="UITools\ITreeNodeInformation.cs" />
     <Compile Include="UITools\Log\LogHelper.cs" />
+    <Compile Include="UITools\Settings\GradientConfig.cs" />
     <Compile Include="UITools\Settings\UISettings.cs" />
     <Compile Include="UITools\DefaultListView.cs">
       <SubType>Component</SubType>

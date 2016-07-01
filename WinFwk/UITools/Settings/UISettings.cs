@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Xml.Serialization;
 
@@ -12,6 +11,17 @@ namespace WinFwk.UITools.Settings
         internal static void InitSettings(UISettings uiSettings)
         {
             Instance = uiSettings;
+        }
+
+        public UISettings()
+        {
+            DockStripGradient = new GradientConfig();
+            ActiveTabGradient = new GradientConfig();
+            InactiveTabGradient = new GradientConfig();
+
+            ActiveCaptionGradient = new GradientConfig();
+            InactiveCaptionGradient = new GradientConfig();
+
         }
 
         [XmlIgnore]
@@ -123,5 +133,18 @@ namespace WinFwk.UITools.Settings
                 SelectedRowForegroundColor = WinFwkHelper.FromString(value);
             }
         }
+
+        [Category("DockPanel - Tab")]
+        public GradientConfig DockStripGradient { get; set; }
+
+        [Category("DockPanel - Tab")]
+        public GradientConfig ActiveTabGradient { get; set; }
+        [Category("DockPanel - Tab")]
+        public GradientConfig InactiveTabGradient { get; set; }
+
+        [Category("DockPanel - Caption")]
+        public GradientConfig ActiveCaptionGradient { get; set; }
+        [Category("DockPanel - Caption")]
+        public GradientConfig InactiveCaptionGradient { get; set; }
     }
 }

@@ -38,6 +38,7 @@ namespace WinFwk.UIModules
         protected UIModuleForm()
         {
             InitializeComponent();
+            ApplyColors(mainPanel, UISettings.Instance);
 
             msgBus.UiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             msgBus.Subscribe(this);
@@ -227,6 +228,29 @@ namespace WinFwk.UIModules
         public virtual void HandleMessage(UISettingsChangedMessage message)
         {
             ApplyColors(this, message.UiSettings);
+            ApplyColors(mainPanel, message.UiSettings);
+        }
+
+        private static void ApplyColors(DockPanel dockPanel, UISettings uiSettings)
+        {
+            var skin = dockPanel.Skin;
+            var x = skin.AutoHideStripSkin;
+
+            var dpStrip = skin.DockPaneStripSkin;
+            var docGrad = dpStrip.DocumentGradient;
+            docGrad.ActiveTabGradient = uiSettings.ActiveTabGradient.TabGradient;
+            docGrad.DockStripGradient= uiSettings.DockStripGradient.TabGradient;
+            docGrad.InactiveTabGradient = uiSettings.InactiveTabGradient.TabGradient;
+
+            var toolGrad = dpStrip.ToolWindowGradient;
+            toolGrad.ActiveTabGradient = uiSettings.ActiveTabGradient.TabGradient;
+            toolGrad.DockStripGradient= uiSettings.DockStripGradient.TabGradient;
+            toolGrad.InactiveTabGradient= uiSettings.InactiveTabGradient.TabGradient;
+
+            toolGrad.ActiveCaptionGradient = uiSettings.ActiveCaptionGradient.TabGradient;
+            toolGrad.InactiveCaptionGradient = uiSettings.InactiveCaptionGradient.TabGradient;
+
+            dockPanel.Refresh();
         }
 
         private static void ApplyColors(Control control, UISettings uiSettings)
