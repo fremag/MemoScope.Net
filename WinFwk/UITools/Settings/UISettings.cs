@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Xml.Serialization;
+using WinFwk.UITools.Settings.Skins;
 
 namespace WinFwk.UITools.Settings
 {
@@ -21,7 +23,26 @@ namespace WinFwk.UITools.Settings
 
             ActiveCaptionGradient = new GradientConfig();
             InactiveCaptionGradient = new GradientConfig();
+        }
 
+        [Category("__Global")]
+        [Editor(typeof(SkinTypeEditor), typeof(UITypeEditor))]
+        [DisplayName("Select and apply pre set skin")]
+        [XmlIgnore]
+        public AbstractSkin Skin
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+                value.Apply(this);
+            }
         }
 
         [XmlIgnore]
@@ -148,3 +169,4 @@ namespace WinFwk.UITools.Settings
         public GradientConfig InactiveCaptionGradient { get; set; }
     }
 }
+

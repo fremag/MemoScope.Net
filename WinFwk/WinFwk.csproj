@@ -150,6 +150,9 @@
     <Compile Include="UITools\ITreeNodeInformation.cs" />
     <Compile Include="UITools\Log\LogHelper.cs" />
     <Compile Include="UITools\Settings\GradientConfig.cs" />
+    <Compile Include="UITools\Settings\Skins\AbstractSkin.cs" />
+    <Compile Include="UITools\Settings\Skins\DefaultSkin.cs" />
+    <Compile Include="UITools\Settings\Skins\SkinTypeEditor.cs" />
     <Compile Include="UITools\Settings\UISettings.cs" />
     <Compile Include="UITools\DefaultListView.cs">
       <SubType>Component</SubType>
