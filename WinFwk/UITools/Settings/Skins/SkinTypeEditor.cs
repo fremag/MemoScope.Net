@@ -19,19 +19,23 @@ namespace WinFwk.UITools.Settings.Skins
         {
             editorService = (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
 
-            ListBox lb = new ListBox();
-            lb.SelectionMode = SelectionMode.One;
-            lb.SelectedValueChanged += OnListBoxSelectedValueChanged;
-            lb.DisplayMember = nameof(AbstractSkin.Name);
+            ListBox listBox = new ListBox();
+            listBox.SelectionMode = SelectionMode.One;
+            listBox.SelectedValueChanged += OnListBoxSelectedValueChanged;
+            listBox.DisplayMember = nameof(AbstractSkin.Name);
 
+            foreach(var skinType in WinFwkHelper.GetDerivedTypes(typeof(AbstractSkin)))
+            {
+                var skin = Activator.CreateInstance(skinType);
+                listBox.Items.Add(skin);
+            }
+            
 
-            lb.Items.Add(new DefaultSkin());
-
-            editorService.DropDownControl(lb);
-            if (lb.SelectedItem == null) // no selection, return the passed-in value as is
+            editorService.DropDownControl(listBox);
+            if (listBox.SelectedItem == null) // no selection, return the passed-in value as is
                 return value;
 
-            return lb.SelectedItem;
+            return listBox.SelectedItem;
         }
 
         private void OnListBoxSelectedValueChanged(object sender, EventArgs e)

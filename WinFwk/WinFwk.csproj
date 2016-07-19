@@ -151,6 +151,7 @@
     <Compile Include="UITools\Log\LogHelper.cs" />
     <Compile Include="UITools\Settings\GradientConfig.cs" />
     <Compile Include="UITools\Settings\Skins\AbstractSkin.cs" />
+    <Compile Include="UITools\Settings\Skins\DarkSkin.cs" />
     <Compile Include="UITools\Settings\Skins\DefaultSkin.cs" />
     <Compile Include="UITools\Settings\Skins\SkinTypeEditor.cs" />
     <Compile Include="UITools\Settings\UISettings.cs" />

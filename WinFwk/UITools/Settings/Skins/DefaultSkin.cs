@@ -5,7 +5,7 @@ namespace WinFwk.UITools.Settings.Skins
 {
     public class DefaultSkin : AbstractSkin
     {
-        public override string Name => "Default";
+        public override string Name => "__Default__";
 
         public override void Apply(UISettings settings)
         {
