@@ -69,8 +69,6 @@
             this.dtlvExplorer.FullRowSelect = true;
             this.dtlvExplorer.HideSelection = false;
             this.dtlvExplorer.HierarchicalCheckboxes = true;
-            this.dtlvExplorer.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.dtlvExplorer.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dtlvExplorer.Location = new System.Drawing.Point(3, 62);
             this.dtlvExplorer.Name = "dtlvExplorer";
             this.dtlvExplorer.RootKeyValueString = "";
