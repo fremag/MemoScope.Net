@@ -23,14 +23,14 @@ namespace WinFwk.UITools.Settings.Skins
             listBox.SelectionMode = SelectionMode.One;
             listBox.SelectedValueChanged += OnListBoxSelectedValueChanged;
             listBox.DisplayMember = nameof(AbstractSkin.Name);
-
-            foreach(var skinType in WinFwkHelper.GetDerivedTypes(typeof(AbstractSkin)))
+            listBox.BeginUpdate();
+            foreach (var skinType in WinFwkHelper.GetDerivedTypes(typeof(AbstractSkin)))
             {
                 var skin = Activator.CreateInstance(skinType);
                 listBox.Items.Add(skin);
             }
-            
-
+            listBox.EndUpdate();
+            listBox.Sorted = true;
             editorService.DropDownControl(listBox);
             if (listBox.SelectedItem == null) // no selection, return the passed-in value as is
                 return value;
