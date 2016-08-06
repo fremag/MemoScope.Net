@@ -9,6 +9,9 @@ using WinFwk.UIModules;
 using WinFwk.UIServices;
 using MemoScope.Modules.Workplace;
 using System.Linq;
+using System;
+using WinFwk.UITools.Settings;
+using ScintillaNET;
 
 namespace MemoScope
 {
@@ -34,7 +37,7 @@ namespace MemoScope
 
             var workContent = InitWorkplace(new MemoScopeWorkplace(), DockState.DockLeft );
             InitLog();
-
+            RegisterSkinAction(typeof(Scintilla), ApplyColorsScintilla);
             var mod = DockModule(new ExplorerModule(), workContent, DockAlignment.Bottom);
             DockState dockState;
             if( MemoScopeSettings.Instance.InitialPosition == DockPanelPosition.Left)
@@ -84,6 +87,21 @@ namespace MemoScope
             else
             {
                 MessageBox.Show("Dropped files must have a .dmp extension !");
+            }
+        }
+
+        private void ApplyColorsScintilla(Control control, UISettings uiSettings)
+        {
+            Scintilla codeEditor = control as Scintilla;
+            if (codeEditor == null)
+            {
+                return;
+            }
+
+            codeEditor.SetWhitespaceBackColor(true, uiSettings.BackgroundColor);
+            foreach (var style in codeEditor.Styles)
+            {
+                style.BackColor = uiSettings.BackgroundColor;
             }
         }
     }

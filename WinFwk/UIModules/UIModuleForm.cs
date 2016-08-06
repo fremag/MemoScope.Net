@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using WeifenLuo.WinFormsUI.Docking;
 using WinFwk.UICommands;
 using WinFwk.UIMessages;
@@ -32,7 +33,7 @@ namespace WinFwk.UIModules
         private CancellationTokenSource cancellationTokenSource;
         private int nbTasks;
         IEnumerable<AbstractUICommand> commands;
-
+        protected Dictionary<Type, Action<Control, UISettings>> dicoSkinActions = new Dictionary<Type, Action<Control, UISettings>>(); 
         public StatusStrip StatusBar => statusStrip;
 
         protected UIModuleForm()
@@ -47,6 +48,9 @@ namespace WinFwk.UIModules
 
             toolbarSettings.Add(UIToolBarSettings.Main);
             toolbarSettings.Add(UIToolBarSettings.Help);
+
+            RegisterSkinAction(typeof(Chart), ApplyColorsChart);
+            RegisterSkinAction(typeof(ObjectListView), ApplyColorsListView);
         }
 
         [UIScheduler]
@@ -195,9 +199,9 @@ namespace WinFwk.UIModules
 
             // Create a default ui settings for toolbar missing some settings
             var dicoSettings = toolbarSettings.ToDictionary(setting => setting.Name);
-            foreach(var commandGroup in dicoCommands)
+            foreach (var commandGroup in dicoCommands)
             {
-                if (! dicoSettings.ContainsKey(commandGroup.Key))
+                if (!dicoSettings.ContainsKey(commandGroup.Key))
                 {
                     // Create default settings for toolbar
                     dicoSettings.Add(commandGroup.Key, new UIToolBarSettings(commandGroup.Key, 0, null));
@@ -209,7 +213,7 @@ namespace WinFwk.UIModules
             foreach (var setting in dicoSettings.Values.OrderBy(setting => setting.Priority))
             {
                 IGrouping<string, AbstractUICommand> commandGroup;
-                if( dicoCommands.TryGetValue(setting.Name, out commandGroup))
+                if (dicoCommands.TryGetValue(setting.Name, out commandGroup))
                 {
                     var toolbar = new UIToolbar();
                     toolbar.InitBus(msgBus);
@@ -239,13 +243,13 @@ namespace WinFwk.UIModules
             var dpStrip = skin.DockPaneStripSkin;
             var docGrad = dpStrip.DocumentGradient;
             docGrad.ActiveTabGradient = uiSettings.ActiveTabGradient.TabGradient;
-            docGrad.DockStripGradient= uiSettings.DockStripGradient.TabGradient;
+            docGrad.DockStripGradient = uiSettings.DockStripGradient.TabGradient;
             docGrad.InactiveTabGradient = uiSettings.InactiveTabGradient.TabGradient;
 
             var toolGrad = dpStrip.ToolWindowGradient;
             toolGrad.ActiveTabGradient = uiSettings.ActiveTabGradient.TabGradient;
-            toolGrad.DockStripGradient= uiSettings.DockStripGradient.TabGradient;
-            toolGrad.InactiveTabGradient= uiSettings.InactiveTabGradient.TabGradient;
+            toolGrad.DockStripGradient = uiSettings.DockStripGradient.TabGradient;
+            toolGrad.InactiveTabGradient = uiSettings.InactiveTabGradient.TabGradient;
 
             toolGrad.ActiveCaptionGradient = uiSettings.ActiveCaptionGradient.TabGradient;
             toolGrad.InactiveCaptionGradient = uiSettings.InactiveCaptionGradient.TabGradient;
@@ -253,39 +257,62 @@ namespace WinFwk.UIModules
             dockPanel.Refresh();
         }
 
-        private static void ApplyColors(Control control, UISettings uiSettings)
+        public void RegisterSkinAction(Type type, Action<Control, UISettings> action)
+        {
+            dicoSkinActions[type] = action;
+        }
+
+        protected void ApplyColors(Control control, UISettings uiSettings)
         {
             var backgroundColor = uiSettings.BackgroundColor;
             var foregroundColor = uiSettings.ForegroundColor;
             control.BackColor = backgroundColor;
             control.ForeColor = foregroundColor;
 
-            var objListView = control as ObjectListView;
-            if (objListView != null)
+            Action<Control, UISettings> skinAction;
+            if (dicoSkinActions.TryGetValue(control.GetType(), out skinAction))
             {
-                // Alternate row
-                objListView.UseAlternatingBackColors = uiSettings.UseAlternateRowColor;
-                objListView.AlternateRowBackColor= uiSettings.AlternateRowColor;
-
-                // Header
-                objListView.HeaderFormatStyle = new HeaderFormatStyle();
-                objListView.HeaderFormatStyle.SetBackColor(uiSettings.HeaderBackColor);
-                objListView.HeaderFormatStyle.SetForeColor(uiSettings.HeaderForeColor);
-
-                //selected row
-                objListView.SelectedBackColor = uiSettings.SelectedRowBackgroundColor;
-                objListView.UnfocusedSelectedBackColor= uiSettings.SelectedRowBackgroundColor;
-                objListView.SelectedForeColor = uiSettings.SelectedRowForegroundColor;
-                objListView.UnfocusedSelectedForeColor = uiSettings.SelectedRowForegroundColor;
-                objListView.OwnerDraw = true;
+                skinAction(control, uiSettings);
             }
-
+            
             foreach (Control child in control.Controls)
             {
                 ApplyColors(child, uiSettings);
             }
 
             control.Refresh();
+        }
+
+        private static void ApplyColorsChart(Control control, UISettings uiSettings)
+        {
+            foreach(var area in ((Chart)control).ChartAreas)
+            {
+                area.BackColor = uiSettings.BackgroundColor;
+            }
+        }
+
+        private static void ApplyColorsListView(Control control, UISettings uiSettings)
+        {
+            ObjectListView objListView = control as ObjectListView;
+            if(objListView == null)
+            {
+                return;
+            }
+            // Alternate row
+            objListView.UseAlternatingBackColors = uiSettings.UseAlternateRowColor;
+            objListView.AlternateRowBackColor = uiSettings.AlternateRowColor;
+
+            // Header
+            objListView.HeaderFormatStyle = new HeaderFormatStyle();
+            objListView.HeaderFormatStyle.SetBackColor(uiSettings.HeaderBackColor);
+            objListView.HeaderFormatStyle.SetForeColor(uiSettings.HeaderForeColor);
+
+            // Selected row
+            objListView.SelectedBackColor = uiSettings.SelectedRowBackgroundColor;
+            objListView.UnfocusedSelectedBackColor = uiSettings.SelectedRowBackgroundColor;
+            objListView.SelectedForeColor = uiSettings.SelectedRowForegroundColor;
+            objListView.UnfocusedSelectedForeColor = uiSettings.SelectedRowForegroundColor;
+            objListView.OwnerDraw = true;
         }
 
         private void UIModuleForm_Load(object sender, EventArgs e)
