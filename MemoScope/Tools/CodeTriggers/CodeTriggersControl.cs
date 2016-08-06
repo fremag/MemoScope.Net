@@ -27,12 +27,36 @@ namespace MemoScope.Tools.CodeTriggers
 
             dlvTriggers.CheckStatePutter = (rowObject, value) =>
             {
-                ((CodeTrigger) rowObject).Active = (value == CheckState.Checked);
+                CodeTrigger codeTrigger = rowObject as CodeTrigger;
+                codeTrigger.Active = (value == CheckState.Checked);
+                if (currentTrigger != null)
+                {
+                    cbActive.Checked = currentTrigger.Active;
+                }
                 return value;
             };
             dlvTriggers.CheckStateGetter = rowObject => ((CodeTrigger) rowObject).Active ? CheckState.Checked : CheckState.Unchecked;
             dlvTriggers.InitColumns<CodeTrigger>();
             InitCodeSyntax();
+            Reset();
+        }
+
+        private void Reset()
+        {
+            this.tbGroup.TextChanged -= this.tbGroup_TextChanged;
+            this.tbName.TextChanged -= this.tbName_TextChanged;
+            this.cbActive.CheckedChanged -= this.cbActive_CheckedChanged;
+            this.tbCode.TextChanged -= this.tbCode_TextChanged;
+
+            tbGroup.Text = null;
+            tbName.Text = null;
+            tbCode.Text = null;
+            cbActive.Checked = false;
+
+            this.tbGroup.TextChanged += this.tbGroup_TextChanged;
+            this.tbName.TextChanged += this.tbName_TextChanged;
+            this.cbActive.CheckedChanged += this.cbActive_CheckedChanged;
+            this.tbCode.TextChanged += this.tbCode_TextChanged;
         }
 
         // Code copy/pasted from
@@ -63,10 +87,15 @@ namespace MemoScope.Tools.CodeTriggers
             tbCode.Styles[Style.Cpp.Preprocessor].ForeColor = Color.Maroon;
         }
 
-        private void tsbNetTrigger_Click(object sender, System.EventArgs e)
+        private void tsbNewTrigger_Click(object sender, System.EventArgs e)
         {
-            triggers.Add(new CodeTrigger());
-            RefreshTriggers();
+            CreateTrigger();
+        }
+
+        private void CreateTrigger()
+        {
+            currentTrigger = new CodeTrigger();
+            triggers.Add(currentTrigger);
         }
 
         public void RefreshTriggers()
@@ -74,6 +103,10 @@ namespace MemoScope.Tools.CodeTriggers
             dlvTriggers.Objects = triggers;
             dlvTriggers.ShowGroups = true;
             dlvTriggers.BuildGroups(nameof(CodeTrigger.Group), SortOrder.Ascending);
+            if( currentTrigger != null)
+            {
+                dlvTriggers.SelectedObject = currentTrigger;
+            }
         }
 
         private void tsbSaveAllTriggers_Click(object sender, System.EventArgs e)
@@ -101,6 +134,11 @@ namespace MemoScope.Tools.CodeTriggers
             {
                 CodeTrigger trig = triggers[idx];
                 triggers.Remove(trig);
+                if( trig == currentTrigger)
+                {
+                    currentTrigger = null;
+                    Reset();
+                }
             }
             RefreshTriggers();
         }
@@ -109,18 +147,16 @@ namespace MemoScope.Tools.CodeTriggers
         {
             currentTrigger = dlvTriggers.SelectedObject as CodeTrigger;
 
-            tbGroup.Text = currentTrigger?.Group;
-            tbName.Text = currentTrigger?.Name;
-            tbCode.Text = currentTrigger?.Code;
-            cbActive.Checked = currentTrigger?.Active ?? false;
-        }
-
-        private void tbGroup_TextChanged(object sender, System.EventArgs e)
-        {
             if (currentTrigger != null)
             {
-                currentTrigger.Group = tbGroup.Text;
-                RefreshTriggers();
+                tbGroup.Text = currentTrigger.Group;
+                tbName.Text = currentTrigger.Name;
+                tbCode.Text = currentTrigger.Code;
+                cbActive.Checked = currentTrigger.Active;
+            }
+            else
+            {
+                Reset();
             }
         }
 
@@ -135,20 +171,34 @@ namespace MemoScope.Tools.CodeTriggers
 
         private void tbName_TextChanged(object sender, System.EventArgs e)
         {
-            if (currentTrigger != null)
+            if (currentTrigger == null)
             {
-                currentTrigger.Name = tbName.Text;
-                RefreshTriggers();
+                CreateTrigger();
             }
+            currentTrigger.Name = tbName.Text;
+            RefreshTriggers();
+        }
+
+
+        private void tbGroup_TextChanged(object sender, System.EventArgs e)
+        {
+            if (currentTrigger == null)
+            {
+                CreateTrigger();
+            }
+            currentTrigger.Group = tbGroup.Text;
+            RefreshTriggers();
         }
 
         private void tbCode_TextChanged(object sender, System.EventArgs e)
         {
-            if (currentTrigger != null)
+            if (currentTrigger == null)
             {
-                currentTrigger.Code = tbCode.Text;
-                RefreshTriggers();
+                CreateTrigger();
             }
+
+            currentTrigger.Code = tbCode.Text;
+            RefreshTriggers();
         }
 
         private void tbCode_DragEnter(object sender, DragEventArgs e)
@@ -158,6 +208,12 @@ namespace MemoScope.Tools.CodeTriggers
 
         private void tbCode_DragDrop(object sender, DragEventArgs e)
         {
+            if(currentTrigger == null)
+            {
+                CreateTrigger();
+                RefreshTriggers();
+            }
+
             var data = e.Data as OLVDataObject;
             if (data == null)
             {
@@ -179,6 +235,12 @@ namespace MemoScope.Tools.CodeTriggers
         protected void Log(string text, LogLevelType logLevel = LogLevelType.Info)
         {
             MessageBus.SendMessage(new LogMessage(this, text, logLevel));
+        }
+
+        private void cbActive_CheckedChanged(object sender, EventArgs e)
+        {
+            currentTrigger.Active = cbActive.Checked;
+            RefreshTriggers();
         }
     }
 }

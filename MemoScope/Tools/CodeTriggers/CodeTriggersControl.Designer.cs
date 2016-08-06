@@ -41,7 +41,7 @@
             this.cbActive = new System.Windows.Forms.CheckBox();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.tsbNetTrigger = new System.Windows.Forms.ToolStripButton();
+            this.tsbNewTrigger = new System.Windows.Forms.ToolStripButton();
             this.tsbSaveAllTriggers = new System.Windows.Forms.ToolStripButton();
             this.tsbCloneTrigger = new System.Windows.Forms.ToolStripButton();
             this.tsbDeleteTrigger = new System.Windows.Forms.ToolStripButton();
@@ -89,8 +89,6 @@
             this.dlvTriggers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvTriggers.FullRowSelect = true;
             this.dlvTriggers.HideSelection = false;
-            this.dlvTriggers.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.dlvTriggers.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.dlvTriggers.Location = new System.Drawing.Point(0, 0);
             this.dlvTriggers.Name = "dlvTriggers";
             this.dlvTriggers.ShowGroups = false;
@@ -113,7 +111,6 @@
             this.tbCode.Size = new System.Drawing.Size(383, 284);
             this.tbCode.TabIndex = 7;
             this.tbCode.UseTabs = false;
-            this.tbCode.TextChanged += new System.EventHandler(this.tbCode_TextChanged);
             this.tbCode.DragDrop += new System.Windows.Forms.DragEventHandler(this.tbCode_DragDrop);
             this.tbCode.DragEnter += new System.Windows.Forms.DragEventHandler(this.tbCode_DragEnter);
             // 
@@ -134,7 +131,6 @@
             this.tbGroup.Name = "tbGroup";
             this.tbGroup.Size = new System.Drawing.Size(219, 22);
             this.tbGroup.TabIndex = 4;
-            this.tbGroup.TextChanged += new System.EventHandler(this.tbGroup_TextChanged);
             // 
             // lblGroup
             // 
@@ -153,7 +149,6 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(311, 22);
             this.tbName.TabIndex = 2;
-            this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
             // 
             // lblName
             // 
@@ -197,7 +192,7 @@
             this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbNetTrigger,
+            this.tsbNewTrigger,
             this.tsbSaveAllTriggers,
             this.tsbCloneTrigger,
             this.tsbDeleteTrigger});
@@ -208,14 +203,14 @@
             // 
             // tsbNetTrigger
             // 
-            this.tsbNetTrigger.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNetTrigger.Image = global::MemoScope.Properties.Resources.new_data;
-            this.tsbNetTrigger.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNetTrigger.Name = "tsbNetTrigger";
-            this.tsbNetTrigger.Size = new System.Drawing.Size(24, 24);
-            this.tsbNetTrigger.Text = "tsbNewTrigger";
-            this.tsbNetTrigger.ToolTipText = "New Trigger";
-            this.tsbNetTrigger.Click += new System.EventHandler(this.tsbNetTrigger_Click);
+            this.tsbNewTrigger.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbNewTrigger.Image = global::MemoScope.Properties.Resources.new_data;
+            this.tsbNewTrigger.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNewTrigger.Name = "tsbNetTrigger";
+            this.tsbNewTrigger.Size = new System.Drawing.Size(24, 24);
+            this.tsbNewTrigger.Text = "tsbNewTrigger";
+            this.tsbNewTrigger.ToolTipText = "New Trigger";
+            this.tsbNewTrigger.Click += new System.EventHandler(this.tsbNewTrigger_Click);
             // 
             // tsbSaveAllTriggers
             // 
@@ -279,7 +274,7 @@
         private WinFwk.UITools.DefaultListView dlvTriggers;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.ToolStripButton tsbNetTrigger;
+        private System.Windows.Forms.ToolStripButton tsbNewTrigger;
         private System.Windows.Forms.ToolStripButton tsbSaveAllTriggers;
         private System.Windows.Forms.ToolStripButton tsbCloneTrigger;
         private System.Windows.Forms.ToolStripButton tsbDeleteTrigger;
