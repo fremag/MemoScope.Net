@@ -14,7 +14,7 @@ namespace WinFwk.UITools.Workplace
     {
         private static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
         private WorkplaceModel model;
-        protected List<object> SelectedModules => tlvModules.CheckedObjects.OfType<object>().ToList();
+        protected IEnumerable<UIModule> SelectedModules => tlvModules.CheckedObjects.OfType<UIModule>();
 
         public WorkplaceModule()
         {
@@ -63,8 +63,10 @@ namespace WinFwk.UITools.Workplace
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            var checkedObjects = tlvModules.CheckedObjects;
             tlvModules.ClearObjects();
             tlvModules.Roots = model.rootModules;
+            tlvModules.CheckedObjects = checkedObjects;
             tlvModules.ExpandAll();
         }
 
@@ -85,6 +87,14 @@ namespace WinFwk.UITools.Workplace
         public override bool Closable()
         {
             return false;
+        }
+
+        private void closeModulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach(var module in tlvModules.CheckedObjects.OfType<UIModule>())
+            {
+                MessageBus.SendMessage(new CloseRequest(module));
+            }
         }
     }
 }

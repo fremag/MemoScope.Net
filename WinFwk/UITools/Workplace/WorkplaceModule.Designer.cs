@@ -33,7 +33,10 @@
             this.tlvModules = new WinFwk.UITools.DefaultTreeListView();
             this.colName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.colSummary = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCloseModules = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tlvModules)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlvModules
@@ -45,12 +48,11 @@
             this.tlvModules.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colSummary});
+            this.tlvModules.ContextMenuStrip = this.contextMenuStrip;
             this.tlvModules.DataSource = null;
             this.tlvModules.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlvModules.FullRowSelect = true;
             this.tlvModules.HideSelection = false;
-            this.tlvModules.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.tlvModules.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.tlvModules.Location = new System.Drawing.Point(0, 0);
             this.tlvModules.Name = "tlvModules";
             this.tlvModules.RootKeyValueString = "";
@@ -73,6 +75,22 @@
             this.colSummary.Text = "Summary";
             this.colSummary.Width = 250;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCloseModules});
+            this.contextMenuStrip.Name = "contextMenuStrip1";
+            this.contextMenuStrip.Size = new System.Drawing.Size(180, 30);
+            // 
+            // closeModulesToolStripMenuItem
+            // 
+            this.tsmiCloseModules.Image = global::WinFwk.Properties.Resources.cancel;
+            this.tsmiCloseModules.Name = "closeModulesToolStripMenuItem";
+            this.tsmiCloseModules.Size = new System.Drawing.Size(179, 26);
+            this.tsmiCloseModules.Text = "Close modules";
+            this.tsmiCloseModules.Click += new System.EventHandler(this.closeModulesToolStripMenuItem_Click);
+            // 
             // WorkplaceModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -81,6 +99,7 @@
             this.Name = "WorkplaceModule";
             this.Size = new System.Drawing.Size(539, 519);
             ((System.ComponentModel.ISupportInitialize)(this.tlvModules)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -91,5 +110,7 @@
         private DefaultTreeListView tlvModules;
         private BrightIdeasSoftware.OLVColumn colName;
         private BrightIdeasSoftware.OLVColumn colSummary;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCloseModules;
     }
 }
