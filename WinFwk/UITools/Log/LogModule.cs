@@ -133,5 +133,10 @@ namespace WinFwk.UITools.Log
                 return;
             }
         }
+        
+        public override bool Closable()
+        {
+            return false;
+        }
     }
 }
