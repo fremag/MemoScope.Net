@@ -11,28 +11,28 @@ namespace MemoScope.Modules.Instances
 {
     public class FieldNode : ITreeNodeInformation<FieldNode>, ITypeNameData
     {
-        public ClrInstanceField Field { get; }
+        public string FieldName { get; }
         public ClrDump ClrDump { get; }
+        public ClrType ClrType { get; }
         public FieldNode Parent { get; }
 
-        public FieldNode(ClrInstanceField field, ClrDump clrDump)
+        public FieldNode(string fieldName, ClrType clrType, ClrDump clrDump)
         {
-            Field = field;
+            FieldName = fieldName;
             ClrDump = clrDump;
-            CanExpand = !Field.Type.IsPrimitive && ClrDump.Eval(() => Field.Type.Fields.Any());
+            this.ClrType = clrType;
+            CanExpand = ClrDump.Eval(() => ClrDump.HasField(clrType));
         }
-        public FieldNode(ClrInstanceField field, ClrDump clrDump, FieldNode parent) : this(field, clrDump)
+        public FieldNode(string fieldName, ClrType clrType, ClrDump clrDump, FieldNode parent) : this(fieldName, clrType, clrDump)
         {
             Parent = parent;
         }
 
         [OLVColumn(Title = "Name", Width = 150)]
-        public string Name => Field.RealName();
+        public string Name => TypeHelpers.RealName(FieldName);
 
         [OLVColumn(Title = "Type")]
-        public string TypeName => Field.Type.Name;
-
-        public ClrType ClrType => Field.Type;
+        public string TypeName => ClrType.Name;
 
         public bool CanExpand { get; }
 
@@ -40,8 +40,8 @@ namespace MemoScope.Modules.Instances
         {
             get
             {
-                IList<ClrInstanceField> fields = ClrDump.Eval(() => Field.Type.Fields);
-                var fieldNodes = fields.Select(field => new FieldNode(field, ClrDump, this));
+                IList<ClrInstanceField> fields = ClrDump.Eval(() => ClrType.Fields);
+                var fieldNodes = fields.Select(field => new FieldNode(field.Name, field.Type, ClrDump, this));
                 return fieldNodes.ToList();
             }
         }
@@ -50,7 +50,7 @@ namespace MemoScope.Modules.Instances
         {
             get
             {
-                string fullName = Field.RealName(null);
+                string fullName = TypeHelpers.RealName(FieldName);
                 if (Parent != null)
                 {
                     string prefix = Parent.FullName + ".";

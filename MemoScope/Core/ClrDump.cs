@@ -25,6 +25,7 @@ namespace MemoScope.Core
         public DataTarget Target { get; }
         public string DumpPath { get; }
         public ClrHeap Heap => Runtime.GetHeap();
+
         public MessageBus MessageBus { get; }
         public BookmarkMgr BookmarkMgr { get; }
 
@@ -209,6 +210,11 @@ namespace MemoScope.Core
             var obj = Eval(() => GetFieldValueImpl(address, type, fields));
             return obj;
         }
+        public object GetFieldValue(ulong address, ClrType type, List<string> fieldNames)
+        {
+            var obj = Eval(() => GetFieldValueImpl(address, type, fieldNames));
+            return obj;
+        }
         public object GetFieldValue(ulong address, ClrType type, ClrInstanceField field)
         {
             var obj = Eval(() => GetFieldValueImpl(address, type, field));
@@ -224,6 +230,22 @@ namespace MemoScope.Core
                 var field = fields[i];
                 obj = obj[field];
                 if( obj.IsNull )
+                {
+                    return null;
+                }
+            }
+
+            return obj.HasSimpleValue ? obj.SimpleValue : obj.Address;
+        }
+        public object GetFieldValueImpl(ulong address, ClrType type, List<string> fieldNames)
+        {
+            ClrObject obj = new ClrObject(address, type);
+
+            for (int i = 0; i < fieldNames.Count; i++)
+            {
+                var fieldName = fieldNames[i];
+                obj = obj[fieldName];
+                if (obj.IsNull)
                 {
                     return null;
                 }
@@ -451,6 +473,22 @@ namespace MemoScope.Core
             }
             return clrRoots;
         }
+
+        public bool HasField(ClrType clrType)
+        {
+            if( clrType.IsPrimitive)
+            {
+                return false;
+            }
+            if ( clrType.Fields.Any())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
     }
 
     public class ThreadProperty

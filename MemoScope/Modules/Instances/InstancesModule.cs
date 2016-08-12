@@ -137,7 +137,7 @@ namespace MemoScope.Modules.Instances
             bool hasSimpleValue = fieldNode.ClrType.HasSimpleValue;
             var col = new OLVColumn(fieldNode.FullName, null);
             col.Width = 120;
-            switch (fieldNode.Field.ElementType)
+            switch (fieldNode.ClrType.ElementType)
             {
                 case ClrElementType.Int16:
                 case ClrElementType.Int32:
@@ -169,15 +169,14 @@ namespace MemoScope.Modules.Instances
             }
             dlvAdresses.AllColumns.Add(col);
 
-            List<ClrInstanceField> fields = new List<ClrInstanceField>();
-
-            ClrInstanceField field = fieldNode.Field;
+            List<string> fields = new List<string>();
+            string fieldName = fieldNode.FieldName;
             do
             {
-                fields.Insert(0, field);
+                fields.Insert(0, fieldName);
                 var parent = dtlvFields.GetParent(fieldNode);
                 fieldNode =  parent as FieldNode;
-                field = fieldNode == null ? null : fieldNode.Field;
+                fieldName = fieldNode == null ? null : fieldNode.FieldName;
             } while (fieldNode != null);
 
             col.AspectGetter = o =>
@@ -200,7 +199,7 @@ namespace MemoScope.Modules.Instances
         // Gui thread
         public override void PostInit()
         {
-            var fieldNodes = fields.Select(field => new FieldNode(field, AddressList.ClrDump));
+            var fieldNodes = fields.Select(field => new FieldNode(field.Name, field.Type, AddressList.ClrDump));
             dtlvFields.Roots = fieldNodes;
             dlvAdresses.VirtualListDataSource = new InstanceVirtualSource(dlvAdresses, AddressList, filteredAddresses);
             Summary = $"{AddressList.Addresses.Count:###,###,###,##0} instances";

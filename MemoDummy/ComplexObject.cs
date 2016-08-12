@@ -10,6 +10,33 @@ namespace MemoDummy
         public Flags myFlags;
     }
 
+    public interface IMyInterface
+    {
+        int Id { get; }
+    }
+
+    public class MyInterfaceImpl_V1 : IMyInterface
+    {
+        private static int n = 0;
+        public int Id { get; }
+
+        public string name;
+        public MyInterfaceImpl_V1()
+        {
+            Id = n++;
+            name = $"#{0:Id}";
+        }
+    }
+
+    public class MyInterfaceImpl_V2 : MyInterfaceImpl_V1
+    {
+        public DateTime TimeStamp { get; set; }
+        public MyInterfaceImpl_V2()
+        {
+            TimeStamp = DateTime.Now;
+        }
+    }
+
     class InternalData
     {
         public string Desc;
@@ -36,6 +63,7 @@ namespace MemoDummy
         public string[] SomeStrings { get; set; }
         int[] someInts;
         double[] someDoubles;
+        IMyInterface myInterface;
 
         public ComplexObject()
         {
@@ -73,6 +101,7 @@ namespace MemoDummy
                 someInts[i] = n;
                 someDoubles[i] = 2 * (n + i);
             }
+            myInterface = id % 2 == 0 ? new MyInterfaceImpl_V1() : new MyInterfaceImpl_V2();
         }
 
     }
