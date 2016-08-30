@@ -221,6 +221,29 @@ namespace MemoScope.Core
             return obj;
         }
 
+        internal Dictionary<string, ClrType> GetFieldNames(ClrType type)
+        {
+            Dictionary<string, ClrType> fieldNames = Eval(() => GetFieldNamesImpl(type));
+            return fieldNames;
+        }
+
+        private Dictionary<string, ClrType> GetFieldNamesImpl(ClrType type)
+        {
+            var fieldNames = type.Fields.ToDictionary(f => f.Name, f => f.Type);
+            if( type.IsInterface)
+            {
+                var properties = type.Methods.Where(meth => meth.Name.StartsWith("get_") && meth.IsVirtual);
+                foreach (var meth in properties)
+                {
+                    var propName = meth.Name.Substring("get_".Length);
+                    var fullSignature = meth.GetFullSignature();
+                    fieldNames[propName] = meth.Type;
+                }
+
+            }
+            return fieldNames;
+        }
+
         public object GetFieldValueImpl(ulong address, ClrType type, List<ClrInstanceField> fields)
         {
             ClrObject obj = new ClrObject(address, type);
@@ -481,6 +504,11 @@ namespace MemoScope.Core
                 return false;
             }
             if ( clrType.Fields.Any())
+            {
+                return true;
+            }
+
+            if( clrType.IsInterface && clrType.Methods.Any(meth => meth.Name.StartsWith("get_"))) 
             {
                 return true;
             }

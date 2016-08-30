@@ -3,6 +3,7 @@ using MemoScope.Core.Data;
 using Microsoft.Diagnostics.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MemoScope.Modules.Instances
 {
@@ -18,12 +19,12 @@ namespace MemoScope.Modules.Instances
             ClrType = clrType;
         }
         string lastArg = null;
-        List<ClrInstanceField> lastFields;
+        List<string> lastFields;
 
-        Dictionary<string, List<ClrInstanceField>> cacheField = new Dictionary<string, List<ClrInstanceField>>();
+        Dictionary<string, List<string>> cacheField = new Dictionary<string, List<string>>();
         private object Eval(string arg)
         {
-            List<ClrInstanceField> fields;
+            List<string> fields;
             if (ReferenceEquals(arg, lastArg))
             {
                 fields = lastFields;
@@ -31,19 +32,7 @@ namespace MemoScope.Modules.Instances
             else {
                 if (!cacheField.TryGetValue(arg, out fields))
                 {
-                    fields = new List<ClrInstanceField>();
-                    ClrType type = ClrType;
-                    foreach (var fieldName in arg.Split('.'))
-                    {
-                        var field = type.GetFieldByName(fieldName);
-                        if (field == null)
-                        {
-                            var propName = ClrObject.GetAutomaticPropertyField(fieldName);
-                            field = type.GetFieldByName(propName);
-                        }
-                        type = field.Type;
-                        fields.Add(field);
-                    }
+                    fields = arg.Split('.').ToList();
                     cacheField[arg] = fields;
                 }
                 lastFields = fields;

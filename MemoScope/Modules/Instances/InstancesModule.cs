@@ -19,7 +19,7 @@ namespace MemoScope.Modules.Instances
 {
     public partial class InstancesModule : UIClrDumpModule, UIDataProvider<ClrDumpType>, UIDataProvider<ClrDumpObject>, IModelFilter
     {
-        private IList<ClrInstanceField> fields;
+        private Dictionary<string, ClrType> fieldTypesByNames;
         private AddressList AddressList { get; set; }
         private List<Func<bool>> filters;
         private FieldAccessor myFieldAccessor;
@@ -193,13 +193,13 @@ namespace MemoScope.Modules.Instances
         {
             var dump = AddressList.ClrDump;
             var type = AddressList.ClrType;
-            fields = dump.Eval(() => type.Fields);
+            fieldTypesByNames = dump.GetFieldNames(type);
         }
 
         // Gui thread
         public override void PostInit()
         {
-            var fieldNodes = fields.Select(field => new FieldNode(field.Name, field.Type, AddressList.ClrDump));
+            var fieldNodes = fieldTypesByNames.Select(kvp => new FieldNode(kvp.Key, kvp.Value, AddressList.ClrDump));
             dtlvFields.Roots = fieldNodes;
             dlvAdresses.VirtualListDataSource = new InstanceVirtualSource(dlvAdresses, AddressList, filteredAddresses);
             Summary = $"{AddressList.Addresses.Count:###,###,###,##0} instances";
