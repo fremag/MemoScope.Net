@@ -236,7 +236,8 @@ namespace MemoScope.Core
                 foreach (var meth in properties)
                 {
                     var propName = meth.Name.Substring("get_".Length);
-                    var fullSignature = meth.GetFullSignature();
+                    // BUG: this is not the real type of the field ! 
+                    // TODO: get the return type from the method
                     fieldNames[propName] = meth.Type;
                 }
 
