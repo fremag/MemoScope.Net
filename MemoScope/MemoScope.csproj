@@ -162,7 +162,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Bookmark\BookmarkMgr.cs" />
+    <Compile Include="Core\Bookmarks\BookmarkMgr.cs" />
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
@@ -174,6 +174,8 @@
     <Compile Include="Core\Data\ITypeNameData.cs" />
     <Compile Include="Core\Data\SimpleValueHelper.cs" />
     <Compile Include="Core\IClrDump.cs" />
+    <Compile Include="Core\ProcessInfo\ProcessInfo.cs" />
+    <Compile Include="Core\ProcessInfo\ClrDumpInfo.cs" />
     <Compile Include="Modules\ArrayInstances\ArrayInstanceAnalysis.cs" />
     <Compile Include="Modules\ArrayInstances\ArrayInstancesCommand.cs" />
     <Compile Include="Modules\ArrayInstances\ArrayInstancesInformation.cs" />
@@ -432,7 +434,7 @@
     <Compile Include="Modules\About\AboutModule.Designer.cs">
       <DependentUpon>AboutModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Bookmark\Bookmark.cs" />
+    <Compile Include="Core\Bookmarks\Bookmark.cs" />
     <Compile Include="Modules\Bookmarks\BookmarkCommand.cs" />
     <Compile Include="Modules\Bookmarks\BookmarkModule.cs">
       <SubType>UserControl</SubType>

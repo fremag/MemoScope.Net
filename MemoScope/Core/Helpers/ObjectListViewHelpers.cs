@@ -174,7 +174,7 @@ namespace MemoScope.Core.Helpers
                 if (addressObj is ulong)
                 {
                     var address = (ulong)addressObj;
-                    var bookmark = dumpModule.ClrDump.BookmarkMgr.Get(address);
+                    var bookmark = dumpModule.ClrDump.ClrDumpInfo.GetBookmark(address);
                     if (bookmark != null)
                     {
                         e.SubItem.BackColor = bookmark.Color;
@@ -193,7 +193,7 @@ namespace MemoScope.Core.Helpers
                     if (modelObject is ulong)
                     {
                         var address = (ulong)modelObject;
-                        var bookmark = dumpModule.ClrDump.BookmarkMgr.Get(address);
+                        var bookmark = dumpModule.ClrDump.ClrDumpInfo.GetBookmark(address);
                         if (bookmark != null)
                         {
                             return bookmark.Comment;

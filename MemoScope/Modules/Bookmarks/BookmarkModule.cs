@@ -1,6 +1,6 @@
 ﻿using BrightIdeasSoftware;
 using MemoScope.Core;
-using MemoScope.Core.Bookmark;
+using MemoScope.Core.Bookmarks;
 using MemoScope.Core.Helpers;
 using System.Drawing;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace MemoScope.Modules.Bookmarks
             col.CellEditUseWholeCell = true;
             dlvBookmarks.CellEditActivation = ObjectListView.CellEditActivateMode.DoubleClick;
             dlvBookmarks.CellEditFinished += (o, e) => {
-                ClrDump.BookmarkMgr.SaveBookmarks();
+                ClrDump.ClrDumpInfo.Save();
             };
 
             var colColor = dlvBookmarks[nameof(Bookmark.Color)];
@@ -59,7 +59,7 @@ namespace MemoScope.Modules.Bookmarks
                     if (colDiag.ShowDialog() == DialogResult.OK)
                     {
                         bookmark.Color = colDiag.Color;
-                        ClrDump.BookmarkMgr.SaveBookmarks();
+                        ClrDump.ClrDumpInfo.Save();
                     }
                 }
             };
@@ -69,7 +69,7 @@ namespace MemoScope.Modules.Bookmarks
 
         private void LoadBookmarks()
         {
-            dlvBookmarks.Objects = ClrDump.BookmarkMgr.GetBookmarks();
+            dlvBookmarks.Objects = ClrDump.ClrDumpInfo.Bookmarks;
             dlvBookmarks.ShowGroups = true;
             dlvBookmarks.BuildGroups(nameof(Bookmark.TypeName), SortOrder.Ascending);
         }

@@ -16,10 +16,10 @@ namespace MemoScope.Modules.Bookmarks
             switch(message.Action)
             {
                 case BookmarkAction.Add:
-                    clrDump.BookmarkMgr.Add(address, clrDumpObject.ClrType);
+                    clrDump.ClrDumpInfo.AddBookmark(address, clrDumpObject.ClrType);
                     break;
                 case BookmarkAction.Remove:
-                    clrDump.BookmarkMgr.Remove(address, clrDumpObject.ClrType);
+                    clrDump.ClrDumpInfo.RemoveBookmark(address);
                     break;
             }
         }

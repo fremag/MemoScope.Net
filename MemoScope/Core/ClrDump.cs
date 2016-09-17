@@ -7,11 +7,11 @@ using WinFwk.UITools.Log;
 using WinFwk.UIMessages;
 using MemoScope.Core.Cache;
 using MemoScope.Core.Data;
-using MemoScope.Core.Bookmark;
 using System.Threading;
 using WinFwk.UIModules;
 using NLog;
 using System.Reflection;
+using MemoScope.Core.ProcessInfo;
 
 namespace MemoScope.Core
 {
@@ -27,7 +27,7 @@ namespace MemoScope.Core
         public ClrHeap Heap => Runtime.GetHeap();
 
         public MessageBus MessageBus { get; }
-        public BookmarkMgr BookmarkMgr { get; }
+        public ClrDumpInfo ClrDumpInfo { get; }
 
         public IList<ClrSegment> Segments => Runtime.GetHeap().Segments;
         public List<ClrMemoryRegion> Regions => Runtime.EnumerateMemoryRegions().ToList();
@@ -67,8 +67,7 @@ namespace MemoScope.Core
             worker = new SingleThreadWorker(dumpPath);
             worker.Run(InitRuntime);
 
-            BookmarkMgr = new BookmarkMgr(dumpPath);
-            BookmarkMgr.GetBookmarks();
+            ClrDumpInfo = ClrDumpInfo.Load(dumpPath);
         }
 
         public void InitCache(CancellationToken token)

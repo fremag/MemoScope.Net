@@ -15,6 +15,7 @@ using ExpressionEvaluator;
 using System.Text.RegularExpressions;
 using MemoScope.Tools.CodeTriggers;
 using MemoScope.Modules.Explorer;
+using MemoScope.Core.ProcessInfo;
 
 namespace MemoScope.Modules.Process
 {
@@ -164,6 +165,8 @@ namespace MemoScope.Modules.Process
                 if (r == 0)
                 {
                     Log(string.Format("Process dumped ! {0}{1}{0}Process Id: {2}", Environment.NewLine, dumpPath, proc.Process.Id), LogLevelType.Notify);
+                    DumpProcessInfo(dumpPath, proc);
+
                     MessageBus.SendMessage(new ProcessDumpedMessage(dumpPath, proc.Process.Id));
                     if( cbLoadAfterDump.Checked)
                     {
@@ -188,6 +191,13 @@ namespace MemoScope.Modules.Process
                     target.Dispose();
                 }
             }
+        }
+
+        private void DumpProcessInfo(string dumpPath, ProcessWrapper proc)
+        {
+            ClrDumpInfo mgr = new ClrDumpInfo(dumpPath);
+            mgr.InitProcessInfo(proc.Process);
+            mgr.Save();
         }
 
         [DllImport("user32.dll")]

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace MemoScope.Core.Bookmark
+namespace MemoScope.Core.Bookmarks
 {
     public class Bookmark : IAddressData, ITypeNameData
     {
@@ -18,8 +18,8 @@ namespace MemoScope.Core.Bookmark
         public string Comment  { get; set; }
 
         [XmlIgnore]
-        [OLVColumn(Width=75, IsEditable = false)] 
-        public Color Color { get; set; }
+        [OLVColumn(Width = 75, IsEditable = false)]
+        public Color Color { get; set; } = Color.Aquamarine;
 
         [OLVColumn(Title = "Color Pick", TextAlign = HorizontalAlignment.Center, Width = 50, IsEditable = false)]
         [XmlIgnore]

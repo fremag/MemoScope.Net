@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using Microsoft.Diagnostics.Runtime;
 using System.Linq;
 
-namespace MemoScope.Core.Bookmark
+namespace MemoScope.Core.Bookmarks
 {
     public class BookmarkMgr
     {
@@ -40,7 +40,7 @@ namespace MemoScope.Core.Bookmark
             return bookmarks.Values.ToList();
         }
 
-        public void Remove(ulong address, ClrType clrType)
+        public void Remove(ulong address)
         {
             if (bookmarks != null && bookmarks.ContainsKey(address))
             {
