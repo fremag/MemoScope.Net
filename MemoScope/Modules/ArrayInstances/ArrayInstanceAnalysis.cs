@@ -34,9 +34,10 @@ namespace MemoScope.Modules.ArrayInstances
                     {
                         msgBus.Status($"Analyzing instance: {i:###,###,###,##0} / {count:###,###,###,##0}");
                     }
-                    float nullRatio = 0;
-                    float uniqueRatio = 0;
-                    if ( clrType.ElementType == ClrElementType.Object || clrType.ElementType == ClrElementType.String || clrType.ElementType == ClrElementType.SZArray)
+                    float? nullRatio = null;
+                    float? uniqueRatio = null;
+
+                    if ( clrType.ContainsPointers )
                     {
                         int nbNull = 0;
                         addresses.Clear();

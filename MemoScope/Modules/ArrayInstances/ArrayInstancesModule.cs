@@ -4,7 +4,6 @@ using BrightIdeasSoftware;
 using MemoScope.Modules.Arrays;
 using MemoScope.Core.Helpers;
 using System.Windows.Forms;
-using MemoScope.Modules.Instances;
 using MemoScope.Modules.InstanceDetails;
 using WinFwk.UITools.Log;
 using MemoScope.Core.Data;
