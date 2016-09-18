@@ -5,6 +5,7 @@ using System.Linq;
 using WinFwk.UICommands;
 using MemoScope.Core.Data;
 using BrightIdeasSoftware;
+using System.Drawing;
 
 namespace MemoScope.Modules.Threads
 {
@@ -41,6 +42,20 @@ namespace MemoScope.Modules.Threads
                 stackModule.Init();
                 stackModule.PostInit();
             };
+
+            dlvThreads.FormatCell += (o, e) =>
+            {
+                var threadInfo = e.Model as ThreadInformation;
+                if (threadInfo == null)
+                {
+                    return;
+                }
+                if (threadInfo.CurrentException != null)
+                {
+                    e.SubItem.BackColor = Color.Orange;
+                }
+            };
+
             stackTraceModule.InitBus(MessageBus);
             stackModule.InitBus(MessageBus);
 
