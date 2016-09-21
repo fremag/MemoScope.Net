@@ -40,8 +40,9 @@ namespace MemoScope.Core
                 {
                     task.Work();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    task.OnError?.Invoke(e);
                 }
                 if (task.Callback != null)
                 {
@@ -51,8 +52,9 @@ namespace MemoScope.Core
                         {
                             task.Callback();
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            task.OnError?.Invoke(ex);
                         }
                     };
                     if (task.Scheduler == null)
@@ -81,6 +83,12 @@ namespace MemoScope.Core
         {
             ManualResetEvent myEvent = new ManualResetEvent(false);
             queue.Add(new SimpleTask(work, () => myEvent.Set()));
+            myEvent.WaitOne();
+        }
+        public void Run(Action work, Action<Exception> onError=null)
+        {
+            ManualResetEvent myEvent = new ManualResetEvent(false);
+            queue.Add(new SimpleTask(work, () => myEvent.Set(), onError));
             myEvent.WaitOne();
         }
 

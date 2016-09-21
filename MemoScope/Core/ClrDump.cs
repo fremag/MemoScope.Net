@@ -65,9 +65,14 @@ namespace MemoScope.Core
             DumpPath = dumpPath;
             MessageBus = msgBus;
             worker = new SingleThreadWorker(dumpPath);
-            worker.Run(InitRuntime);
+            worker.Run(InitRuntime, OnError);
 
             ClrDumpInfo = ClrDumpInfo.Load(dumpPath);
+        }
+
+        private void OnError(Exception ex)
+        {
+            MessageBus.Log(this, "Failed to initRuntime: " + DumpPath, ex);
         }
 
         public void InitCache(CancellationToken token)
@@ -105,7 +110,7 @@ namespace MemoScope.Core
             logger.Debug("Cache dispose");
             cache.Dispose();
             logger.Debug("Runtime.DataTarget.Dispose");
-            Run( () => Runtime.DataTarget.Dispose());
+            Run( () => Runtime?.DataTarget?.Dispose());
             logger.Debug("Worker.Dispose");
             worker.Dispose();
         }

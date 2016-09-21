@@ -43,8 +43,15 @@ namespace MemoScope.Modules.TypeStats
         public override void  Init()
         {
             Log("Computing type statistics...", WinFwk.UITools.Log.LogLevelType.Info);
-            typeStats = ClrDump.GetTypeStats();
-            Summary = $"{typeStats.Count:###,###,###,##0} types";
+            if (ClrDump.Runtime != null)
+            {
+                typeStats = ClrDump.GetTypeStats();
+                Summary = $"{typeStats.Count:###,###,###,##0} types";
+            }
+            else
+            {
+                Summary = $"Error. Dump file not loaded !";
+            }
             Log("Type statistics computed.", WinFwk.UITools.Log.LogLevelType.Info);
         }
 

@@ -7,6 +7,7 @@ using Microsoft.Diagnostics.Runtime;
 using WinFwk.UIMessages;
 using WinFwk.UIServices;
 using System.Threading;
+using WinFwk.UITools.Log;
 
 namespace MemoScope.Services
 {
@@ -50,9 +51,12 @@ namespace MemoScope.Services
                             EndTask("File loaded: " + fileInfo.FullName);
                         }
                     }
-                    catch
+                    catch(Exception ex) 
                     {
-                        target.Dispose();
+                        string msg = "Failed to load dump file: " + fileInfo.FullName;
+                        EndTask(msg);
+                        MessageBus.Log(this, msg, ex);
+                        target?.Dispose();
                         throw;
                     }
                 });

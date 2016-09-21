@@ -5,7 +5,6 @@ using Microsoft.Diagnostics.Runtime;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace MemoScope.Core.ProcessInfo
 {
