@@ -41,7 +41,7 @@ namespace MemoScope.Modules.StackTrace
         [OLVColumn]
         public ClrStackFrameType Kind { get; private set; }
 
-        [OLVColumn]
+        [OLVColumn(Width=450)]
         public string DisplayString { get; }
 
         [AddressColumn]

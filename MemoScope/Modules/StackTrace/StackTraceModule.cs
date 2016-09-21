@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Diagnostics.Runtime;
+using MemoScope.Core.Helpers;
 
 namespace MemoScope.Modules.StackTrace
 {
@@ -14,6 +15,7 @@ namespace MemoScope.Modules.StackTrace
         public StackTraceModule()
         {
             InitializeComponent();
+            dlvStackFrames.SetRegexFilter(regexFilterControl1, o => ((StackFrameInformation)o).DisplayString);
         }
 
         public void Setup(ClrDump clrDump, ClrThread thread)

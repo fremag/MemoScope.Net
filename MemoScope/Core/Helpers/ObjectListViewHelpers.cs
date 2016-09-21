@@ -418,10 +418,10 @@ namespace MemoScope.Core.Helpers
 
         public static void SetTypeNameFilter<T>(this ObjectListView listView, RegexFilterControl regexFilterControl) where T : ITypeNameData
         {
-            SetTypeNameFilter(listView, regexFilterControl, o => ((T)o).TypeName);
+            SetRegexFilter(listView, regexFilterControl, o => ((T)o).TypeName);
         }
 
-        public static void SetTypeNameFilter(this ObjectListView listView, RegexFilterControl regexFilterControl, Func<object, string> typeNameGetter)
+        public static void SetRegexFilter(this ObjectListView listView, RegexFilterControl regexFilterControl, Func<object, string> typeNameGetter)
         {
             regexFilterControl.RegexApplied += (regex) => {
                 listView.ModelFilter = new ModelFilter((o) =>

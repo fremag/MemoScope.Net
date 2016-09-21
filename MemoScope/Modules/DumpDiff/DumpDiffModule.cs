@@ -50,8 +50,8 @@ namespace MemoScope.Modules.DumpDiff
             dlvDumpDiff.FormatCell += OnFormatCell;
             dlvDumpDiff.CellClick += OnCellClick;
             dlvDumpDiff.CustomSorter = DumpDiffSort;
-
-            dlvDumpDiff.SetTypeNameFilter(regexFilterControl, o => (string)o);
+            
+            dlvDumpDiff.SetRegexFilter(regexFilterControl, o => (string)o);
         }
 
         private void DumpDiffSort(OLVColumn column, SortOrder sortOrder)
