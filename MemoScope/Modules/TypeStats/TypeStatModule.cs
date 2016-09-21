@@ -8,12 +8,15 @@ using MemoScope.Core.Data;
 using MemoScope.Modules.Instances;
 using NLog;
 using System.Reflection;
+using MemoScope.Modules.Arrays;
+using System;
 
 namespace MemoScope.Modules.TypeStats
 {
     public partial class TypeStatModule : UIClrDumpModule, 
         UIDataProvider<ClrDumpType>, 
-        UIDataProvider<AddressList>
+        UIDataProvider<AddressList>,
+        UIDataProvider<ArraysAddressList>
     {
         static Logger logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType.FullName);
 
@@ -79,6 +82,24 @@ namespace MemoScope.Modules.TypeStats
                 }
                 TypeInstancesAddressList list = new TypeInstancesAddressList(dumpType);
                 list.Init();
+                return list;
+            }
+        }
+
+        ArraysAddressList UIDataProvider<ArraysAddressList>.Data
+        {
+            get
+            {
+                var dumpType = ((UIDataProvider<ClrDumpType>)this).Data;
+                if (dumpType == null)
+                {
+                    return null;
+                }
+                if( ! dumpType.IsArray)
+                {
+                    return null;
+                }
+                ArraysAddressList list = new ArraysAddressList(dumpType);
                 return list;
             }
         }

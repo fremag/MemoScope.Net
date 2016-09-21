@@ -13,6 +13,7 @@ namespace MemoScope.Core.Data
         public bool IsPrimitive => ClrDump.Eval(() => ClrType.IsPrimitive);
         public bool IsString => ClrDump.Eval(() => ClrType.IsString);
         public bool IsPrimitiveOrString => ClrDump.Eval(() => ClrType.IsPrimitive || ClrType.IsString);
+        public bool IsArray => ClrDump.Eval(() => ClrType.IsArray);
 
         public bool IsFinalizable => ClrDump.Eval(() => ClrType.IsFinalizable);
         public string BaseTypeName => ClrDump.Eval(() => ClrType.BaseType == null ? null : ClrType.BaseType.Name);
