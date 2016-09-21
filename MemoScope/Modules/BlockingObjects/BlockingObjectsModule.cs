@@ -24,6 +24,7 @@ namespace MemoScope.Modules.BlockingObjects
             dlvBlockingObjects.InitColumns<BlockingObjectInformation>();
             dlvBlockingObjects.SetUpAddressColumn<BlockingObjectInformation>(this);
             dlvBlockingObjects.SetUpTypeColumn<BlockingObjectInformation>(this);
+            dlvBlockingObjects.SetTypeNameFilter<BlockingObjectInformation>(regexFilterControl);
         }
 
         public override void Init()

@@ -4,7 +4,6 @@ using BrightIdeasSoftware;
 using MemoScope.Core.Data;
 using Microsoft.Diagnostics.Runtime;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using WinFwk.UITools;
 
 namespace MemoScope.Modules.BlockingObjects

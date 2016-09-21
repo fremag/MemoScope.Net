@@ -29,32 +29,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dlvBlockingObjects = new WinFwk.UITools.DefaultListView();
+            this.regexFilterControl = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvBlockingObjects)).BeginInit();
             this.SuspendLayout();
             // 
             // dlvBlockingObjects
             // 
+            this.dlvBlockingObjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dlvBlockingObjects.CellEditUseWholeCell = false;
-            this.dlvBlockingObjects.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvBlockingObjects.FullRowSelect = true;
             this.dlvBlockingObjects.HideSelection = false;
-            this.dlvBlockingObjects.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.dlvBlockingObjects.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvBlockingObjects.Location = new System.Drawing.Point(0, 0);
+            this.dlvBlockingObjects.Location = new System.Drawing.Point(0, 41);
             this.dlvBlockingObjects.Name = "dlvBlockingObjects";
             this.dlvBlockingObjects.ShowGroups = false;
             this.dlvBlockingObjects.ShowImagesOnSubItems = true;
-            this.dlvBlockingObjects.Size = new System.Drawing.Size(762, 483);
+            this.dlvBlockingObjects.Size = new System.Drawing.Size(762, 442);
             this.dlvBlockingObjects.TabIndex = 0;
             this.dlvBlockingObjects.UseCompatibleStateImageBehavior = false;
             this.dlvBlockingObjects.View = System.Windows.Forms.View.Details;
             this.dlvBlockingObjects.VirtualMode = true;
             // 
+            // regexFilterControl
+            // 
+            this.regexFilterControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.regexFilterControl.Location = new System.Drawing.Point(0, 3);
+            this.regexFilterControl.Name = "regexFilterControl";
+            this.regexFilterControl.Size = new System.Drawing.Size(759, 32);
+            this.regexFilterControl.TabIndex = 1;
+            // 
             // BlockingObjectsModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.regexFilterControl);
             this.Controls.Add(this.dlvBlockingObjects);
             this.Name = "BlockingObjectsModule";
             this.Size = new System.Drawing.Size(762, 483);
@@ -67,5 +79,6 @@
 #pragma warning restore CS0618 // Le type ou le membre est obsolète
 
         private WinFwk.UITools.DefaultListView dlvBlockingObjects;
+        private Tools.RegexFilter.RegexFilterControl regexFilterControl;
     }
 }
