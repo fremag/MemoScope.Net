@@ -33,6 +33,8 @@
             this.lblGitHubUrl = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbVersion = new System.Windows.Forms.TextBox();
+            this.lblWiki = new System.Windows.Forms.Label();
+            this.linkWiki = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,17 +90,39 @@
             this.tbVersion.Size = new System.Drawing.Size(114, 31);
             this.tbVersion.TabIndex = 4;
             // 
+            // lblWiki
+            // 
+            this.lblWiki.AutoSize = true;
+            this.lblWiki.Location = new System.Drawing.Point(28, 165);
+            this.lblWiki.Name = "lblWiki";
+            this.lblWiki.Size = new System.Drawing.Size(42, 17);
+            this.lblWiki.TabIndex = 6;
+            this.lblWiki.Text = "Wiki :";
+            // 
+            // linkWiki
+            // 
+            this.linkWiki.AutoSize = true;
+            this.linkWiki.Location = new System.Drawing.Point(98, 165);
+            this.linkWiki.Name = "linkWiki";
+            this.linkWiki.Size = new System.Drawing.Size(302, 17);
+            this.linkWiki.TabIndex = 5;
+            this.linkWiki.TabStop = true;
+            this.linkWiki.Text = "https://github.com/fremag/MemoScope.Net/wiki";
+            this.linkWiki.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkWiki_LinkClicked);
+            // 
             // AboutModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblWiki);
+            this.Controls.Add(this.linkWiki);
             this.Controls.Add(this.tbVersion);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblGitHubUrl);
             this.Controls.Add(this.linkGitHub);
             this.Controls.Add(this.tbApplicationName);
             this.Name = "AboutModule";
-            this.Size = new System.Drawing.Size(559, 169);
+            this.Size = new System.Drawing.Size(559, 226);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -112,5 +136,7 @@
         private System.Windows.Forms.Label lblGitHubUrl;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox tbVersion;
+        private System.Windows.Forms.Label lblWiki;
+        private System.Windows.Forms.LinkLabel linkWiki;
     }
 }

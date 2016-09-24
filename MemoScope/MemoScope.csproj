@@ -828,6 +828,7 @@
     <Content Include="Icons\Small\red_line.png" />
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />
+    <Content Include="Icons\Small\help.png" />
     <Content Include="Icons\Small\subtotal.png" />
     <Content Include="Icons\Small\table_lightning.png" />
     <Content Include="Icons\Small\text_rotate.png" />
