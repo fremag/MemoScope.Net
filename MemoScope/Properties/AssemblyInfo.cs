@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // associées à un assembly.
 
 [assembly: AssemblyTitle("MemoScope")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Dump and anaylyse .Net process memory")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MemoScope")]
-[assembly: AssemblyCopyright("Copyright © FreMag 2015")]
+[assembly: AssemblyCopyright("Copyright © FreMag 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("0.9.9.0")]
-[assembly: AssemblyFileVersion("0.9.9.0")]
+[assembly: AssemblyVersion("0.9.9.9")]
+[assembly: AssemblyFileVersion("0.9.9.9")]
