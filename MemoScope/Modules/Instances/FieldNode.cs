@@ -40,8 +40,8 @@ namespace MemoScope.Modules.Instances
         {
             get
             {
-                var fieldTypesByName = ClrDump.GetFieldNames(ClrType);
-                var fieldNodes = fieldTypesByName.Select(kvp => new FieldNode(kvp.Key, kvp.Value, ClrDump, this));
+                var fieldInfos = ClrDump.GetFieldInfos(ClrType);
+                var fieldNodes = fieldInfos.Select(fieldInfo => new FieldNode(fieldInfo.Name, fieldInfo.FieldType, ClrDump, this));
                 return fieldNodes.ToList();
             }
         }

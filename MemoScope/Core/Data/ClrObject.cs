@@ -22,7 +22,7 @@ namespace MemoScope.Core.Data
                 ClrInstanceField field = GetField(fieldName);
 
                 if (field == null)
-                    throw new ArgumentException(string.Format("Field '{0}' not found in Type '{1}'", fieldName, Type.Name));
+                    throw new ArgumentException($"Field '{fieldName}' not found in Type '{Type.Name}'");
 
                 return this[field];
             }

@@ -13,17 +13,24 @@ namespace MemoDummy
     public interface IMyInterface
     {
         int Id { get; }
+        double MyDoubleValue { get; }
     }
 
     public class MyInterfaceImpl_V1 : IMyInterface
     {
         private static int n = 0;
-        public int Id { get; }
-
+        protected int backfield_id;
+        public int Id {
+            get {
+                return backfield_id;
+            }
+        }
+        public double MyDoubleValue { get; set; }
         public string name;
         public MyInterfaceImpl_V1()
         {
-            Id = n++;
+            backfield_id = n++;
+            MyDoubleValue = backfield_id + 0.001;
             name = $"#{0:Id}";
         }
     }
@@ -33,6 +40,8 @@ namespace MemoDummy
         public DateTime TimeStamp { get; set; }
         public MyInterfaceImpl_V2()
         {
+            backfield_id *= -1;
+            MyDoubleValue = backfield_id - 0.001;
             TimeStamp = DateTime.Now;
         }
     }
@@ -44,6 +53,26 @@ namespace MemoDummy
         public double X { get; set; }
         public double Y { get; set; }
     }
+    public abstract class AnAbstractType 
+    {
+        public abstract double AbstractDoubleProperty { get; }
+        public double MyDoubleProperty { get; set; }
+    }
+
+    public class AnAbstractTypeImpl : AnAbstractType
+    {
+        private static int n = 0;
+        public new double MyDoubleProperty { get; }
+        public override double AbstractDoubleProperty { get; }
+
+        public AnAbstractTypeImpl()
+        {
+            n++;
+            AbstractDoubleProperty = -n - 0.0005;
+            base.MyDoubleProperty = n + 0.0005;
+            this.MyDoubleProperty = n + 0.0006;
+        }
+    }
 
     internal class ComplexObject
     {
@@ -54,7 +83,7 @@ namespace MemoDummy
         internal StructData StructData => structData;
 
         double value;
-        InternalData data;
+        InternalData data; 
         bool isEven;
         DateTime date;
         TimeSpan time;
@@ -64,7 +93,7 @@ namespace MemoDummy
         int[] someInts;
         double[] someDoubles;
         IMyInterface myInterface;
-
+        AnAbstractType aFieldWithAbstractType;
         public ComplexObject()
         {
             id = n++;
@@ -102,7 +131,7 @@ namespace MemoDummy
                 someDoubles[i] = 2 * (n + i);
             }
             myInterface = id % 2 == 0 ? new MyInterfaceImpl_V1() : new MyInterfaceImpl_V2();
+            aFieldWithAbstractType = new AnAbstractTypeImpl();
         }
-
     }
 }

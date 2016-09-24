@@ -35,7 +35,7 @@ namespace MemoScope.Core
 
         public List<ClrHandle> Handles => Runtime.EnumerateHandles().ToList();
         public List<ulong> FinalizerQueueObjectAddresses => Runtime.EnumerateFinalizerQueueObjectAddresses().ToList();
-        public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy( address => GetObjectType(address));
+        public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy(address => GetObjectType(address));
         public IList<ClrThread> Threads => Runtime.Threads;
         public ClrThreadPool ThreadPool => Runtime.GetThreadPool();
         public List<ClrType> AllTypes => Heap.EnumerateTypes().ToList();
@@ -57,7 +57,7 @@ namespace MemoScope.Core
         Dictionary<int, ThreadProperty> threadProperties;
         private readonly SingleThreadWorker worker;
         private ClrDumpCache cache;
-        
+
         public ClrDump(DataTarget target, string dumpPath, MessageBus msgBus)
         {
             Id = n++;
@@ -94,7 +94,7 @@ namespace MemoScope.Core
 
         public List<ClrType> GetTypes()
         {
-            List<ClrType> t = worker.Eval( () => t = AllTypes);
+            List<ClrType> t = worker.Eval(() => t = AllTypes);
             return t;
         }
 
@@ -110,7 +110,7 @@ namespace MemoScope.Core
             logger.Debug("Cache dispose");
             cache.Dispose();
             logger.Debug("Runtime.DataTarget.Dispose");
-            Run( () => Runtime?.DataTarget?.Dispose());
+            Run(() => Runtime?.DataTarget?.Dispose());
             logger.Debug("Worker.Dispose");
             worker.Dispose();
         }
@@ -205,7 +205,7 @@ namespace MemoScope.Core
                 var value = SimpleValueHelper.GetSimpleValue(address, type, false);
                 return value;
             }
-            
+
             return address;
         }
 
@@ -225,28 +225,30 @@ namespace MemoScope.Core
             return obj;
         }
 
-        internal Dictionary<string, ClrType> GetFieldNames(ClrType type)
+        internal List<FieldInfo> GetFieldInfos(ClrType type)
         {
-            Dictionary<string, ClrType> fieldNames = Eval(() => GetFieldNamesImpl(type));
+            List<FieldInfo> fieldNames = Eval(() => GetFieldNamesImpl(type));
             return fieldNames;
         }
 
-        private Dictionary<string, ClrType> GetFieldNamesImpl(ClrType type)
+        private List<FieldInfo> GetFieldNamesImpl(ClrType type)
         {
-            var fieldNames = type.Fields.ToDictionary(f => f.Name, f => f.Type);
-            if( type.IsInterface)
+            var fieldNames = type.Fields.Select(f => new FieldInfo(f.Name, f.Type)).ToList();
+            if (type.IsInterface || type.IsAbstract)
             {
-                var properties = type.Methods.Where(meth => meth.Name.StartsWith("get_") && meth.IsVirtual);
-                foreach (var meth in properties)
+                foreach (var someType in Heap.EnumerateTypes())
                 {
-                    var propName = meth.Name.Substring("get_".Length);
-                    // BUG: this is not the real type of the field ! 
-                    // TODO: get the return type from the method
-                    fieldNames[propName] = meth.Type;
+                    if (type.IsInterface && someType.Interfaces.Any(interf => interf.Name == type.Name))
+                    {
+                        fieldNames.AddRange(GetFieldNamesImpl(someType));
+                    }
+                    if (type.IsAbstract && someType.BaseType == type)
+                    {
+                        fieldNames.AddRange(GetFieldNamesImpl(someType));
+                    }
                 }
-
             }
-            return fieldNames;
+            return fieldNames.Distinct().ToList();
         }
 
         public object GetFieldValueImpl(ulong address, ClrType type, List<ClrInstanceField> fields)
@@ -257,7 +259,7 @@ namespace MemoScope.Core
             {
                 var field = fields[i];
                 obj = obj[field];
-                if( obj.IsNull )
+                if (obj.IsNull)
                 {
                     return null;
                 }
@@ -272,7 +274,13 @@ namespace MemoScope.Core
             for (int i = 0; i < fieldNames.Count; i++)
             {
                 var fieldName = fieldNames[i];
-                obj = obj[fieldName];
+                ClrInstanceField field = obj.GetField(fieldName);
+                if( field == null)
+                {
+                    return null;
+                }
+
+                obj = obj[field];
                 if (obj.IsNull)
                 {
                     return null;
@@ -313,7 +321,7 @@ namespace MemoScope.Core
 
         public int CountReferers(ulong address)
         {
-            var count = cache.CountReferers(address) ;
+            var count = cache.CountReferers(address);
             return count;
         }
 
@@ -384,15 +392,15 @@ namespace MemoScope.Core
         }
 
         // Find the field in instance at address that references refAddress
-        public string GetFieldNameReference(ulong refAddress, ulong address, bool prefixWithType=false)
+        public string GetFieldNameReference(ulong refAddress, ulong address, bool prefixWithType = false)
         {
             return Eval(() => GetFieldNameReferenceImpl(refAddress, address, prefixWithType));
         }
 
         public string GetFieldNameReferenceImpl(ulong refAddress, ulong address, bool prefixWithType)
-        { 
+        {
             ClrType type = GetObjectTypeImpl(address);
-            if( type == null)
+            if (type == null)
             {
                 return "Unknown";
             }
@@ -504,16 +512,16 @@ namespace MemoScope.Core
 
         public bool HasField(ClrType clrType)
         {
-            if( clrType.IsPrimitive)
+            if (clrType.IsPrimitive)
             {
                 return false;
             }
-            if ( clrType.Fields.Any())
+            if (clrType.Fields.Any())
             {
                 return true;
             }
 
-            if( clrType.IsInterface && clrType.Methods.Any(meth => meth.Name.StartsWith("get_"))) 
+            if (clrType.IsInterface && clrType.Methods.Any(meth => meth.Name.StartsWith("get_")))
             {
                 return true;
             }
@@ -530,5 +538,28 @@ namespace MemoScope.Core
         public string Name { get; set; }
         public int Priority { get; set; }
         public int ManagedId { get; set; }
+    }
+
+    public class FieldInfo : IEquatable<FieldInfo>
+    {
+        public string Name { get; }
+        public ClrType FieldType { get; }
+        public FieldInfo(string name, ClrType fieldType)
+        {
+            Name = name;
+            FieldType = fieldType;
+        }
+        public bool Equals(FieldInfo fieldInfo)
+        {
+            return fieldInfo.Name == Name && fieldInfo.FieldType.Name == FieldType.Name;
+        }
+        public override bool Equals(object o )
+        {
+            return ((IEquatable<FieldInfo>)this).Equals((FieldInfo)o);
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() * 37 + FieldType.Name.GetHashCode();
+        }
     }
 }
