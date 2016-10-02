@@ -9,6 +9,7 @@ using System;
 using WinFwk.UIMessages;
 using MemoScope.Services;
 using MemoScope.Modules.Process;
+using WinFwk.UITools.Settings;
 
 namespace MemoScope.Modules.Explorer
 {
@@ -23,10 +24,6 @@ namespace MemoScope.Modules.Explorer
             Icon = Properties.Resources.folders_explorer_small;
             Name = "Explorer";
 
-            if (MemoScopeSettings.Instance != null)
-            {
-                tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
-            }
             dtlvExplorer.InitData<AbstractDumpExplorerData>();
             var col = dtlvExplorer[nameof(AbstractDumpExplorerData.DeleteCache)];
             col.IsButton = true;
@@ -48,7 +45,6 @@ namespace MemoScope.Modules.Explorer
                 }
                 dtlvExplorer.RefreshObject(rowObj);
             };
-            RefreshRootDir();
         }
 
         private void RefreshRootDir()
@@ -61,16 +57,24 @@ namespace MemoScope.Modules.Explorer
             {
                 dtlvExplorer.Roots= AbstractDumpExplorerData.GetItems(tbRootDir.Text);
                 dtlvExplorer.Refresh();
+                MemoScopeSettings.Instance.RootDir = tbRootDir.Text;
+                MemoScopeSettings.Instance.Save();
+                MessageBus.SendMessage(new UISettingsChangedMessage(UISettings.Instance));
             }
         }
 
         private void tbRootDir_TextChanged(object sender, System.EventArgs e)
         {
-            RefreshRootDir();
+           RefreshRootDir();
         }
 
         private void ExplorerModule_Load(object sender, System.EventArgs e)
         {
+            if (MemoScopeSettings.Instance != null)
+            {
+                tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
+            }
+
             RefreshRootDir();
         }
 

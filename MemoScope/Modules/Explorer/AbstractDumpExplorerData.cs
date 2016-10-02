@@ -85,19 +85,26 @@ namespace MemoScope.Modules.Explorer
             {
                 return items;
             }
-            string[] dirs = Directory.GetDirectories(mainDir);
-            foreach (var dir in dirs)
+            try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(dir);
-                var x = new DirectoryData(dirInfo);
-                items.Add(x);
+                string[] dirs = Directory.GetDirectories(mainDir);
+                foreach (var dir in dirs)
+                {
+                    DirectoryInfo dirInfo = new DirectoryInfo(dir);
+                    var x = new DirectoryData(dirInfo);
+                    items.Add(x);
+                }
+                string[] files = Directory.GetFiles(mainDir, "*.dmp");
+                foreach (var file in files)
+                {
+                    FileInfo fileInfo = new FileInfo(file);
+                    var f = new FileData(fileInfo);
+                    items.Add(f);
+                }
             }
-            string[] files = Directory.GetFiles(mainDir, "*.dmp");
-            foreach (var file in files)
+            catch (UnauthorizedAccessException)
             {
-                FileInfo fileInfo = new FileInfo(file);
-                var f = new FileData(fileInfo);
-                items.Add(f);
+                
             }
             return items;
         }

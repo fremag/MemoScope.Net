@@ -266,6 +266,10 @@ namespace WinFwk.UIModules
         {
             var backgroundColor = uiSettings.BackgroundColor;
             var foregroundColor = uiSettings.ForegroundColor;
+            if (backgroundColor.IsEmpty || foregroundColor.IsEmpty || backgroundColor.A == 0 || foregroundColor.A == 0)
+            {
+                return;
+            }
             control.BackColor = backgroundColor;
             control.ForeColor = foregroundColor;
 

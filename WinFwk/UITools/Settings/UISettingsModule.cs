@@ -40,6 +40,11 @@ namespace WinFwk.UITools.Settings
 
         private void pgUiSettings_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
+            SendUISettingsChangedMessage();
+        }
+
+        public void SendUISettingsChangedMessage()
+        {
             MessageBus.SendMessage(new UISettingsChangedMessage(UISettings.Instance));
         }
     }

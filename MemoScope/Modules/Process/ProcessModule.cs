@@ -16,11 +16,13 @@ using System.Text.RegularExpressions;
 using MemoScope.Tools.CodeTriggers;
 using MemoScope.Modules.Explorer;
 using MemoScope.Core.ProcessInfo;
+using WinFwk.UITools.Settings;
 
 namespace MemoScope.Modules.Process
 {
     public partial class ProcessModule : UIModule,
-        IMessageListener<DumpRequest>
+        IMessageListener<DumpRequest>,
+        IMessageListener<UISettingsChangedMessage>
     {
         public static readonly MemoScopeServer DumpServer;
         private ProcessWrapper proc;
@@ -340,6 +342,11 @@ namespace MemoScope.Modules.Process
                     MessageBus.SendMessage(new DumpRequest(proc));
                 }
             }
+        }
+
+        public void HandleMessage(UISettingsChangedMessage message)
+        {
+            tbRootDir.Text = MemoScopeSettings.Instance.RootDir;
         }
     }
 }
