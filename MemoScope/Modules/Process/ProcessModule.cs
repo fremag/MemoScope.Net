@@ -143,6 +143,7 @@ namespace MemoScope.Modules.Process
                 Log("Can't dump: process has exited !", LogLevelType.Error);
                 return;
             }
+
             string dumpDir = Path.Combine(tbRootDir.Text, proc.Process.ProcessName);
             if (!Directory.Exists(dumpDir))
             {
@@ -152,10 +153,19 @@ namespace MemoScope.Modules.Process
                 }
                 catch (Exception ex)
                 {
-                    Log("Can't create directory: " + dumpDir, ex);
+                    Log($"Can't create directory: {dumpDir}", ex);
                     return;
                 }
             }
+
+
+            DriveInfo driveInfo = new DriveInfo(dumpDir);
+            if (proc.Process.VirtualMemorySize64 >= driveInfo.AvailableFreeSpace)
+            {
+                Log($"Can't dump: not enough space on disk ! Proce VirtualMem: {proc.Process.VirtualMemorySize64:###,###,###,###}, available disk space: {driveInfo.AvailableFreeSpace:###,###,###,###}, drive: {driveInfo.Name}", LogLevelType.Warn);
+                return;
+            }
+
             DataTarget target = null;
             try
             {
