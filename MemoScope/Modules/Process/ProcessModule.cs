@@ -366,7 +366,9 @@ namespace MemoScope.Modules.Process
                 }
                 catch (Exception e)
                 {
+                    cbClock.Checked = false;
                     trigger.Active = false;
+                    processTriggersControl.RefreshTriggers();
                     MessageBus.Log(this, $"Something failed in trigger : {trigger.Name}", e);
                 }
             }

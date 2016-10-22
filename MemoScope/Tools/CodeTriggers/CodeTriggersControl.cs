@@ -44,16 +44,28 @@ namespace MemoScope.Tools.CodeTriggers
 
         private void Reset()
         {
+            RefreshTrigger(null);
+        }
+
+        public void RefreshTrigger(CodeTrigger trigger)
+        {
             this.tbGroup.TextChanged -= this.tbGroup_TextChanged;
             this.tbName.TextChanged -= this.tbName_TextChanged;
             this.cbActive.CheckedChanged -= this.cbActive_CheckedChanged;
             this.tbCode.TextChanged -= this.tbCode_TextChanged;
 
-            tbGroup.Text = null;
-            tbName.Text = null;
-            tbCode.Text = null;
-            cbActive.Checked = false;
-
+            if (trigger == null) {
+                tbGroup.Text = null;
+                tbName.Text = null;
+                tbCode.Text = null;
+                cbActive.Checked = false;
+            } else
+            {
+                tbGroup.Text = trigger.Group;
+                tbName.Text = trigger.Name;
+                tbCode.Text = trigger.Code;
+                cbActive.Checked = trigger.Active;
+            }
             this.tbGroup.TextChanged += this.tbGroup_TextChanged;
             this.tbName.TextChanged += this.tbName_TextChanged;
             this.cbActive.CheckedChanged += this.cbActive_CheckedChanged;
@@ -108,6 +120,7 @@ namespace MemoScope.Tools.CodeTriggers
             if( currentTrigger != null)
             {
                 dlvTriggers.SelectedObject = currentTrigger;
+                RefreshTrigger(currentTrigger);
             }
         }
 
