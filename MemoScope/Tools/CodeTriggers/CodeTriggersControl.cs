@@ -17,6 +17,7 @@ namespace MemoScope.Tools.CodeTriggers
         public Func<object, string> CodeGetter;
         public Action<List<CodeTrigger>> SaveTriggers;
         public Func<List<CodeTrigger>> LoadTriggers;
+        public int nbTriggers;
 
         private List<CodeTrigger> triggers;
         private CodeTrigger currentTrigger;
@@ -90,11 +91,12 @@ namespace MemoScope.Tools.CodeTriggers
         private void tsbNewTrigger_Click(object sender, System.EventArgs e)
         {
             CreateTrigger();
+            RefreshTriggers();
         }
 
         private void CreateTrigger()
         {
-            currentTrigger = new CodeTrigger();
+            currentTrigger = new CodeTrigger { Name = $"#{nbTriggers++:00}", Group = "Default" };
             triggers.Add(currentTrigger);
         }
 
@@ -165,6 +167,7 @@ namespace MemoScope.Tools.CodeTriggers
             if (LoadTriggers != null)
             {
                 triggers = LoadTriggers();
+                nbTriggers = triggers.Count;
                 RefreshTriggers();
             }
         }
