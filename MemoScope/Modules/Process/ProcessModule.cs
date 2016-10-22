@@ -320,6 +320,13 @@ namespace MemoScope.Modules.Process
 
         private void CheckDumpTriggers()
         {
+            var activeTriggers = processTriggersControl.Triggers.Where(dt => dt.Active);
+            if (! activeTriggers.Any())
+            {
+                Log("No tirrger: send DumpRequest");
+                MessageBus.SendMessage(new DumpRequest(proc));
+            }
+
             TypeRegistry reg = new TypeRegistry();
             reg.RegisterType<DateTime>();
             reg.RegisterType<TimeSpan>();
@@ -333,7 +340,7 @@ namespace MemoScope.Modules.Process
                 reg.RegisterSymbol(procInfoVal.Alias, procInfoVal.Value);
             }
 
-            foreach (CodeTrigger trigger in processTriggersControl.Triggers.Where(dt => dt.Active))
+            foreach (CodeTrigger trigger in activeTriggers)
             {
                 CompiledExpression<bool> exp = new CompiledExpression<bool>(trigger.Code) { TypeRegistry = reg };
                 try
