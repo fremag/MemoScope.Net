@@ -239,7 +239,10 @@ namespace MemoScope.Tools.CodeTriggers
 
         private void cbActive_CheckedChanged(object sender, EventArgs e)
         {
-            currentTrigger.Active = cbActive.Checked;
+            if (currentTrigger != null)
+            {
+                currentTrigger.Active = cbActive.Checked;
+            }
             RefreshTriggers();
         }
     }

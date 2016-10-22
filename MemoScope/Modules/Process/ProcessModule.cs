@@ -324,6 +324,9 @@ namespace MemoScope.Modules.Process
             reg.RegisterType<DateTime>();
             reg.RegisterType<TimeSpan>();
             reg.RegisterType<Regex>();
+            reg.RegisterType(nameof(Math), typeof(Math));
+            reg.RegisterType(nameof(File), typeof(File));
+            reg.RegisterType(nameof(Environment), typeof(Environment));
 
             foreach (var procInfoVal in processInfoViewer.ProcessInfoValues)
             {
@@ -333,13 +336,21 @@ namespace MemoScope.Modules.Process
             foreach (CodeTrigger trigger in processTriggersControl.Triggers.Where(dt => dt.Active))
             {
                 CompiledExpression<bool> exp = new CompiledExpression<bool>(trigger.Code) { TypeRegistry = reg };
-                bool r = exp.Eval();
-                if (r)
+                try
+                {
+                    var r = exp.Eval();
+                    if (r)
+                    {
+                        trigger.Active = false;
+                        Log("Trigger: " + trigger.Name + ", Code: " + trigger.Code);
+                        processTriggersControl.RefreshTriggers();
+                        MessageBus.SendMessage(new DumpRequest(proc));
+                    }
+                }
+                catch (Exception e)
                 {
                     trigger.Active = false;
-                    Log("Trigger: " + trigger.Name + ", Code: " + trigger.Code);
-                    processTriggersControl.RefreshTriggers();
-                    MessageBus.SendMessage(new DumpRequest(proc));
+                    MessageBus.Log(this, $"Something failed in trigger : {trigger.Name}", e);
                 }
             }
         }
