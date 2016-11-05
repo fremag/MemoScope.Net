@@ -221,8 +221,6 @@
             // 
             // TypeDetailsModule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "TypeDetailsModule";
             this.Size = new System.Drawing.Size(460, 531);
