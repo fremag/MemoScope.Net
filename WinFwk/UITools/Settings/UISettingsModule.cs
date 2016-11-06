@@ -47,5 +47,10 @@ namespace WinFwk.UITools.Settings
         {
             MessageBus.SendMessage(new UISettingsChangedMessage(UISettings.Instance));
         }
+
+        private void pgUiSettings_Leave(object sender, EventArgs e)
+        {
+            SendUISettingsChangedMessage();
+        }
     }
 }

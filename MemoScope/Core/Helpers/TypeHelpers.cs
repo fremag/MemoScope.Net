@@ -13,6 +13,12 @@ namespace MemoScope.Core.Helpers
         private static Dictionary<string, Tuple<Color, Color>> colorCache = new Dictionary<string, Tuple<Color, Color>>();
         private static readonly Tuple<Color, Color> defaultTuple = new Tuple<Color, Color> (Color.Transparent, Color.Transparent);
 
+        public static void ResetCaches()
+        {
+            aliasCache.Clear();
+            colorCache.Clear();
+        }
+
         public static string RealName(this ClrInstanceField field, string backingFieldSuffix=" [*]")
         {
             return RealName(field.Name, backingFieldSuffix);
