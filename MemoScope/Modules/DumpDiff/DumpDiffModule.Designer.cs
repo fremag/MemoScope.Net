@@ -93,8 +93,6 @@ namespace MemoScope.Modules.DumpDiff
             // 
             // DumpDiffModule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cbSortMode);
             this.Controls.Add(this.lblSortMode);
             this.Controls.Add(this.regexFilterControl);

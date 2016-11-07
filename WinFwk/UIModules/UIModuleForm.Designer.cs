@@ -119,8 +119,6 @@ namespace WinFwk.UIModules
             // 
             // UIModuleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 744);
             this.Controls.Add(this.toolStripContainer2);
             this.HelpButton = true;

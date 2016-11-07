@@ -9,9 +9,9 @@ using WinFwk.UIModules;
 using WinFwk.UIServices;
 using MemoScope.Modules.Workplace;
 using System.Linq;
-using System;
 using WinFwk.UITools.Settings;
 using ScintillaNET;
+using MemoScope.Core.Helpers;
 
 namespace MemoScope
 {
@@ -104,5 +104,12 @@ namespace MemoScope
                 style.BackColor = uiSettings.BackgroundColor;
             }
         }
+
+        public override void HandleMessage(UISettingsChangedMessage message)
+        {
+            base.HandleMessage(message);
+            TypeHelpers.ResetCaches();
+        }
+
     }
 }
