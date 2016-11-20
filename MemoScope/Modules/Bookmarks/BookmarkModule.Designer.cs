@@ -50,8 +50,6 @@
             // 
             // BookmarkModule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dlvBookmarks);
             this.Name = "BookmarkModule";
             this.Size = new System.Drawing.Size(568, 548);

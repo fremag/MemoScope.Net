@@ -46,6 +46,7 @@
             this.pgUiSettings.Size = new System.Drawing.Size(413, 321);
             this.pgUiSettings.TabIndex = 0;
             this.pgUiSettings.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pgUiSettings_PropertyValueChanged);
+            this.pgUiSettings.Leave += new System.EventHandler(this.pgUiSettings_Leave);
             // 
             // btnSaveSettings
             // 
@@ -73,8 +74,6 @@
             // 
             // UISettingsModule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.pgUiSettings);

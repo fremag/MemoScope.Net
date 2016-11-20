@@ -65,8 +65,6 @@
             // 
             // StackModule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.regexFilterControl);
             this.Controls.Add(this.dlvInstances);
             this.Name = "StackModule";
