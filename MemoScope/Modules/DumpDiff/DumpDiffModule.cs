@@ -9,6 +9,7 @@ using MemoScope.Modules.Instances;
 using System.Windows.Forms;
 using System.Collections;
 using System;
+using System.Linq;
 
 namespace MemoScope.Modules.DumpDiff
 {
@@ -36,9 +37,8 @@ namespace MemoScope.Modules.DumpDiff
             colType.Text = "Type";
             colType.AspectGetter = o => (string)o;
             ClrDump prevClrDump = null;
-            for(int i=0; i< ClrDumps.Count; i++)
+            foreach(var clrDump in ClrDumps.OrderBy( dump => dump.Id))
             {
-                var clrDump = ClrDumps[i];
                 var stats = clrDump.GetTypeStats();
                 DiffColumn diffCol = new DiffColumn(clrDump, stats, prevClrDump?.GetTypeStats());
                 dlvDumpDiff.AllColumns.Add(diffCol);
