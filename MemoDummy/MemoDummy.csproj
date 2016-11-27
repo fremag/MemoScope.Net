@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractMemoScript.cs" />
+    <Compile Include="RefererScript.cs" />
     <Compile Include="SimpleEventScript.cs" />
     <Compile Include="DuplicateElementsScript.cs" />
     <Compile Include="ComplexObject.cs" />
