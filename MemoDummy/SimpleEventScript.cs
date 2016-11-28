@@ -11,6 +11,8 @@ namespace MemoDummy
 
         [Category("Config")]
         public long N { get; set; } = 300;
+        [Description("Nb instances that are only referenced by an event/delegate")]
+        public int M  { get; set; } = 10;
 
         private List<object> objects;
 
@@ -20,18 +22,31 @@ namespace MemoDummy
             for(int i=0; i < N; i++)
             {
                 var obj = new ClassWithEventHandlers();
-                obj.FirstEventHandler += MyFirstCallBack;
-                obj.SecondEventHandler += MySecondCallBack;
+                var firstCallBack = new FirstCallBacks();
+                var secondCallBack = new SecondCallBacks();
+                obj.FirstEventHandler += firstCallBack.MyFirstCallBack;
+                obj.SecondEventHandler += secondCallBack.MySecondCallBack;
+                if (i >= M)
+                {
+                    objects.Add(firstCallBack);
+                }
+                objects.Add(secondCallBack);
                 objects.Add(obj);
             }
         }
+    }
 
-        private void MySecondCallBack(string s)
+    public class FirstCallBacks
+    {
+        public int MyFirstCallBack(int x, int y)
         {
             throw new NotImplementedException();
         }
+    }
 
-        private int MyFirstCallBack(int x, int y)
+    public class SecondCallBacks
+    {
+        public void MySecondCallBack(string s)
         {
             throw new NotImplementedException();
         }
