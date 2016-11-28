@@ -7,7 +7,7 @@ namespace MemoScope.Modules.Delegates.Types
 {
     public class DelegatesCommand : AbstractDataUICommand<ClrDump>
     {
-        public DelegatesCommand() : base("Delegate Types", "Display Delegate Types (inherinting MultiCastDelegate tpe)", "Analysis", Properties.Resources.macro_show_all_actions, Keys.Control | Keys.Shift | Keys.D)
+        public DelegatesCommand() : base("Delegate Types", "Display Delegate Types (inherinting MultiCastDelegate type)", "Analysis", Properties.Resources.macro_show_all_actions, Keys.Control | Keys.Shift | Keys.D)
         {
 
         }
