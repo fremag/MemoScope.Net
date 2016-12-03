@@ -7,7 +7,7 @@ namespace MemoScope.Modules.Disposables
 {
     public class DisposablesCommand : AbstractDataUICommand<ClrDump>
     {
-        public DisposablesCommand() : base("Disposable Types", "Display Disposable Types (inherinting MultiCastDelegate tpe)", "Analysis", Properties.Resources.recycle_bag, Keys.Control | Keys.Shift | Keys.B)
+        public DisposablesCommand() : base("Disposable Types", "Display Disposable Types (inherinting IDisposable interface)", "Analysis", Properties.Resources.recycle_bag, Keys.Control | Keys.Shift | Keys.B)
         {
 
         }
