@@ -17,7 +17,7 @@ namespace MemoDummy
         {
             for(int i=0; i < N; i++)
             {
-                Thread t = new Thread(DoSomething);
+                Thread t = new Thread(() => DoSomething(i));
                 t.Name = $"Thread #{i}";
                 t.Start();
                 switch(i%8)
@@ -50,11 +50,11 @@ namespace MemoDummy
             }
         }
 
-        private void DoSomething()
+        private void DoSomething(int n)
         {
             while(true)
             {
-                Thread.Sleep(100);
+                try { Thread.Sleep(100); } catch { }
                 long j = 0;
                 for (int i = 0; i < 1000; i++)
                 {
