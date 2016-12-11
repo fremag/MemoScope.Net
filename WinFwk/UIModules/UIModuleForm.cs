@@ -237,7 +237,11 @@ namespace WinFwk.UIModules
 
         private static void ApplyColors(DockPanel dockPanel, UISettings uiSettings)
         {
-            var skin = dockPanel.Skin;
+            var skin = dockPanel.Theme.Skin;
+            if( skin == null)
+            {
+                return;
+            }
             var x = skin.AutoHideStripSkin;
 
             var dpStrip = skin.DockPaneStripSkin;
