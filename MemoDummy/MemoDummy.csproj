@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractMemoScript.cs" />
+    <Compile Include="FragmentedMemoryScript.cs" />
     <Compile Include="ThreadsScript.cs" />
     <Compile Include="RefererScript.cs" />
     <Compile Include="DisposableTypesScript.cs" />

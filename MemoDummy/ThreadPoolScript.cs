@@ -34,7 +34,12 @@ namespace MemoDummy
 
         private void CallBack(object state)
         {
-            Thread.Sleep(DurationInSeconds * 1000);
+            int j = 0;
+            for(int i=0; i < 1000; i++)
+            {
+                j += i;
+                Thread.Sleep(10);
+            }
         }
     }
 }
