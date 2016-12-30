@@ -2,25 +2,24 @@
 
 ![Memoscope.Net Logo](https://raw.githubusercontent.com/fremag/MemoScope.Net/master/MemoScope/Icons/Logos/memoscope_logo.png) | Dump and analyze .Net applications memory
 ---------------------|-------------------------------------------
-# Getting started
-## What it MemoScope.Net ?
+# Wiki
+Please, read the [wiki](https://github.com/fremag/MemoScope.Net/wiki) to know everything about MemoScope.
+
+# TL;DR; What it MemoScope.Net ?
 It's a tool to analyze .Net process memory: it can dump an application's memory in a file and read it later.
 The dump file contains all data (objects) and threads (state, stack, call stack)
 
 MemoScope.Net will analyze the data and help you to find **memory leaks** and **deadlocks**
 
-## When should I use it ?
-Here are some cases where MemoScope.Net is very  useful.
-
-### Out of Memory
+## Out of Memory
 I know, with 64 bits apps it should not be an issue but computers only have a few a few Go so it may still happen if your application :
 - is using too much memory (peak)
 - runs for days and has a "slow" memory leak
 
-### Dead lock
+## Dead lock
 If your application is locked and you want to know where and why: dump the memory, display the threads status and blocking objects to see what thread is holding one that is waited by anoter thread.
 
-### Hard to reproduce bug
+## Hard to reproduce bug
 Sometimes, users can do weird things with your application and you can't make it happen on your computer so ask the user to dump its application's memory to analyze it on your machine.
 
 # Features
