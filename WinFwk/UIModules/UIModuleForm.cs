@@ -242,9 +242,9 @@ namespace WinFwk.UIModules
             {
                 return;
             }
-            var x = skin.AutoHideStripSkin;
 
             var dpStrip = skin.DockPaneStripSkin;
+
             var docGrad = dpStrip.DocumentGradient;
             docGrad.ActiveTabGradient = uiSettings.ActiveTabGradient.TabGradient;
             docGrad.DockStripGradient = uiSettings.DockStripGradient.TabGradient;

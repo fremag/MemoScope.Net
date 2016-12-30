@@ -19,22 +19,27 @@ namespace WinFwk.UITools.Settings.Skins
             settings.DockStripGradient.StartColor = SystemColors.Control;
             settings.DockStripGradient.EndColor = SystemColors.Control;
             settings.DockStripGradient.LinearGradientMode = LinearGradientMode.Vertical;
+            settings.DockStripGradient.TextColor = SystemColors.ControlText;
 
             settings.ActiveTabGradient.StartColor = SystemColors.ControlLightLight;
             settings.ActiveTabGradient.EndColor = SystemColors.ControlLightLight;
             settings.ActiveTabGradient.LinearGradientMode = LinearGradientMode.Vertical;
+            settings.ActiveTabGradient.TextColor = SystemColors.ActiveCaptionText;
 
             settings.InactiveTabGradient.StartColor = SystemColors.ControlLight;
             settings.InactiveTabGradient.EndColor = SystemColors.ControlLight;
             settings.InactiveTabGradient.LinearGradientMode = LinearGradientMode.Vertical;
+            settings.InactiveTabGradient.TextColor = SystemColors.InactiveCaptionText;
 
             settings.ActiveCaptionGradient.StartColor = SystemColors.GradientActiveCaption;
             settings.ActiveCaptionGradient.EndColor = SystemColors.ActiveCaption;
             settings.ActiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
+            settings.ActiveCaptionGradient.TextColor = SystemColors.ActiveCaptionText;
 
             settings.InactiveCaptionGradient.StartColor = SystemColors.GradientInactiveCaption;
             settings.InactiveCaptionGradient.EndColor = SystemColors.InactiveCaption;
             settings.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
+            settings.InactiveCaptionGradient.TextColor = SystemColors.InactiveCaptionText;
         }
     }
 }

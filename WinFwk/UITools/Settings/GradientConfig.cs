@@ -15,6 +15,9 @@ namespace WinFwk.UITools.Settings
         public Color EndColor { get; set; }
         [DefaultValue(LinearGradientMode.Horizontal)]
         public LinearGradientMode LinearGradientMode { get; set; }
+        [XmlIgnore]
+        public Color TextColor { get; set; }
+
         [Browsable(false)]
         public string StartColorStr
         {
@@ -39,8 +42,20 @@ namespace WinFwk.UITools.Settings
                 EndColor = WinFwkHelper.FromString(value);
             }
         }
+        [Browsable(false)]
+        public string TextColorStr
+        {
+            get
+            {
+                return WinFwkHelper.ToString(TextColor);
+            }
+            set
+            {
+                TextColor = WinFwkHelper.FromString(value);
+            }
+        }
         [XmlIgnore]
         [Browsable(false)]
-        public TabGradient TabGradient => new TabGradient { StartColor = StartColor, EndColor = EndColor, LinearGradientMode = LinearGradientMode };
+        public TabGradient TabGradient => new TabGradient { StartColor = StartColor, EndColor = EndColor, LinearGradientMode = LinearGradientMode, TextColor = TextColor };
     }
 }
