@@ -38,17 +38,12 @@ namespace WinFwk.UITools.Settings
             pgUiSettings.SelectedObject = UISettings.Instance;
         }
 
-        private void pgUiSettings_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
-        {
-            SendUISettingsChangedMessage();
-        }
-
         public void SendUISettingsChangedMessage()
         {
             MessageBus.SendMessage(new UISettingsChangedMessage(UISettings.Instance));
         }
 
-        private void pgUiSettings_Leave(object sender, EventArgs e)
+        private void btnApplyUISettingsChanges_Click(object sender, EventArgs e)
         {
             SendUISettingsChangedMessage();
         }

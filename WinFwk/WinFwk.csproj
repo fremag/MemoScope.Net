@@ -252,8 +252,10 @@
     <Content Include="Icons\Small\small_folder_vertical_open.png" />
     <Content Include="Icons\Small\small_gear_in.png" />
     <Content Include="Icons\Small\small_file_extension_log.png" />
+    <None Include="Icons\Small\small_tick_button.png" />
     <Content Include="Icons\Small\update_contact_info.png" />
     <Content Include="Icons\text_exports.png" />
+    <None Include="Icons\tick_button.png" />
     <Content Include="Icons\update_contact_info.png" />
     <None Include="Resources\bin.png" />
     <None Include="Resources\arrow_refresh.png" />

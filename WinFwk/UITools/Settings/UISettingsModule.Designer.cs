@@ -30,9 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pgUiSettings = new System.Windows.Forms.PropertyGrid();
-            this.btnSaveSettings = new System.Windows.Forms.Button();
-            this.btnLoad = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.btnApplyUISettingsChanges = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pgUiSettings
@@ -45,26 +46,11 @@
             this.pgUiSettings.Name = "pgUiSettings";
             this.pgUiSettings.Size = new System.Drawing.Size(413, 321);
             this.pgUiSettings.TabIndex = 0;
-            this.pgUiSettings.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pgUiSettings_PropertyValueChanged);
-            this.pgUiSettings.Leave += new System.EventHandler(this.pgUiSettings_Leave);
-            // 
-            // btnSaveSettings
-            // 
-            this.btnSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveSettings.Image = global::WinFwk.Properties.Resources.disk;
-            this.btnSaveSettings.Location = new System.Drawing.Point(370, 3);
-            this.btnSaveSettings.Name = "btnSaveSettings";
-            this.btnSaveSettings.Size = new System.Drawing.Size(40, 40);
-            this.btnSaveSettings.TabIndex = 1;
-            this.toolTip.SetToolTip(this.btnSaveSettings, "Save");
-            this.btnSaveSettings.UseVisualStyleBackColor = true;
-            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
             // btnLoad
             // 
-            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLoad.Image = global::WinFwk.Properties.Resources.open_folder;
-            this.btnLoad.Location = new System.Drawing.Point(324, 3);
+            this.btnLoad.Location = new System.Drawing.Point(3, 3);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(40, 40);
             this.btnLoad.TabIndex = 2;
@@ -72,8 +58,32 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.Image = global::WinFwk.Properties.Resources.disk;
+            this.btnSaveSettings.Location = new System.Drawing.Point(49, 3);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(40, 40);
+            this.btnSaveSettings.TabIndex = 1;
+            this.toolTip.SetToolTip(this.btnSaveSettings, "Save");
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            // 
+            // btnApplyUISettingsChanges
+            // 
+            this.btnApplyUISettingsChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApplyUISettingsChanges.Image = global::WinFwk.Properties.Resources.tick_button;
+            this.btnApplyUISettingsChanges.Location = new System.Drawing.Point(370, 3);
+            this.btnApplyUISettingsChanges.Name = "btnApplyUISettingsChanges";
+            this.btnApplyUISettingsChanges.Size = new System.Drawing.Size(40, 40);
+            this.btnApplyUISettingsChanges.TabIndex = 3;
+            this.toolTip.SetToolTip(this.btnApplyUISettingsChanges, "Load");
+            this.btnApplyUISettingsChanges.UseVisualStyleBackColor = true;
+            this.btnApplyUISettingsChanges.Click += new System.EventHandler(this.btnApplyUISettingsChanges_Click);
+            // 
             // UISettingsModule
             // 
+            this.Controls.Add(this.btnApplyUISettingsChanges);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.pgUiSettings);
@@ -90,5 +100,6 @@
         private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Button btnApplyUISettingsChanges;
     }
 }

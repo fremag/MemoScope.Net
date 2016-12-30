@@ -213,9 +213,29 @@ namespace WinFwk.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap small_tick_button {
+            get {
+                object obj = ResourceManager.GetObject("small_tick_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap text_exports {
             get {
                 object obj = ResourceManager.GetObject("text_exports", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tick_button {
+            get {
+                object obj = ResourceManager.GetObject("tick_button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
