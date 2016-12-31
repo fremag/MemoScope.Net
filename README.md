@@ -6,12 +6,16 @@
 Please, read the [wiki](https://github.com/fremag/MemoScope.Net/wiki) to know everything about MemoScope.
 Lot of pictures, animated gifs and some text for every major features.
 
-# TLDR, what it MemoScope.Net ?
+# TLDR
+## What it MemoScope.Net ?
 It's a tool to analyze .Net process memory: it can dump an application's memory in a file and read it later.
 The dump file contains all data (objects) and threads (state, stack, call stack)
 
 MemoScope.Net will analyze the data and help you to find **memory leaks** and **deadlocks**
+## Install
+Get binaries from AppVeyor: [x86](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x86_Release.zip?job=Configuration%3A%20Release%3B%20Platform%3A%20x86) [x64](https://ci.appveyor.com/api/projects/fremag/memoscope-net/artifacts/MemoScope_x64_Release.zip?job=Configuration%3A%20Release%3B%20Platform%3A%20x64)
 
+# Use cases
 ## Out of Memory
 I know, with 64 bits apps it should not be an issue but computers only have a few a few Go so it may still happen if your application :
 - is using too much memory (peak)
