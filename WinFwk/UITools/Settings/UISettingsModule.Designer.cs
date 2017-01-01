@@ -77,7 +77,7 @@
             this.btnApplyUISettingsChanges.Name = "btnApplyUISettingsChanges";
             this.btnApplyUISettingsChanges.Size = new System.Drawing.Size(40, 40);
             this.btnApplyUISettingsChanges.TabIndex = 3;
-            this.toolTip.SetToolTip(this.btnApplyUISettingsChanges, "Load");
+            this.toolTip.SetToolTip(this.btnApplyUISettingsChanges, "Apply");
             this.btnApplyUISettingsChanges.UseVisualStyleBackColor = true;
             this.btnApplyUISettingsChanges.Click += new System.EventHandler(this.btnApplyUISettingsChanges_Click);
             // 
