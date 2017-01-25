@@ -33,8 +33,8 @@ namespace MemoScope.Services
                     DataTarget target = DataTarget.LoadCrashDump(fileInfo.FullName);
                     try
                     {
-                        if( Environment.Is64BitProcess && target.PointerSize != 8 )
-                        { 
+                        if( (  Environment.Is64BitProcess && target.PointerSize != 8 )
+                        || (! Environment.Is64BitProcess && target.PointerSize != 4) )                        { 
                             throw new InvalidOperationException($"Wrong architecture ! Dumpfile : {target.PointerSize*8} bits, Environment.Is64BitProcess : {Environment.Is64BitProcess}");
                         }
 
