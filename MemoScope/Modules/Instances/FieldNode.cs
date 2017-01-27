@@ -9,7 +9,7 @@ using WinFwk.UITools;
 
 namespace MemoScope.Modules.Instances
 {
-    public class FieldNode : ITreeNodeInformation<FieldNode>, ITypeNameData
+    public class FieldNode : TreeNodeInformationAdapter<FieldNode>, ITypeNameData
     {
         public string FieldName { get; }
         public ClrDump ClrDump { get; }
@@ -34,9 +34,9 @@ namespace MemoScope.Modules.Instances
         [OLVColumn(Title = "Type")]
         public string TypeName => ClrType.Name;
 
-        public bool CanExpand { get; }
+        public override bool CanExpand { get; set; }
 
-        public List<FieldNode> Children
+        public override List<FieldNode> Children
         {
             get
             {

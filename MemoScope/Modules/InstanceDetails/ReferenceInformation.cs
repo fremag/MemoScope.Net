@@ -9,7 +9,7 @@ using MemoScope.Core.Helpers;
 
 namespace MemoScope.Modules.InstanceDetails
 {
-    public class ReferenceInformation : ITreeNodeInformation<ReferenceInformation>, IAddressData, ITypeNameData
+    public class ReferenceInformation : TreeNodeInformationAdapter<ReferenceInformation>, IAddressData, ITypeNameData
     {
         ClrDump ClrDump { get; }
 
@@ -36,7 +36,7 @@ namespace MemoScope.Modules.InstanceDetails
             Address = address;
         }
 
-        public bool CanExpand => ClrDump.HasReferers(Address);
-        public List<ReferenceInformation> Children => ClrDump.GetReferers(Address).Select(address => new ReferenceInformation(ClrDump, address, Address)).ToList();
+        public override bool CanExpand => ClrDump.HasReferers(Address);
+        public override List<ReferenceInformation> Children => ClrDump.GetReferers(Address).Select(address => new ReferenceInformation(ClrDump, address, Address)).ToList();
     }
 }

@@ -8,12 +8,12 @@ using WinFwk.UITools;
 
 namespace MemoScope.Modules.Referers
 {
-    public class ReferersInformation : ITreeNodeInformation<ReferersInformation>, ITypeNameData
+    public class ReferersInformation : TreeNodeInformationAdapter<ReferersInformation>, ITypeNameData
     {
         [OLVColumn]
         public string TypeName => ClrType.Name;
 
-        [IntColumn(Title="# Instances")]
+        [IntColumn(Title = "# Instances")]
         public int InstancesCount => Instances.Count;
 
         [IntColumn(Title = "# References")]
@@ -32,7 +32,6 @@ namespace MemoScope.Modules.Referers
         ClrDump ClrDump { get; }
         MessageBus MessageBus { get; }
 
-        private bool canExpand;
         private int parentCount;
 
         public ReferersInformation(ClrDump clrDump, ClrType clrType, string fieldName, MessageBus messageBus, int parentCount)
@@ -57,12 +56,12 @@ namespace MemoScope.Modules.Referers
 
         public void Init()
         {
-            canExpand = ReferersAnalysis.HasReferers(MessageBus, ClrDump, Instances);
+            CanExpand = ReferersAnalysis.HasReferers(MessageBus, ClrDump, Instances);
         }
 
-        bool ITreeNodeInformation<ReferersInformation>.CanExpand => canExpand;
+        public override bool CanExpand {get ; set;}
 
-        List<ReferersInformation> ITreeNodeInformation<ReferersInformation>.Children
+        public override List<ReferersInformation> Children
         {
             get
             {

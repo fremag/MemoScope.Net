@@ -8,7 +8,7 @@ using System;
 
 namespace MemoScope.Modules.Explorer
 {
-    public abstract class AbstractDumpExplorerData : ITreeNodeInformation<AbstractDumpExplorerData>
+    public abstract class AbstractDumpExplorerData : TreeNodeInformationAdapter<AbstractDumpExplorerData>
     {
         [OLVColumn(Width = 350, ImageAspectName = nameof(Icon))]
         public string Name { get; protected set; }
@@ -74,9 +74,6 @@ namespace MemoScope.Modules.Explorer
         }
 
         public abstract FileInfo FileInfo { get; }
-
-        public abstract bool CanExpand { get;  }
-        public abstract List<AbstractDumpExplorerData> Children { get;  }
 
         public static List<AbstractDumpExplorerData> GetItems(string mainDir)
         {

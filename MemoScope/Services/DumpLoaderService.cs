@@ -8,6 +8,7 @@ using WinFwk.UIMessages;
 using WinFwk.UIServices;
 using System.Threading;
 using WinFwk.UITools.Log;
+using System.Linq;
 
 namespace MemoScope.Services
 {
@@ -25,7 +26,7 @@ namespace MemoScope.Services
         {
             CancellationTokenSource source = new CancellationTokenSource();
             var token = source.Token;
-            foreach (var fileInfo in openDumpRequest.FileInfos)
+            foreach (var fileInfo in openDumpRequest.FileInfos.Where(fi => fi != null))
             {
                 fact.StartNew(() =>
                 {

@@ -104,7 +104,7 @@ namespace MemoScope.Modules.Explorer
                 }
                 if (children != null)
                 {
-                    fileInfos.AddRange(children.Select(c => c.FileInfo));
+                    fileInfos.AddRange(children.Where(c => c.FileInfo != null).Select(c => c.FileInfo));
                 }
             }
             MessageBus.SendMessage(new OpenDumpRequest(fileInfos));
