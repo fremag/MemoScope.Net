@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
@@ -12,8 +11,6 @@ namespace MemoDummy
 
         [Category("Config")]
         public int N { get; set; } = 300;
-
-        private List<object> objects;
 
         public override void Run()
         {

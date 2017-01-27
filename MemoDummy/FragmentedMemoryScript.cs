@@ -29,7 +29,7 @@ namespace MemoDummy
                     x = null;
                 }
             }
-            catch (OutOfMemoryException e)
+            catch (OutOfMemoryException)
             {
                 GC.Collect();
                 GC.WaitForFullGCComplete(10 * 1000);
