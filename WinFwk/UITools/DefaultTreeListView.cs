@@ -44,7 +44,7 @@ namespace WinFwk.UITools
                 {
                     item.BackColor = Color.Red;
                     item.ForeColor = Color.Black;
-                    item.Tooltip = $"Error: ${e.Message}";
+                    item.Tooltip = $"Error: {e.Message}";
                     return null;
                 }
             };
