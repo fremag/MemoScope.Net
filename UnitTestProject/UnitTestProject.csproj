@@ -77,12 +77,29 @@
       <HintPath>..\packages\Microsoft.Diagnostics.Runtime.0.8.31-beta\lib\net40\Microsoft.Diagnostics.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.1\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.Official.2.9.1\lib\net20\ObjectListView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.13.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.2.13.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WinFwk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\fremag.WinFwk.1.0.0\lib\net461\WinFwk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -113,15 +130,29 @@
       <Project>{d6ad45cf-3691-4a6f-8aa0-28fea3b87bfb}</Project>
       <Name>MemoScope</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WinFwk\WinFwk.csproj">
-      <Project>{b421f218-4883-4ff6-a186-719dd0a30a1e}</Project>
-      <Name>WinFwk</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\cross.png" />
+    <Content Include="Icons\disk.png" />
+    <Content Include="Icons\file_extension_log.png" />
+    <Content Include="Icons\gear_in.png" />
+    <Content Include="Icons\globe_place.png" />
+    <Content Include="Icons\help.png" />
+    <Content Include="Icons\open_folder.png" />
+    <Content Include="Icons\page_copy.png" />
+    <Content Include="Icons\Small\cancel.png" />
+    <Content Include="Icons\Small\small_file_extension_log.png" />
+    <Content Include="Icons\Small\small_folder_vertical_open.png" />
+    <Content Include="Icons\Small\small_gear_in.png" />
+    <Content Include="Icons\Small\small_help.png" />
+    <Content Include="Icons\Small\update_contact_info.png" />
+    <Content Include="Icons\text_exports.png" />
+    <Content Include="Icons\update_contact_info.png" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
