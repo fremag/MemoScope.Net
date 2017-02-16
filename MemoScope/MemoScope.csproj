@@ -161,7 +161,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="WinFwk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\fremag.WinFwk.1.0.1\lib\net461\WinFwk.dll</HintPath>
+      <HintPath>..\packages\fremag.WinFwk.1.0.2\lib\net461\WinFwk.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
