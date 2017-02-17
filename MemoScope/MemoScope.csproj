@@ -115,7 +115,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.1\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.3\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
@@ -160,8 +160,8 @@
       <HintPath>..\packages\DockPanelSuite.2.13.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WinFwk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\fremag.WinFwk.1.0.2\lib\net461\WinFwk.dll</HintPath>
+    <Reference Include="WinFwk, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\fremag.WinFwk.1.0.4\lib\net461\WinFwk.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -674,12 +674,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icons\cross.png" />
-    <Content Include="Icons\disk.png" />
-    <Content Include="Icons\file_extension_log.png" />
-    <Content Include="Icons\gear_in.png" />
-    <Content Include="Icons\globe_place.png" />
-    <Content Include="Icons\help.png" />
     <Content Include="Icons\Large\action_log.png" />
     <Content Include="Icons\Large\attributes_display.png" />
     <Content Include="Icons\Large\award_star_add.png" />
@@ -730,61 +724,9 @@
     <Content Include="Icons\Logos\memoscope_logo_32x32.png" />
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.png" />
     <Content Include="Icons\Logos\Microscope_icon_%28black%29.svg" />
-    <Content Include="Icons\New\3d_glasses.png" />
-    <Content Include="Icons\New\add_on.png" />
     <Content Include="Icons\Large\anchor.png" />
-    <Content Include="Icons\New\attributes_display.png" />
-    <Content Include="Icons\New\barchart.png" />
-    <Content Include="Icons\New\blogs.png" />
-    <Content Include="Icons\New\books_infront.png" />
     <Content Include="Icons\Large\borders_accent.png" />
-    <Content Include="Icons\New\bricks.png" />
-    <Content Include="Icons\New\categories.png" />
-    <Content Include="Icons\New\category.png" />
-    <Content Include="Icons\New\consolidate.png" />
-    <Content Include="Icons\New\data_sort.png" />
-    <Content Include="Icons\New\document_editing.png" />
-    <Content Include="Icons\New\document_layout.png" />
-    <Content Include="Icons\New\document_move.png" />
-    <Content Include="Icons\New\document_tree.png" />
-    <Content Include="Icons\New\flow.png" />
-    <Content Include="Icons\New\handout_master.png" />
-    <Content Include="Icons\New\labels_page.png" />
     <Content Include="Icons\Large\legend.png" />
-    <Content Include="Icons\New\line_numbers.png" />
-    <Content Include="Icons\New\magnet.png" />
-    <Content Include="Icons\New\newsvine.png" />
-    <Content Include="Icons\New\node.png" />
-    <Content Include="Icons\New\perfomance_analysis.png" />
-    <Content Include="Icons\New\previous_markup.png" />
-    <Content Include="Icons\New\receipt_invoice.png" />
-    <Content Include="Icons\New\red_line.png" />
-    <Content Include="Icons\New\relationships.png" />
-    <Content Include="Icons\New\relationship_report.png" />
-    <Content Include="Icons\New\script_binary.png" />
-    <Content Include="Icons\New\scroll_pane_icon.png" />
-    <Content Include="Icons\New\scroll_pane_list.png" />
-    <Content Include="Icons\New\server_components.png" />
-    <Content Include="Icons\New\shape_insert.png" />
-    <Content Include="Icons\New\shape_move_back.png" />
-    <Content Include="Icons\New\sitemap.png" />
-    <Content Include="Icons\New\sitemap_1.png" />
-    <Content Include="Icons\New\sitemap_application_blue.png" />
-    <Content Include="Icons\New\sitemap_color.png" />
-    <Content Include="Icons\New\sitemap_image.png" />
-    <Content Include="Icons\New\smartart_organization_chart_both.png" />
-    <Content Include="Icons\New\smartart_organization_chart_lh.png" />
-    <Content Include="Icons\New\smartart_organization_chart_stand.png" />
-    <Content Include="Icons\New\subtotal.png" />
-    <Content Include="Icons\New\timeline_marker.png" />
-    <Content Include="Icons\New\token_anchors.png" />
-    <Content Include="Icons\New\trace_dependents.png" />
-    <Content Include="Icons\New\trace_precendents.png" />
-    <Content Include="Icons\New\tubes.png" />
-    <Content Include="Icons\New\vbox.png" />
-    <Content Include="Icons\New\viewstack.png" />
-    <Content Include="Icons\open_folder.png" />
-    <Content Include="Icons\page_copy.png" />
     <Content Include="Icons\Small\accept_button.png" />
     <Content Include="Icons\Small\action_log.png" />
     <Content Include="Icons\Small\anchor.png" />
@@ -797,7 +739,6 @@
     <Content Include="Icons\Small\blueprint.png" />
     <Content Include="Icons\Small\borders_accent.png" />
     <Content Include="Icons\Small\broom.png" />
-    <Content Include="Icons\Small\cancel.png" />
     <Content Include="Icons\Small\candlestickchart.png" />
     <Content Include="Icons\Small\chart_organisation.png" />
     <Content Include="Icons\Small\class_module.png" />
@@ -841,17 +782,10 @@
     <Content Include="Icons\Small\save_data.png" />
     <Content Include="Icons\Small\scroll_pane_list.png" />
     <Content Include="Icons\Small\help.png" />
-    <Content Include="Icons\Small\small_file_extension_log.png" />
-    <Content Include="Icons\Small\small_folder_vertical_open.png" />
-    <Content Include="Icons\Small\small_gear_in.png" />
-    <Content Include="Icons\Small\small_help.png" />
     <Content Include="Icons\Small\subtotal.png" />
     <Content Include="Icons\Small\table_lightning.png" />
     <Content Include="Icons\Small\text_rotate.png" />
     <Content Include="Icons\Small\text_uppercase.png" />
-    <Content Include="Icons\Small\update_contact_info.png" />
-    <Content Include="Icons\text_exports.png" />
-    <Content Include="Icons\update_contact_info.png" />
     <Content Include="libs\_x64\dbghelp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
