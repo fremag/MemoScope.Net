@@ -25,7 +25,7 @@ I know, with 64 bits apps it should not be an issue but computers only have a fe
 - runs for days and has a "slow" memory leak
 
 ## Dead lock
-If your application is locked and you want to know where and why: dump the memory, display the threads status and blocking objects to see what thread is holding one that is waited by anoter thread.
+If your application is locked and you want to know where and why: dump the memory, display the threads status and blocking objects to see what thread is holding one that is waited by another thread.
 
 ## Hard to reproduce bug
 Sometimes, users can do weird things with your application and you can't make it happen on your computer so ask the user to dump its application's memory to analyze it on your machine.
