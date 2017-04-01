@@ -316,16 +316,19 @@ namespace MemoScope.Core.Cache
 
         public int CountReferers(ulong instanceAddress)
         {
-            paramInstanceAddress_CountReferences.Value = instanceAddress;
-            using (SQLiteDataReader dr = cmdCountReferences.ExecuteReader())
+            lock (cmdCountReferences)
             {
-                while (dr.Read())
+                paramInstanceAddress_CountReferences.Value = instanceAddress;
+                using (SQLiteDataReader dr = cmdCountReferences.ExecuteReader())
                 {
-                    var count = dr.GetInt32(0);
-                    return count;
+                    while (dr.Read())
+                    {
+                        var count = dr.GetInt32(0);
+                        return count;
+                    }
                 }
+                return 0;
             }
-            return 0;
         }
         #endregion
 
