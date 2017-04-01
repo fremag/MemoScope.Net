@@ -31,10 +31,12 @@ namespace MemoScope.Services
                 fact.StartNew(() =>
                 {
                     BeginTask("Loading file: " + fileInfo.FullName, source);
-                    DataTarget target = DataTarget.LoadCrashDump(fileInfo.FullName);
+                    DataTarget target = null;
                     try
                     {
-                        if( (  Environment.Is64BitProcess && target.PointerSize != 8 )
+                        target = DataTarget.LoadCrashDump(fileInfo.FullName);
+
+                        if ( (  Environment.Is64BitProcess && target.PointerSize != 8 )
                         || (! Environment.Is64BitProcess && target.PointerSize != 4) )                        { 
                             throw new InvalidOperationException($"Wrong architecture ! Dumpfile : {target.PointerSize*8} bits, Environment.Is64BitProcess : {Environment.Is64BitProcess}");
                         }
@@ -44,17 +46,17 @@ namespace MemoScope.Services
                         if (token.IsCancellationRequested)
                         {
                             clrDump.Destroy();
-                            EndTask("File NOT loaded: " + fileInfo.FullName);
+                            EndTask($"File NOT loaded: {fileInfo.FullName}");
                         }
                         else
                         {
                             MessageBus.SendMessage(new ClrDumpLoadedMessage(clrDump));
-                            EndTask("File loaded: " + fileInfo.FullName);
+                            EndTask($"File loaded: {fileInfo.FullName}");
                         }
                     }
                     catch(Exception ex) 
                     {
-                        string msg = "Failed to load dump file: " + fileInfo.FullName;
+                        string msg = $"Failed to load dump file: {fileInfo.FullName}";
                         EndTask(msg);
                         MessageBus.Log(this, msg, ex);
                         target?.Dispose();
