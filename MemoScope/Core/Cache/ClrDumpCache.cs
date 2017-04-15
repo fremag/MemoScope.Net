@@ -175,7 +175,15 @@ namespace MemoScope.Core.Cache
                 var count = dr.GetInt64(3);
                 var totalSize = (ulong)dr.GetInt64(4);
 
-                var type = ClrDump.GetType(methodTable);
+                ClrType type = ClrDump.GetType(methodTable);
+                if (type == null)
+                {
+                    type = ClrDump.GetType(name);
+                }
+                if ( type == null)
+                { 
+                    continue;
+                }
                 var clrTypeStats = new ClrTypeStats(id, type, count, totalSize);
                 list.Add(clrTypeStats);
             }

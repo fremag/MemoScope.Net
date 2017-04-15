@@ -157,6 +157,12 @@ namespace MemoScope.Core
             return type;
         }
 
+        public ClrType GetType(string typeName)
+        {
+            var type = Eval(() => Heap.GetTypeByName(typeName));
+            return type;
+        }
+
         public bool IsString(ClrType type)
         {
             var res = Eval(() => type.IsString);
