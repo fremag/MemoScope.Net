@@ -2,6 +2,7 @@
 using Microsoft.Diagnostics.Runtime;
 using MemoScope.Core.Data;
 using BrightIdeasSoftware;
+using WinFwk.UITools;
 
 namespace MemoScope.Modules.ClrRoots
 {
@@ -15,21 +16,24 @@ namespace MemoScope.Modules.ClrRoots
             ClrRoot = clrRoot;
         }
 
-        [OLVColumn]
+        [AddressColumn]
         public ulong Address => ClrRoot.Address;
 
-        [OLVColumn]
+        [BoolColumn]
         public bool IsInterior => ClrRoot.IsInterior;
-        [OLVColumn]
+        [BoolColumn]
         public bool IsPinned => ClrRoot.IsPinned;
-        [OLVColumn]
+        [BoolColumn]
         public bool IsPossibleFalsePositive => ClrRoot.IsPossibleFalsePositive;
         [OLVColumn]
         public GCRootKind Kind => ClrRoot.Kind ;
-        [OLVColumn]
+        [AddressColumn]
         public ulong ObjectAddress => ClrRoot.Object;
 
-        [OLVColumn(Title="Name")]
+        [OLVColumn(Title = "Name", Width = 300)]
+        public string Name => ClrRoot.Name;
+
+        [OLVColumn(Title="Type", Width = 300)]
         public string TypeName => ClrRoot.Type?.Name;
 
         public ClrType Type => ClrRoot.Type;

@@ -27,6 +27,8 @@ namespace MemoScope.Modules.ClrRoots
             dlvClrRoots.SetUpAddressColumn<ClrRootsInformation>(this);
             dlvClrRoots.SetUpAddressColumn(nameof(ClrRootsInformation.ObjectAddress), this);
             dlvClrRoots.SetUpTypeColumn<ClrRootsInformation>(this);
+
+            dlvClrRoots.SetRegexFilter(rfcName, o => ((ClrRootsInformation)o).Name);
         }
 
         public override void Init()
