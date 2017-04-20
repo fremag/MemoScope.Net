@@ -29,32 +29,42 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dlvClrRoots = new WinFwk.UITools.DefaultListView();
+            this.rfcName = new MemoScope.Tools.RegexFilter.RegexFilterControl();
             ((System.ComponentModel.ISupportInitialize)(this.dlvClrRoots)).BeginInit();
             this.SuspendLayout();
             // 
-            // defaultListView1
+            // dlvClrRoots
             // 
+            this.dlvClrRoots.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dlvClrRoots.CellEditUseWholeCell = false;
-            this.dlvClrRoots.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlvClrRoots.FullRowSelect = true;
             this.dlvClrRoots.HideSelection = false;
-            this.dlvClrRoots.HighlightBackgroundColor = System.Drawing.Color.Empty;
-            this.dlvClrRoots.HighlightForegroundColor = System.Drawing.Color.Empty;
-            this.dlvClrRoots.Location = new System.Drawing.Point(0, 0);
-            this.dlvClrRoots.Name = "defaultListView1";
+            this.dlvClrRoots.Location = new System.Drawing.Point(0, 46);
+            this.dlvClrRoots.Name = "dlvClrRoots";
             this.dlvClrRoots.ShowGroups = false;
             this.dlvClrRoots.ShowImagesOnSubItems = true;
-            this.dlvClrRoots.Size = new System.Drawing.Size(762, 483);
+            this.dlvClrRoots.Size = new System.Drawing.Size(762, 437);
             this.dlvClrRoots.TabIndex = 0;
             this.dlvClrRoots.UseCompatibleStateImageBehavior = false;
             this.dlvClrRoots.View = System.Windows.Forms.View.Details;
             this.dlvClrRoots.VirtualMode = true;
             // 
-            // ModulesModule
+            // rfcName
             // 
+            this.rfcName.Location = new System.Drawing.Point(3, 8);
+            this.rfcName.Name = "rfcName";
+            this.rfcName.Size = new System.Drawing.Size(675, 32);
+            this.rfcName.TabIndex = 1;
+            // 
+            // ClrRootsModule
+            // 
+            this.Controls.Add(this.rfcName);
             this.Controls.Add(this.dlvClrRoots);
-            this.Name = "ModulesModule";
+            this.Name = "ClrRootsModule";
             this.Size = new System.Drawing.Size(762, 483);
             ((System.ComponentModel.ISupportInitialize)(this.dlvClrRoots)).EndInit();
             this.ResumeLayout(false);
@@ -65,5 +75,6 @@
 #pragma warning restore CS0618 // Le type ou le membre est obsolète
 
         private WinFwk.UITools.DefaultListView dlvClrRoots;
+        private Tools.RegexFilter.RegexFilterControl rfcName;
     }
 }
