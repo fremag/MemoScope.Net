@@ -160,9 +160,8 @@
       <HintPath>..\packages\DockPanelSuite.2.13.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WinFwk, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\fremag.WinFwk.1.0.4\lib\net461\WinFwk.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="WinFwk, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\fremag.WinFwk.1.0.7\lib\net461\WinFwk.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

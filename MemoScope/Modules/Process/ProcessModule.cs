@@ -158,11 +158,24 @@ namespace MemoScope.Modules.Process
                 }
             }
 
-
-            DriveInfo driveInfo = new DriveInfo(dumpDir);
-            if (proc.Process.VirtualMemorySize64 >= driveInfo.AvailableFreeSpace)
+            
+            try
             {
-                Log($"Can't dump: not enough space on disk ! Proce VirtualMem: {proc.Process.VirtualMemorySize64:###,###,###,###}, available disk space: {driveInfo.AvailableFreeSpace:###,###,###,###}, drive: {driveInfo.Name}", LogLevelType.Warn);
+                var root = Directory.GetDirectoryRoot(dumpDir);
+                // Can't check free space on a network drive / UNC path cf Issue #199 (https://github.com/fremag/MemoScope.Net/issues/199)
+                if ( ! root.StartsWith(@"\\"))
+                {
+                    DriveInfo driveInfo = new DriveInfo(dumpDir);
+                    if (proc.Process.VirtualMemorySize64 >= driveInfo.AvailableFreeSpace)
+                    {
+                        Log($"Can't dump: not enough space on disk ! Proce VirtualMem: {proc.Process.VirtualMemorySize64:###,###,###,###}, available disk space: {driveInfo.AvailableFreeSpace:###,###,###,###}, drive: {driveInfo.Name}", LogLevelType.Warn);
+                        return;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Log("Failed to check disk space ! ", e);
                 return;
             }
 
