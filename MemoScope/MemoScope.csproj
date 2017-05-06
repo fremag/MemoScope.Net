@@ -169,6 +169,7 @@
     <Compile Include="Core\Cache\ClrDumpCache.cs" />
     <Compile Include="Core\Cache\paramInstanceAddress.cs" />
     <Compile Include="Core\Cache\SqliteHelper.cs" />
+    <Compile Include="Core\ClrTypeError.cs" />
     <Compile Include="Core\Data\AddressContainerList.cs" />
     <Compile Include="Core\Data\ArrayElementsAddressContainer.cs" />
     <Compile Include="Core\Data\ClrDumpThread.cs" />

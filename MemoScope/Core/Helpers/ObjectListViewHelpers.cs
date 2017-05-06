@@ -83,7 +83,7 @@ namespace MemoScope.Core.Helpers
                     {
                         return new ClrDumpType(dumpModule.ClrDump, type);
                     }
-                    return null;
+                    throw new ArgumentException($"Can't find type: {typeName}");
                 }, dumpModule, suffix);
                 listView.AddMenuSeparator();
             }
@@ -390,7 +390,14 @@ namespace MemoScope.Core.Helpers
 
         private static void OnMenuItemClick<T>(AbstractDataUICommand<T> command, Func<T> dataProvider)
         {
-            command.Run();
+            try
+            {
+                command.Run();
+            }
+            catch (Exception e)
+            {
+                command.MessageBus.Log(command, $"Command ({command.Name}) failed !", e);
+            }
         }
 
         public static T SelectedObject<T>(this ObjectListView listView) where T : class

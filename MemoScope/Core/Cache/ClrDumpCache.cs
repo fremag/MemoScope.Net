@@ -181,12 +181,13 @@ namespace MemoScope.Core.Cache
                     type = ClrDump.GetType(name);
                 }
                 if ( type == null)
-                { 
-                    continue;
+                {
+                    type = new ClrTypeError(name);
                 }
                 var clrTypeStats = new ClrTypeStats(id, type, count, totalSize);
                 list.Add(clrTypeStats);
             }
+            
             return list;
         }
 
