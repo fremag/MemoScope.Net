@@ -9,7 +9,7 @@ namespace MemoScope.Core
         public override ulong MethodTable => 0;
         public override uint MetadataToken => 0;
         public override string Name { get; }
-        public override ClrHeap Heap => throw new NotImplementedException();
+        public override ClrHeap Heap => null;
         public override IList<ClrInterface> Interfaces => new List<ClrInterface>();
         public override bool IsFinalizable => false;
         public override bool IsPublic => false;
