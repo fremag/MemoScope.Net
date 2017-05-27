@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MemoScope")]
-[assembly: AssemblyCopyright("Copyright © FreMag 2016")]
+[assembly: AssemblyCopyright("Copyright © FreMag 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
