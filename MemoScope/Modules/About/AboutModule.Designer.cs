@@ -41,7 +41,6 @@
             // tbApplicationName
             // 
             this.tbApplicationName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbApplicationName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbApplicationName.Location = new System.Drawing.Point(139, 46);
             this.tbApplicationName.Name = "tbApplicationName";
             this.tbApplicationName.ReadOnly = true;
@@ -83,7 +82,6 @@
             this.tbVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbVersion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbVersion.Location = new System.Drawing.Point(430, 107);
             this.tbVersion.Name = "tbVersion";
             this.tbVersion.ReadOnly = true;

@@ -1,4 +1,6 @@
-﻿namespace MemoScope
+﻿using System.Windows.Forms;
+
+namespace MemoScope
 {
     partial class MemoScopeForm
     {
@@ -36,6 +38,7 @@
             this.AllowDrop = true;
             this.ClientSize = new System.Drawing.Size(925, 744);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.AutoScaleMode = AutoScaleMode.Inherit;
             this.Name = "MemoScopeForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MemoScope_Load);
