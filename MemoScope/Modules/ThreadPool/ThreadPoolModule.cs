@@ -1,4 +1,5 @@
-﻿using MemoScope.Core;
+﻿using System;
+using MemoScope.Core;
 using MemoScope.Core.Helpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,17 @@ namespace MemoScope.Modules.ThreadPool
         {
             ThreadPoolInformation = new ThreadPoolInformation(ClrDump, ClrDump.ThreadPool);
             NativeWorkItems = ClrDump.ThreadPool.EnumerateNativeWorkItems().Select(workItem => new NativeWorkItemInformation(workItem)).ToList();
-            ManagedWorkItems = ClrDump.ThreadPool.EnumerateManagedWorkItems().Select(workItem => new ManagedWorkItemInformation(workItem)).ToList();
+
+            try
+            {
+                ManagedWorkItems = ClrDump.ThreadPool.EnumerateManagedWorkItems().Select(workItem => new ManagedWorkItemInformation(workItem)).ToList();
+            }
+            catch (Exception)
+            {
+                // ClrMd does not yet support EnumerateManagedWorkItems with .net core dumps
+                // see: https://github.com/Microsoft/clrmd/issues/131
+                ManagedWorkItems = null;
+            }
         }
 
         public override void PostInit()

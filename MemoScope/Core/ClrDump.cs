@@ -367,7 +367,7 @@ namespace MemoScope.Core
             {
                 string name = (string)GetFieldValue(threadAddress, threadType, nameField);
                 int priority = (int)GetFieldValue(threadAddress, threadType, priorityField);
-                int id = (int)GetFieldValue(threadAddress, threadType, idField);
+                int id = idField != null ? (int)GetFieldValue(threadAddress, threadType, idField) : 0;
                 threadProperties[id] = new ThreadProperty
                 {
                     Address = threadAddress,
