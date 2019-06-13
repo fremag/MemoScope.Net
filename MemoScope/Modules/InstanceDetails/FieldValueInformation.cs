@@ -5,6 +5,7 @@ using MemoScope.Core.Helpers;
 using Microsoft.Diagnostics.Runtime;
 using WinFwk.UITools;
 using System;
+using ClrObject = MemoScope.Core.Data.ClrObject;
 
 namespace MemoScope.Modules.InstanceDetails
 {

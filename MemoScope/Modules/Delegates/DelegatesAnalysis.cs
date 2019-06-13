@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using WinFwk.UIModules;
+using ClrObject = MemoScope.Core.Data.ClrObject;
 
 namespace MemoScope.Modules.Delegates
 {

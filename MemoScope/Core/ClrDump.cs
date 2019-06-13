@@ -12,6 +12,7 @@ using WinFwk.UIModules;
 using NLog;
 using System.Reflection;
 using MemoScope.Core.ProcessInfo;
+using ClrObject = MemoScope.Core.Data.ClrObject;
 
 namespace MemoScope.Core
 {
@@ -24,12 +25,12 @@ namespace MemoScope.Core
         public ClrRuntime Runtime { get; set; }
         public DataTarget Target { get; }
         public string DumpPath { get; }
-        public ClrHeap Heap => Runtime.GetHeap();
+        public ClrHeap Heap => Runtime.Heap;
 
         public MessageBus MessageBus { get; }
         public ClrDumpInfo ClrDumpInfo { get; }
 
-        public IList<ClrSegment> Segments => Runtime.GetHeap().Segments;
+        public IList<ClrSegment> Segments => Runtime.Heap.Segments;
         public List<ClrMemoryRegion> Regions => Runtime.EnumerateMemoryRegions().ToList();
         public IList<ClrModule> Modules => Runtime.Modules;
 
@@ -37,7 +38,7 @@ namespace MemoScope.Core
         public List<ulong> FinalizerQueueObjectAddresses => Runtime.EnumerateFinalizerQueueObjectAddresses().ToList();
         public IEnumerable<IGrouping<ClrType, ulong>> FinalizerQueueObjectAddressesByType => Runtime.EnumerateFinalizerQueueObjectAddresses().GroupBy(address => GetObjectType(address));
         public IList<ClrThread> Threads => Runtime.Threads;
-        public ClrThreadPool ThreadPool => Runtime.GetThreadPool();
+        public ClrThreadPool ThreadPool => Runtime.ThreadPool;
         public List<ClrType> AllTypes => Heap.EnumerateTypes().ToList();
 
         public Dictionary<int, ThreadProperty> ThreadProperties
@@ -52,7 +53,7 @@ namespace MemoScope.Core
             }
         }
 
-        public IEnumerable<ClrRoot> EnumerateClrRoots => Runtime.GetHeap().EnumerateRoots();
+        public IEnumerable<ClrRoot> EnumerateClrRoots => Runtime.Heap.EnumerateRoots();
 
         Dictionary<int, ThreadProperty> threadProperties;
         private readonly SingleThreadWorker worker;
@@ -460,7 +461,7 @@ namespace MemoScope.Core
             MessageBus.BeginTask("Looking for blocking objects...", source);
 
             int n = 0;
-            foreach (var obj in Runtime.GetHeap().EnumerateBlockingObjects())
+            foreach (var obj in Runtime.Heap.EnumerateBlockingObjects())
             {
                 if (token.IsCancellationRequested)
                 {
@@ -492,7 +493,7 @@ namespace MemoScope.Core
             MessageBus.BeginTask("Looking for ClrRoots...", source);
 
             int n = 0;
-            foreach (var obj in Runtime.GetHeap().EnumerateRoots())
+            foreach (var obj in Runtime.Heap.EnumerateRoots())
             {
                 if (token.IsCancellationRequested)
                 {

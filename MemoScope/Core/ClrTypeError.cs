@@ -6,6 +6,7 @@ namespace MemoScope.Core
 {
     public class ClrTypeError : ClrType
     {
+        protected override GCDesc GCDesc { get; }
         public override ulong MethodTable => 0;
         public override uint MetadataToken => 0;
         public override string Name { get; }

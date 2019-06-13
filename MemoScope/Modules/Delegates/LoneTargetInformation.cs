@@ -2,6 +2,7 @@
 using BrightIdeasSoftware;
 using MemoScope.Core;
 using Microsoft.Diagnostics.Runtime;
+using ClrObject = MemoScope.Core.Data.ClrObject;
 
 namespace MemoScope.Modules.Delegates
 {
