@@ -1,4 +1,6 @@
-﻿namespace MemoScope.Modules.Explorer
+﻿using System.Windows.Forms;
+
+namespace MemoScope.Modules.Explorer
 {
     partial class ExplorerModule
     {
@@ -41,8 +43,8 @@
             // 
             // lblRootDir
             // 
-            this.lblRootDir.AutoSize = true;
             this.lblRootDir.Location = new System.Drawing.Point(12, 16);
+            this.lblRootDir.AutoSize = true;
             this.lblRootDir.Name = "lblRootDir";
             this.lblRootDir.Size = new System.Drawing.Size(68, 17);
             this.lblRootDir.TabIndex = 0;
