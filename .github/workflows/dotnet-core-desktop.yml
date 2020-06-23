@@ -80,3 +80,5 @@ jobs:
     - name: Nuget restore
       run: nuget restore -verbosity quiet
     
+    - name: Build
+      run:  dotnet build MemoScope/MemoScope.csproj
