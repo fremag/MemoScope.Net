@@ -81,4 +81,4 @@ jobs:
       run: nuget restore -verbosity quiet
     
     - name: Build
-      run:  dotnet build MemoScope/MemoScope.csproj
+      run:  MSBuild MemoScope.Net.sln
